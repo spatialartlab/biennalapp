@@ -398,15 +398,15 @@
             justify-content: center;
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             cursor: pointer;
             transition: color 0.2s;
         }
 
         .nav-item svg {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             margin-bottom: 3px;
             fill: currentColor;
         }
@@ -511,7 +511,7 @@
 
                 <div id="agenda-20" class="agenda-content active">
                     <h3 id="ag-title-20">Divendres, 20 de Novembre (Ruta Groga)</h3>
-                    <p id="ag-desc-20">Inauguració oficial del Circuit del Arte y apertura institucional d'estudis i tallers participants en Ciutat Vella.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.</p>
+                    <p id="ag-desc-20">Inauguració oficial del Circuit del Arte y apertura institutional d'estudis i tallers participants en Ciutat Vella.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.</p>
                 </div>
                 <div id="agenda-21" class="agenda-content" style="display:none;">
                     <h3 id="ag-title-21">Dissabte, 21 de Novembre (Ruta Violeta)</h3>
@@ -540,10 +540,15 @@
             </div>
         </div>
 
+        <!-- NAV INFERIOR CON MAPA GENERAL, PUNTOS DE RUTAS Y AGENDA -->
         <nav class="bottom-nav">
             <a class="nav-item active" onclick="switchView('home')" id="nav-home">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
                 Inicio
+            </a>
+            <a class="nav-item" onclick="filterAndGoToMap('all')" id="nav-map">
+                <svg viewBox="0 0 24 24"><path d="M20.5 3l-0.16.03L15 5.1 9 3 3.36 4.9 C3.15 4.97 3 5.15 3 5.38v13.5c0 0.28 0.22 0.5 0.5 0.5l0.16-0.03L9 17.4l6 2.1 5.64-1.9c0.21-0.07 0.36-0.25 0.36-0.48V3.5c0-0.28-0.22-0.5-0.5-0.5zM15 17.25l-6-2.11V5.01l6 2.11v10.13z"/></svg>
+                Mapa
             </a>
             <a class="nav-item" onclick="filterAndGoToMap('yellow')" id="nav-yellow">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#f1c40f"/></svg>
@@ -696,6 +701,7 @@
             switchView('map');
             
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            if (route === 'all' && document.getElementById('nav-map')) document.getElementById('nav-map').classList.add('active');
             if (route === 'yellow' && document.getElementById('nav-yellow')) document.getElementById('nav-yellow').classList.add('active');
             if (route === 'violet' && document.getElementById('nav-violet')) document.getElementById('nav-violet').classList.add('active');
             if (route === 'red' && document.getElementById('nav-red')) document.getElementById('nav-red').classList.add('active');
@@ -710,6 +716,7 @@
                 document.getElementById('nav-home').classList.add('active');
             } else if (viewName === 'map') {
                 document.getElementById('view-map').classList.add('active');
+                if (document.getElementById('nav-map')) document.getElementById('nav-map').classList.add('active');
                 setTimeout(() => { if(map) map.invalidateSize(); }, 200);
             } else if (viewName === 'agenda') {
                 document.getElementById('view-agenda').classList.add('active');
@@ -841,5 +848,4 @@
     </script>
 </body>
 </html>
-
 
