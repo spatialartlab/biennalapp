@@ -1,701 +1,799 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biennal de València CVO 2026 - Circuit del Arte</title>
+<meta property="og:title" content="Biennal de València CVO 2026 - Circuit del Arte" />
 
-<!-- Estilos de Leaflet -->
+<meta property="og:description" content="Circuito de Talleres y Estudios de artista. Art a la Llum." />
+
+<meta property="og:image" content="https://spatialartlab.github.io/biennalapp/logo.png" />
+
+<meta property="og:url" content="https://spatialartlab.github.io/biennalapp/" />
+
+<meta property="og:type" content="website" />
+
+<link rel="icon" type="image/png" href="logo.png" />
+
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <style>
-:root {
---biennal-turquoise: #0082c8;
---biennal-turquoise-dark: #00689e;
---bg-color: #f8f9fa;
---text-main: #212529;
---text-muted: #6c757d;
---white: #ffffff;
-}
 
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
+    :root {
 
-body, html {
-width: 100%;
-height: 100%;
-overflow: hidden;
-background-color: var(--biennal-turquoise);
-}
+        --biennal-turquoise: #0082c8;
 
-/* --- SPLASH SCREEN --- */
-#splash-screen {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: var(--biennal-turquoise);
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-z-index: 9999;
-transition: opacity 0.6s ease;
-}
+        --biennal-turquoise-dark: #00689e;
 
-#splash-screen h1 {
-color: var(--white);
-font-size: 2.34rem;
-font-weight: 300;
-text-align: center;
-letter-spacing: 2px;
-text-transform: uppercase;
-line-height: 1.4;
-padding: 0 20px;
-}
+        --bg-color: #f8f9fa;
 
-/* --- APP CONTAINER --- */
-#app {
-display: flex;
-flex-direction: column;
-width: 100%;
-height: 100%;
-background-color: var(--bg-color);
-opacity: 0;
-transition: opacity 0.6s ease;
-}
+        --text-main: #212529;
 
-#app.visible {
-opacity: 1;
-}
+        --text-muted: #6c757d;
 
-/* --- HEADER INSTITUCIONAL CENTRADO --- */
-header {
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 16px 20px;
-background-color: var(--white);
-border-bottom: 4px solid var(--biennal-turquoise);
-z-index: 1000;
-box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-flex-shrink: 0;
-position: relative;
-}
+        --white: #ffffff;
 
-/* Selector de idiomas flotante arriba a la derecha */
-.lang-selector {
-position: absolute;
-top: 14px;
-right: 16px;
-display: flex;
-gap: 6px;
-font-size: 0.9rem;
-font-weight: 600;
-}
+    }
 
-.lang-selector span {
-cursor: pointer;
-padding: 3px 6px;
-border-radius: 4px;
-color: var(--text-muted);
-}
+    * {
 
-.lang-selector span.active {
-background-color: var(--biennal-turquoise);
-color: var(--white);
-}
+        box-sizing: border-box;
 
-/* Logo institucional centrado */
-.biennal-logo-svg {
-width: 48px;
-height: 48px;
-margin-bottom: 8px;
-fill: var(--biennal-turquoise);
-}
+        margin: 0;
 
-/* Título jerarquizado y centrado */
-.header-title-container {
-text-align: center;
-}
+        padding: 0;
 
-.header-title-main {
-font-size: 1.15rem;
-font-weight: 700;
-color: var(--biennal-turquoise-dark);
-text-transform: uppercase;
-letter-spacing: 0.5px;
-margin-bottom: 2px;
-}
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-.header-title-sub {
-font-size: 1.05rem;
-font-weight: 600;
-color: var(--text-main);
-margin-bottom: 2px;
-}
+    }
 
-.header-title-light {
-font-size: 0.95rem;
-font-weight: 400;
-color: var(--text-muted);
-font-style: italic;
-}
+    body, html {
 
-.header-title-artists {
-font-size: 0.9rem;
-font-weight: 500;
-color: var(--biennal-turquoise);
-margin-top: 2px;
-letter-spacing: 0.3px;
-}
+        width: 100%;
 
-/* --- WELCOME BANNER CENTRADO --- */
-.welcome-banner {
-background-color: var(--white);
-padding: 14px 24px;
-font-size: 1.06rem;
-color: var(--text-muted);
-border-bottom: 1px solid #dee2e6;
-line-height: 1.4;
-flex-shrink: 0;
-text-align: center;
-}
+        height: 100%;
 
-/* --- VIEWS CONTAINER --- */
-.view-container {
-flex: 1;
-position: relative;
-overflow: hidden;
-}
+        overflow: hidden;
 
-.view {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-display: none;
-}
+        background-color: var(--biennal-turquoise);
 
-.view.active {
-display: flex;
-flex-direction: column;
-}
+    }
 
-/* --- MAP VIEW --- */
-#map {
-width: 100%;
-height: 100%;
-background-color: #e5e3df;
-}
+    #splash-screen {
 
-/* --- AGENDA VIEW --- */
-.agenda-view {
-padding: 20px;
-overflow-y: auto;
-background-color: var(--bg-color);
-}
+        position: fixed;
 
-.agenda-tabs {
-display: flex;
-gap: 10px;
-margin-bottom: 20px;
-}
+        top: 0;
 
-.agenda-tab {
-flex: 1;
-padding: 10px;
-text-align: center;
-background-color: var(--white);
-border: 1px solid #ced4da;
-border-radius: 8px;
-font-size: 1.1rem;
-font-weight: 600;
-cursor: pointer;
-color: var(--text-muted);
-}
+        left: 0;
 
-.agenda-tab.active {
-background-color: var(--biennal-turquoise);
-color: var(--white);
-border-color: var(--biennal-turquoise);
-}
+        width: 100%;
 
-.agenda-content {
-display: none;
-background: var(--white);
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
+        height: 100%;
 
-.agenda-content.active {
-display: block;
-}
+        background-color: var(--biennal-turquoise);
 
-.agenda-content h3 {
-font-size: 1.3rem;
-color: var(--biennal-turquoise);
-margin-bottom: 10px;
-}
+        display: flex;
 
-.agenda-content p {
-font-size: 1.15rem;
-color: var(--text-main);
-line-height: 1.5;
-}
+        flex-direction: column;
 
-/* --- BOTTOM SHEET --- */
-.bottom-sheet {
-position: absolute;
-bottom: -100%;
-left: 0;
-width: 100%;
-background: var(--white);
-border-top-left-radius: 20px;
-border-top-right-radius: 20px;
-box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
-transition: bottom 0.3s ease-in-out;
-z-index: 1500;
-max-height: 80vh;
-display: flex;
-flex-direction: column;
-}
+        justify-content: center;
 
-.bottom-sheet.open {
-bottom: 0;
-}
+        align-items: center;
 
-.sheet-handle {
-width: 50px;
-height: 5px;
-background-color: #ced4da;
-border-radius: 3px;
-margin: 12px auto;
-cursor: pointer;
-}
+        z-index: 9999;
 
-.sheet-body {
-padding: 0 24px 24px 24px;
-overflow-y: auto;
-}
+        transition: opacity 0.6s ease;
 
-.sheet-title {
-font-size: 1.4rem;
-font-weight: 700;
-color: var(--text-main);
-margin-bottom: 6px;
-}
+    }
 
-.sheet-artists {
-font-size: 1.1rem;
-color: var(--biennal-turquoise-dark);
-font-weight: 600;
-margin-bottom: 6px;
-}
+    #splash-screen h1 {
 
-.sheet-address {
-font-size: 1.05rem;
-color: var(--text-muted);
-margin-bottom: 14px;
-}
+        color: var(--white);
 
-.sheet-links {
-display: flex;
-gap: 20px;
-font-size: 1.05rem;
-margin-bottom: 18px;
-flex-wrap: wrap;
-}
+        font-size: 2.34rem;
 
-.sheet-links a {
-color: var(--biennal-turquoise);
-text-decoration: none;
-font-weight: 600;
-}
+        font-weight: 300;
 
-.sheet-activity-title {
-font-size: 1.05rem;
-text-transform: uppercase;
-font-weight: 700;
-color: var(--text-muted);
-margin-bottom: 8px;
-letter-spacing: 0.5px;
-}
+        text-align: center;
 
-.sheet-activity-desc {
-font-size: 1.15rem;
-color: var(--text-main);
-line-height: 1.5;
-background-color: var(--bg-color);
-padding: 14px;
-border-radius: 8px;
-border-left: 4px solid var(--biennal-turquoise);
-}
+        letter-spacing: 2px;
 
-.sheet-close-btn {
-position: absolute;
-top: 14px;
-right: 20px;
-background: none;
-border: none;
-font-size: 1.5rem;
-cursor: pointer;
-color: var(--text-muted);
-}
+        text-transform: uppercase;
 
-/* --- BOTTOM NAVIGATION --- */
-nav.bottom-nav {
-display: flex;
-background-color: var(--white);
-border-top: 1px solid #dee2e6;
-height: 72px;
-z-index: 1000;
-flex-shrink: 0;
-}
+        line-height: 1.4;
 
-.nav-item {
-flex: 1;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-decoration: none;
-color: var(--text-muted);
-font-size: 0.91rem;
-font-weight: 600;
-cursor: pointer;
-transition: color 0.2s;
-}
+        padding: 0 20px;
 
-.nav-item svg {
-width: 26px;
-height: 26px;
-margin-bottom: 4px;
-fill: currentColor;
-}
+    }
 
-.nav-item.active {
-color: var(--biennal-turquoise);
-font-weight: 700;
-}
+    #app {
+
+        display: flex;
+
+        flex-direction: column;
+
+        width: 100%;
+
+        height: 100%;
+
+        background-color: var(--bg-color);
+
+        opacity: 0;
+
+        transition: opacity 0.6s ease;
+
+    }
+
+    #app.visible {
+
+        opacity: 1;
+
+    }
+
+    header {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        padding: 16px 20px;
+
+        background-color: var(--white);
+
+        border-bottom: 4px solid var(--biennal-turquoise);
+
+        z-index: 1000;
+
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+        flex-shrink: 0;
+
+        position: relative;
+
+    }
+
+    .lang-selector {
+
+        position: absolute;
+
+        top: 14px;
+
+        right: 16px;
+
+        display: flex;
+
+        gap: 6px;
+
+        font-size: 0.9rem;
+
+        font-weight: 600;
+
+    }
+
+    .lang-selector span {
+
+        cursor: pointer;
+
+        padding: 3px 6px;
+
+        border-radius: 4px;
+
+        color: var(--text-muted);
+
+    }
+
+    .lang-selector span.active {
+
+        background-color: var(--biennal-turquoise);
+
+        color: var(--white);
+
+    }
+
+    .biennal-logo-img {
+
+        width: 80px;
+
+        height: auto;
+
+        margin-bottom: 8px;
+
+        object-fit: contain;
+
+    }
+
+    .header-title-container {
+
+        text-align: center;
+
+    }
+
+    .header-title-main {
+
+        font-size: 1.15rem;
+
+        font-weight: 700;
+
+        color: var(--biennal-turquoise-dark);
+
+        text-transform: uppercase;
+
+        letter-spacing: 0.5px;
+
+        margin-bottom: 2px;
+
+    }
+
+    .header-title-sub {
+
+        font-size: 1.05rem;
+
+        font-weight: 600;
+
+        color: var(--text-main);
+
+        margin-bottom: 2px;
+
+    }
+
+    .header-title-light {
+
+        font-size: 0.95rem;
+
+        font-weight: 400;
+
+        color: var(--text-muted);
+
+        font-style: italic;
+
+    }
+
+    .header-title-artists {
+
+        font-size: 0.9rem;
+
+        font-weight: 500;
+
+        color: var(--biennal-turquoise);
+
+        margin-top: 2px;
+
+        letter-spacing: 0.3px;
+
+    }
+
+    .welcome-banner {
+
+        background-color: var(--white);
+
+        padding: 14px 24px;
+
+        font-size: 1.06rem;
+
+        color: var(--text-muted);
+
+        border-bottom: 1px solid #dee2e6;
+
+        line-height: 1.4;
+
+        flex-shrink: 0;
+
+        text-align: center;
+
+    }
+
+    .view-container {
+
+        flex: 1;
+
+        position: relative;
+
+        overflow: hidden;
+
+    }
+
+    .view {
+
+        position: absolute;
+
+        top: 0;
+
+        left: 0;
+
+        width: 100%;
+
+        height: 100%;
+
+        display: none;
+
+    }
+
+    .view.active {
+
+        display: flex;
+
+        flex-direction: column;
+
+    }
+
+    #map {
+
+        width: 100%;
+
+        height: 100%;
+
+        background-color: #e5e3df;
+
+    }
+
+    .agenda-view {
+
+        padding: 20px;
+
+        overflow-y: auto;
+
+        background-color: var(--bg-color);
+
+    }
+
+    .agenda-tabs {
+
+        display: flex;
+
+        gap: 10px;
+
+        margin-bottom: 20px;
+
+    }
+
+    .agenda-tab {
+
+        flex: 1;
+
+        padding: 10px;
+
+        text-align: center;
+
+        background-color: var(--white);
+
+        border: 1px solid #ced4da;
+
+        border-radius: 8px;
+
+        font-size: 1.1rem;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        color: var(--text-muted);
+
+    }
+
+    .agenda-tab.active {
+
+        background-color: var(--biennal-turquoise);
+
+        color: var(--white);
+
+        border-color: var(--biennal-turquoise);
+
+    }
+
+    .agenda-content {
+
+        display: none;
+
+        background: var(--white);
+
+        padding: 20px;
+
+        border-radius: 10px;
+
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+    }
+
+    .agenda-content.active {
+
+        display: block;
+
+    }
+
+    .agenda-content h3 {
+
+        font-size: 1.3rem;
+
+        color: var(--biennal-turquoise);
+
+        margin-bottom: 10px;
+
+    }
+
+    .agenda-content p {
+
+        font-size: 1.15rem;
+
+        color: var(--text-main);
+
+        line-height: 1.5;
+
+    }
+
+    .routes-view {
+
+        padding: 20px;
+
+        overflow-y: auto;
+
+        background-color: var(--bg-color);
+
+    }
+
+    .route-card {
+
+        background: var(--white);
+
+        padding: 20px;
+
+        border-radius: 10px;
+
+        margin-bottom: 16px;
+
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+        border-left: 6px solid var(--biennal-turquoise);
+
+    }
+
+    .route-card.yellow { border-left-color: #f1c40f; }
+
+    .route-card.violet { border-left-color: #9b59b6; }
+
+    .route-card.red { border-left-color: #e74c3c; }
+
+    .route-card h3 {
+
+        font-size: 1.2rem;
+
+        color: var(--text-main);
+
+        margin-bottom: 8px;
+
+    }
+
+    .route-card p {
+
+        font-size: 1.05rem;
+
+        color: var(--text-muted);
+
+        line-height: 1.4;
+
+    }
+
+    .bottom-sheet {
+
+        position: absolute;
+
+        bottom: -100%;
+
+        left: 0;
+
+        width: 100%;
+
+        background: var(--white);
+
+        border-top-left-radius: 20px;
+
+        border-top-right-radius: 20px;
+
+        box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
+
+        transition: bottom 0.3s ease-in-out;
+
+        z-index: 1500;
+
+        max-height: 80vh;
+
+        display: flex;
+
+        flex-direction: column;
+
+    }
+
+    .bottom-sheet.open {
+
+        bottom: 0;
+
+    }
+
+    .sheet-handle {
+
+        width: 50px;
+
+        height: 5px;
+
+        background-color: #ced4da;
+
+        border-radius: 3px;
+
+        margin: 12px auto;
+
+        cursor: pointer;
+
+    }
+
+    .sheet-body {
+
+        padding: 0 24px 24px 24px;
+
+        overflow-y: auto;
+
+    }
+
+    .sheet-title {
+
+        font-size: 1.4rem;
+
+        font-weight: 700;
+
+        color: var(--text-main);
+
+        margin-bottom: 6px;
+
+    }
+
+    .sheet-artists {
+
+        font-size: 1.1rem;
+
+        color: var(--biennal-turquoise-dark);
+
+        font-weight: 600;
+
+        margin-bottom: 6px;
+
+    }
+
+    .sheet-address {
+
+        font-size: 1.05rem;
+
+        color: var(--text-muted);
+
+        margin-bottom: 14px;
+
+    }
+
+    .sheet-links {
+
+        display: flex;
+
+        gap: 20px;
+
+        font-size: 1.05rem;
+
+        margin-bottom: 18px;
+
+        flex-wrap: wrap;
+
+    }
+
+    .sheet-links a {
+
+        color: var(--biennal-turquoise);
+
+        text-decoration: none;
+
+        font-weight: 600;
+
+    }
+
+    .sheet-activity-title {
+
+        font-size: 1.05rem;
+
+        text-transform: uppercase;
+
+        font-weight: 700;
+
+        color: var(--text-muted);
+
+        margin-bottom: 8px;
+
+        letter-spacing: 0.5px;
+
+    }
+
+    .sheet-activity-desc {
+
+        font-size: 1.15rem;
+
+        color: var(--text-main);
+
+        line-height: 1.5;
+
+        background-color: var(--bg-color);
+
+        padding: 14px;
+
+        border-radius: 8px;
+
+        border-left: 4px solid var(--biennal-turquoise);
+
+    }
+
+    .sheet-close-btn {
+
+        position: absolute;
+
+        top: 14px;
+
+        right: 20px;
+
+        background: none;
+
+        border: none;
+
+        font-size: 1.5rem;
+
+        cursor: pointer;
+
+        color: var(--text-muted);
+
+    }
+
+    nav.bottom-nav {
+
+        display: flex;
+
+        background-color: var(--white);
+
+        border-top: 1px solid #dee2e6;
+
+        height: 72px;
+
+        z-index: 1000;
+
+        flex-shrink: 0;
+
+    }
+
+    .nav-item {
+
+        flex: 1;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-decoration: none;
+
+        color: var(--text-muted);
+
+        font-size: 0.85rem;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: color 0.2s;
+
+    }
+
+    .nav-item svg {
+
+        width: 24px;
+
+        height: 24px;
+
+        margin-bottom: 4px;
+
+        fill: currentColor;
+
+    }
+
+    .nav-item.active {
+
+        color: var(--biennal-turquoise);
+
+        font-weight: 700;
+
+    }
+
 </style>
-</head>
-<body>
 
-<!-- 1. SPLASH SCREEN -->
 <div id="splash-screen">
-<h1>Biennal de València<br>Ciutat Vella Oberta</h1>
+
+    <h1>Biennal de València<br>Ciutat Vella Oberta</h1>
+
 </div>
 
-<!-- 2. APLICACIÓN PRINCIPAL -->
 <div id="app">
-<!-- Cabecera Institucional Centrada -->
-<header>
-<div class="lang-selector">
-<span class="active" onclick="setLang('va', event)">VA</span>
-<span onclick="setLang('es', event)">ES</span>
-<span onclick="setLang('en', event)">EN</span>
-</div>
 
-<!-- Logotipo Geométrico de la Bienal -->
-<svg class="biennal-logo-svg" viewBox="0 0 24 24">
-<path d="M12 2L2 19h20L12 2zm0 3.8l7.2 13.2H4.8L12 5.8z"/>
-</svg>
+    <header>
 
-<div class="header-title-container">
-<div class="header-title-main">Biennal de València Ciutat Vella Oberta</div>
-<div class="header-title-sub">Circuito del arte</div>
-<div class="header-title-light">Art a la Llum</div>
-<div class="header-title-artists">Talleres y Estudios de artista</div>
-</div>
-</header>
+        <div class="lang-selector">
 
-<!-- Banner de bienvenida centrado -->
-<div class="welcome-banner" id="welcome-text">
-Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.
-</div>
+            <span class="active" onclick="setLang('va', event)">VA</span>
 
-<!-- Vistas Principales -->
-<div class="view-container">
-<!-- Vista Mapa -->
-<div id="view-map" class="view active">
-<div id="map"></div>
-</div>
+            <span onclick="setLang('es', event)">ES</span>
 
-<!-- Vista Agenda -->
-<div id="view-agenda" class="view agenda-view">
-<div class="agenda-tabs">
-<div class="agenda-tab active" onclick="switchDay('20', event)">20 Nov</div>
-<div class="agenda-tab" onclick="switchDay('21', event)">21 Nov</div>
-<div class="agenda-tab" onclick="switchDay('22', event)">22 Nov</div>
-</div>
+            <span onclick="setLang('en', event)">EN</span>
 
-<div id="agenda-20" class="agenda-content active">
-<h3>Divendres, 20 de Novembre</h3>
-<p>Inauguració oficial del Circuit del Arte y apertura institucional d'estudis i tallers participants en Ciutat Vella a partir de les 18:00 h.</p>
-</div>
-<div id="agenda-21" class="agenda-content" style="display:none;">
-<h3>Dissabte, 21 de Novembre</h3>
-<p>Jornada de portes obertes intensiva. Rutes guiades per Art a la Llum, trobades amb artistes i demostracions en directe als tallers de Russafa i voltants.</p>
-</div>
-<div id="agenda-22" class="agenda-content" style="display:none;">
-<h3>Diumenge, 22 de Novembre</h3>
-<p>Últim dia de visites als espais de creació, tallers participatius i actes de cloenda del circuit a les 20:00 h.</p>
-</div>
-</div>
-</div>
+        </div>
 
-<!-- Ficha de Taller Emergente -->
-<div id="workshop-sheet" class="bottom-sheet">
-<div class="sheet-handle" onclick="closeSheet()"></div>
-<button class="sheet-close-btn" onclick="closeSheet()">&times;</button>
-<div class="sheet-body">
-<div id="sheet-title" class="sheet-title">Nombre del Taller</div>
-<div id="sheet-artists" class="sheet-artists">Artistas</div>
-<div id="sheet-address" class="sheet-address">Dirección</div>
-<div class="sheet-links">
-<a id="sheet-contact" href="#" target="_blank">✉️ Contactar</a>
-<a id="sheet-phone" href="#">📞 Teléfono</a>
-</div>
-<div class="sheet-activity-title">Propuesta Artística</div>
-<div id="sheet-activity" class="sheet-activity-desc">Descripción de la actividad</div>
-</div>
-</div>
+        <img src="logo.png" alt="Logo CVO Biennal" class="biennal-logo-img" onerror="this.style.display='none'" />
 
-<!-- Barra de Navegación Inferior -->
-<nav class="bottom-nav">
-<a class="nav-item active" onclick="switchView('map')" id="nav-map">
-<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-Mapa
-</a>
-<a class="nav-item" onclick="switchView('agenda')" id="nav-agenda">
-<svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-Agenda
-</a>
-</nav>
-</div>
+        <div class="header-title-container">
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-// --- 1. SPLASH SCREEN ---
-window.addEventListener('DOMContentLoaded', () => {
-setTimeout(() => {
-const splash = document.getElementById('splash-screen');
-const app = document.getElementById('app');
-splash.style.opacity = '0';
-setTimeout(() => {
-splash.style.display = 'none';
-app.classList.add('visible');
-initMap();
-}, 600);
-}, 2000);
-});
+            <div class="header-title-main">Biennal de València Ciutat Vella Oberta</div>
 
-// --- 2. TALLERES ---
-const workshops = [
-{
-name: "Estudio Henar del Paso",
-artists: "Henar del Paso",
-address: "Calle Na Jordana, 22, bajo derecha, 46003, Valencia",
-activity: "Taller abierto y presentación de obra.",
-contact: "henardelpaso@hotmail.com",
-phone: "609 393 490",
-coords: [39.4795, -0.3807]
-},
-{
-name: "Sporting Club Russafa",
-artists: "Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró, Fernando Rincón",
-address: "Calle Sevilla, 5, bajo, 46006, Valencia",
-activity: "Reúne varios talleres. Exposición colectiva e intervenciones en el estudio.",
-contact: "maitebackman@gmail.com",
-phone: "",
-coords: [39.4627, -0.3725]
-},
-{
-name: "Picazo Studio",
-artists: "José Antonio Picazo",
-address: "Calle Sevilla, 17, 46006, Valencia",
-activity: "Taller abierto y presentación de obra.",
-contact: "info@joseantoniopicazo.com",
-phone: "630 664 380",
-coords: [39.4622, -0.3723]
-},
-{
-name: "Taller de Pepe March",
-artists: "Pepe March",
-address: "Calle Mare Vella, 19, 46003, Valencia",
-activity: "Taller abierto y presentación de obra.",
-contact: "Pepemarc@gmail.com",
-phone: "634 564 264",
-coords: [39.4788, -0.3768]
-},
-{
-name: "Studio Vintage",
-artists: "",
-address: "Calle de la Purísima, 8, 46001, Valencia",
-activity: "Taller abierto y exposición de artista.",
-contact: "studiovintage@hotmail.com",
-phone: "617 952 635",
-coords: [39.4741, -0.3789]
-},
-{
-name: "Fundación Victoria Cano y Estudio",
-artists: "Victoria Cano",
-address: "Calle Portal de Valldigna, 7, 46003, Valencia",
-activity: "Exposición colectiva e intervenciones en el estudio.",
-contact: "www.ofaaartits.com",
-phone: "629 170 969",
-coords: [39.4777, -0.3783]
-},
-{
-name: "Taller de Antonia Hervás y Ana Roig Hervás",
-artists: "Antonia Hervás y Ana Roig Hervás",
-address: "Calle Na Jordana, 27, bajo izq., 46003, Valencia",
-activity: "Taller abierto y exposición de artista.",
-contact: "Susanaroig@gmail.com",
-phone: "628 040 588",
-coords: [39.4798, -0.3809]
-},
-{
-name: "Taller de Elena Marti Manzanares",
-artists: "Elena Marti Manzanares",
-address: "Carrer de Sevilla, 14, 46006, Valencia",
-activity: "Taller abierto y exposición de artista.",
-contact: "ele.marti.man@gmail.com",
-phone: "629 727 534",
-coords: [39.4624, -0.3724]
-},
-{
-name: "Taller Veroneta",
-artists: "Marcela",
-address: "Calle Pintor Domingo, 7, 46001, Valencia",
-activity: "Taller abierto y exposición de artista.",
-contact: "@veronetaymas",
-phone: "661 247 302",
-coords: [39.4754, -0.3812]
-}
-];
+            <div class="header-title-sub">Circuito del arte</div>
 
-// --- 3. MAPA (Centrado exacto en Ciutat Vella y Russafa) ---
-let map;
-function initMap() {
-if (map) return;
+            <div class="header-title-light">Art a la Llum</div>
 
-map = L.map('map', { zoomControl: false }).setView([39.4710, -0.3770], 15);
+            <div class="header-title-artists">Talleres y Estudios de artista</div>
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-maxZoom: 19,
-attribution: '&copy; OpenStreetMap'
-}).addTo(map);
+        </div>
 
-L.control.zoom({ position: 'bottomright' }).addTo(map);
+    </header>
 
-workshops.forEach(w => {
-const marker = L.marker(w.coords).addTo(map);
-marker.on('click', () => {
-openSheet(w);
-});
-});
-}
+    <div class="welcome-banner" id="welcome-text">
 
-// --- 4. FICHA EMERGENTE ---
-function openSheet(data) {
-document.getElementById('sheet-title').innerText = data.name;
-document.getElementById('sheet-artists').innerText = data.artists ? "Artistes: " + data.artists : "";
-document.getElementById('sheet-address').innerText = data.address;
+        Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.
 
-const contactEl = document.getElementById('sheet-contact');
-if (data.contact.includes('@')) {
-contactEl.href = "mailto:" + data.contact;
-contactEl.innerText = "✉️ " + data.contact;
-contactEl.style.display = "inline";
-} else if (data.contact.startsWith('http')) {
-contactEl.href = data.contact;
-contactEl.innerText = "🌐 Web";
-contactEl.style.display = "inline";
-} else {
-contactEl.innerText = data.contact;
-contactEl.style.display = data.contact ? "inline" : "none";
-}
+    </div>
 
-const phoneEl = document.getElementById('sheet-phone');
-if (data.phone) {
-phoneEl.href = "tel:" + data.phone.replace(/\s+/g, '');
-phoneEl.innerText = "📞 " + data.phone;
-phoneEl.style.display = "inline";
-} else {
-phoneEl.style.display = "none";
-}
+    <div class="view-container">
 
-document.getElementById('sheet-activity').innerText = data.activity;
-document.getElementById('workshop-sheet').classList.add('open');
-history.pushState({ sheetOpen: true }, "");
-}
+        <div id="view-map" class="view active">
 
-function closeSheet() {
-document.getElementById('workshop-sheet').classList.remove('open');
-}
+            <div id="map"></div>
 
-// --- 5. NAVEGACIÓN ---
-function switchView(viewName) {
-document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        </div>
 
-if (viewName === 'map') {
-document.getElementById('view-map').classList.add('active');
-document.getElementById('nav-map').classList.add('active');
-setTimeout(() => {
-if(map) {
-map.invalidateSize();
-} else {
-initMap();
-}
-}, 200);
-} else if (viewName === 'agenda') {
-document.getElementById('view-agenda').classList.add('active');
-document.getElementById('nav-agenda').classList.add('active');
-}
-history.pushState({ view: viewName }, "");
-}
+        <div id="view-agenda" class="view agenda-view">
 
-function switchDay(day, event) {
-document.querySelectorAll('.agenda-tab').forEach(t => t.classList.remove('active'));
-document.querySelectorAll('.agenda-content').forEach(c => c.style.display = 'none');
+            <div class="agenda-tabs">
 
-event.target.classList.add('active');
-document.getElementById('agenda-' + day).style.display = 'block';
-}
+                <div class="agenda-tab active" onclick="switchDay('20', event)">20 Nov</div>
 
-const texts = {
-va: { banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns." },
-es: { banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos." },
-en: { banner: "Contemporary creation spaces and artist studios in the heart of Valencia: a living tour through Ciutat Vella, Russafa and neighboring areas." }
-};
+                <div class="agenda-tab" onclick="switchDay('21', event)">21 Nov</div>
 
-function setLang(lang, event) {
-document.querySelectorAll('.lang-selector span').forEach(s => s.classList.remove('active'));
-event.target.classList.add('active');
-document.getElementById('welcome-text').innerText = texts[lang].banner;
-}
+                <div class="agenda-tab" onclick="switchDay('22', event)">22 Nov</div>
 
-window.addEventListener('popstate', (event) => {
-const sheet = document.getElementById('workshop-sheet');
-if (sheet.classList.contains('open')) {
-sheet.classList.remove('open');
-} else if (event.state && event.state.view) {
-switchView(event.state.view);
-} else {
-switchView('map');
-}
-});
-</script>
-</body>
-</html>
+            </div>
+
+            
+
+            <div id="agenda-20" class="agenda-content active">
+
+                <h3 id="ag-title-20">Divendres, 20 de Novembre</h3>
+
+                <p id="ag-desc-20">Inauguració oficial del Circuit del Arte y apertura institucional d'estudis i tallers participants en Ciutat Vella a partir de les 18:00 h.</p>
+
+            </div>
+
+            <div id="agenda-21" class="agenda-content" style="display:none;">
+
+                <h3 id="ag-title-21">Dissabte, 21 de Novembre</h3>
+
+                <p id="ag-desc-21">Jornada de portes obertes intensiva. Rutes guiades per Art a la Llum, trobades amb artistes i demostracions en directe als tallers de Russafa i voltants.</p>
+
+            </div>
+
+            <div id="agenda-22" class="agenda-content" style="display:none;">
+
+                <h3 id="ag-title-22">Diumenge, 22 de Novembre</h3>
+
+                <p id="ag-desc-22">Últim dia de visites als espais de creació, tallers participatius i actes de cloenda del circuit a les 20:00 h.</p>
+
+            </div>
+
+        </div>
+
+        <div id="view-routes" class="view routes-view">
