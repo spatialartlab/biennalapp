@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Biennal de València CVO 2026 - Circuit del Arte</title>
 
-<!-- Leaflet CSS para el mapa interactivo -->
+<!-- Estilos de Leaflet para renderizar las calles del mapa -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <style>
 :root {
---biennal-turquoise: #0082c8; /* Color turquesa institucional base */
+--biennal-turquoise: #0082c8;
 --biennal-turquoise-dark: #00689e;
 --bg-color: #f8f9fa;
 --text-main: #212529;
@@ -84,6 +84,7 @@ background-color: var(--white);
 border-bottom: 3px solid var(--biennal-turquoise);
 z-index: 1000;
 box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+flex-shrink: 0;
 }
 
 .header-left {
@@ -144,6 +145,7 @@ font-size: 0.82rem;
 color: var(--text-muted);
 border-bottom: 1px solid #dee2e6;
 line-height: 1.35;
+flex-shrink: 0;
 }
 
 /* --- VIEWS CONTAINER --- */
@@ -171,6 +173,7 @@ flex-direction: column;
 #map {
 width: 100%;
 height: 100%;
+background-color: #e5e3df;
 }
 
 /* --- AGENDA VIEW --- */
@@ -336,6 +339,7 @@ background-color: var(--white);
 border-top: 1px solid #dee2e6;
 height: 56px;
 z-index: 1000;
+flex-shrink: 0;
 }
 
 .nav-item {
@@ -384,9 +388,9 @@ font-weight: 700;
 </div>
 </div>
 <div class="lang-selector">
-<span class="active" onclick="setLang('va')">VA</span>
-<span onclick="setLang('es')">ES</span>
-<span onclick="setLang('en')">EN</span>
+<span class="active" onclick="setLang('va', event)">VA</span>
+<span onclick="setLang('es', event)">ES</span>
+<span onclick="setLang('en', event)">EN</span>
 </div>
 </header>
 
@@ -406,20 +410,20 @@ Espais de creació contemporània i tallers d'artista en el cor de València: un
 <!-- Vista 2: Agenda -->
 <div id="view-agenda" class="view agenda-view">
 <div class="agenda-tabs">
-<div class="agenda-tab active" onclick="switchDay('20')">20 Nov</div>
-<div class="agenda-tab" onclick="switchDay('21')">21 Nov</div>
-<div class="agenda-tab" onclick="switchDay('22')">22 Nov</div>
+<div class="agenda-tab active" onclick="switchDay('20', event)">20 Nov</div>
+<div class="agenda-tab" onclick="switchDay('21', event)">21 Nov</div>
+<div class="agenda-tab" onclick="switchDay('22', event)">22 Nov</div>
 </div>
 
 <div id="agenda-20" class="agenda-content active">
 <h3>Divendres, 20 de Novembre</h3>
 <p>Inauguració oficial del Circuit del Arte y apertura institucional d'estudis i tallers participants en Ciutat Vella a partir de les 18:00 h.</p>
 </div>
-<div id="agenda-21" class="agenda-content active" style="display:none;">
+<div id="agenda-21" class="agenda-content" style="display:none;">
 <h3>Dissabte, 21 de Novembre</h3>
 <p>Jornada de portes obertes intensiva. Rutes guiades per Art a la Llum, trobades amb artistes i demostracions en directe als tallers de Russafa i voltants.</p>
 </div>
-<div id="agenda-22" class="agenda-content active" style="display:none;">
+<div id="agenda-22" class="agenda-content" style="display:none;">
 <h3>Diumenge, 22 de Novembre</h3>
 <p>Últim dia de visites als espais de creació, tallers participatius i actes de cloenda del circuit a les 20:00 h.</p>
 </div>
@@ -471,7 +475,7 @@ splash.style.opacity = '0';
 setTimeout(() => {
 splash.style.display = 'none';
 app.classList.add('visible');
-initMap(); // Inicializar mapa al mostrar la app
+initMap();
 }, 600);
 }, 2000);
 });
@@ -479,18 +483,17 @@ initMap(); // Inicializar mapa al mostrar la app
 // --- 2. INICIALIZACIÓN DEL MAPA ---
 let map;
 function initMap() {
-// Centrado en Valencia (Ciutat Vella / Russafa)
+if (map) return;
+
 map = L.map('map', { zoomControl: false }).setView([39.4740, -0.3760], 15);
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{z}.png', {
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 maxZoom: 19,
-attribution: '&copy; OpenStreetMap & CARTO'
+attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Controles de zoom abajo a la derecha para comodidad táctil
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-// Talleres de prueba (simulados)
 const workshops = [
 {
 name: "Estudio Marigela Pueyrredon",
@@ -537,7 +540,7 @@ function closeSheet() {
 document.getElementById('workshop-sheet').classList.remove('open');
 }
 
-// --- 4. NAVEGACIÓN ENTRE VISTAS (MAPA / AGENDA) ---
+// --- 4. NAVEGACIÓN ENTRE VISTAS ---
 function switchView(viewName) {
 document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
 document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -545,7 +548,13 @@ document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')
 if (viewName === 'map') {
 document.getElementById('view-map').classList.add('active');
 document.getElementById('nav-map').classList.add('active');
-setTimeout(() => { if(map) map.invalidateSize(); }, 200);
+setTimeout(() => {
+if(map) {
+map.invalidateSize();
+} else {
+initMap();
+}
+}, 200);
 } else if (viewName === 'agenda') {
 document.getElementById('view-agenda').classList.add('active');
 document.getElementById('nav-agenda').classList.add('active');
@@ -554,7 +563,7 @@ history.pushState({ view: viewName }, "");
 }
 
 // --- 5. GESTIÓN DE DÍAS EN LA AGENDA ---
-function switchDay(day) {
+function switchDay(day, event) {
 document.querySelectorAll('.agenda-tab').forEach(t => t.classList.remove('active'));
 document.querySelectorAll('.agenda-content').forEach(c => c.style.display = 'none');
 
@@ -562,30 +571,20 @@ event.target.classList.add('active');
 document.getElementById('agenda-' + day).style.display = 'block';
 }
 
-// --- 6. CAMBIO DE IDIOMA (TEXTOS DINÁMICOS) ---
+// --- 6. CAMBIO DE IDIOMA ---
 const texts = {
-va: {
-banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.",
-title: "Circuit del Arte"
-},
-es: {
-banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos.",
-title: "Circuito del Arte"
-},
-en: {
-banner: "Contemporary creation spaces and artist studios in the heart of Valencia: a living tour through Ciutat Vella, Russafa and neighboring areas.",
-title: "Art Circuit"
-}
+va: { banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns." },
+es: { banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos." },
+en: { banner: "Contemporary creation spaces and artist studios in the heart of Valencia: a living tour through Ciutat Vella, Russafa and neighboring areas." }
 };
 
-function setLang(lang) {
+function setLang(lang, event) {
 document.querySelectorAll('.lang-selector span').forEach(s => s.classList.remove('active'));
 event.target.classList.add('active');
-
 document.getElementById('welcome-text').innerText = texts[lang].banner;
 }
 
-// --- 7. HISTORIAL NAVEGACIÓN (BOTONES ATRÁS / ADELANTE) ---
+// --- 7. HISTORIAL NAVEGACIÓN ---
 window.addEventListener('popstate', (event) => {
 const sheet = document.getElementById('workshop-sheet');
 if (sheet.classList.contains('open')) {
