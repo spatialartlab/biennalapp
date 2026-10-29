@@ -1,22 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Biennal de València CVO 2026 - Circuit del Arte</title>
+    <title>Biennal de València CVO 2026 - Circuit de Tallers</title>
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <style>
         :root {
-            --biennal-turquoise: #0082c8;
-            --biennal-turquoise-dark: #00689e;
+            --biennal-turquoise: #00a8cc; /* Turquesa brillante y eléctrico */
+            --biennal-turquoise-dark: #0082a3;
             --bg-color: #f8f9fa;
             --text-main: #212529;
             --text-muted: #6c757d;
             --white: #ffffff;
-            --color-yellow: #f1c40f;
-            --color-violet: #9b59b6;
-            --color-red: #e74c3c;
+            --color-yellow: #ffe600; /* Amarillo vibrante */
+            --color-fuchsia: #ff007f; /* Rosa fucsia vibrante */
+            --color-red: #ff2a5f; /* Rojo vivo */
         }
 
         * {
@@ -33,7 +34,7 @@
             background-color: var(--biennal-turquoise);
         }
 
-        /* PANTALLA DE CARGA INICIAL (SPLASH SCREEN) */
+        /* 1. PANTALLA FLASH (SPLASH SCREEN) */
         #splash-screen {
             position: fixed;
             top: 0;
@@ -42,29 +43,56 @@
             height: 100%;
             background-color: var(--biennal-turquoise);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             transition: opacity 0.6s ease-out;
+            padding: 20px;
         }
 
-        .splash-text {
+        .splash-title {
             color: var(--white);
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0 20px;
-            line-height: 1.4;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
+
+        .splash-subtitle {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 40px;
+        }
+
+        .splash-dots {
+            display: flex;
+            gap: 12px;
+        }
+
+        .splash-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        .dot-yellow { background-color: var(--color-yellow); }
+        .dot-fuchsia { background-color: var(--color-fuchsia); }
+        .dot-red { background-color: var(--color-red); }
 
         #app {
             display: flex;
             flex-direction: column;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-color);
+            background-color: var(--biennal-turquoise);
             opacity: 0;
             transition: opacity 0.4s ease-in;
         }
@@ -76,96 +104,62 @@
         header {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 32px 16px 12px 16px;
-            background-color: var(--white);
-            border-bottom: 4px solid var(--biennal-turquoise);
+            align-items: flex-start;
+            padding: 20px 20px 10px 20px;
+            background-color: var(--biennal-turquoise);
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             flex-shrink: 0;
             position: relative;
         }
 
         .lang-selector {
             position: absolute;
-            top: 8px;
-            right: 12px;
+            top: 16px;
+            right: 20px;
             display: flex;
-            gap: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--white);
         }
 
         .lang-selector span {
             cursor: pointer;
-            padding: 3px 6px;
-            border-radius: 4px;
-            color: var(--text-muted);
+            opacity: 0.7;
         }
 
         .lang-selector span.active {
-            background-color: var(--biennal-turquoise);
-            color: var(--white);
-        }
-
-        .biennal-logo-img {
-            width: 70px;
-            height: auto;
-            margin-bottom: 6px;
-            object-fit: contain;
-        }
-
-        .header-title-container {
-            text-align: center;
-            width: 100%;
+            opacity: 1;
+            text-decoration: underline;
         }
 
         .header-title-main {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--biennal-turquoise-dark);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--white);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-            line-height: 1.25;
+            line-height: 1.1;
+            margin-bottom: 4px;
         }
 
         .header-title-sub {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 2px;
-        }
-
-        .header-title-light {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .header-title-artists {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--biennal-turquoise);
-            margin-top: 2px;
-        }
-
-        .welcome-banner {
-            background-color: var(--white);
-            padding: 10px 16px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            border-bottom: 1px solid #dee2e6;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.3;
-            flex-shrink: 0;
-            text-align: center;
         }
 
         .view-container {
             flex: 1;
             position: relative;
             overflow: hidden;
+            background-color: var(--white);
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
         }
 
         .view {
@@ -182,208 +176,16 @@
             flex-direction: column;
         }
 
+        /* 2. MAPA INTERACTIVO ORIGINAL */
         #map {
             width: 100%;
             height: 100%;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
             background-color: #e5e3df;
         }
 
-        .agenda-view {
-            padding: 20px;
-            overflow-y: auto;
-            background-color: var(--bg-color);
-        }
-
-        .agenda-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .agenda-tab {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            background-color: var(--white);
-            border: 2px solid #ced4da;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-
-        .agenda-tab.tab-20.active {
-            background-color: var(--color-yellow);
-            color: #212529;
-            border-color: var(--color-yellow);
-        }
-
-        .agenda-tab.tab-21.active {
-            background-color: var(--color-violet);
-            color: var(--white);
-            border-color: var(--color-violet);
-        }
-
-        .agenda-tab.tab-22.active {
-            background-color: var(--color-red);
-            color: var(--white);
-            border-color: var(--color-red);
-        }
-
-        .agenda-content {
-            display: none;
-            background: var(--white);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border-left: 6px solid var(--biennal-turquoise);
-        }
-
-        #agenda-20 { border-left-color: var(--color-yellow); }
-        #agenda-21 { border-left-color: var(--color-violet); }
-        #agenda-22 { border-left-color: var(--color-red); }
-
-        .agenda-content.active {
-            display: block;
-        }
-
-        .bottom-sheet {
-            position: absolute;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            background: var(--white);
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
-            transition: bottom 0.3s ease-in-out;
-            z-index: 1500;
-            max-height: 80vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .bottom-sheet.open {
-            bottom: 0;
-        }
-
-        .sheet-handle {
-            width: 50px;
-            height: 5px;
-            background-color: #ced4da;
-            border-radius: 3px;
-            margin: 10px auto;
-            cursor: pointer;
-        }
-
-        .sheet-body {
-            padding: 0 20px 24px 20px;
-            overflow-y: auto;
-        }
-
-        .sheet-title {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 4px;
-        }
-
-        .sheet-artists {
-            font-size: 1.1rem;
-            color: var(--biennal-turquoise-dark);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .sheet-address {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .sheet-links {
-            display: flex;
-            gap: 15px;
-            font-size: 1rem;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-
-        .sheet-links a {
-            color: var(--biennal-turquoise);
-            text-decoration: none;
-            font-weight: 600;
-            background: #e0f2fe;
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
-
-        .sheet-activity-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        .sheet-activity-desc {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            line-height: 1.4;
-            background-color: var(--bg-color);
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid var(--biennal-turquoise);
-        }
-
-        .sheet-close-btn {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-
-        nav.bottom-nav {
-            display: flex;
-            background-color: var(--white);
-            border-top: 1px solid #dee2e6;
-            height: 64px;
-            z-index: 1000;
-            flex-shrink: 0;
-        }
-
-        .nav-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .nav-item svg {
-            width: 22px;
-            height: 22px;
-            margin-bottom: 3px;
-            fill: currentColor;
-        }
-
-        .nav-item.active {
-            color: var(--biennal-turquoise);
-            font-weight: 700;
-        }
-
-        /* DISEÑO INDICADOR GOTA INVERTIDA (LOCATION PIN) */
+        /* PINES DE MAPA EN FORMA DE GOTA CON CENTRO BLANCO */
         .drop-pin-wrapper {
             position: relative;
             width: 32px;
@@ -413,64 +215,300 @@
             position: absolute;
             border-radius: 50%;
         }
+
+        /* 3. VISTA DE AGENDA */
+        .agenda-view {
+            padding: 20px;
+            overflow-y: auto;
+            background-color: var(--white);
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+        }
+
+        .agenda-cards-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .agenda-date-card {
+            flex: 1;
+            background-color: #121212;
+            color: var(--white);
+            border-radius: 16px;
+            padding: 16px 10px;
+            text-align: center;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        .agenda-date-card.active-20 { border-color: var(--color-yellow); }
+        .agenda-date-card.active-21 { border-color: var(--color-fuchsia); }
+        .agenda-date-card.active-22 { border-color: var(--color-red); }
+
+        .date-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .yellow-text .date-number { color: var(--color-yellow); }
+        .fuchsia-text .date-number { color: var(--color-fuchsia); }
+        .red-text .date-number { color: var(--color-red); }
+
+        .date-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .agenda-content-card {
+            background: var(--white);
+            border: 1px solid #e9ecef;
+            padding: 18px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .agenda-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .tag-yellow { background-color: #fffde6; color: #b39b00; }
+        .tag-fuchsia { background-color: #ffe6f2; color: var(--color-fuchsia); }
+        .tag-red { background-color: #ffe6eb; color: var(--color-red); }
+
+        .agenda-event-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .agenda-event-location {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .agenda-event-desc {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        /* HOJA DESPLEGABLE DE TALLERES (BOTTOM SHEET) */
+        .bottom-sheet {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+            transition: bottom 0.3s ease-in-out;
+            z-index: 1500;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bottom-sheet.open {
+            bottom: 0;
+        }
+
+        .sheet-handle {
+            width: 40px;
+            height: 4px;
+            background-color: #ced4da;
+            border-radius: 2px;
+            margin: 12px auto;
+        }
+
+        .sheet-body {
+            padding: 0 24px 28px 24px;
+            overflow-y: auto;
+        }
+
+        .sheet-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .sheet-artists {
+            font-size: 1rem;
+            color: var(--biennal-turquoise-dark);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .sheet-address {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .sheet-links {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .sheet-links a {
+            color: var(--biennal-turquoise);
+            text-decoration: none;
+            font-weight: 700;
+            background: #e0f2fe;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .sheet-activity-desc {
+            font-size: 1rem;
+            color: var(--text-main);
+            line-height: 1.4;
+            background-color: #f8f9fa;
+            padding: 14px;
+            border-radius: 12px;
+            border-left: 4px solid var(--biennal-turquoise);
+        }
+
+        .sheet-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* BARRA INFERIOR FLOTANTE */
+        nav.bottom-nav {
+            display: flex;
+            background-color: var(--white);
+            height: 72px;
+            z-index: 1000;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: space-around;
+            padding-bottom: env(safe-area-inset-bottom);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: none;
+            border: none;
+            flex: 1;
+        }
+
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 2px;
+            fill: currentColor;
+        }
+
+        .nav-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-bottom: 4px;
+        }
+
+        .nav-item.active {
+            color: var(--biennal-turquoise);
+        }
     </style>
 </head>
 <body>
 
-    <!-- PANTALLA DE CARGA (SPLASH SCREEN) -->
+    <!-- 1. PANTALLA FLASH (SPLASH SCREEN) -->
     <div id="splash-screen">
-        <div class="splash-text">
-            BIENNAL DE VALÈNCIA<br>CIUTAT VELLA OBERTA
+        <div class="splash-title">Biennal de<br>Valencia</div>
+        <div class="splash-subtitle">Ciutat Vella Oberta</div>
+        <div class="splash-dots">
+            <div class="splash-dot dot-yellow"></div>
+            <div class="splash-dot dot-fuchsia"></div>
+            <div class="splash-dot dot-red"></div>
         </div>
     </div>
 
     <div id="app">
         <header>
             <div class="lang-selector">
-                <span class="active" onclick="setLang('va', event)">VA</span>
-                <span onclick="setLang('es', event)">ES</span>
-                <span onclick="setLang('en', event)">EN</span>
+                <span class="active" onclick="setLang('va', event)">VAL</span>
+                <span onclick="setLang('es', event)">ESP</span>
+                <span onclick="setLang('en', event)">ENG</span>
             </div>
-
-            <img src="logo.png" alt="Logo CVO Biennal" class="biennal-logo-img" onerror="this.style.display='none'" />
-
-            <div class="header-title-container">
-                <div class="header-title-main">Biennal de València Ciutat Vella Oberta</div>
-                <div class="header-title-sub">Circuito del arte</div>
-                <div class="header-title-light">Art a la Llum</div>
-                <div class="header-title-artists">Talleres y Estudios de artista</div>
-            </div>
+            <div class="header-title-main">Biennal de Valencia</div>
+            <div class="header-title-sub">Ciutat Vella Oberta<br>Circuito del arte · Art a la Llum</div>
         </header>
 
-        <div class="welcome-banner" id="welcome-text">
-            Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.
-        </div>
-
         <div class="view-container">
-            <!-- VISTA MAPA PRINCIPAL -->
+            <!-- 2. VISTA DE MAPA INTERACTIVO (PRINCIPAL) -->
             <div id="view-map" class="view active">
                 <div id="map"></div>
             </div>
 
-            <!-- VISTA AGENDA -->
+            <!-- 3. VISTA DE AGENDA -->
             <div id="view-agenda" class="view agenda-view">
-                <div class="agenda-tabs">
-                    <div class="agenda-tab tab-20 active" onclick="switchDay('20', event)">20 Nov</div>
-                    <div class="agenda-tab tab-21" onclick="switchDay('21', event)">21 Nov</div>
-                    <div class="agenda-tab tab-22" onclick="switchDay('22', event)">22 Nov</div>
+                <div class="agenda-cards-container">
+                    <div class="agenda-date-card active-20 yellow-text" onclick="switchDay('20', event)">
+                        <span class="date-number">20</span>
+                        <span class="date-label">VIE</span>
+                    </div>
+                    <div class="agenda-date-card fuchsia-text" onclick="switchDay('21', event)">
+                        <span class="date-number">21</span>
+                        <span class="date-label">SÁB</span>
+                    </div>
+                    <div class="agenda-date-card red-text" onclick="switchDay('22', event)">
+                        <span class="date-number">22</span>
+                        <span class="date-label">DOM</span>
+                    </div>
                 </div>
 
-                <div id="agenda-20" class="agenda-content active">
-                    <h3 id="ag-title-20">Divendres, 20 de Novembre (Ruta Groga)</h3>
-                    <p id="ag-desc-20">Inauguració oficial del Circuit del Arte y apertura institutional d'estudis i tallers participants en Ciutat Vella.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.</p>
+                <div id="agenda-20" class="agenda-content-card">
+                    <span class="agenda-tag tag-yellow">Ruta Groga</span>
+                    <div class="agenda-event-title">Inauguración y Apertura Institucional</div>
+                    <div class="agenda-event-location">📍 Ciutat Vella & Na Jordana</div>
+                    <div class="agenda-event-desc" id="ag-desc-20">Inauguració oficial del Circuit de Tallers i obertura institucional d'estudis participants en Ciutat Vella.<br><br><strong>Horari:</strong> Matí 10:00 - 12:30 | Vesprada 16:30 - 19:00.</div>
                 </div>
-                <div id="agenda-21" class="agenda-content" style="display:none;">
-                    <h3 id="ag-title-21">Dissabte, 21 de Novembre (Ruta Violeta)</h3>
-                    <p id="ag-desc-21">Jornada de portes obertes intensiva en el Centre Històric i Puríssima. Rutes guiades per Art a la Llum.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.</p>
+
+                <div id="agenda-21" class="agenda-content-card" style="display:none;">
+                    <span class="agenda-tag tag-fuchsia">Ruta Fucsia</span>
+                    <div class="agenda-event-title">Jornada de Puertas Abiertas</div>
+                    <div class="agenda-event-location">📍 Centre Històric & Puríssima</div>
+                    <div class="agenda-event-desc" id="ag-desc-21">Jornada de portes obertes intensiva en el Centre Històric i Puríssima. Rutes guiades per Art a la Llum.<br><br><strong>Horari:</strong> Matí 10:00 - 12:30 | Vesprada 16:30 - 19:00.</div>
                 </div>
-                <div id="agenda-22" class="agenda-content" style="display:none;">
-                    <h3 id="ag-title-22">Diumenge, 22 de Novembre (Ruta Roja)</h3>
-                    <p id="ag-desc-22">Últim dia de visites als espais de creació i tallers a Russafa Contemporània, amb actes de cloenda.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.</p>
+
+                <div id="agenda-22" class="agenda-content-card" style="display:none;">
+                    <span class="agenda-tag tag-red">Ruta Roja</span>
+                    <div class="agenda-event-title">Russafa Contemporània & Clausura</div>
+                    <div class="agenda-event-location">📍 Russafa</div>
+                    <div class="agenda-event-desc" id="ag-desc-22">Últim dia de visites als espais de creació i tallers a Russafa Contemporània, amb actes de cloenda.<br><br><strong>Horari:</strong> Matí 10:00 - 12:30 | Vesprada 16:30 - 19:00.</div>
                 </div>
             </div>
         </div>
@@ -486,33 +524,32 @@
                     <a id="sheet-contact" href="#" target="_blank">📧 Contactar</a>
                     <a id="sheet-phone" href="#">📞 Teléfono</a>
                 </div>
-                <div class="sheet-activity-title" id="sheet-activity-label">Propuesta Artística</div>
                 <div id="sheet-activity" class="sheet-activity-desc">Descripción de la actividad</div>
             </div>
         </div>
 
-        <!-- NAV INFERIOR CON MAPA COMO PRIMERA OPCIÓN -->
+        <!-- BARRA INFERIOR EXACTA -->
         <nav class="bottom-nav">
-            <a class="nav-item active" onclick="filterAndGoToMap('all')" id="nav-map">
-                <svg viewBox="0 0 24 24"><path d="M20.5 3l-0.16.03L15 5.1 9 3 3.36 4.9 C3.15 4.97 3 5.15 3 5.38v13.5c0 0.28 0.22 0.5 0.5 0.5l0.16-0.03L9 17.4l6 2.1 5.64-1.9c0.21-0.07 0.36-0.25 0.36-0.48V3.5c0-0.28-0.22-0.5-0.5-0.5zM15 17.25l-6-2.11V5.01l6 2.11v10.13z"/></svg>
+            <button class="nav-item active" onclick="filterAndGoToMap('all')" id="nav-map">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                 Mapa
-            </a>
-            <a class="nav-item" onclick="filterAndGoToMap('yellow')" id="nav-yellow">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#f1c40f"/></svg>
+            </button>
+            <button class="nav-item" onclick="filterAndGoToMap('yellow')" id="nav-yellow">
+                <div class="nav-dot" style="background-color: var(--color-yellow);"></div>
                 Amarilla
-            </a>
-            <a class="nav-item" onclick="filterAndGoToMap('violet')" id="nav-violet">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#9b59b6"/></svg>
-                Violeta
-            </a>
-            <a class="nav-item" onclick="filterAndGoToMap('red')" id="nav-red">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#e74c3c"/></svg>
+            </button>
+            <button class="nav-item" onclick="filterAndGoToMap('fuchsia')" id="nav-fuchsia">
+                <div class="nav-dot" style="background-color: var(--color-fuchsia);"></div>
+                Fucsia
+            </button>
+            <button class="nav-item" onclick="filterAndGoToMap('red')" id="nav-red">
+                <div class="nav-dot" style="background-color: var(--color-red);"></div>
                 Roja
-            </a>
-            <a class="nav-item" onclick="switchView('agenda')" id="nav-agenda">
+            </button>
+            <button class="nav-item" onclick="switchView('agenda')" id="nav-agenda">
                 <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
                 Agenda
-            </a>
+            </button>
         </nav>
     </div>
 
@@ -531,7 +568,7 @@
             },
             {
                 name: "Sporting Club Russafa",
-                artists: "Maite Backman, Maria José Ballester, Rafa de Corral y otros",
+                artists: "Maite Backman, Maria José Ballester, Rafa de Corral",
                 address: "Calle Sevilla, 5, bajo, 46006, Valencia",
                 route: "red",
                 activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva i intervencions.", en: "Group exhibition." },
@@ -555,9 +592,9 @@
             },
             {
                 name: "Studio Vintage",
-                artists: "",
+                artists: "Artista Residente",
                 address: "Calle de la Purísima, 8, 46001, Valencia",
-                route: "violet",
+                route: "fuchsia",
                 activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
                 contact: "studiovintage@hotmail.com", phone: "617 952 635", coords: [39.4741, -0.3789]
             },
@@ -589,7 +626,7 @@
                 name: "Taller Veroneta",
                 artists: "Marcela",
                 address: "Calle Pintor Domingo, 7, 46001, Valencia",
-                route: "violet",
+                route: "fuchsia",
                 activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
                 contact: "@veronetaymas", phone: "661 247 302", coords: [39.4754, -0.3812]
             }
@@ -599,7 +636,6 @@
         let activeWorkshopData = null;
         let map;
         let markers = [];
-        let currentRouteFilter = 'all';
 
         function initMap() {
             if (map || typeof L === 'undefined') return;
@@ -615,14 +651,13 @@
         }
 
         function getPinColor(route) {
-            if (route === 'yellow') return '#f1c40f';
-            if (route === 'violet') return '#9b59b6';
-            if (route === 'red') return '#e74c3c';
-            return '#0082c8';
+            if (route === 'yellow') return '#ffe600';
+            if (route === 'fuchsia') return '#ff007f';
+            if (route === 'red') return '#ff2a5f';
+            return '#00a8cc';
         }
 
         function renderMarkers(routeFilter) {
-            currentRouteFilter = routeFilter;
             if (!map || typeof L === 'undefined') return;
             markers.forEach(m => map.removeLayer(m));
             markers = [];
@@ -650,7 +685,7 @@
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             if (route === 'all' && document.getElementById('nav-map')) document.getElementById('nav-map').classList.add('active');
             if (route === 'yellow' && document.getElementById('nav-yellow')) document.getElementById('nav-yellow').classList.add('active');
-            if (route === 'violet' && document.getElementById('nav-violet')) document.getElementById('nav-violet').classList.add('active');
+            if (route === 'fuchsia' && document.getElementById('nav-fuchsia')) document.getElementById('nav-fuchsia').classList.add('active');
             if (route === 'red' && document.getElementById('nav-red')) document.getElementById('nav-red').classList.add('active');
         }
 
@@ -669,9 +704,13 @@
         }
 
         function switchDay(day, event) {
-            document.querySelectorAll('.agenda-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.agenda-content').forEach(c => c.style.display = 'none');
-            event.target.classList.add('active');
+            document.querySelectorAll('.agenda-date-card').forEach(c => {
+                c.className = c.className.replace(/active-\d+/, '');
+            });
+            document.querySelectorAll('.agenda-content-card').forEach(c => c.style.display = 'none');
+            
+            const card = event.currentTarget;
+            card.classList.add('active-' + day);
             document.getElementById('agenda-' + day).style.display = 'block';
         }
 
@@ -710,25 +749,22 @@
 
         const translations = {
             va: {
-                banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.",
                 agenda: {
-                    20: "Inauguració oficial del Circuit del Arte i obertura institutional d'estudis i tallers participants en Ciutat Vella.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.",
+                    20: "Inauguració oficial del Circuit de Tallers i obertura institucional d'estudis participants en Ciutat Vella.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.",
                     21: "Jornada de portes obertes intensiva en el Centre Històric i Puríssima. Rutes guiades per Art a la Llum.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.",
                     22: "Últim dia de visites als espais de creació i tallers a Russafa Contemporània, amb actes de cloenda.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h."
                 }
             },
             es: {
-                banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos.",
                 agenda: {
-                    20: "Inauguración oficial del Circuito del Arte y apertura institucional de estudios y talleres participantes en Ciutat Vella.<br><br><strong>Horario de visitas:</strong> Mañana de 10:00 h a 12:30 h | Tarde de 16:30 h a 19:00 h.",
+                    20: "Inauguración oficial del Circuito de Talleres y apertura institucional de estudios participantes en Ciutat Vella.<br><br><strong>Horario de visitas:</strong> Mañana de 10:00 h a 12:30 h | Tarde de 16:30 h a 19:00 h.",
                     21: "Jornada de puertas abiertas intensiva en el Centre Històric y Puríssima. Rutas guiadas por Art a la Llum.<br><br><strong>Horario de visitas:</strong> Mañana de 10:00 h a 12:30 h | Tarde de 16:30 h a 19:00 h.",
                     22: "Último día de visitas a los espacios de creación y talleres en Russafa Contemporània, con actos de clausura.<br><br><strong>Horario de visitas:</strong> Mañana de 10:00 h a 12:30 h | Tarde de 16:30 h a 19:00 h."
                 }
             },
             en: {
-                banner: "Contemporary creation spaces and artist studios in the heart of Valencia: a living tour through Ciutat Vella, Russafa and neighboring areas.",
                 agenda: {
-                    20: "Official opening of the Art Circuit and institutional opening of participating studios in Ciutat Vella.<br><br><strong>Visiting hours:</strong> Morning from 10:00 AM to 12:30 PM | Afternoon from 4:30 PM to 7:00 PM.",
+                    20: "Official opening of the Workshop Circuit and institutional opening of participating studios in Ciutat Vella.<br><br><strong>Visiting hours:</strong> Morning from 10:00 AM to 12:30 PM | Afternoon from 4:30 PM to 7:00 PM.",
                     21: "Intensive open doors day in the Historic Center and Puríssima. Guided tours through Art a la Llum.<br><br><strong>Visiting hours:</strong> Morning from 10:00 AM to 12:30 PM | Afternoon from 4:30 PM to 7:00 PM.",
                     22: "Last day of visits to creation spaces and studios in Contemporary Russafa, with closing events.<br><br><strong>Visiting hours:</strong> Morning from 10:00 AM to 12:30 PM | Afternoon from 4:30 PM to 7:00 PM."
                 }
@@ -739,8 +775,6 @@
             currentLang = lang;
             document.querySelectorAll('.lang-selector span').forEach(s => s.classList.remove('active'));
             event.target.classList.add('active');
-            
-            document.getElementById('welcome-text').innerText = translations[lang].banner;
             
             document.getElementById('ag-desc-20').innerHTML = translations[lang].agenda[20];
             document.getElementById('ag-desc-21').innerHTML = translations[lang].agenda[21];
@@ -763,11 +797,9 @@
                 }
                 if (app) app.classList.add('visible');
                 initMap();
-            }, 1000);
+            }, 1200);
         });
     </script>
 </body>
 </html>
-
-
 
