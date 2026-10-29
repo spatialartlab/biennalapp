@@ -797,3 +797,677 @@
         </div>
 
         <div id="view-routes" class="view routes-view">
+
+            <div class="route-card yellow">
+
+                <h3 id="rt-title-yellow">🟡 Ruta Groga: Na Jordana & Carme Nord</h3>
+
+                <p id="rt-desc-yellow">Recorregut pels estudis tradicionals i espais d'experimentació al nord de Ciutat Vella (Estudi Henar del Paso, Pepe March, Victoria Cano, Antonia Hervás).</p>
+
+            </div>
+
+            <div class="route-card violet">
+
+                <h3 id="rt-title-violet">🟣 Ruta Violeta: Centre Històric & Puríssima</h3>
+
+                <p id="rt-desc-violet">Itinerari pel cor patrimonial connectant estudis de creadors independents (Studio Vintage, Taller Veroneta).</p>
+
+            </div>
+
+            <div class="route-card red">
+
+                <h3 id="rt-title-red">🔴 Ruta Roja: Russafa Contemporània</h3>
+
+                <p id="rt-desc-red">Inmersió en el teixit artístic vibrant de Russafa i les seues galeries d'art contemporani (Sporting Club Russafa, Picazo Studio, Elena Martí Manzanares).</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="workshop-sheet" class="bottom-sheet">
+
+        <div class="sheet-handle" onclick="closeSheet()"></div>
+
+        <button class="sheet-close-btn" onclick="closeSheet()">&times;</button>
+
+        <div class="sheet-body">
+
+            <div id="sheet-title" class="sheet-title">Nombre del Taller</div>
+
+            <div id="sheet-artists" class="sheet-artists">Artistas</div>
+
+            <div id="sheet-address" class="sheet-address">Dirección</div>
+
+            <div class="sheet-links">
+
+                <a id="sheet-contact" href="#" target="_blank">✉️ Contactar</a>
+
+                <a id="sheet-phone" href="#">📞 Teléfono</a>
+
+            </div>
+
+            <div class="sheet-activity-title" id="sheet-activity-label">Propuesta Artística</div>
+
+            <div id="sheet-activity" class="sheet-activity-desc">Descripción de la actividad</div>
+
+        </div>
+
+    </div>
+
+    <nav class="bottom-nav">
+
+        <a class="nav-item active" onclick="switchView('map')" id="nav-map">
+
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+
+            Mapa
+
+        </a>
+
+        <a class="nav-item" onclick="switchView('routes')" id="nav-routes">
+
+            <svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11zM12 8.4L14.7 13H9.3zM5 15c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm14 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-7 1c-2.76 0-5 2.24-5 5h10c0-2.76-2.24-5-5-5z"/></svg>
+
+            Rutas
+
+        </a>
+
+        <a class="nav-item" onclick="switchView('agenda')" id="nav-agenda">
+
+            <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+
+            Agenda
+
+        </a>
+
+    </nav>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+    window.addEventListener('DOMContentLoaded', () => {
+
+        setTimeout(() => {
+
+            const splash = document.getElementById('splash-screen');
+
+            const app = document.getElementById('app');
+
+            splash.style.opacity = '0';
+
+            setTimeout(() => {
+
+                splash.style.display = 'none';
+
+                app.classList.add('visible');
+
+                initMap(); 
+
+            }, 600);
+
+        }, 2000);
+
+    });
+
+    const workshops = [
+
+        {
+
+            name: "Estudio Henar del Paso",
+
+            artists: "Henar del Paso",
+
+            address: "Calle Na Jordana, 22, bajo derecha, 46003, Valencia",
+
+            activity: {
+
+                es: "Taller abierto y presentación de obra.",
+
+                va: "Taller obert i presentació d'obra.",
+
+                en: "Open studio and presentation of artwork."
+
+            },
+
+            contact: "henardelpaso@hotmail.com",
+
+            phone: "609 393 490",
+
+            coords: [39.4795, -0.3807]
+
+        },
+
+        {
+
+            name: "Sporting Club Russafa",
+
+            artists: "Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró, Fernando Rincón",
+
+            address: "Calle Sevilla, 5, bajo, 46006, Valencia",
+
+            activity: {
+
+                es: "Reúne varios talleres. Exposición colectiva e intervenciones en el estudio.",
+
+                va: "Reuneix diversos tallers. Exposició col·lectiva i intervencions en l'estudi.",
+
+                en: "Gathers several studios. Group exhibition and interventions in the studio."
+
+            },
+
+            contact: "maitebackman@gmail.com",
+
+            phone: "",
+
+            coords: [39.4627, -0.3725]
+
+        },
+
+        {
+
+            name: "Picazo Studio",
+
+            artists: "José Antonio Picazo",
+
+            address: "Calle Sevilla, 17, 46006, Valencia",
+
+            activity: {
+
+                es: "Taller abierto y presentación de obra.",
+
+                va: "Taller obert i presentació d'obra.",
+
+                en: "Open studio and presentation of artwork."
+
+            },
+
+            contact: "info@joseantoniopicazo.com",
+
+            phone: "630 664 380",
+
+            coords: [39.4622, -0.3723]
+
+        },
+
+        {
+
+            name: "Taller de Pepe March",
+
+            artists: "Pepe March",
+
+            address: "Calle Mare Vella, 19, 46003, Valencia",
+
+            activity: {
+
+                es: "Taller abierto y presentación de obra.",
+
+                va: "Taller obert i presentació d'obra.",
+
+                en: "Open studio and presentation of artwork."
+
+            },
+
+            contact: "Pepemarc@gmail.com",
+
+            phone: "634 564 264",
+
+            coords: [39.4788, -0.3768]
+
+        },
+
+        {
+
+            name: "Studio Vintage",
+
+            artists: "",
+
+            address: "Calle de la Purísima, 8, 46001, Valencia",
+
+            activity: {
+
+                es: "Taller abierto y exposición de artista.",
+
+                va: "Taller obert i exposició d'artista.",
+
+                en: "Open studio and artist exhibition."
+
+            },
+
+            contact: "studiovintage@hotmail.com",
+
+            phone: "617 952 635",
+
+            coords: [39.4741, -0.3789]
+
+        },
+
+        {
+
+            name: "Fundación Victoria Cano y Estudio",
+
+            artists: "Victoria Cano",
+
+            address: "Calle Portal de Valldigna, 7, 46003, Valencia",
+
+            activity: {
+
+                es: "Exposición colectiva e intervenciones en el estudio.",
+
+                va: "Exposició col·lectiva i intervencions en l'estudi.",
+
+                en: "Group exhibition and studio interventions."
+
+            },
+
+            contact: "www.ofaaartits.com",
+
+            phone: "629 170 969",
+
+            coords: [39.4777, -0.3783]
+
+        },
+
+        {
+
+            name: "Taller de Antonia Hervás y Ana Roig Hervás",
+
+            artists: "Antonia Hervás y Ana Roig Hervás",
+
+            address: "Calle Na Jordana, 27, bajo izq., 46003, Valencia",
+
+            activity: {
+
+                es: "Taller abierto y exposición de artista.",
+
+                va: "Taller obert i exposició d'artista.",
+
+                en: "Open studio and artist exhibition."
+
+            },
+
+            contact: "Susanaroig@gmail.com",
+
+            phone: "628 040 588",
+
+            coords: [39.4798, -0.3809]
+
+        },
+
+        {
+
+            name: "Taller de Elena Marti Manzanares",
+
+            artists: "Elena Marti Manzanares",
+
+            address: "Carrer de Sevilla, 14, 46006, Valencia",
+
+            activity: {
+
+                es: "Taller abierto y exposición de artista.",
+
+                va: "Taller obert i exposició d'artista.",
+
+                en: "Open studio and artist exhibition."
+
+            },
+
+            contact: "ele.marti.man@gmail.com",
+
+            phone: "629 727 534",
+
+            coords: [39.4624, -0.3724]
+
+        },
+
+        {
+
+            name: "Taller Veroneta",
+
+            artists: "Marcela",
+
+            address: "Calle Pintor Domingo, 7, 46001, Valencia",
+
+            activity: {
+
+                es: "Taller abierto y exposición de artista.",
+
+                va: "Taller obert i exposició d'artista.",
+
+                en: "Open studio and artist exhibition."
+
+            },
+
+            contact: "@veronetaymas",
+
+            phone: "661 247 302",
+
+            coords: [39.4754, -0.3812]
+
+        }
+
+    ];
+
+    let currentLang = 'va';
+
+    let activeWorkshopData = null;
+
+    let map;
+
+    function initMap() {
+
+        if (map) return;
+
+        
+
+        map = L.map('map', { zoomControl: false }).setView([39.4710, -0.3770], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+            maxZoom: 19,
+
+            attribution: '&copy; OpenStreetMap'
+
+        }).addTo(map);
+
+        L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+        workshops.forEach(w => {
+
+            const marker = L.marker(w.coords).addTo(map);
+
+            marker.on('click', () => {
+
+                openSheet(w);
+
+            });
+
+        });
+
+    }
+
+    function openSheet(data) {
+
+        activeWorkshopData = data;
+
+        document.getElementById('sheet-title').innerText = data.name;
+
+        document.getElementById('sheet-artists').innerText = data.artists;
+
+        document.getElementById('sheet-address').innerText = data.address;
+
+        
+
+        const contactEl = document.getElementById('sheet-contact');
+
+        if (data.contact.includes('@')) {
+
+            contactEl.href = "mailto:" + data.contact;
+
+            contactEl.innerText = "✉️ " + data.contact;
+
+            contactEl.style.display = "inline";
+
+        } else if (data.contact.startsWith('http')) {
+
+            contactEl.href = data.contact;
+
+            contactEl.innerText = "🌐 Web";
+
+            contactEl.style.display = "inline";
+
+        } else {
+
+            contactEl.innerText = data.contact;
+
+            contactEl.style.display = data.contact ? "inline" : "none";
+
+        }
+
+        const phoneEl = document.getElementById('sheet-phone');
+
+        if (data.phone) {
+
+            phoneEl.href = "tel:" + data.phone.replace(/\s+/g, '');
+
+            phoneEl.innerText = "📞 " + data.phone;
+
+            phoneEl.style.display = "inline";
+
+        } else {
+
+            phoneEl.style.display = "none";
+
+        }
+
+        document.getElementById('sheet-activity').innerText = data.activity[currentLang] || data.activity['es'];
+
+        document.getElementById('workshop-sheet').classList.add('open');
+
+        history.pushState({ sheetOpen: true }, "");
+
+    }
+
+    function closeSheet() {
+
+        document.getElementById('workshop-sheet').classList.remove('open');
+
+    }
+
+    function switchView(viewName) {
+
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+        if (viewName === 'map') {
+
+            document.getElementById('view-map').classList.add('active');
+
+            document.getElementById('nav-map').classList.add('active');
+
+            setTimeout(() => { if(map) map.invalidateSize(); }, 200);
+
+        } else if (viewName === 'routes') {
+
+            document.getElementById('view-routes').classList.add('active');
+
+            document.getElementById('nav-routes').classList.add('active');
+
+        } else if (viewName === 'agenda') {
+
+            document.getElementById('view-agenda').classList.add('active');
+
+            document.getElementById('nav-agenda').classList.add('active');
+
+        }
+
+        history.pushState({ view: viewName }, "");
+
+    }
+
+    function switchDay(day, event) {
+
+        document.querySelectorAll('.agenda-tab').forEach(t => t.classList.remove('active'));
+
+        document.querySelectorAll('.agenda-content').forEach(c => c.style.display = 'none');
+
+        event.target.classList.add('active');
+
+        document.getElementById('agenda-' + day).style.display = 'block';
+
+    }
+
+    const translations = {
+
+        va: {
+
+            banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.",
+
+            activityLabel: "Propuesta Artística",
+
+            ag20Title: "Divendres, 20 de Novembre",
+
+            ag20Desc: "Inauguració oficial del Circuit del Arte y apertura institucional d'estudis i tallers participants en Ciutat Vella a partir de les 18:00 h.",
+
+            ag21Title: "Dissabte, 21 de Novembre",
+
+            ag21Desc: "Jornada de portes obertes intensiva. Rutes guiades per Art a la Llum, trobades amb artistes i demostracions en directe als tallers de Russafa i voltants.",
+
+            ag22Title: "Diumenge, 22 de Novembre",
+
+            ag22Desc: "Últim dia de visites als espais de creació, tallers participatius i actes de cloenda del circuit a les 20:00 h.",
+
+            rtYellowTitle: "🟡 Ruta Groga: Na Jordana & Carme Nord",
+
+            rtYellowDesc: "Recorregut pels estudis tradicionals i espais d'experimentació al nord de Ciutat Vella (Estudi Henar del Paso, Pepe March, Victoria Cano, Antonia Hervás).",
+
+            rtVioletTitle: "🟣 Ruta Violeta: Centre Històric & Puríssima",
+
+            rtVioletDesc: "Itinerari pel cor patrimonial connectant estudis de creadors independents (Studio Vintage, Taller Veroneta).",
+
+            rtRedTitle: "🔴 Ruta Roja: Russafa Contemporània",
+
+            rtRedDesc: "Inmersió en el teixit artístic vibrant de Russafa i les seues galeries d'art contemporani (Sporting Club Russafa, Picazo Studio, Elena Martí Manzanares)."
+
+        },
+
+        es: {
+
+            banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos.",
+
+            activityLabel: "Propuesta Artística",
+
+            ag20Title: "Viernes, 20 de Noviembre",
+
+            ag20Desc: "Inauguración oficial del Circuito del Arte y apertura institucional de estudios y talleres participantes en Ciutat Vella a partir de las 18:00 h.",
+
+            ag21Title: "Sábado, 21 de Noviembre",
+
+            ag21Desc: "Jornada de puertas abiertas intensiva. Rutas guiadas por Art a la Llum, encuentros con artistas y demostraciones en directo en los talleres de Russafa y alrededores.",
+
+            ag22Title: "Domingo, 22 de Noviembre",
+
+            ag22Desc: "Último día de visitas a los espacios de creación, talleres participativos y actos de clausura del circuito a las 20:00 h.",
+
+            rtYellowTitle: "🟡 Ruta Amarilla: Na Jordana & Carme Norte",
+
+            rtYellowDesc: "Recorrido por los estudios tradicionales y espacios de experimentación en el norte de Ciutat Vella (Estudio Henar del Paso, Pepe March, Victoria Cano, Antonia Hervás).",
+
+            rtVioletTitle: "🟣 Ruta Violeta: Centro Histórico & Purísima",
+
+            rtVioletDesc: "Itinerario por el corazón patrimonial conectando estudios de creadores independientes (Studio Vintage, Taller Veroneta).",
+
+            rtRedTitle: "🔴 Ruta Roja: Russafa Contemporánea",
+
+            rtRedDesc: "Inmersión en el tejido artístico vibrante de Russafa y sus galerías de arte contemporáneo (Sporting Club Russafa, Picazo Studio, Elena Martí Manzanares)."
+
+        },
+
+        en: {
+
+            banner: "Contemporary creation spaces and artist studios in the heart of Valencia: a living tour through Ciutat Vella, Russafa and neighboring areas.",
+
+            activityLabel: "Artistic Proposal",
+
+            ag20Title: "Friday, November 20",
+
+            ag20Desc: "Official opening of the Art Circuit and institutional opening of participating studios and workshops in Ciutat Vella starting at 6:00 p.m.",
+
+            ag21Title: "Saturday, November 21",
+
+            ag21Desc: "Intensive open doors day. Guided tours through Art a la Llum, meetings with artists, and live demonstrations in Russafa studios and surroundings.",
+
+            ag22Title: "Sunday, November 22",
+
+            ag22Desc: "Last day of visits to creation spaces, participatory workshops, and closing events of the circuit at 8:00 p.m.",
+
+            rtYellowTitle: "🟡 Yellow Route: Na Jordana & North Carme",
+
+            rtYellowDesc: "Tour of traditional studios and experimental spaces in northern Ciutat Vella (Estudio Henar del Paso, Pepe March, Victoria Cano, Antonia Hervás).",
+
+            rtVioletTitle: "🟣 Violet Route: Historic Center & Purísima",
+
+            rtVioletDesc: "Itinerary through the heritage heart connecting independent creators' studios (Studio Vintage, Taller Veroneta).",
+
+            rtRedTitle: "🔴 Red Route: Contemporary Russafa",
+
+            rtRedDesc: "Immersion in the vibrant artistic fabric of Russafa and its contemporary art galleries (Sporting Club Russafa, Picazo Studio, Elena Martí Manzanares)."
+
+        }
+
+    };
+
+    function setLang(lang, event) {
+
+        currentLang = lang;
+
+        document.querySelectorAll('.lang-selector span').forEach(s => s.classList.remove('active'));
+
+        event.target.classList.add('active');
+
+        
+
+        document.getElementById('welcome-text').innerText = translations[lang].banner;
+
+        document.getElementById('sheet-activity-label').innerText = translations[lang].activityLabel;
+
+        
+
+        document.getElementById('ag-title-20').innerText = translations[lang].ag20Title;
+
+        document.getElementById('ag-desc-20').innerText = translations[lang].ag20Desc;
+
+        document.getElementById('ag-title-21').innerText = translations[lang].ag21Title;
+
+        document.getElementById('ag-desc-21').innerText = translations[lang].ag21Desc;
+
+        document.getElementById('ag-title-22').innerText = translations[lang].ag22Title;
+
+        document.getElementById('ag-desc-22').innerText = translations[lang].ag22Desc;
+
+        document.getElementById('rt-title-yellow').innerText = translations[lang].rtYellowTitle;
+
+        document.getElementById('rt-desc-yellow').innerText = translations[lang].rtYellowDesc;
+
+        document.getElementById('rt-title-violet').innerText = translations[lang].rtVioletTitle;
+
+        document.getElementById('rt-desc-violet').innerText = translations[lang].rtVioletDesc;
+
+        document.getElementById('rt-title-red').innerText = translations[lang].rtRedTitle;
+
+        document.getElementById('rt-desc-red').innerText = translations[lang].rtRedDesc;
+
+        if (activeWorkshopData) {
+
+            document.getElementById('sheet-activity').innerText = activeWorkshopData.activity[lang] || activeWorkshopData.activity['es'];
+
+        }
+
+    }
+
+    window.addEventListener('popstate', (event) => {
+
+        const sheet = document.getElementById('workshop-sheet');
+
+        if (sheet.classList.contains('open')) {
+
+            sheet.classList.remove('open');
+
+        } else if (event.state && event.state.view) {
+
+            switchView(event.state.view);
+
+        } else {
+
+            switchView('map');
+
+        }
+
+    });
+
+</script>
