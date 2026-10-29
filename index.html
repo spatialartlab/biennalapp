@@ -1,829 +1,674 @@
-<meta property="og:title" content="Biennal de València CVO 2026 - Circuit del Arte" />
-
-<meta property="og:description" content="Circuito de Talleres y Estudios de artista. Art a la Llum." />
-
-<meta property="og:image" content="https://spatialartlab.github.io/biennalapp/logo.png" />
-
-<meta property="og:url" content="https://spatialartlab.github.io/biennalapp/" />
-
-<meta property="og:type" content="website" />
-
-<link rel="icon" type="image/png" href="logo.png" />
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-<style>
-
-    :root {
-
-        --biennal-turquoise: #0082c8;
-
-        --biennal-turquoise-dark: #00689e;
-
-        --bg-color: #f8f9fa;
-
-        --text-main: #1a1a1a;
-
-        --text-muted: #555555;
-
-        --white: #ffffff;
-
-    }
-
-    * {
-
-        box-sizing: border-box;
-
-        margin: 0;
-
-        padding: 0;
-
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-
-    }
-
-    body, html {
-
-        width: 100%;
-
-        height: 100%;
-
-        overflow: hidden;
-
-        background-color: var(--bg-color);
-
-    }
-
-    #app {
-
-        display: flex;
-
-        flex-direction: column;
-
-        width: 100%;
-
-        height: 100%;
-
-        background-color: var(--bg-color);
-
-    }
-
-    header {
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        padding: 8px 12px;
-
-        background-color: var(--white);
-
-        border-bottom: 3px solid var(--biennal-turquoise);
-
-        z-index: 1000;
-
-        flex-shrink: 0;
-
-        position: relative;
-
-    }
-
-    .lang-selector {
-
-        position: absolute;
-
-        top: 8px;
-
-        right: 12px;
-
-        display: flex;
-
-        gap: 4px;
-
-        font-size: 0.95rem;
-
-        font-weight: 700;
-
-    }
-
-    .lang-selector span {
-
-        cursor: pointer;
-
-        padding: 4px 8px;
-
-        border-radius: 4px;
-
-        color: var(--text-muted);
-
-    }
-
-    .lang-selector span.active {
-
-        background-color: var(--biennal-turquoise);
-
-        color: var(--white);
-
-    }
-
-    .header-title-main {
-
-        font-size: 1.15rem;
-
-        font-weight: 800;
-
-        color: var(--biennal-turquoise-dark);
-
-        text-transform: uppercase;
-
-        text-align: center;
-
-        line-height: 1.2;
-
-        padding-right: 70px;
-
-        padding-left: 10px;
-
-    }
-
-    .header-title-sub {
-
-        font-size: 0.95rem;
-
-        font-weight: 600;
-
-        color: var(--text-muted);
-
-        text-align: center;
-
-        margin-top: 2px;
-
-    }
-
-    .routes-filter-bar {
-
-        display: flex;
-
-        gap: 8px;
-
-        padding: 8px 10px;
-
-        background-color: #f1f5f9;
-
-        border-bottom: 1px solid #cbd5e1;
-
-        overflow-x: auto;
-
-        flex-shrink: 0;
-
-        -webkit-overflow-scrolling: touch;
-
-    }
-
-    .route-chip {
-
-        padding: 8px 14px;
-
-        border-radius: 20px;
-
-        font-size: 0.95rem;
-
-        font-weight: 700;
-
-        cursor: pointer;
-
-        white-space: nowrap;
-
-        border: 2px solid transparent;
-
-        background-color: var(--white);
-
-        color: var(--text-main);
-
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-
-    }
-
-    .route-chip.active {
-
-        box-shadow: 0 0 0 2px var(--text-main);
-
-    }
-
-    .route-chip.yellow { background-color: #fef9e7; color: #b7950b; border-color: #f1c40f; }
-
-    .route-chip.violet { background-color: #f4ecf7; color: #8e44ad; border-color: #9b59b6; }
-
-    .route-chip.red { background-color: #fde8e8; color: #c0392b; border-color: #e74c3c; }
-
-    .route-chip.all { background-color: #ffffff; color: #1e293b; }
-
-    .view-container {
-
-        flex: 1;
-
-        position: relative;
-
-        overflow: hidden;
-
-    }
-
-    #map {
-
-        width: 100%;
-
-        height: 100%;
-
-        background-color: #e5e3df;
-
-    }
-
-    .bottom-sheet {
-
-        position: absolute;
-
-        bottom: -100%;
-
-        left: 0;
-
-        width: 100%;
-
-        background: var(--white);
-
-        border-top-left-radius: 22px;
-
-        border-top-right-radius: 22px;
-
-        box-shadow: 0 -6px 20px rgba(0,0,0,0.2);
-
-        transition: bottom 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
-
-        z-index: 1500;
-
-        max-height: 75vh;
-
-        display: flex;
-
-        flex-direction: column;
-
-    }
-
-    .bottom-sheet.open {
-
-        bottom: 0;
-
-    }
-
-    .sheet-handle {
-
-        width: 50px;
-
-        height: 6px;
-
-        background-color: #cbd5e1;
-
-        border-radius: 3px;
-
-        margin: 10px auto 6px auto;
-
-        cursor: pointer;
-
-    }
-
-    .sheet-body {
-
-        padding: 4px 20px 24px 20px;
-
-        overflow-y: auto;
-
-    }
-
-    .sheet-title {
-
-        font-size: 1.45rem;
-
-        font-weight: 800;
-
-        color: var(--text-main);
-
-        margin-bottom: 4px;
-
-        line-height: 1.25;
-
-    }
-
-    .sheet-artists {
-
-        font-size: 1.15rem;
-
-        color: var(--biennal-turquoise-dark);
-
-        font-weight: 700;
-
-        margin-bottom: 6px;
-
-    }
-
-    .sheet-address {
-
-        font-size: 1.05rem;
-
-        color: var(--text-muted);
-
-        margin-bottom: 14px;
-
-        line-height: 1.3;
-
-    }
-
-    .sheet-links {
-
-        display: flex;
-
-        gap: 16px;
-
-        font-size: 1.05rem;
-
-        margin-bottom: 16px;
-
-        flex-wrap: wrap;
-
-    }
-
-    .sheet-links a {
-
-        color: var(--biennal-turquoise-dark);
-
-        text-decoration: none;
-
-        font-weight: 700;
-
-        background: #e0f2fe;
-
-        padding: 6px 12px;
-
-        border-radius: 8px;
-
-    }
-
-    .sheet-activity-title {
-
-        font-size: 0.95rem;
-
-        text-transform: uppercase;
-
-        font-weight: 800;
-
-        color: #64748b;
-
-        margin-bottom: 6px;
-
-        letter-spacing: 0.5px;
-
-    }
-
-    .sheet-activity-desc {
-
-        font-size: 1.15rem;
-
-        color: var(--text-main);
-
-        line-height: 1.5;
-
-        background-color: #f8fafc;
-
-        padding: 14px;
-
-        border-radius: 10px;
-
-        border-left: 5px solid var(--biennal-turquoise);
-
-    }
-
-    .sheet-close-btn {
-
-        position: absolute;
-
-        top: 10px;
-
-        right: 16px;
-
-        background: #f1f5f9;
-
-        border: none;
-
-        width: 32px;
-
-        height: 32px;
-
-        border-radius: 50%;
-
-        font-size: 1.4rem;
-
-        font-weight: bold;
-
-        cursor: pointer;
-
-        color: var(--text-muted);
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-    }
-
-</style>
-
-<div id="app">
-
-    <header>
-
-        <div class="lang-selector">
-
-            <span class="active" onclick="setLang('va', event)">VA</span>
-
-            <span onclick="setLang('es', event)">ES</span>
-
-            <span onclick="setLang('en', event)">EN</span>
-
-        </div>
-
-        <div class="header-title-main">Biennal de València CVO</div>
-
-        <div class="header-title-sub">Art a la Llum • Circuit d'Estudis (Actualizado: 29 Octubre 2026)</div>
-
-    </header>
-
-    <div class="routes-filter-bar">
-
-        <div class="route-chip all active" onclick="filterRoute('all', this)">📍 Todos los talleres</div>
-
-        <div class="route-chip yellow" onclick="filterRoute('yellow', this)">🟡 20 Nov: Na Jordana</div>
-
-        <div class="route-chip violet" onclick="filterRoute('violet', this)">🟣 21 Nov: Puríssima</div>
-
-        <div class="route-chip red" onclick="filterRoute('red', this)">🔴 22 Nov: Russafa</div>
-
-    </div>
-
-    <div class="view-container">
-
-        <div id="map"></div>
-
-    </div>
-
-    <div id="workshop-sheet" class="bottom-sheet">
-
-        <div class="sheet-handle" onclick="closeSheet()"></div>
-
-        <button class="sheet-close-btn" onclick="closeSheet()">&times;</button>
-
-        <div class="sheet-body">
-
-            <div id="sheet-title" class="sheet-title">Nombre del Taller</div>
-
-            <div id="sheet-artists" class="sheet-artists">Artistas</div>
-
-            <div id="sheet-address" class="sheet-address">Dirección</div>
-
-            <div class="sheet-links">
-
-                <a id="sheet-contact" href="#" target="_blank">✉️ Contactar</a>
-
-                <a id="sheet-phone" href="#">📞 Teléfono</a>
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Biennal de València CVO 2026 - Circuit del Arte</title>
+    
+    <meta property="og:title" content="Biennal de València CVO 2026 - Circuit del Arte" />
+    <meta property="og:description" content="Circuito de Talleres y Estudios de artista. Art a la Llum." />
+    <meta property="og:image" content="https://spatialartlab.github.io/biennalapp/logo.png" />
+    <meta property="og:url" content="https://spatialartlab.github.io/biennalapp/" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/png" href="logo.png" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        :root {
+            --biennal-turquoise: #0082c8;
+            --biennal-turquoise-dark: #00689e;
+            --bg-color: #f8f9fa;
+            --text-main: #212529;
+            --text-muted: #6c757d;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--biennal-turquoise);
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 16px;
+            background-color: var(--white);
+            border-bottom: 4px solid var(--biennal-turquoise);
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .lang-selector {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            display: flex;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .lang-selector span {
+            cursor: pointer;
+            padding: 3px 6px;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        .lang-selector span.active {
+            background-color: var(--biennal-turquoise);
+            color: var(--white);
+        }
+
+        .biennal-logo-img {
+            width: 70px;
+            height: auto;
+            margin-bottom: 6px;
+            object-fit: contain;
+        }
+
+        .header-title-container {
+            text-align: center;
+        }
+
+        .header-title-main {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--biennal-turquoise-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .header-title-sub {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .header-title-light {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .header-title-artists {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--biennal-turquoise);
+            margin-top: 2px;
+        }
+
+        .welcome-banner {
+            background-color: var(--white);
+            padding: 10px 16px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid #dee2e6;
+            line-height: 1.3;
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .view-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .view.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            background-color: #e5e3df;
+        }
+
+        .agenda-view, .routes-view {
+            padding: 20px;
+            overflow-y: auto;
+            background-color: var(--bg-color);
+        }
+
+        .agenda-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .agenda-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background-color: var(--white);
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .agenda-tab.active {
+            background-color: var(--biennal-turquoise);
+            color: var(--white);
+            border-color: var(--biennal-turquoise);
+        }
+
+        .agenda-content {
+            display: none;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .agenda-content.active {
+            display: block;
+        }
+
+        .route-card {
+            background: var(--white);
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--biennal-turquoise);
+            cursor: pointer;
+        }
+
+        .route-card.yellow { border-left-color: #f1c40f; }
+        .route-card.violet { border-left-color: #9b59b6; }
+        .route-card.red { border-left-color: #e74c3c; }
+
+        .route-card h3 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .route-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .bottom-sheet {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
+            transition: bottom 0.3s ease-in-out;
+            z-index: 1500;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bottom-sheet.open {
+            bottom: 0;
+        }
+
+        .sheet-handle {
+            width: 50px;
+            height: 5px;
+            background-color: #ced4da;
+            border-radius: 3px;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+
+        .sheet-body {
+            padding: 0 20px 24px 20px;
+            overflow-y: auto;
+        }
+
+        .sheet-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .sheet-artists {
+            font-size: 1.1rem;
+            color: var(--biennal-turquoise-dark);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .sheet-address {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .sheet-links {
+            display: flex;
+            gap: 15px;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .sheet-links a {
+            color: var(--biennal-turquoise);
+            text-decoration: none;
+            font-weight: 600;
+            background: #e0f2fe;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .sheet-activity-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .sheet-activity-desc {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            line-height: 1.4;
+            background-color: var(--bg-color);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid var(--biennal-turquoise);
+        }
+
+        .sheet-close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        nav.bottom-nav {
+            display: flex;
+            background-color: var(--white);
+            border-top: 1px solid #dee2e6;
+            height: 64px;
+            z-index: 1000;
+            flex-shrink: 0;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+            margin-bottom: 3px;
+            fill: currentColor;
+        }
+
+        .nav-item.active {
+            color: var(--biennal-turquoise);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <header>
+            <div class="lang-selector">
+                <span class="active" onclick="setLang('va', event)">VA</span>
+                <span onclick="setLang('es', event)">ES</span>
+                <span onclick="setLang('en', event)">EN</span>
             </div>
 
-            <div class="sheet-activity-title" id="sheet-activity-label">Propuesta Artística</div>
+            <img src="logo.png" alt="Logo CVO Biennal" class="biennal-logo-img" onerror="this.style.display='none'" />
 
-            <div id="sheet-activity" class="sheet-activity-desc">Descripción de la actividad</div>
+            <div class="header-title-container">
+                <div class="header-title-main">Biennal de València Ciutat Vella Oberta</div>
+                <div class="header-title-sub">Circuito del arte</div>
+                <div class="header-title-light">Art a la Llum</div>
+                <div class="header-title-artists">Talleres y Estudios de artista</div>
+            </div>
+        </header>
 
+        <div class="welcome-banner" id="welcome-text">
+            Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.
         </div>
 
+        <div class="view-container">
+            <div id="view-map" class="view active">
+                <div id="map"></div>
+            </div>
+
+            <div id="view-routes" class="view routes-view">
+                <div class="route-card yellow" onclick="filterAndGoToMap('yellow')">
+                    <h3 id="rt-title-yellow">🟡 Ruta Groga: Na Jordana & Carme Nord (20 Nov)</h3>
+                    <p id="rt-desc-yellow">Toca aquí para ver en el mapa los estudios del norte de Ciutat Vella.</p>
+                </div>
+                <div class="route-card violet" onclick="filterAndGoToMap('violet')">
+                    <h3 id="rt-title-violet">🟣 Ruta Violeta: Centre Històric & Puríssima (21 Nov)</h3>
+                    <p id="rt-desc-violet">Toca aquí para ver los estudios del corazón patrimonial.</p>
+                </div>
+                <div class="route-card red" onclick="filterAndGoToMap('red')">
+                    <h3 id="rt-title-red">🔴 Ruta Roja: Russafa Contemporània (22 Nov)</h3>
+                    <p id="rt-desc-red">Toca aquí para ver las galerías y talleres de Russafa.</p>
+                </div>
+            </div>
+
+            <div id="view-agenda" class="view agenda-view">
+                <div class="agenda-tabs">
+                    <div class="agenda-tab active" onclick="switchDay('20', event)">20 Nov</div>
+                    <div class="agenda-tab" onclick="switchDay('21', event)">21 Nov</div>
+                    <div class="agenda-tab" onclick="switchDay('22', event)">22 Nov</div>
+                </div>
+                
+                <div id="agenda-20" class="agenda-content active">
+                    <h3 id="ag-title-20">Divendres, 20 de Novembre</h3>
+                    <p id="ag-desc-20">Inauguració oficial del Circuit del Arte y apertura institucional d'estudis i tallers participants en Ciutat Vella a partir de les 18:00 h.</p>
+                </div>
+                <div id="agenda-21" class="agenda-content" style="display:none;">
+                    <h3 id="ag-title-21">Dissabte, 21 de Novembre</h3>
+                    <p id="ag-desc-21">Jornada de portes obertes intensiva. Rutes guiades per Art a la Llum, trobades amb artistes i demostracions en directe.</p>
+                </div>
+                <div id="agenda-22" class="agenda-content" style="display:none;">
+                    <h3 id="ag-title-22">Diumenge, 22 de Novembre</h3>
+                    <p id="ag-desc-22">Últim dia de visites als espais de creació, tallers participatius i actes de cloenda del circuit a les 20:00 h.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="workshop-sheet" class="bottom-sheet">
+            <div class="sheet-handle" onclick="closeSheet()"></div>
+            <button class="sheet-close-btn" onclick="closeSheet()">&times;</button>
+            <div class="sheet-body">
+                <div id="sheet-title" class="sheet-title">Nombre del Taller</div>
+                <div id="sheet-artists" class="sheet-artists">Artistas</div>
+                <div id="sheet-address" class="sheet-address">Dirección</div>
+                <div class="sheet-links">
+                    <a id="sheet-contact" href="#" target="_blank">✉️ Contactar</a>
+                    <a id="sheet-phone" href="#">📞 Teléfono</a>
+                </div>
+                <div class="sheet-activity-title" id="sheet-activity-label">Propuesta Artística</div>
+                <div id="sheet-activity" class="sheet-activity-desc">Descripción de la actividad</div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <a class="nav-item active" onclick="switchView('map')" id="nav-map">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Mapa
+            </a>
+            <a class="nav-item" onclick="switchView('routes')" id="nav-routes">
+                <svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11zM12 8.4L14.7 13H9.3zM5 15c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm14 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-7 1c-2.76 0-5 2.24-5 5h10c0-2.76-2.24-5-5-5z"/></svg>
+                Rutas
+            </a>
+            <a class="nav-item" onclick="switchView('agenda')" id="nav-agenda">
+                <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                Agenda
+            </a>
+        </nav>
     </div>
 
-</div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<script>
-
-    const workshops = [
-
-        {
-
-            name: "Estudio Henar del Paso",
-
-            artists: "Henar del Paso",
-
-            address: "Calle Na Jordana, 22, bajo derecha, 46003, Valencia",
-
-            route: "yellow",
-
-            activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio and presentation of artwork." },
-
-            contact: "henardelpaso@hotmail.com", phone: "609 393 490", coords: [39.4795, -0.3807]
-
-        },
-
-        {
-
-            name: "Sporting Club Russafa",
-
-            artists: "Maite Backman, Maria José Ballester, Rafa de Corral y otros",
-
-            address: "Calle Sevilla, 5, bajo, 46006, Valencia",
-
-            route: "red",
-
-            activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva i intervencions.", en: "Group exhibition." },
-
-            contact: "maitebackman@gmail.com", phone: "", coords: [39.4627, -0.3725]
-
-        },
-
-        {
-
-            name: "Picazo Studio",
-
-            artists: "José Antonio Picazo",
-
-            address: "Calle Sevilla, 17, 46006, Valencia",
-
-            route: "red",
-
-            activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio." },
-
-            contact: "info@joseantoniopicazo.com", phone: "630 664 380", coords: [39.4622, -0.3723]
-
-        },
-
-        {
-
-            name: "Taller de Pepe March",
-
-            artists: "Pepe March",
-
-            address: "Calle Mare Vella, 19, 46003, Valencia",
-
-            route: "yellow",
-
-            activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio." },
-
-            contact: "Pepemarc@gmail.com", phone: "634 564 264", coords: [39.4788, -0.3768]
-
-        },
-
-        {
-
-            name: "Studio Vintage",
-
-            artists: "",
-
-            address: "Calle de la Purísima, 8, 46001, Valencia",
-
-            route: "violet",
-
-            activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
-
-            contact: "studiovintage@hotmail.com", phone: "617 952 635", coords: [39.4741, -0.3789]
-
-        },
-
-        {
-
-            name: "Fundación Victoria Cano y Estudio",
-
-            artists: "Victoria Cano",
-
-            address: "Calle Portal de Valldigna, 7, 46003, Valencia",
-
-            route: "yellow",
-
-            activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva.", en: "Group exhibition." },
-
-            contact: "www.ofaaartits.com", phone: "629 170 969", coords: [39.4777, -0.3783]
-
-        },
-
-        {
-
-            name: "Taller de Antonia Hervás y Ana Roig Hervás",
-
-            artists: "Antonia Hervás y Ana Roig Hervás",
-
-            address: "Calle Na Jordana, 27, bajo izq., 46003, Valencia",
-
-            route: "yellow",
-
-            activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
-
-            contact: "Susanaroig@gmail.com", phone: "628 040 588", coords: [39.4798, -0.3809]
-
-        },
-
-        {
-
-            name: "Taller de Elena Marti Manzanares",
-
-            artists: "Elena Marti Manzanares",
-
-            address: "Carrer de Sevilla, 14, 46006, Valencia",
-
-            route: "red",
-
-            activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
-
-            contact: "ele.marti.man@gmail.com", phone: "629 727 534", coords: [39.4624, -0.3724]
-
-        },
-
-        {
-
-            name: "Taller Veroneta",
-
-            artists: "Marcela",
-
-            address: "Calle Pintor Domingo, 7, 46001, Valencia",
-
-            route: "violet",
-
-            activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
-
-            contact: "@veronetaymas", phone: "661 247 302", coords: [39.4754, -0.3812]
-
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const workshops = [
+            {
+                name: "Estudio Henar del Paso",
+                artists: "Henar del Paso",
+                address: "Calle Na Jordana, 22, bajo derecha, 46003, Valencia",
+                route: "yellow",
+                activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio and presentation of artwork." },
+                contact: "henardelpaso@hotmail.com", phone: "609 393 490", coords: [39.4795, -0.3807]
+            },
+            {
+                name: "Sporting Club Russafa",
+                artists: "Maite Backman, Maria José Ballester, Rafa de Corral y otros",
+                address: "Calle Sevilla, 5, bajo, 46006, Valencia",
+                route: "red",
+                activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva i intervencions.", en: "Group exhibition." },
+                contact: "maitebackman@gmail.com", phone: "", coords: [39.4627, -0.3725]
+            },
+            {
+                name: "Picazo Studio",
+                artists: "José Antonio Picazo",
+                address: "Calle Sevilla, 17, 46006, Valencia",
+                route: "red",
+                activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio." },
+                contact: "info@joseantoniopicazo.com", phone: "630 664 380", coords: [39.4622, -0.3723]
+            },
+            {
+                name: "Taller de Pepe March",
+                artists: "Pepe March",
+                address: "Calle Mare Vella, 19, 46003, Valencia",
+                route: "yellow",
+                activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio." },
+                contact: "Pepemarc@gmail.com", phone: "634 564 264", coords: [39.4788, -0.3768]
+            },
+            {
+                name: "Studio Vintage",
+                artists: "",
+                address: "Calle de la Purísima, 8, 46001, Valencia",
+                route: "violet",
+                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
+                contact: "studiovintage@hotmail.com", phone: "617 952 635", coords: [39.4741, -0.3789]
+            },
+            {
+                name: "Fundación Victoria Cano y Estudio",
+                artists: "Victoria Cano",
+                address: "Calle Portal de Valldigna, 7, 46003, Valencia",
+                route: "yellow",
+                activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva.", en: "Group exhibition." },
+                contact: "www.ofaaartits.com", phone: "629 170 969", coords: [39.4777, -0.3783]
+            },
+            {
+                name: "Taller de Antonia Hervás y Ana Roig Hervás",
+                artists: "Antonia Hervás y Ana Roig Hervás",
+                address: "Calle Na Jordana, 27, bajo izq., 46003, Valencia",
+                route: "yellow",
+                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
+                contact: "Susanaroig@gmail.com", phone: "628 040 588", coords: [39.4798, -0.3809]
+            },
+            {
+                name: "Taller de Elena Marti Manzanares",
+                artists: "Elena Marti Manzanares",
+                address: "Carrer de Sevilla, 14, 46006, Valencia",
+                route: "red",
+                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
+                contact: "ele.marti.man@gmail.com", phone: "629 727 534", coords: [39.4624, -0.3724]
+            },
+            {
+                name: "Taller Veroneta",
+                artists: "Marcela",
+                address: "Calle Pintor Domingo, 7, 46001, Valencia",
+                route: "violet",
+                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
+                contact: "@veronetaymas", phone: "661 247 302", coords: [39.4754, -0.3812]
+            }
+        ];
+
+        let currentLang = 'va';
+        let activeWorkshopData = null;
+        let map;
+        let markers = [];
+        let currentRouteFilter = 'all';
+
+        function initMap() {
+            if (map) return;
+            map = L.map('map', { zoomControl: false }).setView([39.4720, -0.3770], 14);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap'
+            }).addTo(map);
+
+            L.control.zoom({ position: 'bottomright' }).addTo(map);
+            renderMarkers('all');
         }
 
-    ];
+        function getPinColor(route) {
+            if (route === 'yellow') return '#f1c40f';
+            if (route === 'violet') return '#9b59b6';
+            if (route === 'red') return '#e74c3c';
+            return '#0082c8';
+        }
 
-    let currentLang = 'va';
+        function renderMarkers(routeFilter) {
+            currentRouteFilter = routeFilter;
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
 
-    let activeWorkshopData = null;
+            workshops.forEach(w => {
+                if (routeFilter === 'all' || w.route === routeFilter) {
+                    const color = getPinColor(w.route);
+                    const customIcon = L.divIcon({
+                        className: 'custom-pin',
+                        html: `<div style="background-color: ${color}; width: 26px; height: 26px; border-radius: 50%; border: 3px solid white; box-shadow: 0 3px 8px rgba(0,0,0,0.4);"></div>`,
+                        iconSize: [26, 26],
+                        iconAnchor: [13, 13]
+                    });
 
-    let map;
+                    const marker = L.marker(w.coords, { icon: customIcon }).addTo(map);
+                    marker.on('click', () => openSheet(w));
+                    markers.push(marker);
+                }
+            });
+        }
 
-    let markers = [];
+        function filterAndGoToMap(route) {
+            renderMarkers(route);
+            switchView('map');
+        }
 
-    function initMap() {
+        function switchView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
-        if (map) return;
+            if (viewName === 'map') {
+                document.getElementById('view-map').classList.add('active');
+                document.getElementById('nav-map').classList.add('active');
+                setTimeout(() => { if(map) map.invalidateSize(); }, 200);
+            } else if (viewName === 'routes') {
+                document.getElementById('view-routes').classList.add('active');
+                document.getElementById('nav-routes').classList.add('active');
+            } else if (viewName === 'agenda') {
+                document.getElementById('view-agenda').classList.add('active');
+                document.getElementById('nav-agenda').classList.add('active');
+            }
+        }
 
-        map = L.map('map', { zoomControl: false }).setView([39.4720, -0.3770], 14);
+        function switchDay(day, event) {
+            document.querySelectorAll('.agenda-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.agenda-content').forEach(c => c.style.display = 'none');
+            event.target.classList.add('active');
+            document.getElementById('agenda-' + day).style.display = 'block';
+        }
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-
-            maxZoom: 19,
-
-            attribution: '&copy; OpenStreetMap'
-
-        }).addTo(map);
-
-        L.control.zoom({ position: 'bottomright' }).addTo(map);
-
-        renderMarkers('all');
-
-    }
-
-    function getPinColor(route) {
-
-        if (route === 'yellow') return '#f1c40f';
-
-        if (route === 'violet') return '#9b59b6';
-
-        if (route === 'red') return '#e74c3c';
-
-        return '#0082c8';
-
-    }
-
-    function renderMarkers(routeFilter) {
-
-        markers.forEach(m => map.removeLayer(m));
-
-        markers = [];
-
-        workshops.forEach(w => {
-
-            if (routeFilter === 'all' || w.route === routeFilter) {
-
-                const color = getPinColor(w.route);
-
-                const customIcon = L.divIcon({
-
-                    className: 'custom-pin',
-
-                    html: `<div style="background-color: ${color}; width: 26px; height: 26px; border-radius: 50%; border: 3px solid white; box-shadow: 0 3px 8px rgba(0,0,0,0.4);"></div>`,
-
-                    iconSize: [26, 26],
-
-                    iconAnchor: [13, 13]
-
-                });
-
-                const marker = L.marker(w.coords, { icon: customIcon }).addTo(map);
-
-                marker.on('click', () => openSheet(w));
-
-                markers.push(marker);
-
+        function openSheet(data) {
+            activeWorkshopData = data;
+            document.getElementById('sheet-title').innerText = data.name;
+            document.getElementById('sheet-artists').innerText = data.artists;
+            document.getElementById('sheet-address').innerText = data.address;
+            
+            const contactEl = document.getElementById('sheet-contact');
+            if (data.contact.includes('@')) {
+                contactEl.href = "mailto:" + data.contact;
+                contactEl.innerText = "✉️ " + data.contact;
+                contactEl.style.display = "inline-block";
+            } else {
+                contactEl.innerText = data.contact;
+                contactEl.style.display = data.contact ? "inline-block" : "none";
             }
 
+            const phoneEl = document.getElementById('sheet-phone');
+            if (data.phone) {
+                phoneEl.href = "tel:" + data.phone.replace(/\s+/g, '');
+                phoneEl.innerText = "📞 " + data.phone;
+                phoneEl.style.display = "inline-block";
+            } else {
+                phoneEl.style.display = "none";
+            }
+
+            document.getElementById('sheet-activity').innerText = data.activity[currentLang] || data.activity['es'];
+            document.getElementById('workshop-sheet').classList.add('open');
+        }
+
+        function closeSheet() {
+            document.getElementById('workshop-sheet').classList.remove('open');
+        }
+
+        const translations = {
+            va: { banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns." },
+            es: { banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos." },
+            en: { banner: "Contemporary creation spaces and artist studios in the heart of Valencia: a living tour through Ciutat Vella, Russafa and neighboring areas." }
+        };
+
+        function setLang(lang, event) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-selector span').forEach(s => s.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('welcome-text').innerText = translations[lang].banner;
+            if (activeWorkshopData) {
+                document.getElementById('sheet-activity').innerText = activeWorkshopData.activity[lang] || activeWorkshopData.activity['es'];
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initMap();
         });
+    </script>
+</body>
+</html>
 
-    }
-
-    function filterRoute(route, element) {
-
-        document.querySelectorAll('.route-chip').forEach(c => c.classList.remove('active'));
-
-        element.classList.add('active');
-
-        renderMarkers(route);
-
-    }
-
-    function openSheet(data) {
-
-        activeWorkshopData = data;
-
-        document.getElementById('sheet-title').innerText = data.name;
-
-        document.getElementById('sheet-artists').innerText = data.artists;
-
-        document.getElementById('sheet-address').innerText = data.address;
-
-        
-
-        const contactEl = document.getElementById('sheet-contact');
-
-        if (data.contact.includes('@')) {
-
-            contactEl.href = "mailto:" + data.contact;
-
-            contactEl.innerText = "✉️ " + data.contact;
-
-            contactEl.style.display = "inline-block";
-
-        } else {
-
-            contactEl.innerText = data.contact;
-
-            contactEl.style.display = data.contact ? "inline-block" : "none";
-
-        }
-
-        const phoneEl = document.getElementById('sheet-phone');
-
-        if (data.phone) {
-
-            phoneEl.href = "tel:" + data.phone.replace(/\s+/g, '');
-
-            phoneEl.innerText = "📞 " + data.phone;
-
-            phoneEl.style.display = "inline-block";
-
-        } else {
-
-            phoneEl.style.display = "none";
-
-        }
-
-        document.getElementById('sheet-activity').innerText = data.activity[currentLang] || data.activity['es'];
-
-        document.getElementById('workshop-sheet').classList.add('open');
-
-    }
-
-    function closeSheet() {
-
-        document.getElementById('workshop-sheet').classList.remove('open');
-
-    }
-
-    function setLang(lang, event) {
-
-        currentLang = lang;
-
-        document.querySelectorAll('.lang-selector span').forEach(s => s.classList.remove('active'));
-
-        event.target.classList.add('active');
-
-        if (activeWorkshopData) {
-
-            document.getElementById('sheet-activity').innerText = activeWorkshopData.activity[lang] || activeWorkshopData.activity['es'];
-
-        }
-
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-
-        initMap();
-
-    });
-
-</script>
