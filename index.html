@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Biennal de València CVO 2026 - Circuit del Arte</title>
 
-<!-- Estilos de Leaflet para renderizar las calles del mapa -->
+<!-- Estilos de Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <style>
@@ -50,7 +50,7 @@ transition: opacity 0.6s ease;
 
 #splash-screen h1 {
 color: var(--white);
-font-size: 1.8rem;
+font-size: 2.34rem;
 font-weight: 300;
 text-align: center;
 letter-spacing: 2px;
@@ -74,60 +74,34 @@ transition: opacity 0.6s ease;
 opacity: 1;
 }
 
-/* --- HEADER --- */
+/* --- HEADER INSTITUCIONAL CENTRADO --- */
 header {
 display: flex;
-justify-content: space-between;
+flex-direction: column;
 align-items: center;
-padding: 12px 16px;
+padding: 16px 20px;
 background-color: var(--white);
-border-bottom: 3px solid var(--biennal-turquoise);
+border-bottom: 4px solid var(--biennal-turquoise);
 z-index: 1000;
 box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 flex-shrink: 0;
+position: relative;
 }
 
-.header-left {
-display: flex;
-align-items: center;
-gap: 10px;
-}
-
-.mosca-logo {
-width: 24px;
-height: 24px;
-background-color: var(--biennal-turquoise);
-border-radius: 4px;
-display: flex;
-align-items: center;
-justify-content: center;
-color: var(--white);
-font-weight: bold;
-font-size: 12px;
-}
-
-.header-title h2 {
-font-size: 0.95rem;
-font-weight: 600;
-color: var(--text-main);
-}
-
-.header-title span {
-font-size: 0.75rem;
-color: var(--text-muted);
-display: block;
-}
-
+/* Selector de idiomas flotante arriba a la derecha */
 .lang-selector {
+position: absolute;
+top: 14px;
+right: 16px;
 display: flex;
 gap: 6px;
-font-size: 0.75rem;
+font-size: 0.9rem;
 font-weight: 600;
 }
 
 .lang-selector span {
 cursor: pointer;
-padding: 2px 6px;
+padding: 3px 6px;
 border-radius: 4px;
 color: var(--text-muted);
 }
@@ -137,15 +111,60 @@ background-color: var(--biennal-turquoise);
 color: var(--white);
 }
 
-/* --- WELCOME BANNER --- */
+/* Logo institucional centrado */
+.biennal-logo-svg {
+width: 48px;
+height: 48px;
+margin-bottom: 8px;
+fill: var(--biennal-turquoise);
+}
+
+/* Título jerarquizado y centrado */
+.header-title-container {
+text-align: center;
+}
+
+.header-title-main {
+font-size: 1.15rem;
+font-weight: 700;
+color: var(--biennal-turquoise-dark);
+text-transform: uppercase;
+letter-spacing: 0.5px;
+margin-bottom: 2px;
+}
+
+.header-title-sub {
+font-size: 1.05rem;
+font-weight: 600;
+color: var(--text-main);
+margin-bottom: 2px;
+}
+
+.header-title-light {
+font-size: 0.95rem;
+font-weight: 400;
+color: var(--text-muted);
+font-style: italic;
+}
+
+.header-title-artists {
+font-size: 0.9rem;
+font-weight: 500;
+color: var(--biennal-turquoise);
+margin-top: 2px;
+letter-spacing: 0.3px;
+}
+
+/* --- WELCOME BANNER CENTRADO --- */
 .welcome-banner {
 background-color: var(--white);
-padding: 10px 16px;
-font-size: 0.82rem;
+padding: 14px 24px;
+font-size: 1.06rem;
 color: var(--text-muted);
 border-bottom: 1px solid #dee2e6;
-line-height: 1.35;
+line-height: 1.4;
 flex-shrink: 0;
+text-align: center;
 }
 
 /* --- VIEWS CONTAINER --- */
@@ -178,25 +197,25 @@ background-color: #e5e3df;
 
 /* --- AGENDA VIEW --- */
 .agenda-view {
-padding: 16px;
+padding: 20px;
 overflow-y: auto;
 background-color: var(--bg-color);
 }
 
 .agenda-tabs {
 display: flex;
-gap: 8px;
-margin-bottom: 16px;
+gap: 10px;
+margin-bottom: 20px;
 }
 
 .agenda-tab {
 flex: 1;
-padding: 8px;
+padding: 10px;
 text-align: center;
 background-color: var(--white);
 border: 1px solid #ced4da;
-border-radius: 6px;
-font-size: 0.85rem;
+border-radius: 8px;
+font-size: 1.1rem;
 font-weight: 600;
 cursor: pointer;
 color: var(--text-muted);
@@ -211,8 +230,8 @@ border-color: var(--biennal-turquoise);
 .agenda-content {
 display: none;
 background: var(--white);
-padding: 16px;
-border-radius: 8px;
+padding: 20px;
+border-radius: 10px;
 box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
@@ -221,30 +240,30 @@ display: block;
 }
 
 .agenda-content h3 {
-font-size: 1rem;
+font-size: 1.3rem;
 color: var(--biennal-turquoise);
-margin-bottom: 8px;
+margin-bottom: 10px;
 }
 
 .agenda-content p {
-font-size: 0.9rem;
+font-size: 1.15rem;
 color: var(--text-main);
-line-height: 1.4;
+line-height: 1.5;
 }
 
-/* --- BOTTOM SHEET (FICHA TALLER EMERGENTE) --- */
+/* --- BOTTOM SHEET --- */
 .bottom-sheet {
 position: absolute;
 bottom: -100%;
 left: 0;
 width: 100%;
 background: var(--white);
-border-top-left-radius: 16px;
-border-top-right-radius: 16px;
+border-top-left-radius: 20px;
+border-top-right-radius: 20px;
 box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
 transition: bottom 0.3s ease-in-out;
 z-index: 1500;
-max-height: 75vh;
+max-height: 80vh;
 display: flex;
 flex-direction: column;
 }
@@ -254,46 +273,45 @@ bottom: 0;
 }
 
 .sheet-handle {
-width: 40px;
-height: 4px;
+width: 50px;
+height: 5px;
 background-color: #ced4da;
-border-radius: 2px;
-margin: 10px auto;
+border-radius: 3px;
+margin: 12px auto;
 cursor: pointer;
 }
 
 .sheet-body {
-padding: 0 20px 20px 20px;
+padding: 0 24px 24px 24px;
 overflow-y: auto;
 }
 
-.sheet-photo {
-width: 100%;
-height: 160px;
-object-fit: cover;
-border-radius: 8px;
-margin-bottom: 12px;
-background-color: #e9ecef;
-}
-
 .sheet-title {
-font-size: 1.1rem;
+font-size: 1.4rem;
 font-weight: 700;
 color: var(--text-main);
-margin-bottom: 4px;
+margin-bottom: 6px;
+}
+
+.sheet-artists {
+font-size: 1.1rem;
+color: var(--biennal-turquoise-dark);
+font-weight: 600;
+margin-bottom: 6px;
 }
 
 .sheet-address {
-font-size: 0.85rem;
+font-size: 1.05rem;
 color: var(--text-muted);
-margin-bottom: 12px;
+margin-bottom: 14px;
 }
 
 .sheet-links {
 display: flex;
-gap: 16px;
-font-size: 0.85rem;
-margin-bottom: 16px;
+gap: 20px;
+font-size: 1.05rem;
+margin-bottom: 18px;
+flex-wrap: wrap;
 }
 
 .sheet-links a {
@@ -303,31 +321,31 @@ font-weight: 600;
 }
 
 .sheet-activity-title {
-font-size: 0.85rem;
+font-size: 1.05rem;
 text-transform: uppercase;
 font-weight: 700;
 color: var(--text-muted);
-margin-bottom: 6px;
+margin-bottom: 8px;
 letter-spacing: 0.5px;
 }
 
 .sheet-activity-desc {
-font-size: 0.9rem;
+font-size: 1.15rem;
 color: var(--text-main);
 line-height: 1.5;
 background-color: var(--bg-color);
-padding: 12px;
-border-radius: 6px;
-border-left: 3px solid var(--biennal-turquoise);
+padding: 14px;
+border-radius: 8px;
+border-left: 4px solid var(--biennal-turquoise);
 }
 
 .sheet-close-btn {
 position: absolute;
-top: 12px;
-right: 16px;
+top: 14px;
+right: 20px;
 background: none;
 border: none;
-font-size: 1.2rem;
+font-size: 1.5rem;
 cursor: pointer;
 color: var(--text-muted);
 }
@@ -337,7 +355,7 @@ nav.bottom-nav {
 display: flex;
 background-color: var(--white);
 border-top: 1px solid #dee2e6;
-height: 56px;
+height: 72px;
 z-index: 1000;
 flex-shrink: 0;
 }
@@ -350,16 +368,16 @@ align-items: center;
 justify-content: center;
 text-decoration: none;
 color: var(--text-muted);
-font-size: 0.7rem;
-font-weight: 500;
+font-size: 0.91rem;
+font-weight: 600;
 cursor: pointer;
 transition: color 0.2s;
 }
 
 .nav-item svg {
-width: 20px;
-height: 20px;
-margin-bottom: 3px;
+width: 26px;
+height: 26px;
+margin-bottom: 4px;
 fill: currentColor;
 }
 
@@ -371,43 +389,47 @@ font-weight: 700;
 </head>
 <body>
 
-<!-- 1. PANTALLA DE SPLASH (2 SEGUNDOS) -->
+<!-- 1. SPLASH SCREEN -->
 <div id="splash-screen">
 <h1>Biennal de València<br>Ciutat Vella Oberta</h1>
 </div>
 
 <!-- 2. APLICACIÓN PRINCIPAL -->
 <div id="app">
-<!-- Cabecera -->
+<!-- Cabecera Institucional Centrada -->
 <header>
-<div class="header-left">
-<div class="mosca-logo">CVO</div>
-<div class="header-title">
-<h2>Circuito del Arte</h2>
-<span>Art a la Llum</span>
-</div>
-</div>
 <div class="lang-selector">
 <span class="active" onclick="setLang('va', event)">VA</span>
 <span onclick="setLang('es', event)">ES</span>
 <span onclick="setLang('en', event)">EN</span>
 </div>
+
+<!-- Logotipo Geométrico de la Bienal -->
+<svg class="biennal-logo-svg" viewBox="0 0 24 24">
+<path d="M12 2L2 19h20L12 2zm0 3.8l7.2 13.2H4.8L12 5.8z"/>
+</svg>
+
+<div class="header-title-container">
+<div class="header-title-main">Biennal de València Ciutat Vella Oberta</div>
+<div class="header-title-sub">Circuito del arte</div>
+<div class="header-title-light">Art a la Llum</div>
+<div class="header-title-artists">Talleres y Estudios de artista</div>
+</div>
 </header>
 
-<!-- Banner de bienvenida -->
+<!-- Banner de bienvenida centrado -->
 <div class="welcome-banner" id="welcome-text">
 Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.
 </div>
 
 <!-- Vistas Principales -->
 <div class="view-container">
-
-<!-- Vista 1: Mapa -->
+<!-- Vista Mapa -->
 <div id="view-map" class="view active">
 <div id="map"></div>
 </div>
 
-<!-- Vista 2: Agenda -->
+<!-- Vista Agenda -->
 <div id="view-agenda" class="view agenda-view">
 <div class="agenda-tabs">
 <div class="agenda-tab active" onclick="switchDay('20', event)">20 Nov</div>
@@ -428,25 +450,22 @@ Espais de creació contemporània i tallers d'artista en el cor de València: un
 <p>Últim dia de visites als espais de creació, tallers participatius i actes de cloenda del circuit a les 20:00 h.</p>
 </div>
 </div>
-
 </div>
 
-<!-- Ficha de Taller Emergente (Bottom Sheet) -->
+<!-- Ficha de Taller Emergente -->
 <div id="workshop-sheet" class="bottom-sheet">
 <div class="sheet-handle" onclick="closeSheet()"></div>
 <button class="sheet-close-btn" onclick="closeSheet()">&times;</button>
 <div class="sheet-body">
-<img id="sheet-photo" class="sheet-photo" src="" alt="Foto Taller">
-<div id="sheet-title" class="sheet-title">Nombre del Artista / Taller</div>
-<div id="sheet-address" class="sheet-address">Dirección exacta, Valencia</div>
+<div id="sheet-title" class="sheet-title">Nombre del Taller</div>
+<div id="sheet-artists" class="sheet-artists">Artistas</div>
+<div id="sheet-address" class="sheet-address">Dirección</div>
 <div class="sheet-links">
-<a id="sheet-web" href="#" target="_blank">🌐 Sitio web</a>
-<a id="sheet-email" href="#">✉️ Contactar</a>
+<a id="sheet-contact" href="#" target="_blank">✉️ Contactar</a>
+<a id="sheet-phone" href="#">📞 Teléfono</a>
 </div>
-<div class="sheet-activity-title">Actividad Propuesta</div>
-<div id="sheet-activity" class="sheet-activity-desc">
-Descripción detallada de la actividad, exposición o intervenciones artísticas programadas en este espacio.
-</div>
+<div class="sheet-activity-title">Propuesta Artística</div>
+<div id="sheet-activity" class="sheet-activity-desc">Descripción de la actividad</div>
 </div>
 </div>
 
@@ -466,7 +485,7 @@ Agenda
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// --- 1. GESTIÓN DEL SPLASH SCREEN (2 SEGUNDOS) ---
+// --- 1. SPLASH SCREEN ---
 window.addEventListener('DOMContentLoaded', () => {
 setTimeout(() => {
 const splash = document.getElementById('splash-screen');
@@ -480,40 +499,104 @@ initMap();
 }, 2000);
 });
 
-// --- 2. INICIALIZACIÓN DEL MAPA ---
+// --- 2. TALLERES ---
+const workshops = [
+{
+name: "Estudio Henar del Paso",
+artists: "Henar del Paso",
+address: "Calle Na Jordana, 22, bajo derecha, 46003, Valencia",
+activity: "Taller abierto y presentación de obra.",
+contact: "henardelpaso@hotmail.com",
+phone: "609 393 490",
+coords: [39.4795, -0.3807]
+},
+{
+name: "Sporting Club Russafa",
+artists: "Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró, Fernando Rincón",
+address: "Calle Sevilla, 5, bajo, 46006, Valencia",
+activity: "Reúne varios talleres. Exposición colectiva e intervenciones en el estudio.",
+contact: "maitebackman@gmail.com",
+phone: "",
+coords: [39.4627, -0.3725]
+},
+{
+name: "Picazo Studio",
+artists: "José Antonio Picazo",
+address: "Calle Sevilla, 17, 46006, Valencia",
+activity: "Taller abierto y presentación de obra.",
+contact: "info@joseantoniopicazo.com",
+phone: "630 664 380",
+coords: [39.4622, -0.3723]
+},
+{
+name: "Taller de Pepe March",
+artists: "Pepe March",
+address: "Calle Mare Vella, 19, 46003, Valencia",
+activity: "Taller abierto y presentación de obra.",
+contact: "Pepemarc@gmail.com",
+phone: "634 564 264",
+coords: [39.4788, -0.3768]
+},
+{
+name: "Studio Vintage",
+artists: "",
+address: "Calle de la Purísima, 8, 46001, Valencia",
+activity: "Taller abierto y exposición de artista.",
+contact: "studiovintage@hotmail.com",
+phone: "617 952 635",
+coords: [39.4741, -0.3789]
+},
+{
+name: "Fundación Victoria Cano y Estudio",
+artists: "Victoria Cano",
+address: "Calle Portal de Valldigna, 7, 46003, Valencia",
+activity: "Exposición colectiva e intervenciones en el estudio.",
+contact: "www.ofaaartits.com",
+phone: "629 170 969",
+coords: [39.4777, -0.3783]
+},
+{
+name: "Taller de Antonia Hervás y Ana Roig Hervás",
+artists: "Antonia Hervás y Ana Roig Hervás",
+address: "Calle Na Jordana, 27, bajo izq., 46003, Valencia",
+activity: "Taller abierto y exposición de artista.",
+contact: "Susanaroig@gmail.com",
+phone: "628 040 588",
+coords: [39.4798, -0.3809]
+},
+{
+name: "Taller de Elena Marti Manzanares",
+artists: "Elena Marti Manzanares",
+address: "Carrer de Sevilla, 14, 46006, Valencia",
+activity: "Taller abierto y exposición de artista.",
+contact: "ele.marti.man@gmail.com",
+phone: "629 727 534",
+coords: [39.4624, -0.3724]
+},
+{
+name: "Taller Veroneta",
+artists: "Marcela",
+address: "Calle Pintor Domingo, 7, 46001, Valencia",
+activity: "Taller abierto y exposición de artista.",
+contact: "@veronetaymas",
+phone: "661 247 302",
+coords: [39.4754, -0.3812]
+}
+];
+
+// --- 3. MAPA (Centrado exacto en Ciutat Vella y Russafa) ---
 let map;
 function initMap() {
 if (map) return;
 
-map = L.map('map', { zoomControl: false }).setView([39.4740, -0.3760], 15);
+map = L.map('map', { zoomControl: false }).setView([39.4710, -0.3770], 15);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 maxZoom: 19,
-attribution: '&copy; OpenStreetMap contributors'
+attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
 L.control.zoom({ position: 'bottomright' }).addTo(map);
-
-const workshops = [
-{
-name: "Estudio Marigela Pueyrredon",
-address: "Calle Alta, 14, Ciutat Vella",
-web: "https://biennalcvo.com",
-email: "info@biennalcvo.com",
-activity: "Exposición de escultura contemporánea y taller abierto de pintura experimental con pigmentos y aglutinantes naturales. Encuentro con el artista a las 18:00h.",
-photo: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&auto=format&fit=crop&q=80",
-coords: [39.4765, -0.3800]
-},
-{
-name: "Espai d'Art Russafa",
-address: "Calle Sueca, 28, Russafa",
-web: "https://biennalcvo.com",
-email: "russafa@biennalcvo.com",
-activity: "Instalación lumínica inmersiva y recorrido guiado por las obras seleccionadas para Art a la Llum.",
-photo: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&auto=format&fit=crop&q=80",
-coords: [39.4670, -0.3730]
-}
-];
 
 workshops.forEach(w => {
 const marker = L.marker(w.coords).addTo(map);
@@ -523,15 +606,36 @@ openSheet(w);
 });
 }
 
-// --- 3. GESTIÓN DE LA FICHA EMERGENTE (BOTTOM SHEET) ---
+// --- 4. FICHA EMERGENTE ---
 function openSheet(data) {
-document.getElementById('sheet-photo').src = data.photo;
 document.getElementById('sheet-title').innerText = data.name;
+document.getElementById('sheet-artists').innerText = data.artists ? "Artistes: " + data.artists : "";
 document.getElementById('sheet-address').innerText = data.address;
-document.getElementById('sheet-web').href = data.web;
-document.getElementById('sheet-email').href = "mailto:" + data.email;
-document.getElementById('sheet-activity').innerText = data.activity;
 
+const contactEl = document.getElementById('sheet-contact');
+if (data.contact.includes('@')) {
+contactEl.href = "mailto:" + data.contact;
+contactEl.innerText = "✉️ " + data.contact;
+contactEl.style.display = "inline";
+} else if (data.contact.startsWith('http')) {
+contactEl.href = data.contact;
+contactEl.innerText = "🌐 Web";
+contactEl.style.display = "inline";
+} else {
+contactEl.innerText = data.contact;
+contactEl.style.display = data.contact ? "inline" : "none";
+}
+
+const phoneEl = document.getElementById('sheet-phone');
+if (data.phone) {
+phoneEl.href = "tel:" + data.phone.replace(/\s+/g, '');
+phoneEl.innerText = "📞 " + data.phone;
+phoneEl.style.display = "inline";
+} else {
+phoneEl.style.display = "none";
+}
+
+document.getElementById('sheet-activity').innerText = data.activity;
 document.getElementById('workshop-sheet').classList.add('open');
 history.pushState({ sheetOpen: true }, "");
 }
@@ -540,7 +644,7 @@ function closeSheet() {
 document.getElementById('workshop-sheet').classList.remove('open');
 }
 
-// --- 4. NAVEGACIÓN ENTRE VISTAS ---
+// --- 5. NAVEGACIÓN ---
 function switchView(viewName) {
 document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
 document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -562,7 +666,6 @@ document.getElementById('nav-agenda').classList.add('active');
 history.pushState({ view: viewName }, "");
 }
 
-// --- 5. GESTIÓN DE DÍAS EN LA AGENDA ---
 function switchDay(day, event) {
 document.querySelectorAll('.agenda-tab').forEach(t => t.classList.remove('active'));
 document.querySelectorAll('.agenda-content').forEach(c => c.style.display = 'none');
@@ -571,7 +674,6 @@ event.target.classList.add('active');
 document.getElementById('agenda-' + day).style.display = 'block';
 }
 
-// --- 6. CAMBIO DE IDIOMA ---
 const texts = {
 va: { banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns." },
 es: { banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos." },
@@ -584,7 +686,6 @@ event.target.classList.add('active');
 document.getElementById('welcome-text').innerText = texts[lang].banner;
 }
 
-// --- 7. HISTORIAL NAVEGACIÓN ---
 window.addEventListener('popstate', (event) => {
 const sheet = document.getElementById('workshop-sheet');
 if (sheet.classList.contains('open')) {
