@@ -188,47 +188,11 @@
             background-color: #e5e3df;
         }
 
-        .agenda-view, .routes-view {
-            padding: 20px;
+        /* VISTA HOME / RUTAS */
+        .home-view {
+            padding: 16px;
             overflow-y: auto;
             background-color: var(--bg-color);
-        }
-
-        .agenda-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .agenda-tab {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            background-color: var(--white);
-            border: 1px solid #ced4da;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-
-        .agenda-tab.active {
-            background-color: var(--biennal-turquoise);
-            color: var(--white);
-            border-color: var(--biennal-turquoise);
-        }
-
-        .agenda-content {
-            display: none;
-            background: var(--white);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        .agenda-content.active {
-            display: block;
         }
 
         .route-card {
@@ -255,6 +219,66 @@
             font-size: 0.95rem;
             color: var(--text-muted);
             line-height: 1.4;
+        }
+
+        .agenda-view {
+            padding: 20px;
+            overflow-y: auto;
+            background-color: var(--bg-color);
+        }
+
+        .agenda-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .agenda-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background-color: var(--white);
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .agenda-tab.tab-20.active {
+            background-color: var(--color-yellow);
+            color: #212529;
+            border-color: var(--color-yellow);
+        }
+
+        .agenda-tab.tab-21.active {
+            background-color: var(--color-violet);
+            color: var(--white);
+            border-color: var(--color-violet);
+        }
+
+        .agenda-tab.tab-22.active {
+            background-color: var(--color-red);
+            color: var(--white);
+            border-color: var(--color-red);
+        }
+
+        .agenda-content {
+            display: none;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--biennal-turquoise);
+        }
+
+        #agenda-20 { border-left-color: var(--color-yellow); }
+        #agenda-21 { border-left-color: var(--color-violet); }
+        #agenda-22 { border-left-color: var(--color-red); }
+
+        .agenda-content.active {
+            display: block;
         }
 
         .bottom-sheet {
@@ -456,43 +480,46 @@
         </div>
 
         <div class="view-container">
-            <div id="view-map" class="view active">
-                <div id="map"></div>
-            </div>
-
-            <div id="view-routes" class="view routes-view">
+            <!-- VISTA HOME / RUTAS -->
+            <div id="view-home" class="view active home-view">
                 <div class="route-card yellow" onclick="filterAndGoToMap('yellow')">
                     <h3 id="rt-title-yellow">🟡 Ruta Groga: Na Jordana & Carme Nord (20 Nov)</h3>
-                    <p id="rt-desc-yellow">Toca aquí para ver en el mapa los estudios del norte de Ciutat Vella.</p>
+                    <p id="rt-desc-yellow">Toca ací per veure al mapa els estudis del nord de Ciutat Vella.</p>
                 </div>
                 <div class="route-card violet" onclick="filterAndGoToMap('violet')">
                     <h3 id="rt-title-violet">🟣 Ruta Violeta: Centre Històric & Puríssima (21 Nov)</h3>
-                    <p id="rt-desc-violet">Toca aquí para ver los estudios del corazón patrimonial.</p>
+                    <p id="rt-desc-violet">Toca ací per veure els estudis del cor patrimonial.</p>
                 </div>
                 <div class="route-card red" onclick="filterAndGoToMap('red')">
                     <h3 id="rt-title-red">🔴 Ruta Roja: Russafa Contemporània (22 Nov)</h3>
-                    <p id="rt-desc-red">Toca aquí para ver las galerías y talleres de Russafa.</p>
+                    <p id="rt-desc-red">Toca ací per veure les galeries i tallers de Russafa.</p>
                 </div>
             </div>
 
+            <!-- VISTA MAPA -->
+            <div id="view-map" class="view">
+                <div id="map"></div>
+            </div>
+
+            <!-- VISTA AGENDA -->
             <div id="view-agenda" class="view agenda-view">
                 <div class="agenda-tabs">
-                    <div class="agenda-tab active" onclick="switchDay('20', event)">20 Nov</div>
-                    <div class="agenda-tab" onclick="switchDay('21', event)">21 Nov</div>
-                    <div class="agenda-tab" onclick="switchDay('22', event)">22 Nov</div>
+                    <div class="agenda-tab tab-20 active" onclick="switchDay('20', event)">20 Nov</div>
+                    <div class="agenda-tab tab-21" onclick="switchDay('21', event)">21 Nov</div>
+                    <div class="agenda-tab tab-22" onclick="switchDay('22', event)">22 Nov</div>
                 </div>
 
                 <div id="agenda-20" class="agenda-content active">
-                    <h3 id="ag-title-20">Divendres, 20 de Novembre</h3>
-                    <p id="ag-desc-20">Inauguració oficial del Circuit del Arte y apertura institucional d'estudis i tallers participants en Ciutat Vella a partir de les 18:00 h.</p>
+                    <h3 id="ag-title-20">Divendres, 20 de Novembre (Ruta Groga)</h3>
+                    <p id="ag-desc-20">Inauguració oficial del Circuit del Arte y apertura institucional d'estudis i tallers participants en Ciutat Vella.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.</p>
                 </div>
                 <div id="agenda-21" class="agenda-content" style="display:none;">
-                    <h3 id="ag-title-21">Dissabte, 21 de Novembre</h3>
-                    <p id="ag-desc-21">Jornada de portes obertes intensiva. Rutes guiades per Art a la Llum, trobades amb artistes i demostracions en directe.</p>
+                    <h3 id="ag-title-21">Dissabte, 21 de Novembre (Ruta Violeta)</h3>
+                    <p id="ag-desc-21">Jornada de portes obertes intensiva en el Centre Històric i Puríssima. Rutes guiades per Art a la Llum.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.</p>
                 </div>
                 <div id="agenda-22" class="agenda-content" style="display:none;">
-                    <h3 id="ag-title-22">Diumenge, 22 de Novembre</h3>
-                    <p id="ag-desc-22">Últim dia de visites als espais de creació, tallers participatius i actes de cloenda del circuit a les 20:00 h.</p>
+                    <h3 id="ag-title-22">Diumenge, 22 de Novembre (Ruta Roja)</h3>
+                    <p id="ag-desc-22">Últim dia de visites als espais de creació i tallers a Russafa Contemporània, amb actes de cloenda.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.</p>
                 </div>
             </div>
         </div>
@@ -514,13 +541,21 @@
         </div>
 
         <nav class="bottom-nav">
-            <a class="nav-item active" onclick="switchView('map')" id="nav-map">
-                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                Mapa
+            <a class="nav-item active" onclick="switchView('home')" id="nav-home">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Inicio
             </a>
-            <a class="nav-item" onclick="switchView('routes')" id="nav-routes">
-                <svg viewBox="0 0 24 24"><path d="M5 12h14M5 6h14M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-                Rutas
+            <a class="nav-item" onclick="filterAndGoToMap('yellow')" id="nav-yellow">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#f1c40f"/></svg>
+                Amarilla
+            </a>
+            <a class="nav-item" onclick="filterAndGoToMap('violet')" id="nav-violet">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#9b59b6"/></svg>
+                Violeta
+            </a>
+            <a class="nav-item" onclick="filterAndGoToMap('red')" id="nav-red">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#e74c3c"/></svg>
+                Roja
             </a>
             <a class="nav-item" onclick="switchView('agenda')" id="nav-agenda">
                 <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
@@ -659,20 +694,23 @@
         function filterAndGoToMap(route) {
             renderMarkers(route);
             switchView('map');
+            
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            if (route === 'yellow' && document.getElementById('nav-yellow')) document.getElementById('nav-yellow').classList.add('active');
+            if (route === 'violet' && document.getElementById('nav-violet')) document.getElementById('nav-violet').classList.add('active');
+            if (route === 'red' && document.getElementById('nav-red')) document.getElementById('nav-red').classList.add('active');
         }
 
         function switchView(viewName) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
-            if (viewName === 'map') {
+            if (viewName === 'home') {
+                document.getElementById('view-home').classList.add('active');
+                document.getElementById('nav-home').classList.add('active');
+            } else if (viewName === 'map') {
                 document.getElementById('view-map').classList.add('active');
-                document.getElementById('nav-map').classList.add('active');
-                renderMarkers('all');
                 setTimeout(() => { if(map) map.invalidateSize(); }, 200);
-            } else if (viewName === 'routes') {
-                document.getElementById('view-routes').classList.add('active');
-                document.getElementById('nav-routes').classList.add('active');
             } else if (viewName === 'agenda') {
                 document.getElementById('view-agenda').classList.add('active');
                 document.getElementById('nav-agenda').classList.add('active');
@@ -720,16 +758,67 @@
         }
 
         const translations = {
-            va: { banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns." },
-            es: { banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos." },
-            en: { banner: "Contemporary creation spaces and artist studios in the heart of Valencia: a living tour through Ciutat Vella, Russafa and neighboring areas." }
+            va: {
+                banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.",
+                routes: {
+                    yellow: { title: "🟡 Ruta Groga: Na Jordana & Carme Nord (20 Nov)", desc: "Toca ací per veure al mapa els estudis del nord de Ciutat Vella." },
+                    violet: { title: "🟣 Ruta Violeta: Centre Històric & Puríssima (21 Nov)", desc: "Toca ací per veure els estudis del cor patrimonial." },
+                    red: { title: "🔴 Ruta Roja: Russafa Contemporània (22 Nov)", desc: "Toca ací per veure les galeries i tallers de Russafa." }
+                },
+                agenda: {
+                    20: "Inauguració oficial del Circuit del Arte i obertura institucional d'estudis i tallers participants en Ciutat Vella.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.",
+                    21: "Jornada de portes obertes intensiva en el Centre Històric i Puríssima. Rutes guiades per Art a la Llum.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.",
+                    22: "Últim dia de visites als espais de creació i tallers a Russafa Contemporània, amb actes de cloenda.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h."
+                }
+            },
+            es: {
+                banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos.",
+                routes: {
+                    yellow: { title: "🟡 Ruta Amarilla: Na Jordana & Carme Nord (20 Nov)", desc: "Toca aquí para ver en el mapa los estudios del norte de Ciutat Vella." },
+                    violet: { title: "🟣 Ruta Violeta: Centre Històric & Puríssima (21 Nov)", desc: "Toca aquí para ver los estudios del corazón patrimonial." },
+                    red: { title: "🔴 Ruta Roja: Russafa Contemporània (22 Nov)", desc: "Toca aquí para ver las galerías y talleres de Russafa." }
+                },
+                agenda: {
+                    20: "Inauguración oficial del Circuito del Arte y apertura institucional de estudios y talleres participantes en Ciutat Vella.<br><br><strong>Horario de visitas:</strong> Mañana de 10:00 h a 12:30 h | Tarde de 16:30 h a 19:00 h.",
+                    21: "Jornada de puertas abiertas intensiva en el Centre Històric y Puríssima. Rutas guiadas por Art a la Llum.<br><br><strong>Horario de visitas:</strong> Mañana de 10:00 h a 12:30 h | Tarde de 16:30 h a 19:00 h.",
+                    22: "Último día de visitas a los espacios de creación y talleres en Russafa Contemporània, con actos de clausura.<br><br><strong>Horario de visitas:</strong> Mañana de 10:00 h a 12:30 h | Tarde de 16:30 h a 19:00 h."
+                }
+            },
+            en: {
+                banner: "Contemporary creation spaces and artist studios in the heart of Valencia: a living tour through Ciutat Vella, Russafa and neighboring areas.",
+                routes: {
+                    yellow: { title: "🟡 Yellow Route: Na Jordana & Carme Nord (Nov 20)", desc: "Tap here to view northern Ciutat Vella studios on the map." },
+                    violet: { title: "🟣 Violet Route: Historic Center & Puríssima (Nov 21)", desc: "Tap here to view the heritage heart studios on the map." },
+                    red: { title: "🔴 Red Route: Contemporary Russafa (Nov 22)", desc: "Tap here to view Russafa galleries and studios on the map." }
+                },
+                agenda: {
+                    20: "Official opening of the Art Circuit and institutional opening of participating studios in Ciutat Vella.<br><br><strong>Visiting hours:</strong> Morning from 10:00 AM to 12:30 PM | Afternoon from 4:30 PM to 7:00 PM.",
+                    21: "Intensive open doors day in the Historic Center and Puríssima. Guided tours through Art a la Llum.<br><br><strong>Visiting hours:</strong> Morning from 10:00 AM to 12:30 PM | Afternoon from 4:30 PM to 7:00 PM.",
+                    22: "Last day of visits to creation spaces and studios in Contemporary Russafa, with closing events.<br><br><strong>Visiting hours:</strong> Morning from 10:00 AM to 12:30 PM | Afternoon from 4:30 PM to 7:00 PM."
+                }
+            }
         };
 
         function setLang(lang, event) {
             currentLang = lang;
             document.querySelectorAll('.lang-selector span').forEach(s => s.classList.remove('active'));
             event.target.classList.add('active');
+            
             document.getElementById('welcome-text').innerText = translations[lang].banner;
+            
+            document.getElementById('rt-title-yellow').innerText = translations[lang].routes.yellow.title;
+            document.getElementById('rt-desc-yellow').innerText = translations[lang].routes.yellow.desc;
+            
+            document.getElementById('rt-title-violet').innerText = translations[lang].routes.violet.title;
+            document.getElementById('rt-desc-violet').innerText = translations[lang].routes.violet.desc;
+            
+            document.getElementById('rt-title-red').innerText = translations[lang].routes.red.title;
+            document.getElementById('rt-desc-red').innerText = translations[lang].routes.red.desc;
+            
+            document.getElementById('ag-desc-20').innerHTML = translations[lang].agenda[20];
+            document.getElementById('ag-desc-21').innerHTML = translations[lang].agenda[21];
+            document.getElementById('ag-desc-22').innerHTML = translations[lang].agenda[22];
+
             if (activeWorkshopData) {
                 document.getElementById('sheet-activity').innerText = activeWorkshopData.activity[lang] || activeWorkshopData.activity['es'];
             }
