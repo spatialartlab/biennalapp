@@ -188,39 +188,6 @@
             background-color: #e5e3df;
         }
 
-        /* VISTA HOME / RUTAS */
-        .home-view {
-            padding: 16px;
-            overflow-y: auto;
-            background-color: var(--bg-color);
-        }
-
-        .route-card {
-            background: var(--white);
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 14px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border-left: 6px solid var(--biennal-turquoise);
-            cursor: pointer;
-        }
-
-        .route-card.yellow { border-left-color: var(--color-yellow); }
-        .route-card.violet { border-left-color: var(--color-violet); }
-        .route-card.red { border-left-color: var(--color-red); }
-
-        .route-card h3 {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            margin-bottom: 6px;
-        }
-
-        .route-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
         .agenda-view {
             padding: 20px;
             overflow-y: auto;
@@ -398,15 +365,15 @@
             justify-content: center;
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
             transition: color 0.2s;
         }
 
         .nav-item svg {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             margin-bottom: 3px;
             fill: currentColor;
         }
@@ -480,24 +447,8 @@
         </div>
 
         <div class="view-container">
-            <!-- VISTA HOME / RUTAS -->
-            <div id="view-home" class="view active home-view">
-                <div class="route-card yellow" onclick="filterAndGoToMap('yellow')">
-                    <h3 id="rt-title-yellow">🟡 Ruta Groga: Na Jordana & Carme Nord</h3>
-                    <p id="rt-desc-yellow">Toca ací per veure al mapa els estudis del nord de Ciutat Vella.</p>
-                </div>
-                <div class="route-card violet" onclick="filterAndGoToMap('violet')">
-                    <h3 id="rt-title-violet">🟣 Ruta Violeta: Centre Històric & Puríssima</h3>
-                    <p id="rt-desc-violet">Toca ací per veure els estudis del cor patrimonial.</p>
-                </div>
-                <div class="route-card red" onclick="filterAndGoToMap('red')">
-                    <h3 id="rt-title-red">🔴 Ruta Roja: Russafa Contemporània</h3>
-                    <p id="rt-desc-red">Toca ací per veure les galeries i tallers de Russafa.</p>
-                </div>
-            </div>
-
-            <!-- VISTA MAPA -->
-            <div id="view-map" class="view">
+            <!-- VISTA MAPA PRINCIPAL -->
+            <div id="view-map" class="view active">
                 <div id="map"></div>
             </div>
 
@@ -540,13 +491,9 @@
             </div>
         </div>
 
-        <!-- NAV INFERIOR CON MAPA GENERAL, PUNTOS DE RUTAS Y AGENDA -->
+        <!-- NAV INFERIOR CON MAPA COMO PRIMERA OPCIÓN -->
         <nav class="bottom-nav">
-            <a class="nav-item active" onclick="switchView('home')" id="nav-home">
-                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                Inicio
-            </a>
-            <a class="nav-item" onclick="filterAndGoToMap('all')" id="nav-map">
+            <a class="nav-item active" onclick="filterAndGoToMap('all')" id="nav-map">
                 <svg viewBox="0 0 24 24"><path d="M20.5 3l-0.16.03L15 5.1 9 3 3.36 4.9 C3.15 4.97 3 5.15 3 5.38v13.5c0 0.28 0.22 0.5 0.5 0.5l0.16-0.03L9 17.4l6 2.1 5.64-1.9c0.21-0.07 0.36-0.25 0.36-0.48V3.5c0-0.28-0.22-0.5-0.5-0.5zM15 17.25l-6-2.11V5.01l6 2.11v10.13z"/></svg>
                 Mapa
             </a>
@@ -711,10 +658,7 @@
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
-            if (viewName === 'home') {
-                document.getElementById('view-home').classList.add('active');
-                document.getElementById('nav-home').classList.add('active');
-            } else if (viewName === 'map') {
+            if (viewName === 'map') {
                 document.getElementById('view-map').classList.add('active');
                 if (document.getElementById('nav-map')) document.getElementById('nav-map').classList.add('active');
                 setTimeout(() => { if(map) map.invalidateSize(); }, 200);
@@ -767,11 +711,6 @@
         const translations = {
             va: {
                 banner: "Espais de creació contemporània i tallers d'artista en el cor de València: un recorregut viu per Ciutat Vella, Russafa i els barris veïns.",
-                routes: {
-                    yellow: { title: "🟡 Ruta Groga: Na Jordana & Carme Nord", desc: "Toca ací per veure al mapa els estudis del nord de Ciutat Vella." },
-                    violet: { title: "🟣 Ruta Violeta: Centre Històric & Puríssima", desc: "Toca ací per veure els estudis del cor patrimonial." },
-                    red: { title: "🔴 Ruta Roja: Russafa Contemporània", desc: "Toca ací per veure les galeries i tallers de Russafa." }
-                },
                 agenda: {
                     20: "Inauguració oficial del Circuit del Arte i obertura institutional d'estudis i tallers participants en Ciutat Vella.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.",
                     21: "Jornada de portes obertes intensiva en el Centre Històric i Puríssima. Rutes guiades per Art a la Llum.<br><br><strong>Horari de visites:</strong> Matí de 10:00 h a 12:30 h | Vesprada de 16:30 h a 19:00 h.",
@@ -780,11 +719,6 @@
             },
             es: {
                 banner: "Espacios de creación contemporánea y talleres de artista en el corazón de Valencia: un recorrido vivo por Ciutat Vella, Russafa y los barrios vecinos.",
-                routes: {
-                    yellow: { title: "🟡 Ruta Amarilla: Na Jordana & Carme Nord", desc: "Toca aquí para ver en el mapa los estudios del norte de Ciutat Vella." },
-                    violet: { title: "🟣 Ruta Violeta: Centre Històric & Puríssima", desc: "Toca aquí para ver los estudios del corazón patrimonial." },
-                    red: { title: "🔴 Ruta Roja: Russafa Contemporània", desc: "Toca aquí para ver las galerías y talleres de Russafa." }
-                },
                 agenda: {
                     20: "Inauguración oficial del Circuito del Arte y apertura institucional de estudios y talleres participantes en Ciutat Vella.<br><br><strong>Horario de visitas:</strong> Mañana de 10:00 h a 12:30 h | Tarde de 16:30 h a 19:00 h.",
                     21: "Jornada de puertas abiertas intensiva en el Centre Històric y Puríssima. Rutas guiadas por Art a la Llum.<br><br><strong>Horario de visitas:</strong> Mañana de 10:00 h a 12:30 h | Tarde de 16:30 h a 19:00 h.",
@@ -793,11 +727,6 @@
             },
             en: {
                 banner: "Contemporary creation spaces and artist studios in the heart of Valencia: a living tour through Ciutat Vella, Russafa and neighboring areas.",
-                routes: {
-                    yellow: { title: "🟡 Yellow Route: Na Jordana & Carme Nord", desc: "Tap here to view northern Ciutat Vella studios on the map." },
-                    violet: { title: "🟣 Violet Route: Historic Center & Puríssima", desc: "Tap here to view the heritage heart studios on the map." },
-                    red: { title: "🔴 Red Route: Contemporary Russafa", desc: "Tap here to view Russafa galleries and studios on the map." }
-                },
                 agenda: {
                     20: "Official opening of the Art Circuit and institutional opening of participating studios in Ciutat Vella.<br><br><strong>Visiting hours:</strong> Morning from 10:00 AM to 12:30 PM | Afternoon from 4:30 PM to 7:00 PM.",
                     21: "Intensive open doors day in the Historic Center and Puríssima. Guided tours through Art a la Llum.<br><br><strong>Visiting hours:</strong> Morning from 10:00 AM to 12:30 PM | Afternoon from 4:30 PM to 7:00 PM.",
@@ -812,15 +741,6 @@
             event.target.classList.add('active');
             
             document.getElementById('welcome-text').innerText = translations[lang].banner;
-            
-            document.getElementById('rt-title-yellow').innerText = translations[lang].routes.yellow.title;
-            document.getElementById('rt-desc-yellow').innerText = translations[lang].routes.yellow.desc;
-            
-            document.getElementById('rt-title-violet').innerText = translations[lang].routes.violet.title;
-            document.getElementById('rt-desc-violet').innerText = translations[lang].routes.violet.desc;
-            
-            document.getElementById('rt-title-red').innerText = translations[lang].routes.red.title;
-            document.getElementById('rt-desc-red').innerText = translations[lang].routes.red.desc;
             
             document.getElementById('ag-desc-20').innerHTML = translations[lang].agenda[20];
             document.getElementById('ag-desc-21').innerHTML = translations[lang].agenda[21];
@@ -848,4 +768,6 @@
     </script>
 </body>
 </html>
+
+
 
