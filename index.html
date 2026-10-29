@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,7 +10,7 @@
         :root {
             --biennal-turquoise: #00a8cc; /* Turquesa brillante y eléctrico */
             --biennal-turquoise-dark: #0082a3;
-            --bg-color: #f8f9fa;
+            --bg-color: #00a8cc;
             --text-main: #212529;
             --text-muted: #6c757d;
             --white: #ffffff;
@@ -101,11 +100,12 @@
             opacity: 1;
         }
 
+        /* ENCABEZADO FIEL AL DISEÑO DE LA IMAGEN */
         header {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 20px 20px 10px 20px;
+            padding: 16px 20px 12px 20px;
             background-color: var(--biennal-turquoise);
             z-index: 1000;
             flex-shrink: 0;
@@ -119,8 +119,9 @@
             display: flex;
             gap: 8px;
             font-size: 0.8rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--white);
+            letter-spacing: 0.5px;
         }
 
         .lang-selector span {
@@ -134,19 +135,43 @@
         }
 
         .header-title-main {
-            font-size: 1.4rem;
+            font-size: 1.7rem;
             font-weight: 800;
             color: var(--white);
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 4px;
+            line-height: 1.05;
+            margin-bottom: 2px;
+            letter-spacing: -0.3px;
         }
 
         .header-title-sub {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            line-height: 1.1;
+        }
+
+        .header-title-third {
             font-size: 0.9rem;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.3;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 2px;
+        }
+
+        .header-tagline {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .header-dates {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-top: 6px;
         }
 
         .view-container {
@@ -157,7 +182,7 @@
             border-top-left-radius: 24px;
             border-top-right-radius: 24px;
             box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-            margin-top: 10px;
+            margin-top: 6px;
             display: flex;
             flex-direction: column;
         }
@@ -176,7 +201,7 @@
             flex-direction: column;
         }
 
-        /* 2. MAPA INTERACTIVO ORIGINAL */
+        /* 2. MAPA INTERACTIVO */
         #map {
             width: 100%;
             height: 100%;
@@ -447,8 +472,8 @@
 
     <!-- 1. PANTALLA FLASH (SPLASH SCREEN) -->
     <div id="splash-screen">
-        <div class="splash-title">Biennal de<br>Valencia</div>
-        <div class="splash-subtitle">Ciutat Vella Oberta</div>
+        <div class="splash-title">Bienal de<br>Valencia</div>
+        <div class="splash-subtitle">CIUTAT VELLA OBERTA</div>
         <div class="splash-dots">
             <div class="splash-dot dot-yellow"></div>
             <div class="splash-dot dot-fuchsia"></div>
@@ -463,8 +488,11 @@
                 <span onclick="setLang('es', event)">ESP</span>
                 <span onclick="setLang('en', event)">ENG</span>
             </div>
-            <div class="header-title-main">Biennal de Valencia</div>
-            <div class="header-title-sub">Ciutat Vella Oberta<br>Circuito del arte · Art a la Llum</div>
+            <div class="header-title-main">Bienal de Valencia</div>
+            <div class="header-title-sub">CIUTAT VELLA OBERTA</div>
+            <div class="header-title-third">Circuito del arte · Art a la Llum</div>
+            <div class="header-tagline">Un recorrido por los espacios de creación en el corazón de València</div>
+            <div class="header-dates">Agenda 20 21 y 22 de noviembre</div>
         </header>
 
         <div class="view-container">
@@ -802,4 +830,3 @@
     </script>
 </body>
 </html>
-
