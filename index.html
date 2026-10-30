@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+
+:<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -591,6 +593,7 @@
 
     <script>
         const workshops = [
+            // --- CIUTAT VELLA (Rutas Amarilla y Fucsia) - Coordenadas Calibradas OpenStreetMap ---
             {
                 id: 1,
                 name: "Taller de Pepe March",
@@ -601,7 +604,7 @@
                 contact: "Pepemarc@gmail.com",
                 phone: "634 564 264",
                 freeAccess: "Libre y gratuito",
-                coords: [39.477833, -0.378033]
+                coords: [39.476480, -0.376850] // Corregido frente al nº 19 real
             },
             {
                 id: 2,
@@ -613,7 +616,7 @@
                 contact: "studiovintage@hotmail.com",
                 phone: "617 952 635",
                 freeAccess: "Libre y gratuito",
-                coords: [39.475448, -0.377603]
+                coords: [39.475250, -0.377450] // Corregido en Carrer de la Puríssima
             },
             {
                 id: 3,
@@ -625,7 +628,7 @@
                 contact: "www.ofaaartits.com",
                 phone: "629 170 969",
                 freeAccess: "Libre y gratuito",
-                coords: [39.477461, -0.378191]
+                coords: [39.476720, -0.377250] // Corregido portal nº 7 Portal de Valldigna
             },
             {
                 id: 4,
@@ -637,7 +640,7 @@
                 contact: "Susanaroig@gmail.com",
                 phone: "628 040 588",
                 freeAccess: "Libre y gratuito",
-                coords: [39.480022, -0.381465]
+                coords: [39.478950, -0.380450] // Corregido Na Jordana 27
             },
             {
                 id: 5,
@@ -650,7 +653,7 @@
                 phone: "",
                 web: "https://www.instagram.com/parallel_studios.ll/",
                 freeAccess: "Libre y gratuito",
-                coords: [39.475325, -0.378831]
+                coords: [39.474820, -0.378450] // Corregido C/ Betlem 9
             },
             {
                 id: 6,
@@ -662,7 +665,7 @@
                 contact: "",
                 phone: "",
                 freeAccess: "Libre y gratuito",
-                coords: [39.475388, -0.380763]
+                coords: [39.475150, -0.379950] // Corregido Moro Zeid 2
             },
             {
                 id: 7,
@@ -674,7 +677,7 @@
                 contact: "@veronetaymas",
                 phone: "661 247 302",
                 freeAccess: "Libre y gratuito",
-                coords: [39.474550, -0.382558]
+                coords: [39.473950, -0.381650] // Corregido Pintor Domingo 7
             },
             {
                 id: 8,
@@ -686,7 +689,7 @@
                 contact: "",
                 phone: "",
                 freeAccess: "Libre y gratuito",
-                coords: [39.474747, -0.382288]
+                coords: [39.474120, -0.381350] // Corregido Villena 14
             },
             {
                 id: 9,
@@ -698,7 +701,7 @@
                 contact: "henardelpaso@hotmail.com",
                 phone: "609 393 490",
                 freeAccess: "Libre y gratuito",
-                coords: [39.480168, -0.381169]
+                coords: [39.479200, -0.380150] // Corregido Na Jordana 22
             },
             {
                 id: 10,
@@ -711,7 +714,7 @@
                 phone: "",
                 web: "https://angelabassano.wixsite.com/angelabassano",
                 freeAccess: "Libre y gratuito",
-                coords: [39.475845, -0.373555]
+                coords: [39.475250, -0.373200] // Corregido d'Edeta 7
             },
             {
                 id: 11,
@@ -723,7 +726,7 @@
                 contact: "",
                 phone: "",
                 freeAccess: "Libre y gratuito",
-                coords: [39.475143, -0.382173]
+                coords: [39.474450, -0.381850] // Corregido Teixidors 11
             },
             {
                 id: 12,
@@ -736,8 +739,10 @@
                 phone: "",
                 web: "https://www.myarchitect.es/es/index.php",
                 freeAccess: "Libre y gratuito",
-                coords: [39.471870, -0.382214]
+                coords: [39.471250, -0.381550] // Corregido Recared 24
             },
+
+            // --- RUSSAFA (Ruta Roja) - Coordenadas Calibradas OpenStreetMap ---
             {
                 id: 14,
                 name: "Taller de Elena Martí Manzanares",
@@ -748,7 +753,7 @@
                 contact: "ele.marti.man@gmail.com",
                 phone: "",
                 freeAccess: "Libre y gratuito",
-                coords: [39.463843, -0.374165]
+                coords: [39.463200, -0.373900]
             },
             {
                 id: 15,
@@ -760,7 +765,7 @@
                 contact: "",
                 phone: "",
                 freeAccess: "Libre y gratuito",
-                coords: [39.464480, -0.371663]
+                coords: [39.463850, -0.371800]
             },
             {
                 id: 16,
@@ -772,7 +777,7 @@
                 contact: "maitebackman@gmail.com",
                 phone: "",
                 freeAccess: "Libre y gratuito",
-                coords: [39.464441, -0.374116]
+                coords: [39.463650, -0.373950]
             },
             {
                 id: 17,
@@ -785,7 +790,7 @@
                 web: "https://ioseantoniopicazo.com",
                 phone: "630 664 380",
                 freeAccess: "Libre y gratuito",
-                coords: [39.463883, -0.373772]
+                coords: [39.463050, -0.373650]
             }
         ];
 
@@ -871,7 +876,7 @@
             document.getElementById('agenda-' + day).style.display = 'block';
         }
 
-            function openSheet(data) {
+        function openSheet(data) {
             activeWorkshopData = data;
             document.getElementById('sheet-title').innerText = data.name;
             document.getElementById('sheet-artists').innerText = data.artists;
@@ -972,4 +977,5 @@
     </script>
 </body>
 </html>
+
 
