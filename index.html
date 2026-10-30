@@ -1,4 +1,3 @@
-:
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,15 +8,15 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <style>
         :root {
-            --biennal-turquoise: #00a8cc; /* Turquesa brillante */
+            --biennal-turquoise: #00a8cc;
             --biennal-turquoise-dark: #0082a3;
             --bg-color: #00a8cc;
             --text-main: #212529;
             --text-muted: #6c757d;
             --white: #ffffff;
-            --color-yellow: #ffe600; /* Amarillo vibrante */
-            --color-fuchsia: #ff007f; /* Rosa fucsia */
-            --color-red: #ff2a5f; /* Rojo vivo */
+            --color-yellow: #ffe600;
+            --color-fuchsia: #ff007f;
+            --color-red: #ff2a5f;
         }
 
         * {
@@ -34,7 +33,6 @@
             background-color: var(--biennal-turquoise);
         }
 
-        /* 1. PANTALLA FLASH (SPLASH SCREEN) */
         #splash-screen {
             position: fixed;
             top: 0;
@@ -101,7 +99,6 @@
             opacity: 1;
         }
 
-        /* ENCABEZADO OPTIMIZADO PARA EVITAR CORTES */
         header {
             display: flex;
             flex-direction: column;
@@ -203,7 +200,6 @@
             flex-direction: column;
         }
 
-        /* MAPA INTERACTIVO */
         #map {
             width: 100%;
             height: 100%;
@@ -212,7 +208,6 @@
             background-color: #e5e3df;
         }
 
-        /* PINES DE MAPA CON FORMA DE GOTA */
         .drop-pin-wrapper {
             position: relative;
             width: 30px;
@@ -243,7 +238,6 @@
             border-radius: 50%;
         }
 
-        /* VISTA DE AGENDA */
         .agenda-view {
             padding: 16px;
             overflow-y: auto;
@@ -332,7 +326,6 @@
             line-height: 1.35;
         }
 
-        /* HOJA DESPLEGABLE DE TALLERES (BOTTOM SHEET) */
         .bottom-sheet {
             position: absolute;
             bottom: -100%;
@@ -383,13 +376,13 @@
         .sheet-address {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .sheet-links {
             display: flex;
             gap: 10px;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
 
@@ -401,6 +394,18 @@
             padding: 5px 10px;
             border-radius: 6px;
             font-size: 0.85rem;
+        }
+
+        .sheet-access {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #047857;
+            background-color: #ecfdf5;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         .sheet-activity-desc {
@@ -424,7 +429,6 @@
             color: var(--text-muted);
         }
 
-        /* BARRA INFERIOR FLOTANTE */
         nav.bottom-nav {
             display: flex;
             background-color: var(--white);
@@ -473,7 +477,6 @@
 </head>
 <body>
 
-    <!-- 1. PANTALLA FLASH (SPLASH SCREEN) -->
     <div id="splash-screen">
         <div class="splash-title">Bienal de<br>Valencia</div>
         <div class="splash-subtitle">CIUTAT VELLA OBERTA</div>
@@ -499,12 +502,10 @@
         </header>
 
         <div class="view-container">
-            <!-- 2. VISTA DE MAPA INTERACTIVO (PRINCIPAL) -->
             <div id="view-map" class="view active">
                 <div id="map"></div>
             </div>
 
-            <!-- 3. VISTA DE AGENDA -->
             <div id="view-agenda" class="view agenda-view">
                 <div class="agenda-cards-container">
                     <div class="agenda-date-card active-20 yellow-text" onclick="switchDay('20', event)">
@@ -556,11 +557,11 @@
                     <a id="sheet-phone" href="#">📞 Teléfono</a>
                     <a id="sheet-web" href="#" target="_blank" style="display:none;">🌐 Web</a>
                 </div>
+                <div id="sheet-access" class="sheet-access">Libre y gratuito</div>
                 <div id="sheet-activity" class="sheet-activity-desc">Descripción de la actividad</div>
             </div>
         </div>
 
-        <!-- BARRA INFERIOR -->
         <nav class="bottom-nav">
             <button class="nav-item active" onclick="filterAndGoToMap('all')" id="nav-map">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -599,6 +600,7 @@
                 activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio and presentation of artwork." },
                 contact: "Pepemarc@gmail.com",
                 phone: "634 564 264",
+                freeAccess: "Libre y gratuito",
                 coords: [39.477833, -0.378033]
             },
             {
@@ -610,6 +612,7 @@
                 activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio and artist exhibition." },
                 contact: "studiovintage@hotmail.com",
                 phone: "617 952 635",
+                freeAccess: "Libre y gratuito",
                 coords: [39.475448, -0.377603]
             },
             {
@@ -621,6 +624,7 @@
                 activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva i intervencions.", en: "Group exhibition and studio interventions." },
                 contact: "www.ofaaartits.com",
                 phone: "629 170 969",
+                freeAccess: "Libre y gratuito",
                 coords: [39.477461, -0.378191]
             },
             {
@@ -632,6 +636,7 @@
                 activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio and artist exhibition." },
                 contact: "Susanaroig@gmail.com",
                 phone: "628 040 588",
+                freeAccess: "Libre y gratuito",
                 coords: [39.480022, -0.381465]
             },
             {
@@ -644,6 +649,7 @@
                 contact: "",
                 phone: "",
                 web: "https://www.instagram.com/parallel_studios.ll/",
+                freeAccess: "Libre y gratuito",
                 coords: [39.475325, -0.378831]
             },
             {
@@ -655,6 +661,7 @@
                 activity: { es: "Taller abierto y muestra de procesos creativos.", va: "Taller obert i mostra de processos creatius.", en: "Open studio and creative process exhibition." },
                 contact: "",
                 phone: "",
+                freeAccess: "Libre y gratuito",
                 coords: [39.475388, -0.380763]
             },
             {
@@ -666,6 +673,7 @@
                 activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio and exhibition." },
                 contact: "@veronetaymas",
                 phone: "661 247 302",
+                freeAccess: "Libre y gratuito",
                 coords: [39.474550, -0.382558]
             },
             {
@@ -677,6 +685,7 @@
                 activity: { es: "Espacio de creación contemporánea y exposición.", va: "Espai de creació contemporània i exposició.", en: "Contemporary creation space and exhibition." },
                 contact: "",
                 phone: "",
+                freeAccess: "Libre y gratuito",
                 coords: [39.474747, -0.382288]
             },
             {
@@ -688,6 +697,7 @@
                 activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio and presentation of artwork." },
                 contact: "henardelpaso@hotmail.com",
                 phone: "609 393 490",
+                freeAccess: "Libre y gratuito",
                 coords: [39.480168, -0.381169]
             },
             {
@@ -700,6 +710,7 @@
                 contact: "",
                 phone: "",
                 web: "https://angelabassano.wixsite.com/angelabassano",
+                freeAccess: "Libre y gratuito",
                 coords: [39.475845, -0.373555]
             },
             {
@@ -711,6 +722,7 @@
                 activity: { es: "Estudio de arquitectura, diseño y proyectos culturales.", va: "Estudi d'arquitectura, disseny i projectes culturals.", en: "Architecture, design studio, and cultural projects." },
                 contact: "",
                 phone: "",
+                freeAccess: "Libre y gratuito",
                 coords: [39.475143, -0.382173]
             },
             {
@@ -723,7 +735,57 @@
                 contact: "",
                 phone: "",
                 web: "https://www.myarchitect.es/es/index.php",
+                freeAccess: "Libre y gratuito",
                 coords: [39.471870, -0.382214]
+            },
+            {
+                id: 14,
+                name: "Taller de Elena Martí Manzanares",
+                artists: "Elena Martí Manzanares",
+                address: "C/ de Sevilla, 14, 46004 València",
+                route: "red",
+                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio and artist exhibition." },
+                contact: "ele.marti.man@gmail.com",
+                phone: "",
+                freeAccess: "Libre y gratuito",
+                coords: [39.463843, -0.374165]
+            },
+            {
+                id: 15,
+                name: "Taller de Francesca, Ceramic Studio",
+                artists: "Francesca",
+                address: "Carrer de Sant Valero, 1, 46005 València",
+                route: "red",
+                activity: { es: "Taller abierto de cerámica y exposición de piezas artísticas.", va: "Taller obert de ceràmica i exposició de peces artístiques.", en: "Open ceramic studio and art pieces exhibition." },
+                contact: "",
+                phone: "",
+                freeAccess: "Libre y gratuito",
+                coords: [39.464480, -0.371663]
+            },
+            {
+                id: 16,
+                name: "Sporting Club Russafa",
+                artists: "Maite Backman, Maria José Ballester, Rafa de Corral",
+                address: "Calle de Sevilla, 5, 46004 València",
+                route: "red",
+                activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva i intervencions a l'estudi.", en: "Group exhibition and studio interventions." },
+                contact: "maitebackman@gmail.com",
+                phone: "",
+                freeAccess: "Libre y gratuito",
+                coords: [39.464441, -0.374116]
+            },
+            {
+                id: 17,
+                name: "Picazo Studio",
+                artists: "José Antonio Picazo",
+                address: "C/ de Sevilla, 17, 46004 València",
+                route: "red",
+                activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio and presentation of artwork." },
+                contact: "info@joseantoniopicazo.com",
+                web: "https://ioseantoniopicazo.com",
+                phone: "630 664 380",
+                freeAccess: "Libre y gratuito",
+                coords: [39.463883, -0.373772]
             }
         ];
 
@@ -734,7 +796,7 @@
 
         function initMap() {
             if (map || typeof L === 'undefined') return;
-            map = L.map('map', { zoomControl: false }).setView([39.4760, -0.3800], 15);
+            map = L.map('map', { zoomControl: false }).setView([39.4720, -0.3770], 14);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -809,11 +871,12 @@
             document.getElementById('agenda-' + day).style.display = 'block';
         }
 
-        function openSheet(data) {
+            function openSheet(data) {
             activeWorkshopData = data;
             document.getElementById('sheet-title').innerText = data.name;
             document.getElementById('sheet-artists').innerText = data.artists;
             document.getElementById('sheet-address').innerText = data.address;
+            document.getElementById('sheet-access').innerText = data.freeAccess || "Libre y gratuito";
 
             const contactEl = document.getElementById('sheet-contact');
             if (data.contact && data.contact.includes('@')) {
@@ -909,5 +972,4 @@
     </script>
 </body>
 </html>
-
 
