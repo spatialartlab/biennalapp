@@ -1,4 +1,4 @@
-
+:
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -142,7 +142,7 @@
             line-height: 1.1;
             margin-bottom: 2px;
             letter-spacing: -0.3px;
-            padding-right: 80px; /* Deja espacio para el selector de idioma */
+            padding-right: 80px;
         }
 
         .header-title-sub {
@@ -390,6 +390,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 14px;
+            flex-wrap: wrap;
         }
 
         .sheet-links a {
@@ -553,6 +554,7 @@
                 <div class="sheet-links">
                     <a id="sheet-contact" href="#" target="_blank">📧 Contactar</a>
                     <a id="sheet-phone" href="#">📞 Teléfono</a>
+                    <a id="sheet-web" href="#" target="_blank" style="display:none;">🌐 Web</a>
                 </div>
                 <div id="sheet-activity" class="sheet-activity-desc">Descripción de la actividad</div>
             </div>
@@ -589,76 +591,139 @@
     <script>
         const workshops = [
             {
-                name: "Estudio Henar del Paso",
-                artists: "Henar del Paso",
-                address: "Calle Na Jordana, 22, bajo dcha, 46003, Valencia",
-                route: "yellow",
-                activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio and presentation of artwork." },
-                contact: "henardelpaso@hotmail.com", phone: "609 393 490", coords: [39.47972, -0.38085]
-            },
-            {
+                id: 1,
                 name: "Taller de Pepe March",
                 artists: "Pepe March",
-                address: "Calle Mare Vella, 19, 46003, Valencia",
+                address: "C/ de la Mare Vella, 19, 46001 València",
                 route: "yellow",
-                activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio." },
-                contact: "Pepemarc@gmail.com", phone: "634 564 264", coords: [39.47895, -0.37715]
+                activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio and presentation of artwork." },
+                contact: "Pepemarc@gmail.com",
+                phone: "634 564 264",
+                coords: [39.477833, -0.378033]
             },
             {
+                id: 2,
                 name: "Studio Vintage",
                 artists: "Artista Residente",
-                address: "Calle de la Purísima, 8, 46001, Valencia",
+                address: "Carrer de la Puríssima, 8, 46001 València",
                 route: "fuchsia",
-                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
-                contact: "studiovintage@hotmail.com", phone: "617 952 635", coords: [39.47485, -0.37905]
+                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio and artist exhibition." },
+                contact: "studiovintage@hotmail.com",
+                phone: "617 952 635",
+                coords: [39.475448, -0.377603]
             },
             {
+                id: 3,
                 name: "Fundación Victoria Cano",
                 artists: "Victoria Cano",
-                address: "Calle Portal de Valldigna, 7, 46003, Valencia",
+                address: "C/ del Portal de Valldigna, 7, 46003 València",
                 route: "yellow",
-                activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva.", en: "Group exhibition." },
-                contact: "www.ofaaartits.com", phone: "629 170 969", coords: [39.47756, -0.37862]
+                activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva i intervencions.", en: "Group exhibition and studio interventions." },
+                contact: "www.ofaaartits.com",
+                phone: "629 170 969",
+                coords: [39.477461, -0.378191]
             },
             {
-                name: "Taller Antonia Hervás y Ana Roig",
-                artists: "Antonia Hervás y Ana Roig Hervás",
-                address: "Calle Na Jordana, 27, 46003, Valencia",
+                id: 4,
+                name: "Estudio Antonia Hervás y Susana Roig",
+                artists: "Antonia Hervás y Susana Roig Hervás",
+                address: "C. de na Jordana, 27, 46003 València",
                 route: "yellow",
-                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
-                contact: "Susanaroig@gmail.com", phone: "628 040 588", coords: [39.4799, -0.3811]
+                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio and artist exhibition." },
+                contact: "Susanaroig@gmail.com",
+                phone: "628 040 588",
+                coords: [39.480022, -0.381465]
             },
             {
+                id: 5,
+                name: "Taller de Lisa Gingles",
+                artists: "Lisa Gingles",
+                address: "C/ de Betlem, 9, 46001 València",
+                route: "fuchsia",
+                activity: { es: "Taller abierto y proyectos de ilustración.", va: "Taller obert i projectes d'il·lustració.", en: "Open studio and illustration projects." },
+                contact: "",
+                phone: "",
+                web: "https://www.instagram.com/parallel_studios.ll/",
+                coords: [39.475325, -0.378831]
+            },
+            {
+                id: 6,
+                name: "Taller de María Ángeles Aguilera",
+                artists: "María Ángeles Aguilera",
+                address: "Carrer del Moro Zeid, 2, 46001 València",
+                route: "fuchsia",
+                activity: { es: "Taller abierto y muestra de procesos creativos.", va: "Taller obert i mostra de processos creatius.", en: "Open studio and creative process exhibition." },
+                contact: "",
+                phone: "",
+                coords: [39.475388, -0.380763]
+            },
+            {
+                id: 7,
                 name: "Taller Veroneta",
                 artists: "Marcela",
-                address: "Calle Pintor Domingo, 7, 46001, Valencia",
+                address: "C/ del Pintor Domingo, 7, 46001 València",
                 route: "fuchsia",
-                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
-                contact: "@veronetaymas", phone: "661 247 302", coords: [39.4754, -0.38115]
+                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio and exhibition." },
+                contact: "@veronetaymas",
+                phone: "661 247 302",
+                coords: [39.474550, -0.382558]
             },
             {
-                name: "Sporting Club Russafa",
-                artists: "Maite Backman, Maria José Ballester, Rafa de Corral",
-                address: "Calle Sevilla, 5, bajo, 46006, Valencia",
-                route: "red",
-                activity: { es: "Exposición colectiva e intervenciones en el estudio.", va: "Exposició col·lectiva i intervencions.", en: "Group exhibition." },
-                contact: "maitebackman@gmail.com", phone: "", coords: [39.4632, -0.3728]
+                id: 8,
+                name: "Taller Hygiene",
+                artists: "Hygiene Studio",
+                address: "C/ de Villena, 14, 46001 València",
+                route: "fuchsia",
+                activity: { es: "Espacio de creación contemporánea y exposición.", va: "Espai de creació contemporània i exposició.", en: "Contemporary creation space and exhibition." },
+                contact: "",
+                phone: "",
+                coords: [39.474747, -0.382288]
             },
             {
-                name: "Picazo Studio",
-                artists: "José Antonio Picazo",
-                address: "Calle Sevilla, 17, bajo, 46006, Valencia",
-                route: "red",
-                activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio." },
-                contact: "info@joseantoniopicazo.com", phone: "630 664 380", coords: [39.4626, -0.3732]
+                id: 9,
+                name: "Taller de Henar del Paso",
+                artists: "Henar del Paso",
+                address: "C. de na Jordana, 22, Bajo dcha, 46003 València",
+                route: "yellow",
+                activity: { es: "Taller abierto y presentación de obra.", va: "Taller obert i presentació d'obra.", en: "Open studio and presentation of artwork." },
+                contact: "henardelpaso@hotmail.com",
+                phone: "609 393 490",
+                coords: [39.480168, -0.381169]
             },
             {
-                name: "Taller Elena Marti",
-                artists: "Elena Marti Manzanares",
-                address: "Carrer de Sevilla, 14, 46006, Valencia",
-                route: "red",
-                activity: { es: "Taller abierto y exposición de artista.", va: "Taller obert i exposició.", en: "Open studio." },
-                contact: "ele.marti.man@gmail.com", phone: "629 727 534", coords: [39.4628, -0.3726]
+                id: 10,
+                name: "Taller de Ángela Bassano",
+                artists: "Ángela Bassano",
+                address: "C/ d'Edeta, 7, 46003 València",
+                route: "yellow",
+                activity: { es: "Muestra de arte y taller de creación libre.", va: "Mostra d'art i taller de creació lliure.", en: "Art exhibition and open creation studio." },
+                contact: "",
+                phone: "",
+                web: "https://angelabassano.wixsite.com/angelabassano",
+                coords: [39.475845, -0.373555]
+            },
+            {
+                id: 11,
+                name: "Estudios y Proyectos Arturo Catalá",
+                artists: "Arturo Catalá",
+                address: "Carrer dels Teixidors, 11, 46001 València",
+                route: "fuchsia",
+                activity: { es: "Estudio de arquitectura, diseño y proyectos culturales.", va: "Estudi d'arquitectura, disseny i projectes culturals.", en: "Architecture, design studio, and cultural projects." },
+                contact: "",
+                phone: "",
+                coords: [39.475143, -0.382173]
+            },
+            {
+                id: 12,
+                name: "Estudio de Nacho Carbó",
+                artists: "Nacho Carbó",
+                address: "Carrer de Recared, 24, 46001 València",
+                route: "fuchsia",
+                activity: { es: "Estudio de arquitectura y artes plásticas.", va: "Estudi d'arquitectura i arts plàstiques.", en: "Architecture studio and visual arts." },
+                contact: "",
+                phone: "",
+                web: "https://www.myarchitect.es/es/index.php",
+                coords: [39.471870, -0.382214]
             }
         ];
 
@@ -669,7 +734,7 @@
 
         function initMap() {
             if (map || typeof L === 'undefined') return;
-            map = L.map('map', { zoomControl: false }).setView([39.4720, -0.3770], 14);
+            map = L.map('map', { zoomControl: false }).setView([39.4760, -0.3800], 15);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -751,13 +816,16 @@
             document.getElementById('sheet-address').innerText = data.address;
 
             const contactEl = document.getElementById('sheet-contact');
-            if (data.contact.includes('@')) {
+            if (data.contact && data.contact.includes('@')) {
                 contactEl.href = "mailto:" + data.contact;
                 contactEl.innerText = "📧 " + data.contact;
                 contactEl.style.display = "inline-block";
+            } else if (data.contact) {
+                contactEl.removeAttribute('href');
+                contactEl.innerText = "📧 " + data.contact;
+                contactEl.style.display = "inline-block";
             } else {
-                contactEl.innerText = data.contact;
-                contactEl.style.display = data.contact ? "inline-block" : "none";
+                contactEl.style.display = "none";
             }
 
             const phoneEl = document.getElementById('sheet-phone');
@@ -767,6 +835,15 @@
                 phoneEl.style.display = "inline-block";
             } else {
                 phoneEl.style.display = "none";
+            }
+
+            const webEl = document.getElementById('sheet-web');
+            if (data.web) {
+                webEl.href = data.web;
+                webEl.innerText = "🌐 Enlace / Web";
+                webEl.style.display = "inline-block";
+            } else {
+                webEl.style.display = "none";
             }
 
             document.getElementById('sheet-activity').innerText = data.activity[currentLang] || data.activity['es'];
