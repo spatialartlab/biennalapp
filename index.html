@@ -120,7 +120,7 @@
             justify-content: center;
         }
 
-        /* --- CABECERA SUPERIOR --- */
+        /* --- CABECERA SUPERIOR UNIFICADA --- */
         .header-top {
             background-color: var(--biennal-turquoise);
             padding: 12px 16px 8px 16px;
@@ -128,7 +128,7 @@
             justify-content: space-between;
             align-items: flex-start;
             color: var(--white);
-            z-index: 5;
+            z-index: 50;
             flex-shrink: 0;
         }
         .header-left {
@@ -183,7 +183,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        /* --- PANTALLA 2: PRESENTACIÓN (MAPA SIN CORTES) --- */
+        /* --- PANTALLA 2: PRESENTACIÓN (MAPA VERDE AMPLIADO) --- */
         #screen-2 {
             background-color: var(--bg-lime);
         }
@@ -192,30 +192,30 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 8px 14px 16px 14px;
+            padding: 8px 12px 14px 12px;
             overflow-y: auto;
         }
 
-        /* Contenedor ajustado para mostrar la imagen completa con sus tres círculos */
+        /* Contenedor y mapa ampliado para llenar el marco verde de extremo a extremo */
         .green-map-container {
             width: 100%;
             flex: 1;
-            max-height: 36vh;
+            max-height: 44vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            border-radius: 14px;
-            margin-bottom: 6px;
+            border-radius: 18px;
+            margin-bottom: 8px;
             flex-shrink: 0;
-            background-color: rgba(0,0,0,0.03);
-            padding: 4px;
+            background-color: var(--bg-lime);
         }
         
         .green-map-container img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            transform: scale(1.05);
         }
 
         .card-white-presentacion {
@@ -226,7 +226,7 @@
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             flex-shrink: 0;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
         .card-white-presentacion h3 {
             font-size: 19px;
@@ -290,11 +290,9 @@
 
         /* --- PANTALLA 3: MAPA INTERACTIVO --- */
         .map-screen-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: relative;
             width: 100%;
-            height: 100%;
+            flex: 1;
             z-index: 1;
         }
         #map {
@@ -464,7 +462,6 @@
         .date-box .day-num { font-size: 20px; font-weight: 800; display: block; }
         .date-box .day-name { font-size: 10.5px; font-weight: 700; text-transform: uppercase; }
 
-        /* Rectángulo blanco grande ampliado para el contenido de la agenda */
         .agenda-card-container {
             background: var(--white);
             border-radius: 22px;
@@ -526,9 +523,9 @@
                 <p>CIUTAT VELLA OBERTA</p>
             </div>
             <div class="lang-pills">
-                <button class="lang-pill active" onclick="setLanguage('esp')">ESP</button>
-                <button class="lang-pill" onclick="setLanguage('val')">VAL</button>
-                <button class="lang-pill" onclick="setLanguage('eng')">ENG</button>
+                <button class="lang-pill active-lang-btn-esp lang-pill-btn" onclick="setLanguage('esp')">ESP</button>
+                <button class="lang-pill lang-pill-btn" onclick="setLanguage('val')">VAL</button>
+                <button class="lang-pill lang-pill-btn" onclick="setLanguage('eng')">ENG</button>
             </div>
         </div>
 
@@ -555,8 +552,20 @@
         </div>
     </div>
 
-    <!-- PANTALLA 3: MAPA INTERACTIVO -->
+    <!-- PANTALLA 3: MAPA INTERACTIVO (CON ENCABEZADO UNIFICADO) -->
     <div id="screen-3" class="screen" style="padding: 0;">
+        <div class="header-top">
+            <div class="brand-title">
+                <h2>BIENNAL de<br>VALENCIA</h2>
+                <p>CIUTAT VELLA OBERTA</p>
+            </div>
+            <div class="lang-pills">
+                <button class="lang-pill active-lang-btn-esp lang-pill-btn" onclick="setLanguage('esp')">ESP</button>
+                <button class="lang-pill lang-pill-btn" onclick="setLanguage('val')">VAL</button>
+                <button class="lang-pill lang-pill-btn" onclick="setLanguage('eng')">ENG</button>
+            </div>
+        </div>
+
         <div class="map-screen-container">
             <div id="map"></div>
         </div>
@@ -587,23 +596,23 @@
         </div>
 
         <div class="bottom-nav">
-            <button class="nav-item" onclick="goToScreen(2)">
-                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                <span id="t-nav-map">Mapa</span>
+            <button class="nav-item active" onclick="goToScreen(3)">
+                <svg viewBox="0 0 24 24" style="fill: var(--biennal-turquoise-dark);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span id="t-nav-map" style="color: var(--biennal-turquoise-dark);">Mapa</span>
             </button>
             <div class="color-dots" style="margin-bottom: 0;">
                 <div class="dot dot-yellow" style="width: 14px; height: 14px;" onclick="filterRoute('yellow')" title="Ruta Amarilla"></div>
                 <div class="dot dot-fuchsia" style="width: 14px; height: 14px;" onclick="filterRoute('fuchsia')" title="Ruta Fucsia"></div>
                 <div class="dot dot-red" style="width: 14px; height: 14px;" onclick="filterRoute('red')" title="Ruta Roja"></div>
             </div>
-            <button class="nav-item active" onclick="goToScreen(4)">
-                <svg viewBox="0 0 24 24" style="fill: var(--biennal-turquoise-dark);"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                <span id="t-nav-agenda" style="color: var(--biennal-turquoise-dark);">Agenda</span>
+            <button class="nav-item" onclick="goToScreen(4)">
+                <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                <span id="t-nav-agenda">Agenda</span>
             </button>
         </div>
     </div>
 
-    <!-- PANTALLA 4: AGENDA (CON DÍAS SELECCIONABLES Y TRADUCCIÓN) -->
+    <!-- PANTALLA 4: AGENDA -->
     <div id="screen-4" class="screen" style="justify-content: flex-start; display: flex; flex-direction: column;">
         <div class="header-top">
             <div class="header-left">
@@ -614,9 +623,9 @@
                 </div>
             </div>
             <div class="lang-pills">
-                <button class="lang-pill active" onclick="setLanguage('esp')">ESP</button>
-                <button class="lang-pill" onclick="setLanguage('val')">VAL</button>
-                <button class="lang-pill" onclick="setLanguage('eng')">ENG</button>
+                <button class="lang-pill active-lang-btn-esp lang-pill-btn" onclick="setLanguage('esp')">ESP</button>
+                <button class="lang-pill lang-pill-btn" onclick="setLanguage('val')">VAL</button>
+                <button class="lang-pill lang-pill-btn" onclick="setLanguage('eng')">ENG</button>
             </div>
         </div>
 
@@ -641,7 +650,6 @@
                 </div>
             </div>
 
-            <!-- Rectángulo blanco grande con la programación del día seleccionado -->
             <div class="agenda-card-container">
                 <div id="agenda-events-content">
                     <!-- Contenido dinámico según el día -->
@@ -671,11 +679,9 @@
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
-    // Estado global de idioma y día activo
     let currentLang = 'esp';
     let currentDay = 20;
 
-    // Textos traducidos para toda la aplicación
     const translations = {
         esp: {
             title: "Circuito del Arte",
@@ -765,9 +771,12 @@
 
     function setLanguage(lang) {
         currentLang = lang;
-        // Actualizar botones activos de idioma
-        document.querySelectorAll('.lang-pill').forEach(btn => {
-            btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+        document.querySelectorAll('.lang-pill-btn').forEach(btn => {
+            if (btn.textContent.toLowerCase() === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
         });
 
         const t = translations[lang];
@@ -815,7 +824,6 @@
         document.getElementById('agenda-events-content').innerHTML = html;
     }
 
-    // Inicializar agenda al cargar
     renderAgendaEvents();
 
     function goToScreen(screenNumber) {
@@ -1003,3 +1011,4 @@
 
 </body>
 </html>
+
