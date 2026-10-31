@@ -169,13 +169,21 @@
         .lang-pill {
             font-size: 10px;
             font-weight: 800;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.85);
             color: var(--biennal-turquoise);
             padding: 4px 8px;
             border-radius: 12px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .lang-pill.active {
+            background: var(--white);
+            color: var(--biennal-turquoise-dark);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        /* --- PANTALLA 2: PRESENTACIÓN (IMAGEN AMPLIADA) --- */
+        /* --- PANTALLA 2: PRESENTACIÓN (MAPA SIN CORTES) --- */
         #screen-2 {
             background-color: var(--bg-lime);
         }
@@ -188,30 +196,32 @@
             overflow-y: auto;
         }
 
-        /* Imagen ampliada para cubrir todo el espacio verde */
+        /* Contenedor ajustado para mostrar la imagen completa con sus tres círculos */
         .green-map-container {
             width: 100%;
             flex: 1;
-            max-height: 39vh;
+            max-height: 36vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             border-radius: 14px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             flex-shrink: 0;
+            background-color: rgba(0,0,0,0.03);
+            padding: 4px;
         }
         
         .green-map-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .card-white-presentacion {
             background: var(--white);
             border-radius: 24px;
-            padding: 16px 16px;
+            padding: 14px 16px;
             color: var(--text-main);
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
@@ -219,26 +229,26 @@
             margin-bottom: 5px;
         }
         .card-white-presentacion h3 {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 800;
             margin-bottom: 4px;
             color: #111;
         }
         .card-white-presentacion p.desc {
-            font-size: 11.5px;
-            line-height: 1.35;
+            font-size: 11px;
+            line-height: 1.3;
             color: var(--text-muted);
             margin-bottom: 6px;
             font-weight: 500;
         }
         .card-white-presentacion .dates-info {
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 800;
             color: #111;
             margin-bottom: 2px;
         }
         .card-white-presentacion .free-access {
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 700;
             color: #111;
             margin-bottom: 8px;
@@ -250,9 +260,9 @@
             background-color: var(--btn-turquesa);
             color: var(--white);
             text-align: center;
-            padding: 12px;
+            padding: 11px;
             border-radius: 24px;
-            font-size: 14.5px;
+            font-size: 14px;
             font-weight: 700;
             border: none;
             cursor: pointer;
@@ -264,7 +274,7 @@
             gap: 12px;
             justify-content: center;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .dot {
             width: 18px;
@@ -408,7 +418,7 @@
         }
         .sheet-contact-group {
             display: flex;
-    gap: 12px;
+            gap: 12px;
             margin-top: 8px;
             font-size: 0.8rem;
             color: var(--biennal-turquoise-dark);
@@ -425,11 +435,11 @@
             color: var(--text-muted);
         }
 
-        /* --- PANTALLA 4: AGENDA (RECTÁNGULO BLANCO AMPLIADO) --- */
+        /* --- PANTALLA 4: AGENDA --- */
         .date-selectors {
             display: flex;
             gap: 10px;
-            margin-top: 10px;
+            margin-top: 8px;
             z-index: 5;
             flex-shrink: 0;
         }
@@ -441,6 +451,12 @@
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .date-box.active-day {
+            border-color: var(--biennal-turquoise-dark);
+            transform: scale(1.03);
         }
         .date-box.yellow { background-color: var(--color-yellow); color: #111; }
         .date-box.fuchsia { background-color: var(--color-fuchsia); color: var(--white); }
@@ -448,12 +464,12 @@
         .date-box .day-num { font-size: 20px; font-weight: 800; display: block; }
         .date-box .day-name { font-size: 10.5px; font-weight: 700; text-transform: uppercase; }
 
-        /* Rectángulo blanco ampliado que ocupa todo el espacio inferior disponible */
+        /* Rectángulo blanco grande ampliado para el contenido de la agenda */
         .agenda-card-container {
             background: var(--white);
             border-radius: 22px;
             padding: 16px;
-            margin-top: 12px;
+            margin-top: 10px;
             color: var(--text-main);
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             flex: 1;
@@ -510,9 +526,9 @@
                 <p>CIUTAT VELLA OBERTA</p>
             </div>
             <div class="lang-pills">
-                <span class="lang-pill">ESP</span>
-                <span class="lang-pill">VAL</span>
-                <span class="lang-pill">ENG</span>
+                <button class="lang-pill active" onclick="setLanguage('esp')">ESP</button>
+                <button class="lang-pill" onclick="setLanguage('val')">VAL</button>
+                <button class="lang-pill" onclick="setLanguage('eng')">ENG</button>
             </div>
         </div>
 
@@ -522,11 +538,11 @@
             </div>
 
             <div class="card-white-presentacion">
-                <h3>Circuito del Arte</h3>
-                <p class="desc">Explora el circuito de talleres y estudios de artista por Ciutat Vella, Russafa y cercanías. ¡Ven al encuentro con el arte!</p>
+                <h3 id="t-title">Circuito del Arte</h3>
+                <p class="desc" id="t-desc">Explora el circuito de talleres y estudios de artista por Ciutat Vella, Russafa y cercanías. ¡Ven al encuentro con el arte!</p>
                 
-                <p class="dates-info">20, 21 y 22 de noviembre 2026</p>
-                <p class="free-access">Acceso libre y gratuito</p>
+                <p class="dates-info" id="t-dates">20, 21 y 22 de noviembre 2026</p>
+                <p class="free-access" id="t-free">Acceso libre y gratuito</p>
 
                 <div class="color-dots">
                     <div class="dot dot-yellow" onclick="filterRoute('yellow')" title="Ruta Amarilla"></div>
@@ -534,7 +550,7 @@
                     <div class="dot dot-red" onclick="filterRoute('red')" title="Ruta Roja"></div>
                 </div>
 
-                <button class="btn-turquesa-mapa" onclick="goToScreen(3)">Mapa del Circuito</button>
+                <button class="btn-turquesa-mapa" id="t-btn-map" onclick="goToScreen(3)">Mapa del Circuito</button>
             </div>
         </div>
     </div>
@@ -554,12 +570,12 @@
                 <div id="sheet-address" class="sheet-address">📍 Dirección del taller</div>
                 
                 <div class="sheet-info-block">
-                    <div class="sheet-info-label">Propuesta Artística</div>
+                    <div class="sheet-info-label" id="t-prop-label">Propuesta Artística</div>
                     <div id="sheet-propuesta" class="sheet-info-value">-</div>
                 </div>
 
                 <div class="sheet-info-block">
-                    <div class="sheet-info-label">Horario de Visita</div>
+                    <div class="sheet-info-label" id="t-hor-label">Horario de Visita</div>
                     <div id="sheet-horario" class="sheet-info-value">-</div>
                 </div>
 
@@ -572,8 +588,8 @@
 
         <div class="bottom-nav">
             <button class="nav-item" onclick="goToScreen(2)">
-                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                Mapa
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span id="t-nav-map">Mapa</span>
             </button>
             <div class="color-dots" style="margin-bottom: 0;">
                 <div class="dot dot-yellow" style="width: 14px; height: 14px;" onclick="filterRoute('yellow')" title="Ruta Amarilla"></div>
@@ -581,13 +597,13 @@
                 <div class="dot dot-red" style="width: 14px; height: 14px;" onclick="filterRoute('red')" title="Ruta Roja"></div>
             </div>
             <button class="nav-item active" onclick="goToScreen(4)">
-                <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                Agenda
+                <svg viewBox="0 0 24 24" style="fill: var(--biennal-turquoise-dark);"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                <span id="t-nav-agenda" style="color: var(--biennal-turquoise-dark);">Agenda</span>
             </button>
         </div>
     </div>
 
-    <!-- PANTALLA 4: AGENDA (CON TEXTO Y COLOR EN LOGO INFERIOR) -->
+    <!-- PANTALLA 4: AGENDA (CON DÍAS SELECCIONABLES Y TRADUCCIÓN) -->
     <div id="screen-4" class="screen" style="justify-content: flex-start; display: flex; flex-direction: column;">
         <div class="header-top">
             <div class="header-left">
@@ -598,58 +614,54 @@
                 </div>
             </div>
             <div class="lang-pills">
-                <span class="lang-pill">ESP</span>
-                <span class="lang-pill">VAL</span>
-                <span class="lang-pill">ENG</span>
+                <button class="lang-pill active" onclick="setLanguage('esp')">ESP</button>
+                <button class="lang-pill" onclick="setLanguage('val')">VAL</button>
+                <button class="lang-pill" onclick="setLanguage('eng')">ENG</button>
             </div>
         </div>
 
         <div style="padding: 0 16px; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
             <div style="margin-top: 6px; color: white; flex-shrink: 0;">
-                <h2 style="font-size: 22px; font-weight: 800;">Agenda</h2>
-                <p style="font-size: 12px; opacity: 0.9;">20, 21 y 22 de noviembre 2026</p>
+                <h2 id="t-agenda-title" style="font-size: 22px; font-weight: 800;">Agenda</h2>
+                <p id="t-agenda-dates" style="font-size: 12px; opacity: 0.9;">20, 21 y 22 de noviembre 2026</p>
             </div>
 
             <div class="date-selectors">
-                <div class="date-box yellow">
+                <div class="date-box yellow active-day" id="day-box-20" onclick="selectDay(20)">
                     <span class="day-num">20</span>
-                    <span class="day-name">VIE</span>
+                    <span class="day-name" id="t-day-fri">VIE</span>
                 </div>
-                <div class="date-box fuchsia">
+                <div class="date-box fuchsia" id="day-box-21" onclick="selectDay(21)">
                     <span class="day-num">21</span>
-                    <span class="day-name">SÁB</span>
+                    <span class="day-name" id="t-day-sat">SÁB</span>
                 </div>
-                <div class="date-box red">
+                <div class="date-box red" id="day-box-22" onclick="selectDay(22)">
                     <span class="day-num">22</span>
-                    <span class="day-name">DOM</span>
+                    <span class="day-name" id="t-day-sun">DOM</span>
                 </div>
             </div>
 
-            <!-- Rectángulo blanco grande ampliado para el contenido de la agenda -->
+            <!-- Rectángulo blanco grande con la programación del día seleccionado -->
             <div class="agenda-card-container">
-                <div class="event-card-item">
-                    <span class="event-tag">18:30 · Arte · Luz</span>
-                    <div class="event-title">Inauguración Arte a la Llum</div>
-                    <div class="event-loc">📍 Jardines del Palau · Ciutat Vella</div>
-                    <div class="event-desc">Inauguración del circuito lumínico con instalaciones de artistas locales y performance inaugural.</div>
+                <div id="agenda-events-content">
+                    <!-- Contenido dinámico según el día -->
                 </div>
             </div>
         </div>
 
-        <!-- Barra inferior con el logo de Agenda coloreado y nombrado -->
         <div class="bottom-nav">
             <button class="nav-item" onclick="goToScreen(3)">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                Mapa
+                <span id="t-nav-map2">Mapa</span>
             </button>
             <div class="color-dots" style="margin-bottom: 0;">
-                <div class="dot dot-yellow" style="width: 14px; height: 14px;" onclick="filterRoute('yellow')"></div>
-                <div class="dot dot-fuchsia" style="width: 14px; height: 14px;" onclick="filterRoute('fuchsia')"></div>
-                <div class="dot dot-red" style="width: 14px; height: 14px;" onclick="filterRoute('red')"></div>
+                <div class="dot dot-yellow" style="width: 14px; height: 14px;" onclick="filterRoute('yellow')" title="Ruta Amarilla"></div>
+                <div class="dot dot-fuchsia" style="width: 14px; height: 14px;" onclick="filterRoute('fuchsia')" title="Ruta Fucsia"></div>
+                <div class="dot dot-red" style="width: 14px; height: 14px;" onclick="filterRoute('red')" title="Ruta Roja"></div>
             </div>
             <button class="nav-item active" onclick="goToScreen(4)">
                 <svg viewBox="0 0 24 24" style="fill: var(--biennal-turquoise-dark);"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                Agenda
+                <span id="t-nav-agenda2" style="color: var(--biennal-turquoise-dark);">Agenda</span>
             </button>
         </div>
     </div>
@@ -659,6 +671,153 @@
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
+    // Estado global de idioma y día activo
+    let currentLang = 'esp';
+    let currentDay = 20;
+
+    // Textos traducidos para toda la aplicación
+    const translations = {
+        esp: {
+            title: "Circuito del Arte",
+            desc: "Explora el circuito de talleres y estudios de artista por Ciutat Vella, Russafa y cercanías. ¡Ven al encuentro con el arte!",
+            dates: "20, 21 y 22 de noviembre 2026",
+            free: "Acceso libre y gratuito",
+            btnMap: "Mapa del Circuito",
+            navMap: "Mapa",
+            navAgenda: "Agenda",
+            agendaTitle: "Agenda",
+            agendaDates: "20, 21 y 22 de noviembre 2026",
+            fri: "VIE",
+            sat: "SÁB",
+            sun: "DOM",
+            propLabel: "Propuesta Artística",
+            horLabel: "Horario de Visita",
+            events: {
+                20: [
+                    { tag: "18:30 · Arte · Luz", title: "Inauguración Arte a la Llum", loc: "📍 Jardines del Palau · Ciutat Vella", desc: "Inauguración del circuito lumínico con instalaciones de artistas locales y performance inaugural." }
+                ],
+                21: [
+                    { tag: "11:00 · Talleres · Apertura", title: "Apertura de Estudios y Talleres", loc: "📍 Ciutat Vella y Russafa", desc: "Jornada de puertas abiertas en los estudios de los artistas participantes del circuito." },
+                    { tag: "17:00 · Performance · Encuentro", title: "Encuentro con Creadores", loc: "📍 Fundación Victoria Cano", desc: "Coloquio abierto sobre los procesos creativos y la memoria espacial en el arte contemporáneo." }
+                ],
+                22: [
+                    { tag: "12:00 · Arte · Clausura", title: "Clausura del Circuito", loc: "📍 Sporting Club Russafa", desc: "Muestra de cierre del circuito de talleres y brindis de despedida con los artistas participantes." }
+                ]
+            }
+        },
+        val: {
+            title: "Circuit de l'Art",
+            desc: "Explora el circuit de tallers i estudis d'artista per Ciutat Vella, Russafa i rodalia. Vine a la trobada amb l'art!",
+            dates: "20, 21 i 22 de novembre 2026",
+            free: "Accés lliure i gratuït",
+            btnMap: "Mapa del Circuit",
+            navMap: "Mapa",
+            navAgenda: "Agenda",
+            agendaTitle: "Agenda",
+            agendaDates: "20, 21 i 22 de novembre 2026",
+            fri: "DV",
+            sat: "DS",
+            sun: "DG",
+            propLabel: "Proposta Artística",
+            horLabel: "Horari de Visita",
+            events: {
+                20: [
+                    { tag: "18:30 · Art · Llum", title: "Inauguració Art a la Llum", loc: "📍 Jardins del Palau · Ciutat Vella", desc: "Inauguració del circuit lumínic amb instal·lacions d'artistes locals i performance inaugural." }
+                ],
+                21: [
+                    { tag: "11:00 · Tallers · Obertura", title: "Obertura d'Estudis i Tallers", loc: "📍 Ciutat Vella i Russafa", desc: "Jornada de portes obertes als estudis dels artistes participants del circuit." },
+                    { tag: "17:00 · Performance · Trobada", title: "Trobada amb Criadors", loc: "📍 Fundació Victoria Cano", desc: "Col·loqui obert sobre els processos creatius i la memòria espacial en l'art contemporani." }
+                ],
+                22: [
+                    { tag: "12:00 · Art · Cloenda", title: "Cloenda del Circuit", loc: "📍 Sporting Club Russafa", desc: "Mostra de tancament del circuit de tallers i brindis de comiat amb els artistes participants." }
+                ]
+            }
+        },
+        eng: {
+            title: "Art Circuit",
+            desc: "Explore the circuit of artist studios and workshops around Ciutat Vella, Russafa and surroundings. Come meet the art!",
+            dates: "November 20, 21 and 22, 2026",
+            free: "Free admission",
+            btnMap: "Circuit Map",
+            navMap: "Map",
+            navAgenda: "Schedule",
+            agendaTitle: "Schedule",
+            agendaDates: "November 20, 21 and 22, 2026",
+            fri: "FRI",
+            sat: "SAT",
+            sun: "SUN",
+            propLabel: "Artistic Proposal",
+            horLabel: "Visiting Hours",
+            events: {
+                20: [
+                    { tag: "18:30 · Art · Light", title: "Art a la Llum Opening", loc: "📍 Jardines del Palau · Ciutat Vella", desc: "Opening of the lighting circuit featuring local artist installations and inaugural performance." }
+                ],
+                21: [
+                    { tag: "11:00 · Studios · Open Doors", title: "Studio & Workshop Openings", loc: "📍 Ciutat Vella & Russafa", desc: "Open house day at the studios of participating artists across the circuit." },
+                    { tag: "17:00 · Performance · Meetup", title: "Meeting with Creators", loc: "📍 Victoria Cano Foundation", desc: "Open discussion on creative processes and spatial memory in contemporary art." }
+                ],
+                22: [
+                    { tag: "12:00 · Art · Closing", title: "Circuit Closing Event", loc: "📍 Sporting Club Russafa", desc: "Closing exhibition of the workshop circuit and farewell toast with participating artists." }
+                ]
+            }
+        }
+    };
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        // Actualizar botones activos de idioma
+        document.querySelectorAll('.lang-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+        });
+
+        const t = translations[lang];
+        document.getElementById('t-title').innerText = t.title;
+        document.getElementById('t-desc').innerText = t.desc;
+        document.getElementById('t-dates').innerText = t.dates;
+        document.getElementById('t-free').innerText = t.free;
+        document.getElementById('t-btn-map').innerText = t.btnMap;
+        document.getElementById('t-nav-map').innerText = t.navMap;
+        document.getElementById('t-nav-map2').innerText = t.navMap;
+        document.getElementById('t-nav-agenda').innerText = t.navAgenda;
+        document.getElementById('t-nav-agenda2').innerText = t.navAgenda;
+        document.getElementById('t-agenda-title').innerText = t.agendaTitle;
+        document.getElementById('t-agenda-dates').innerText = t.agendaDates;
+        document.getElementById('t-day-fri').innerText = t.fri;
+        document.getElementById('t-day-sat').innerText = t.sat;
+        document.getElementById('t-day-sun').innerText = t.sun;
+        document.getElementById('t-prop-label').innerText = t.propLabel;
+        document.getElementById('t-hor-label').innerText = t.horLabel;
+
+        renderAgendaEvents();
+    }
+
+    function selectDay(day) {
+        currentDay = day;
+        document.querySelectorAll('.date-box').forEach(box => box.classList.remove('active-day'));
+        document.getElementById('day-box-' + day).classList.add('active-day');
+        renderAgendaEvents();
+    }
+
+    function renderAgendaEvents() {
+        const t = translations[currentLang];
+        const events = t.events[currentDay] || [];
+        let html = '';
+        events.forEach(ev => {
+            html += `
+                <div class="event-card-item">
+                    <span class="event-tag">${ev.tag}</span>
+                    <div class="event-title">${ev.title}</div>
+                    <div class="event-loc">${ev.loc}</div>
+                    <div class="event-desc">${ev.desc}</div>
+                </div>
+            `;
+        });
+        document.getElementById('agenda-events-content').innerHTML = html;
+    }
+
+    // Inicializar agenda al cargar
+    renderAgendaEvents();
+
     function goToScreen(screenNumber) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById('screen-' + screenNumber).classList.add('active');
@@ -844,5 +1003,3 @@
 
 </body>
 </html>
-
-
