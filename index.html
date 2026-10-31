@@ -20,6 +20,7 @@
             --color-yellow: #ffde00;
             --color-fuchsia: #d8008f;
             --color-red: #e50012;
+            --color-agenda-lime: #a2cd47;
         }
 
         * {
@@ -81,13 +82,14 @@
             z-index: 10;
         }
 
-        /* --- PANTALLA 1: SPLASH --- */
+        /* --- PANTALLA 1: SPLASH (TÁCTIL EN CUALQUIER PARTE) --- */
         #screen-1 {
             justify-content: center;
             align-items: center;
             background-color: var(--biennal-turquoise);
             padding: 24px;
             text-align: center;
+            cursor: pointer;
         }
         
         .splash-logo-img {
@@ -183,7 +185,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        /* --- PANTALLA 2: PRESENTACIÓN (MAPA VERDE ÍNTEGRO SIN CORTES) --- */
+        /* --- PANTALLA 2: PRESENTACIÓN (MAPA VERDE CENTRADO Y AMPLIADO) --- */
         #screen-2 {
             background-color: var(--bg-lime);
         }
@@ -192,29 +194,32 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 6px 12px 14px 12px;
+            padding: 8px 12px 12px 12px;
             overflow-y: auto;
         }
 
         .green-map-container {
             width: 100%;
             flex: 1;
-            max-height: 36vh;
+            min-height: 38vh;
+            max-height: 44vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            border-radius: 16px;
-            margin-bottom: 6px;
+            border-radius: 20px;
+            margin-bottom: 8px;
             flex-shrink: 0;
             background-color: var(--bg-lime);
-            padding: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
         
         .green-map-container img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            object-position: center;
+            display: block;
         }
 
         .card-white-presentacion {
@@ -311,7 +316,7 @@
         .pin-fuchsia { background-color: var(--color-fuchsia); }
         .pin-red { background-color: var(--color-red); }
 
-        /* --- BARRA DE NAVEGACIÓN INFERIOR --- */
+        /* --- BARRA DE NAVEGACIÓN INFERIOR (ICONO MAPA ROJO Y AGENDA VERDE LIMA) --- */
         .bottom-nav {
             position: absolute;
             bottom: 16px;
@@ -331,20 +336,30 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            color: #777777;
             font-size: 10px;
             font-weight: 700;
             background: none;
             border: none;
         }
-        .nav-item.active {
-            color: var(--biennal-turquoise-dark);
-        }
         .nav-item svg {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             margin-bottom: 2px;
-            fill: currentColor;
+        }
+
+        /* Estilos llamativos para Mapa (Rojo) y Agenda (Verde) */
+        .nav-item-map {
+            color: var(--color-red);
+        }
+        .nav-item-map svg {
+            fill: var(--color-red);
+        }
+
+        .nav-item-agenda {
+            color: #8bb335;
+        }
+        .nav-item-agenda svg {
+            fill: #8bb335;
         }
 
         /* --- DESPLEGABLE INFORMATIVO EN MAPA --- */
@@ -500,8 +515,8 @@
 
 <div class="phone-container">
 
-    <!-- PANTALLA 1: SPLASH (1.5 segundos) -->
-    <div id="screen-1" class="screen active">
+    <!-- PANTALLA 1: SPLASH (TÁCTIL EN CUALQUIER LUGAR A LA PANTALLA 2) -->
+    <div id="screen-1" class="screen active" onclick="goToScreen(2)">
         <div class="splash-content">
             <img src="logo-cvo.png" alt="CVO Logo" class="splash-logo-img">
             <h1>BIENNAL DE VALÈNCIA</h1>
@@ -514,7 +529,7 @@
         </div>
     </div>
 
-    <!-- PANTALLA 2: PRESENTACIÓN (CON FLECHA DE RETROCESO) -->
+    <!-- PANTALLA 2: PRESENTACIÓN (CON MAPA VERDE CENTRADO Y AMPLIADO) -->
     <div id="screen-2" class="screen">
         <div class="header-top">
             <div class="header-left">
@@ -554,7 +569,7 @@
         </div>
     </div>
 
-    <!-- PANTALLA 3: MAPA INTERACTIVO (CON FLECHA DE RETROCESO) -->
+    <!-- PANTALLA 3: MAPA INTERACTIVO -->
     <div id="screen-3" class="screen" style="padding: 0; display: flex; flex-direction: column;">
         <div class="header-top">
             <div class="header-left">
@@ -601,23 +616,23 @@
         </div>
 
         <div class="bottom-nav">
-            <button class="nav-item active" onclick="goToScreen(3)">
-                <svg viewBox="0 0 24 24" style="fill: var(--biennal-turquoise-dark);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                <span id="t-nav-map" style="color: var(--biennal-turquoise-dark);">Mapa</span>
+            <button class="nav-item nav-item-map" onclick="goToScreen(3)">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span id="t-nav-map">Mapa</span>
             </button>
             <div class="color-dots" style="margin-bottom: 0;">
                 <div class="dot dot-yellow" style="width: 14px; height: 14px;" onclick="filterRoute('yellow')" title="Ruta Amarilla"></div>
                 <div class="dot dot-fuchsia" style="width: 14px; height: 14px;" onclick="filterRoute('fuchsia')" title="Ruta Fucsia"></div>
                 <div class="dot dot-red" style="width: 14px; height: 14px;" onclick="filterRoute('red')" title="Ruta Roja"></div>
             </div>
-            <button class="nav-item" onclick="goToScreen(4)">
+            <button class="nav-item nav-item-agenda" onclick="goToScreen(4)">
                 <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
                 <span id="t-nav-agenda">Agenda</span>
             </button>
         </div>
     </div>
 
-    <!-- PANTALLA 4: AGENDA (CON FLECHA DE RETROCESO) -->
+    <!-- PANTALLA 4: AGENDA -->
     <div id="screen-4" class="screen" style="justify-content: flex-start; display: flex; flex-direction: column;">
         <div class="header-top">
             <div class="header-left">
@@ -663,7 +678,7 @@
         </div>
 
         <div class="bottom-nav">
-            <button class="nav-item" onclick="goToScreen(3)">
+            <button class="nav-item nav-item-map" onclick="goToScreen(3)">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                 <span id="t-nav-map2">Mapa</span>
             </button>
@@ -672,9 +687,9 @@
                 <div class="dot dot-fuchsia" style="width: 14px; height: 14px;" onclick="filterRoute('fuchsia')" title="Ruta Fucsia"></div>
                 <div class="dot dot-red" style="width: 14px; height: 14px;" onclick="filterRoute('red')" title="Ruta Roja"></div>
             </div>
-            <button class="nav-item active" onclick="goToScreen(4)">
-                <svg viewBox="0 0 24 24" style="fill: var(--biennal-turquoise-dark);"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                <span id="t-nav-agenda2" style="color: var(--biennal-turquoise-dark);">Agenda</span>
+            <button class="nav-item nav-item-agenda" onclick="goToScreen(4)">
+                <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                <span id="t-nav-agenda2">Agenda</span>
             </button>
         </div>
     </div>
@@ -840,7 +855,10 @@
     }
 
     setTimeout(() => {
-        goToScreen(2);
+        const splash = document.getElementById('screen-1');
+        if (splash && splash.classList.contains('active')) {
+            goToScreen(2);
+        }
     }, 1500);
 
     const map = L.map('map', { zoomControl: false }).setView([39.4735, -0.3768], 15);
