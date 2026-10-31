@@ -39,11 +39,11 @@
             align-items: center;
         }
 
-        /* Contenedor principal responsive adaptado de forma idéntica para móvil y PC */
+        /* Contenedor principal responsive adaptado para móvil y ordenador */
         .phone-container {
             width: 100%;
             max-width: 414px;
-            height: 100%;
+            height: 100vh;
             max-height: 896px;
             background-color: var(--biennal-turquoise);
             position: relative;
@@ -55,7 +55,7 @@
 
         @media (min-width: 415px) {
             .phone-container {
-                height: 850px;
+                height: 92vh;
                 border-radius: 36px;
                 border: 8px solid #2c3e50;
             }
@@ -71,7 +71,6 @@
             display: none;
             flex-direction: column;
             background-color: var(--biennal-turquoise);
-            transition: opacity 0.3s ease-in-out;
             z-index: 1;
         }
 
@@ -80,32 +79,23 @@
             z-index: 10;
         }
 
-        /* --- LOGOTIPO CORPORATIVO CVO (SVG FIEL) --- */
-        .cvo-logo-badge {
-            width: 150px;
-            height: 105px;
-            background: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
         /* --- PANTALLA 1: SPLASH --- */
         #screen-1 {
             justify-content: center;
             align-items: center;
             background-color: var(--biennal-turquoise);
             padding: 24px;
-        }
-        .splash-content {
             text-align: center;
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
+        
+        .splash-logo-img {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
         .splash-content h1 {
+            color: var(--white);
             font-size: 26px;
             font-weight: 800;
             letter-spacing: 0.5px;
@@ -113,6 +103,7 @@
             margin-bottom: 6px;
         }
         .splash-content p {
+            color: var(--white);
             font-size: 13px;
             font-weight: 600;
             letter-spacing: 1px;
@@ -180,10 +171,10 @@
             border-radius: 12px;
         }
 
-        /* --- PANTALLA 2: PRESENTACIÓN CON MAPA VERDE VECTORIAL --- */
+        /* --- PANTALLA 2: PRESENTACIÓN (CON IMAGEN DEL MAPA) --- */
         #screen-2 {
             background-color: var(--bg-lime);
-            overflow-y: auto;
+            overflow: hidden;
         }
         .screen-2-content {
             flex: 1;
@@ -191,20 +182,26 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 10px 16px 16px 16px;
+            height: calc(100% - 60px);
         }
 
-        .green-map-illustration {
+        /* Imagen del mapa verde en relieve exacta */
+        .green-map-container {
             width: 100%;
-            height: 220px;
-            background-color: #98c838;
-            border-radius: 18px;
-            position: relative;
-            overflow: hidden;
+            flex: 1;
+            max-height: 320px;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-shrink: 0;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border-radius: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .green-map-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .card-white-presentacion {
@@ -214,7 +211,7 @@
             color: var(--text-main);
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            margin-top: 10px;
+            flex-shrink: 0;
         }
         .card-white-presentacion h3 {
             font-size: 22px;
@@ -276,7 +273,7 @@
         .dot-fuchsia { background-color: var(--color-fuchsia); }
         .dot-red { background-color: var(--color-red); }
 
-        /* --- PANTALLA 3: MAPA --- */
+        /* --- PANTALLA 3: MAPA INTERACTIVO --- */
         .map-screen-container {
             position: absolute;
             top: 0;
@@ -338,7 +335,7 @@
             fill: currentColor;
         }
 
-        /* --- DESPLEGABLE INFORMATIVO DE TALLER EN MAPA --- */
+        /* --- DESPLEGABLE INFORMATIVO EN MAPA --- */
         .bottom-sheet {
             position: absolute;
             bottom: -100%;
@@ -476,19 +473,7 @@
     <!-- PANTALLA 1: SPLASH (1.5 segundos) -->
     <div id="screen-1" class="screen active">
         <div class="splash-content">
-            <!-- Insignia vectorial exacta CVO -->
-            <svg class="cvo-logo-badge" viewBox="0 0 250 180" xmlns="http://www.w3.org/2000/svg">
-                <path d="M225,90 C225,145 165,165 115,165 C65,165 25,130 25,90 C25,50 75,25 135,25 C195,25 225,35 225,90 Z" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-                <text x="65" y="75" fill="#ffffff" font-family="Outfit, sans-serif" font-size="36" font-weight="800">C</text>
-                <polygon points="122,50 142,75 102,75" fill="#ffffff"/>
-                <text x="148" y="75" fill="#ffffff" font-family="Outfit, sans-serif" font-size="34" font-weight="800">T</text>
-                <text x="65" y="112" fill="#ffffff" font-family="Outfit, sans-serif" font-size="36" font-weight="800">V</text>
-                <text x="95" y="112" fill="#ffffff" font-family="Outfit, sans-serif" font-size="34" font-weight="800">ELLA</text>
-                <polygon points="187,87 207,112 167,112" fill="#ffffff"/>
-                <text x="65" y="148" fill="#ffffff" font-family="Outfit, sans-serif" font-size="36" font-weight="800">O</text>
-                <text x="98" y="148" fill="#ffffff" font-family="Outfit, sans-serif" font-size="34" font-weight="800">BERTA</text>
-                <polygon points="175,123 195,148 155,148" fill="#ffffff"/>
-            </svg>
+            <img src="logo-cvo.png" alt="CVO Logo" class="splash-logo-img">
             <h1>BIENNAL DE VALÈNCIA</h1>
             <p>CIUTAT VELLA OBERTA</p>
         </div>
@@ -499,7 +484,7 @@
         </div>
     </div>
 
-    <!-- PANTALLA 2: PRESENTACIÓN (CON MAPA VERDE EN RELIEVE EXACTO) -->
+    <!-- PANTALLA 2: PRESENTACIÓN (CON IMAGEN EXACTA DE ARCHIVO) -->
     <div id="screen-2" class="screen">
         <div class="header-top">
             <div class="brand-title">
@@ -514,29 +499,9 @@
         </div>
 
         <div class="screen-2-content">
-            <!-- Ilustración fiel en SVG del mapa verde en relieve con los 3 puntos de ruta -->
-            <div class="green-map-illustration">
-                <svg viewBox="0 0 400 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <radialGradient id="gradBg" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="#a8db4a"/>
-                            <stop offset="100%" stop-color="#8bc33a"/>
-                        </radialGradient>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#gradBg)"/>
-                    <!-- Ondas y curvas de relieve texturizado -->
-                    <circle cx="320" cy="80" r="70" fill="none" stroke="#9ee44a" stroke-width="12" opacity="0.5"/>
-                    <circle cx="80" cy="220" r="90" fill="none" stroke="#7eb82e" stroke-width="10" opacity="0.4"/>
-                    <!-- Isla central del plano urbano con relieve sombreado -->
-                    <path d="M90,70 Q220,40 330,110 Q370,210 260,260 Q120,280 70,180 Z" fill="#95cc3d" stroke="#79b22b" stroke-width="6"/>
-                    <path d="M110,90 Q210,65 300,120 Q330,195 245,235 Q135,250 95,170 Z" fill="#8ec637" opacity="0.7"/>
-                    <!-- Trama de calles interiores -->
-                    <path d="M110,120 L280,100 M130,160 L290,150 M100,200 L240,210 M170,80 L160,240 M230,70 L210,250" stroke="#7bb02c" stroke-width="3" opacity="0.6" fill="none"/>
-                    <!-- Puntos de ruta destacados -->
-                    <circle cx="150" cy="115" r="14" fill="#ffde00" stroke="#ffffff" stroke-width="3" filter="drop-shadow(0px 3px 4px rgba(0,0,0,0.3))"/>
-                    <circle cx="210" cy="170" r="14" fill="#d8008f" stroke="#ffffff" stroke-width="3" filter="drop-shadow(0px 3px 4px rgba(0,0,0,0.3))"/>
-                    <circle cx="280" cy="210" r="14" fill="#e50012" stroke="#ffffff" stroke-width="3" filter="drop-shadow(0px 3px 4px rgba(0,0,0,0.3))"/>
-                </svg>
+            <!-- Imagen exacta del mapa verde guardada en la carpeta del proyecto -->
+            <div class="green-map-container">
+                <img src="mapa-verde.png" alt="Circuito del Arte - Mapa">
             </div>
 
             <!-- Tarjeta Informativa Inferior -->
@@ -558,13 +523,13 @@
         </div>
     </div>
 
-    <!-- PANTALLA 3: MAPA CON PINES UBICADOS Y ACCESOS A RUTAS -->
+    <!-- PANTALLA 3: MAPA CON PINES Y RUTAS -->
     <div id="screen-3" class="screen" style="padding: 0;">
         <div class="map-screen-container">
             <div id="map"></div>
         </div>
 
-        <!-- Ficha técnica flotante desplegable del taller -->
+        <!-- Ficha técnica flotante desplegable -->
         <div id="bottom-sheet" class="bottom-sheet">
             <div class="sheet-handle"></div>
             <button class="sheet-close-btn" onclick="closeSheet()">&times;</button>
@@ -590,7 +555,7 @@
             </div>
         </div>
 
-        <!-- Barra de navegación inferior con puntos enlazados a rutas y retroceso -->
+        <!-- Barra de navegación inferior -->
         <div class="bottom-nav">
             <button class="nav-item" onclick="goToScreen(2)">
                 <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
@@ -654,7 +619,6 @@
             </div>
         </div>
 
-        <!-- Barra de navegación inferior -->
         <div class="bottom-nav">
             <button class="nav-item" onclick="goToScreen(3)">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -677,7 +641,6 @@
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
-    // Navegación entre pantallas
     function goToScreen(screenNumber) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById('screen-' + screenNumber).classList.add('active');
@@ -686,12 +649,10 @@
         }
     }
 
-    // Temporizador Pantalla Splash (1.5 segundos exactos)
     setTimeout(() => {
         goToScreen(2);
     }, 1500);
 
-    // Inicialización del Mapa
     const map = L.map('map', { zoomControl: false }).setView([39.4735, -0.3768], 15);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -699,9 +660,7 @@
         maxZoom: 19
     }).addTo(map);
 
-    // Base de datos completa con los 16 talleres geolocalizados y datos de la plantilla Excel
     const talleres = [
-        // 🟡 Ruta Amarilla (Ciutat Vella - Tramo 1)
         { 
             name: "Taller de Pepe March", artistas: "Pepe March",
             lat: 39.478034, lng: -0.378164, color: "yellow", 
@@ -730,8 +689,6 @@
             horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.",
             contacto: "henardelpaso@hotmail.com", telefono: "609 393 490"
         },
-
-        // 🩷 Ruta Fucsia (Ciutat Vella - Tramo 2)
         { 
             name: "Studio Vintage", artistas: "Artistas varios",
             lat: 39.475415, lng: -0.377636, color: "fuchsia", 
@@ -788,8 +745,6 @@
             horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Instalación e investigación visual.",
             contacto: "-", telefono: "-"
         },
-
-        // 🔴 Ruta Roja (Russafa)
         { 
             name: "Taller de Elena Martí Manzanares", artistas: "Elena Martí Manzanares",
             lat: 39.463707, lng: -0.374152, color: "red", 
@@ -822,7 +777,6 @@
 
     let markers = [];
 
-    // Colocar marcadores en el mapa
     talleres.forEach(taller => {
         const pinHtml = `<div class="custom-pin pin-${taller.color}"></div>`;
         const customIcon = L.divIcon({
@@ -840,7 +794,6 @@
         markers.push(marker);
     });
 
-    // Función para filtrar y centrar el mapa según la ruta seleccionada (puntos de colores)
     function filterRoute(color) {
         goToScreen(3);
         let bounds = [];
@@ -854,7 +807,6 @@
         }
     }
 
-    // Control de la tarjeta desplegable inferior
     function openSheet(taller) {
         document.getElementById('sheet-title').innerText = taller.name;
         document.getElementById('sheet-artists').innerText = taller.artistas ? `Artistas: ${taller.artistas}` : "";
