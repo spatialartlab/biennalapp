@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +14,6 @@
             --biennal-turquoise: #1793ab;
             --biennal-turquoise-dark: #0f768b;
             --btn-turquesa: #2299b0;
-            --bg-color: #1793ab;
             --text-main: #111111;
             --text-muted: #666666;
             --white: #ffffff;
@@ -39,7 +39,7 @@
             align-items: center;
         }
 
-        /* Contenedor principal responsive */
+        /* Contenedor principal responsive móvil */
         .phone-container {
             width: 100%;
             max-width: 430px;
@@ -88,32 +88,51 @@
             align-items: center;
             background-color: var(--biennal-turquoise);
         }
-        .splash-logo {
+        .splash-content {
             text-align: center;
             color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .splash-logo svg {
-            width: 110px;
+        .splash-cvo-badge {
+            width: 130px;
             height: 110px;
-            margin-bottom: 20px;
-            fill: var(--white);
+            border: 2px solid white;
+            border-radius: 50% 40% 60% 40% / 40% 60% 40% 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 10px;
         }
-        .splash-logo h1 {
-            font-size: 26px;
+        .splash-cvo-badge span {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+        .splash-cvo-badge span span {
+            color: var(--color-yellow);
+        }
+        .splash-content h1 {
+            font-size: 28px;
             font-weight: 800;
             letter-spacing: 0.5px;
             line-height: 1.1;
+            margin-bottom: 6px;
         }
-        .splash-logo p {
+        .splash-content p {
             font-size: 14px;
             font-weight: 600;
-            margin-top: 6px;
             letter-spacing: 1px;
+            opacity: 0.9;
         }
         .splash-dots {
             display: flex;
             gap: 12px;
-            margin-top: 25px;
+            margin-top: 30px;
             justify-content: center;
         }
 
@@ -138,21 +157,12 @@
             margin-top: 2px;
         }
         .lang-switch {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             background: rgba(255, 255, 255, 0.2);
-            padding: 4px 8px;
+            padding: 5px 10px;
             border-radius: 12px;
-            display: flex;
-            gap: 6px;
-        }
-        .lang-switch span {
-            cursor: pointer;
-            opacity: 0.7;
-        }
-        .lang-switch span.active {
-            opacity: 1;
-            text-decoration: underline;
+            letter-spacing: 0.5px;
         }
 
         /* --- PANTALLA 2: PRESENTACIÓN --- */
@@ -190,6 +200,7 @@
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(34, 153, 176, 0.4);
+            text-transform: lowercase;
         }
         .color-dots {
             display: flex;
@@ -220,7 +231,7 @@
             background-color: #e5e3df;
         }
 
-        /* Marcadores del mapa por color de ruta */
+        /* Marcadores del mapa por color de ruta (pines limpios y definidos) */
         .custom-pin {
             width: 22px;
             height: 22px;
@@ -315,9 +326,6 @@
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
         .sheet-info-block {
             background-color: #f8f9fa;
@@ -419,10 +427,14 @@
 
 <div class="phone-container">
 
-    <!-- PANTALLA 1: SPLASH (1.5s) -->
+    <!-- PANTALLA 1: SPLASH (1.5 segundos) -->
     <div id="screen-1" class="screen active">
-        <div class="splash-logo">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <div class="splash-content">
+            <div class="splash-cvo-badge">
+                <span>C<span>IUTAT</span></span>
+                <span>V<span>ELLA</span></span>
+                <span>O<span>BERTA</span></span>
+            </div>
             <h1>BIENNAL DE VALÈNCIA</h1>
             <p>CIUTAT VELLA OBERTA</p>
         </div>
@@ -440,9 +452,7 @@
                 <h2>BIENNAL de<br>VALENCIA</h2>
                 <p>CIUTAT VELLA OBERTA</p>
             </div>
-            <div class="lang-switch">
-                <span class="active">ESP</span> / <span>VAL</span> / <span>ENG</span>
-            </div>
+            <div class="lang-switch">ESP / VAL / ENG</div>
         </div>
 
         <div class="card-white">
@@ -457,7 +467,7 @@
         </div>
     </div>
 
-    <!-- PANTALLA 3: MAPA GOOGLE CON MARCADORES DE RUTA -->
+    <!-- PANTALLA 3: MAPA CON PINES UBICADOS Y DATOS VINCULADOS -->
     <div id="screen-3" class="screen" style="padding: 0;">
         <div class="map-screen-container">
             <div id="map"></div>
@@ -573,21 +583,20 @@
         }
     }
 
-    // Temporizador Pantalla Splash (1.5 segundos)
+    // Temporizador Pantalla Splash (1.5 segundos exactos)
     setTimeout(() => {
         goToScreen(2);
     }, 1500);
 
-    // Inicialización del Mapa
+    // Inicialización del Mapa con OpenStreetMap optimizado para visualización urbana limpia
     const map = L.map('map', { zoomControl: false }).setView([39.4735, -0.3768], 15);
 
-    // Capa base de Google Maps / Carto Voyager
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
         maxZoom: 19
     }).addTo(map);
 
-    // Base de datos completa con los talleres geolocalizados y sus datos de la plantilla Excel
+    // Base de datos completa con los 16 talleres geolocalizados y sus datos oficiales de la hoja de cálculo
     const talleres = [
         // 🟡 Ruta Amarilla (Ciutat Vella - Tramo 1)
         { 
@@ -649,8 +658,8 @@
             dir: "Carrer dels Teixidors, 11, 46001 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Taller abierto y presentación de proyectos.",
-            contacto: "- ",
-            telefono: "- "
+            contacto: "-",
+            telefono: "-"
         },
         { 
             name: "Taller de Ángela Bassano", 
@@ -659,8 +668,8 @@
             dir: "C/ d'Edeta, 7, 46003 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Taller abierto y exposición de obra gráfica.",
-            contacto: "- ",
-            telefono: "- "
+            contacto: "-",
+            telefono: "-"
         },
         { 
             name: "Taller de Lisa Gingles", 
@@ -669,8 +678,8 @@
             dir: "C/ de Betlem, 9, 46001 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Exposición e intervención plástica.",
-            contacto: "- ",
-            telefono: "- "
+            contacto: "-",
+            telefono: "-"
         },
         { 
             name: "Taller Veroneta", 
@@ -689,8 +698,8 @@
             dir: "Carrer del Moro Zeid, 2, 46001 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Presentación de procesos creativos.",
-            contacto: "- ",
-            telefono: "- "
+            contacto: "-",
+            telefono: "-"
         },
         { 
             name: "Estudio de Nacho Carbó", 
@@ -699,8 +708,8 @@
             dir: "Carrer de Recared, 24, 46001 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Muestra pictórica y taller de artista.",
-            contacto: "- ",
-            telefono: "- "
+            contacto: "-",
+            telefono: "-"
         },
         { 
             name: "Hygiene", 
@@ -709,8 +718,8 @@
             dir: "C/ de Villena, 14, 46001 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Instalación e investigación visual.",
-            contacto: "- ",
-            telefono: "- "
+            contacto: "-",
+            telefono: "-"
         },
 
         // 🔴 Ruta Roja (Russafa)
@@ -718,7 +727,7 @@
             name: "Taller de Elena Martí Manzanares", 
             artistas: "Elena Martí Manzanares",
             lat: 39.463707, lng: -0.374152, color: "red", 
-            dir: "C/ de Sevilla, 14, 46004 València",
+            dir: "C/ de Sevilla, 14, L'Eixample, 46004 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Taller abierto y exposición de artista.",
             contacto: "ele.marti.man@gmail.com",
@@ -728,17 +737,17 @@
             name: "Francesca Ceramic Studio", 
             artistas: "Francesca",
             lat: 39.464303, lng: -0.371733, color: "red", 
-            dir: "Carrer de Sant Valero, 1, 46005 València",
+            dir: "Carrer de Sant Valero, 1, L'Eixample, 46005 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Exposición de piezas cerámicas y demostración en vivo.",
-            contacto: "- ",
-            telefono: "- "
+            contacto: "-",
+            telefono: "-"
         },
         { 
             name: "Picazo Studio", 
             artistas: "José Antonio Picazo",
             lat: 39.463714, lng: -0.373747, color: "red", 
-            dir: "C/ de Sevilla, 17, 46004 València",
+            dir: "C/ de Sevilla, 17, L'Eixample, 46004 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Taller abierto y presentación de obra.",
             contacto: "info@joseantoniopicazo.com",
@@ -746,17 +755,17 @@
         },
         { 
             name: "Sporting Club Russafa", 
-            artistas: "Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró, Fernando Rincón",
+            artistas: "Maite Backman, Mª José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró, Fernando Rincón",
             lat: 39.464279, lng: -0.374111, color: "red", 
-            dir: "C/ de Sevilla, 5, 46004 València",
+            dir: "C/ de Sevilla, 5, L'Eixample, 46004 València",
             horario: "20, 21 y 22 de Noviembre de 2026",
             propuesta: "Reúne varios talleres. Exposición colectiva e intervenciones en el estudio.",
             contacto: "maitebackman@gmail.com",
-            telefono: "- "
+            telefono: "-"
         }
     ];
 
-    // Marcadores con pines del color de cada ruta
+    // Colocar marcadores con los colores de ruta correctos en el mapa
     talleres.forEach(taller => {
         const pinHtml = `<div class="custom-pin pin-${taller.color}"></div>`;
         const customIcon = L.divIcon({
@@ -772,7 +781,7 @@
         });
     });
 
-    // Control de la tarjeta desplegable del taller al pulsar en un marcador
+    // Control de la tarjeta desplegable inferior al pulsar un taller en el mapa
     function openSheet(taller) {
         document.getElementById('sheet-title').innerText = taller.name;
         document.getElementById('sheet-artists').innerText = taller.artistas ? `Artistas: ${taller.artistas}` : "";
@@ -792,5 +801,8 @@
 
 </body>
 </html>
+
+
+
 
 
