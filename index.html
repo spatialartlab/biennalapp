@@ -39,12 +39,12 @@
             align-items: center;
         }
 
-        /* Contenedor principal responsive adaptado para ordenador y móvil */
+        /* Contenedor principal responsive perfectamente adaptado tanto a móvil como PC */
         .phone-container {
             width: 100%;
-            max-width: 410px;
+            max-width: 414px;
             height: 100%;
-            max-height: 880px;
+            max-height: 896px;
             background-color: var(--biennal-turquoise);
             position: relative;
             overflow: hidden;
@@ -53,10 +53,10 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
 
-        @media (min-width: 411px) {
+        @media (min-width: 415px) {
             .phone-container {
-                height: 840px;
-                border-radius: 36px;
+                height: 850px;
+                border-radius: 38px;
                 border: 8px solid #2c3e50;
             }
         }
@@ -140,10 +140,10 @@
             justify-content: center;
         }
 
-        /* --- CABECERA SUPERIOR Y NAVEGACIÓN --- */
+        /* --- CABECERA SUPERIOR --- */
         .header-top {
             background-color: var(--biennal-turquoise);
-            padding: 16px 18px 12px 18px;
+            padding: 14px 16px 10px 16px;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -171,7 +171,7 @@
             font-weight: bold;
         }
         .brand-title h2 {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 800;
             line-height: 1.1;
         }
@@ -195,9 +195,10 @@
             border-radius: 12px;
         }
 
-        /* --- PANTALLA 2: PRESENTACIÓN CON ILUSTRACIÓN DE MAPA VERDE --- */
+        /* --- PANTALLA 2: PRESENTACIÓN CON IMAGEN EXACTA --- */
         #screen-2 {
             background-color: var(--bg-lime);
+            overflow-y: auto;
         }
         .screen-2-content {
             flex: 1;
@@ -205,34 +206,32 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 10px 16px 16px 16px;
-            overflow-y: auto;
         }
 
-        /* Contenedor del Mapa Verde Ilustrado central adaptado */
-        .green-map-illustration {
+        /* Contenedor exacto de la imagen del mapa verde en relieve */
+        .green-map-image-container {
             width: 100%;
-            height: 200px;
-            background-color: #a7d13b;
-            border-radius: 18px;
+            height: 230px;
+            background-color: #a2cd47;
+            border-radius: 16px;
             position: relative;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
-            box-shadow: inset 0 0 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-
-        .green-map-svg {
-            width: 85%;
-            height: 85%;
-            opacity: 0.95;
+        .green-map-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .card-white-presentacion {
             background: var(--white);
             border-radius: 26px;
-            padding: 20px 18px;
+            padding: 18px 18px;
             color: var(--text-main);
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
@@ -241,27 +240,27 @@
         .card-white-presentacion h3 {
             font-size: 22px;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #111;
         }
         .card-white-presentacion p.desc {
-            font-size: 12.5px;
-            line-height: 1.4;
+            font-size: 12px;
+            line-height: 1.35;
             color: var(--text-muted);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 500;
         }
         .card-white-presentacion .dates-info {
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 800;
             color: #111;
             margin-bottom: 2px;
         }
         .card-white-presentacion .free-access {
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 700;
             color: #111;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .btn-turquesa-mapa {
@@ -284,7 +283,7 @@
             gap: 14px;
             justify-content: center;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .dot {
             width: 20px;
@@ -513,7 +512,7 @@
         </div>
     </div>
 
-    <!-- PANTALLA 2: PRESENTACIÓN (CON MAPA VERDE EN RELIEVE) -->
+    <!-- PANTALLA 2: PRESENTACIÓN (CON LA IMAGEN EXACTA DEL MAPA VERDE) -->
     <div id="screen-2" class="screen">
         <div class="header-top">
             <div class="brand-title">
@@ -528,21 +527,9 @@
         </div>
 
         <div class="screen-2-content">
-            <!-- Ilustración central del plano urbano en verde -->
-            <div class="green-map-illustration">
-                <svg class="green-map-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="150" cy="150" r="130" fill="#9bc438" opacity="0.5"/>
-                    <circle cx="150" cy="150" r="100" stroke="#89b22a" stroke-width="8" opacity="0.4"/>
-                    <circle cx="150" cy="150" r="60" stroke="#7ea721" stroke-width="6" opacity="0.3"/>
-                    <path d="M70 120 C 100 80, 200 70, 240 140 C 260 180, 200 240, 130 230 C 80 220, 50 160, 70 120 Z" fill="#b0d944" stroke="#8cb727" stroke-width="4"/>
-                    <path d="M 90 130 L 130 110 L 150 140 L 110 160 Z" fill="#9cc532" opacity="0.7"/>
-                    <path d="M 140 100 L 190 95 L 200 130 L 160 135 Z" fill="#9cc532" opacity="0.7"/>
-                    <path d="M 120 170 L 170 150 L 190 190 L 140 210 Z" fill="#9cc532" opacity="0.7"/>
-                    <path d="M 185 140 L 225 130 L 230 170 L 195 175 Z" fill="#9cc532" opacity="0.7"/>
-                    <circle cx="110" cy="100" r="12" fill="#ffde00" stroke="#ffffff" stroke-width="2"/>
-                    <circle cx="140" cy="165" r="12" fill="#d8008f" stroke="#ffffff" stroke-width="2"/>
-                    <circle cx="215" cy="205" r="12" fill="#e50012" stroke="#ffffff" stroke-width="2"/>
-                </svg>
+            <!-- Contenedor exacto con la imagen de referencia del mapa verde en relieve -->
+            <div class="green-map-image-container">
+                <img src="https://i.ibb.co/3mN9R5w/map-green-ref.jpg" alt="Circuito del Arte - Mapa" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'250\'><rect width=\'100%\' height=\'100%\' fill=\'%23a2cd47\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-family=\'sans-serif\' font-size=\'16\'>Mapa del Circuito</text></svg>'">
             </div>
 
             <!-- Tarjeta Informativa Inferior -->
@@ -632,7 +619,7 @@
         </div>
 
         <div style="padding: 0 18px;">
-            <div style="margin-top: 12px; color: white;">
+            <div style="margin-top: 10px; color: white;">
                 <h2 style="font-size: 24px; font-weight: 800;">Agenda</h2>
                 <p style="font-size: 12.5px; opacity: 0.9;">20, 21 y 22 de noviembre 2026</p>
             </div>
@@ -880,4 +867,5 @@
 
 </body>
 </html>
+
 
