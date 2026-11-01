@@ -886,10 +886,90 @@
         }
     };
 
+    const talleres = [
+        // RUTA AMARILLA
+        { name: "Taller de Pepe March", artistas: "Pepe March", lat: 39.478034, lng: -0.378164, color: "yellow", dir: "C/ de la Mare Vella, 19, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.", contacto: "Pepemarc@gmail.com", telefono: "634 564 264" },
+        { name: "Fundación Victoria Cano y Estudio", artistas: "Victoria Cano", lat: 39.477461, lng: -0.378192, color: "yellow", dir: "C/ del Portal de Valldigna, 7, 46003 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición colectiva e intervenciones en el estudio.", contacto: "www.ofaaartits.com", telefono: "629 170 969" },
+        { name: "Estudio Antonia Hervás y Susana Roig", artistas: "Antonia Hervás y Ana Roig Hervás", lat: 39.479887, lng: -0.381466, color: "yellow", dir: "C. de na Jordana, 27, 46003 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.", contacto: "Susanaroig@gmail.com", telefono: "628 040 588" },
+        { name: "Estudio Henar del Paso", artistas: "Henar del Paso", lat: 39.479998, lng: -0.381126, color: "yellow", dir: "C. de na Jordana, 22, 46003 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.", contacto: "henardelpaso@hotmail.com", telefono: "609 393 490" },
+
+        // RUTA FUCSIA
+        { name: "Studio Vintage", artistas: "Artistas varios", lat: 39.475415, lng: -0.377636, color: "fuchsia", dir: "Carrer de la Puríssima, 8, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.", contacto: "studiovintage@hotmail.com", telefono: "617 952 635" },
+        { name: "Taller de Estudios y Proyectos Arturo Catalá", artistas: "Arturo Catalá", lat: 39.475085, lng: -0.382249, color: "fuchsia", dir: "Carrer dels Teixidors, 11, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de proyectos.", contacto: "-", telefono: "-" },
+        { name: "Taller de Ángela Bassano", artistas: "Ángela Bassano", lat: 39.475860, lng: -0.373659, color: "fuchsia", dir: "C/ d'Edeta, 7, 46003 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de obra gráfica.", contacto: "-", telefono: "-" },
+        { name: "Taller de Lisa Gingles", artistas: "Lisa Gingles", lat: 39.475451, lng: -0.378858, color: "fuchsia", dir: "C/ de Betlem, 9, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición e intervención plástica.", contacto: "-", telefono: "-" },
+        { name: "Taller Veroneta", artistas: "Marcela", lat: 39.474544, lng: -0.382461, color: "fuchsia", dir: "C/ del Pintor Domingo, 7, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.", contacto: "@veronetaymas", telefono: "661 247 302" },
+        { name: "Taller de María Ángeles Aguilera", artistas: "María Ángeles Aguilera", lat: 39.475367, lng: -0.380768, color: "fuchsia", dir: "Carrer del Moro Zeid, 2, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Presentación de procesos creativos.", contacto: "-", telefono: "-" },
+        { name: "Estudio de Nacho Carbó", artistas: "Nacho Carbó", lat: 39.471774, lng: -0.382227, color: "fuchsia", dir: "Carrer de Recared, 24, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Muestra pictórica y taller de artista.", contacto: "-", telefono: "-" },
+        { name: "Hygiene", artistas: "Colectivo Hygiene", lat: 39.474747, lng: -0.382266, color: "fuchsia", dir: "C/ de Villena, 14, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Instalación e investigación visual.", contacto: "-", telefono: "-" },
+
+        // RUTA ROJA
+        { name: "Taller de Elena Martí Manzanares", artistas: "Elena Martí Manzanares", lat: 39.463707, lng: -0.374152, color: "red", dir: "C/ de Sevilla, 14, L'Eixample, 46004 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.", contacto: "ele.marti.man@gmail.com", telefono: "629 727 534" },
+        { name: "Francesca Ceramic Studio", artistas: "Francesca", lat: 39.464303, lng: -0.371733, color: "red", dir: "Carrer de Sant Valero, 1, L'Eixample, 46005 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición de piezas cerámicas y demostración en vivo.", contacto: "-", telefono: "-" },
+        { name: "Picazo Studio", artistas: "José Antonio Picazo", lat: 39.463714, lng: -0.373747, color: "red", dir: "C/ de Sevilla, 17, L'Eixample, 46004 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.", contacto: "info@joseantoniopicazo.com", telefono: "630 664 380" },
+        { name: "Sporting Club Russafa", artistas: "Maite Backman, Mª José Ballester, Rafa de Corral y otros", lat: 39.464279, lng: -0.374111, color: "red", dir: "C/ de Sevilla, 5, L'Eixample, 46004 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición colectiva e intervenciones en el estudio.", contacto: "maitebackman@gmail.com", telefono: "-" },
+
+        // MUSEOS Y CENTROS CULTURALES (Azul)
+        { name: "Museo de la Ciudad (Palacio Marqués de Campo)", artistas: "Espacio museístico municipal", lat: 39.476013, lng: -0.373859, color: "blue", dir: "Plaça de l'Arquebisbe, 3, 46003 València", horario: "Martes a domingo de 10:00 a 19:00 h.", propuesta: "Espacio dedicado a la historia, arqueología y evolución artística de la ciudad de València ubicado en el histórico Palacio del Marqués de Campo.", contacto: "museociutat@valencia.es", telefono: "962 08 44 41" },
+        { name: "Octubre Centre de Cultura Contemporània (OCCC)", artistas: "Centro de cultura contemporánea", lat: 39.473012, lng: -0.377026, color: "blue", dir: "C/ de Sant Ferran, 12, Ciutat Vella, 46001 València", horario: "Lunes a viernes de 09:00 a 21:00 h. Sábados de 09:00 a 14:00 h.", propuesta: "Espacio pluridisciplinar de pensamiento, creación contemporánea, exposiciones, ciclos de debate y actividades culturales.", contacto: "info@octubre.cat", telefono: "96 315 77 99" },
+        { name: "Centre del Carme Cultura Contemporània (CCCC)", artistas: "Centro de cultura contemporánea", lat: 39.479200, lng: -0.376500, color: "blue", dir: "C/ del Museu, 2, Ciutat Vella, 46003 València", horario: "Martes a domingo de 11:00 a 21:00 h. (Lunes cerrado).", propuesta: "Espacio dinámico de cultura contemporánea que acoge un amplio abanico de prácticas artísticas actuales, artes compuestas, diseño y performance.", contacto: "cccc@gva.es", telefono: "961 92 26 40" },
+        { name: "IVAM (Institut Valencià d'Art Modern)", artistas: "Museo de arte moderno", lat: 39.479779, lng: -0.382800, color: "blue", dir: "C/ de Guillem de Castro, 118, 46001 València", horario: "Martes a domingo de 10:00 a 19:00 h. Viernes hasta las 21:00 h.", propuesta: "Referente internacional de arte moderno y contemporáneo con más de 11.000 obras de arte, biblioteca y centro de exposiciones.", contacto: "ivam@ivam.es", telefono: "963 86 30 00" },
+        { name: "Museo de Bellas Artes de Valencia", artistas: "Pinacoteca histórica", lat: 39.479128, lng: -0.371250, color: "blue", dir: "C/ de Pius XII, 9, 46010 València", horario: "Martes a domingo de 10:00 a 20:00 h.", propuesta: "Una de las pinacotecas más importantes de España, albergando importantes colecciones de pintura valenciana y flamenca, con obras maestras de Goya y Sorolla.", contacto: "museobellasartesvlc@gva.es", telefono: "963 87 03 00" },
+        { name: "Col·legi Major Rector Peset (UV)", artistas: "Centro cultural y expositivo", lat: 39.475956, lng: -0.379371, color: "blue", dir: "Pl. del Forn de Sant Nicolau, 4, 46001 València", horario: "Lunes a viernes de 09:00 a 20:00 h.", propuesta: "Espacio institucional de la Universitat de València dedicado a exposiciones de arte contemporáneo y actividades culturales.", contacto: "cpenset@uv.es", telefono: "963 15 68 00" },
+        { name: "Fundación Bancaja", artistas: "Centro cultural y exposiciones", lat: 39.473940, lng: -0.370110, color: "blue", dir: "Pl. de Tetuán, 23, 46003 València", horario: "Martes a domingo de 10:00 a 14:00 h. y de 16:30 a 20:30 h.", propuesta: "Espacio de referencia en Valencia que acoge grandes exposiciones temporales de arte, talleres culturales y conferencias.", contacto: "fundacionbancaja@fundacionbancaja.es", telefono: "963 81 39 90" },
+        { name: "Bombas Gens Centre d’Art", artistas: "Centro de artes digitales", lat: 39.485842, lng: -0.384888, color: "blue", dir: "Av. de Burjassot, 54, 46009 València", horario: "Miércoles a domingo de 10:00 a 19:00 h.", propuesta: "Antiguo complejo industrial rehabilitado que fusiona el patrimonio arquitectónico histórico con exposiciones vanguardistas de arte contemporáneo y digital.", contacto: "info@bombasgens.com", telefono: "963 46 38 56" },
+
+        // ESPACIOS DE ARTE Y GALERÍAS (Verde Esmeralda)
+        { name: "La Gallera Art", artistas: "Galería de arte contemporáneo", lat: 39.473791, lng: -0.377786, color: "emerald", dir: "Carrer dels Aluders, 7, 46001 València", horario: "Lunes a sábado de 11:00 a 14:00 h. y de 17:00 a 20:00 h.", propuesta: "Espacio expositivo dedicado a la promoción y exhibición de obras de arte contemporáneo y artistas plásticos actuales.", contacto: "lagallerart.com", telefono: "630 57 68 12" },
+        { name: "Aleksandra Istorik Gallery", artistas: "Galería de arte contemporáneo", lat: 39.476449, lng: -0.372887, color: "emerald", dir: "C/ de l'Almirall, 1, 46003 València", horario: "Lunes a sábado de 12:00 a 14:00 h. y de 17:00 a 20:30 h.", propuesta: "Galería de arte contemporáneo enfocada en proyectos de artistas emergentes y consolidados, exposiciones e intercambios culturales.", contacto: "istorik.gallery@gmail.com", telefono: "+34 657 25 11 55" }
+    ];
+
+    let map;
+    let markers = [];
+
+    // Inicialización al cargar la página
+    window.addEventListener('DOMContentLoaded', () => {
+        initMap();
+        renderAgendaEvents();
+        
+        // Redirección automática desde Splash
+        setTimeout(() => {
+            const splash = document.getElementById('screen-1');
+            if (splash && splash.classList.contains('active')) {
+                goToScreen(2);
+            }
+        }, 1500);
+    });
+
+    function initMap() {
+        map = L.map('map', { zoomControl: false }).setView([39.4765, -0.3750], 15);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors & CARTO',
+            maxZoom: 19,
+            subdomains: 'abcd'
+        }).addTo(map);
+
+        talleres.forEach(taller => {
+            const pinHtml = `<div class="custom-pin pin-${taller.color}"></div>`;
+            const customIcon = L.divIcon({
+                html: pinHtml,
+                className: 'custom-div-icon',
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+
+            const marker = L.marker([taller.lat, taller.lng], { icon: customIcon }).addTo(map);
+            marker.tallerData = taller;
+            marker.on('click', () => openSheet(taller));
+            markers.push(marker);
+        });
+    }
+
     function setLanguage(lang) {
         currentLang = lang;
         document.querySelectorAll('.lang-pill-btn').forEach(btn => {
-            if (btn.textContent.toLowerCase() === lang) {
+            if (btn.textContent.trim().toLowerCase() === lang) {
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
@@ -898,7 +978,6 @@
 
         const t = translations[lang];
         
-        // Traducir cabeceras de todas las pantallas
         ['t-header-title', 't-header-title-3', 't-header-title-4'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.innerHTML = t.headerTitle;
@@ -908,7 +987,6 @@
             if (el) el.innerText = t.headerSub;
         });
 
-        // Traducir pantalla Info
         document.getElementById('t-edition').innerText = t.edition;
         document.getElementById('t-title').innerText = t.title;
         document.getElementById('t-desc').innerText = t.desc;
@@ -916,12 +994,10 @@
         document.getElementById('t-free').innerText = t.free;
         document.getElementById('t-btn-map').innerText = t.btnMap;
 
-        // Traducir barra de navegación inferior en todas las pantallas
         ['t-nav-info', 't-nav-info2', 't-nav-info3'].forEach(id => { document.getElementById(id).innerText = t.navInfo; });
         ['t-nav-map', 't-nav-map2', 't-nav-map3'].forEach(id => { document.getElementById(id).innerText = t.navMap; });
         ['t-nav-agenda', 't-nav-agenda2', 't-nav-agenda3'].forEach(id => { document.getElementById(id).innerText = t.navAgenda; });
 
-        // Traducir Agenda
         document.getElementById('t-agenda-title').innerText = t.agendaTitle;
         document.getElementById('t-agenda-dates').innerText = t.agendaDates;
         document.getElementById('t-day-fri').innerText = t.fri;
@@ -952,10 +1028,9 @@
                 </div>
             `;
         });
-        document.getElementById('agenda-events-content').innerHTML = html;
+        const container = document.getElementById('agenda-events-content');
+        if (container) container.innerHTML = html;
     }
-
-    renderAgendaEvents();
 
     function goToScreen(screenNumber) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -963,250 +1038,10 @@
         if (targetScreen) {
             targetScreen.classList.add('active');
         }
-        if (screenNumber === 3 && typeof map !== 'undefined' && map) {
+        if (screenNumber === 3 && map) {
             setTimeout(() => { map.invalidateSize(); }, 250);
         }
     }
-
-    /* Redirección automática de seguridad desde el splash */
-    setTimeout(() => {
-        const splash = document.getElementById('screen-1');
-        if (splash && splash.classList.contains('active')) {
-            goToScreen(2);
-        }
-    }, 1500);
-
-    const map = L.map('map', { zoomControl: false }).setView([39.4765, -0.3750], 15);
-
-L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors & CARTO',
-    maxZoom: 19,
-    subdomains: 'abcd'
-}).addTo(map);L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors & CARTO',
-    maxZoom: 19,
-    subdomains: 'abcd'
-}).addTo(map);L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors & CARTO',
-    maxZoom: 19,
-    subdomains: 'abcd'
-}).addTo(map);
-        attribution: '&copy; OpenStreetMap contributors',
-        maxZoom: 19
-    }).addTo(map);
-
-    const talleres = [
-        // RUTA AMARILLA
-        { 
-            name: "Taller de Pepe March", artistas: "Pepe March",
-            lat: 39.478034, lng: -0.378164, color: "yellow", 
-            dir: "C/ de la Mare Vella, 19, 46001 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.",
-            contacto: "Pepemarc@gmail.com", telefono: "634 564 264"
-        },
-        { 
-            name: "Fundación Victoria Cano y Estudio", artistas: "Victoria Cano",
-            lat: 39.477461, lng: -0.378192, color: "yellow", 
-            dir: "C/ del Portal de Valldigna, 7, 46003 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición colectiva e intervenciones en el estudio.",
-            contacto: "www.ofaaartits.com", telefono: "629 170 969"
-        },
-        { 
-            name: "Estudio Antonia Hervás y Susana Roig", artistas: "Antonia Hervás y Ana Roig Hervás",
-            lat: 39.479887, lng: -0.381466, color: "yellow", 
-            dir: "C. de na Jordana, 27, 46003 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.",
-            contacto: "Susanaroig@gmail.com", telefono: "628 040 588"
-        },
-        { 
-            name: "Estudio Henar del Paso", artistas: "Henar del Paso",
-            lat: 39.479998, lng: -0.381126, color: "yellow", 
-            dir: "C. de na Jordana, 22, 46003 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.",
-            contacto: "henardelpaso@hotmail.com", telefono: "609 393 490"
-        },
-
-        // RUTA FUCSIA
-        { 
-            name: "Studio Vintage", artistas: "Artistas varios",
-            lat: 39.475415, lng: -0.377636, color: "fuchsia", 
-            dir: "Carrer de la Puríssima, 8, 46001 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.",
-            contacto: "studiovintage@hotmail.com", telefono: "617 952 635"
-        },
-        { 
-            name: "Taller de Estudios y Proyectos Arturo Catalá", artistas: "Arturo Catalá",
-            lat: 39.475085, lng: -0.382249, color: "fuchsia", 
-            dir: "Carrer dels Teixidors, 11, 46001 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de proyectos.",
-            contacto: "-", telefono: "-"
-        },
-        { 
-            name: "Taller de Ángela Bassano", artistas: "Ángela Bassano",
-            lat: 39.475860, lng: -0.373659, color: "fuchsia", 
-            dir: "C/ d'Edeta, 7, 46003 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de obra gráfica.",
-            contacto: "-", telefono: "-"
-        },
-        { 
-            name: "Taller de Lisa Gingles", artistas: "Lisa Gingles",
-            lat: 39.475451, lng: -0.378858, color: "fuchsia", 
-            dir: "C/ de Betlem, 9, 46001 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición e intervención plástica.",
-            contacto: "-", telefono: "-"
-        },
-        { 
-            name: "Taller Veroneta", artistas: "Marcela",
-            lat: 39.474544, lng: -0.382461, color: "fuchsia", 
-            dir: "C/ del Pintor Domingo, 7, 46001 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.",
-            contacto: "@veronetaymas", telefono: "661 247 302"
-        },
-        { 
-            name: "Taller de María Ángeles Aguilera", artistas: "María Ángeles Aguilera",
-            lat: 39.475367, lng: -0.380768, color: "fuchsia", 
-            dir: "Carrer del Moro Zeid, 2, 46001 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Presentación de procesos creativos.",
-            contacto: "-", telefono: "-"
-        },
-        { 
-            name: "Estudio de Nacho Carbó", artistas: "Nacho Carbó",
-            lat: 39.471774, lng: -0.382227, color: "fuchsia", 
-            dir: "Carrer de Recared, 24, 46001 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Muestra pictórica y taller de artista.",
-            contacto: "-", telefono: "-"
-        },
-        { 
-            name: "Hygiene", artistas: "Colectivo Hygiene",
-            lat: 39.474747, lng: -0.382266, color: "fuchsia", 
-            dir: "C/ de Villena, 14, 46001 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Instalación e investigación visual.",
-            contacto: "-", telefono: "-"
-        },
-
-        // RUTA ROJA
-        { 
-            name: "Taller de Elena Martí Manzanares", artistas: "Elena Martí Manzanares",
-            lat: 39.463707, lng: -0.374152, color: "red", 
-            dir: "C/ de Sevilla, 14, L'Eixample, 46004 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.",
-            contacto: "ele.marti.man@gmail.com", telefono: "629 727 534"
-        },
-        { 
-            name: "Francesca Ceramic Studio", artistas: "Francesca",
-            lat: 39.464303, lng: -0.371733, color: "red", 
-            dir: "Carrer de Sant Valero, 1, L'Eixample, 46005 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición de piezas cerámicas y demostración en vivo.",
-            contacto: "-", telefono: "-"
-        },
-        { 
-            name: "Picazo Studio", artistas: "José Antonio Picazo",
-            lat: 39.463714, lng: -0.373747, color: "red", 
-            dir: "C/ de Sevilla, 17, L'Eixample, 46004 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.",
-            contacto: "info@joseantoniopicazo.com", telefono: "630 664 380"
-        },
-        { 
-            name: "Sporting Club Russafa", artistas: "Maite Backman, Mª José Ballester, Rafa de Corral y otros",
-            lat: 39.464279, lng: -0.374111, color: "red", 
-            dir: "C/ de Sevilla, 5, L'Eixample, 46004 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición colectiva e intervenciones en el estudio.",
-            contacto: "maitebackman@gmail.com", telefono: "-"
-        },
-
-        // MUSEOS Y CENTROS CULTURALES (Azul)
-        { 
-            name: "Museo de la Ciudad (Palacio Marqués de Campo)", artistas: "Espacio museístico municipal",
-            lat: 39.476013, lng: -0.373859, color: "blue", 
-            dir: "Plaça de l'Arquebisbe, 3, 46003 València",
-            horario: "Martes a domingo de 10:00 a 19:00 h.", propuesta: "Espacio dedicado a la historia, arqueología y evolución artística de la ciudad de València ubicado en el histórico Palacio del Marqués de Campo.",
-            contacto: "museociutat@valencia.es", telefono: "962 08 44 41"
-        },
-        { 
-            name: "Octubre Centre de Cultura Contemporània (OCCC)", artistas: "Centro de cultura contemporánea",
-            lat: 39.473012, lng: -0.377026, color: "blue", 
-            dir: "C/ de Sant Ferran, 12, Ciutat Vella, 46001 València",
-            horario: "Lunes a viernes de 09:00 a 21:00 h. Sábados de 09:00 a 14:00 h.", propuesta: "Espacio pluridisciplinar de pensamiento, creación contemporánea, exposiciones, ciclos de debate y actividades culturales.",
-            contacto: "info@octubre.cat", telefono: "96 315 77 99"
-        },
-        { 
-            name: "Centre del Carme Cultura Contemporània (CCCC)", artistas: "Centro de cultura contemporánea",
-            lat: 39.479200, lng: -0.376500, color: "blue", 
-            dir: "C/ del Museu, 2, Ciutat Vella, 46003 València",
-            horario: "Martes a domingo de 11:00 a 21:00 h. (Lunes cerrado).", propuesta: "Espacio dinámico de cultura contemporánea que acoge un amplio abanico de prácticas artísticas actuales, artes compuestas, diseño y performance.",
-            contacto: "cccc@gva.es", telefono: "961 92 26 40"
-        },
-        { 
-            name: "IVAM (Institut Valencià d'Art Modern)", artistas: "Museo de arte moderno",
-            lat: 39.479779, lng: -0.382800, color: "blue", 
-            dir: "C/ de Guillem de Castro, 118, 46001 València",
-            horario: "Martes a domingo de 10:00 a 19:00 h. Viernes hasta las 21:00 h.", propuesta: "Referente internacional de arte moderno y contemporáneo con más de 11.000 obras de arte, biblioteca y centro de exposiciones.",
-            contacto: "ivam@ivam.es", telefono: "963 86 30 00"
-        },
-        { 
-            name: "Museo de Bellas Artes de Valencia", artistas: "Pinacoteca histórica",
-            lat: 39.479128, lng: -0.371250, color: "blue", 
-            dir: "C/ de Pius XII, 9, 46010 València",
-            horario: "Martes a domingo de 10:00 a 20:00 h.", propuesta: "Una de las pinacotecas más importantes de España, albergando importantes colecciones de pintura valenciana y flamenca, con obras maestras de Goya y Sorolla.",
-            contacto: "museobellasartesvlc@gva.es", telefono: "963 87 03 00"
-        },
-        { 
-            name: "Col·legi Major Rector Peset (UV)", artistas: "Centro cultural y expositivo",
-            lat: 39.475956, lng: -0.379371, color: "blue", 
-            dir: "Pl. del Forn de Sant Nicolau, 4, 46001 València",
-            horario: "Lunes a viernes de 09:00 a 20:00 h.", propuesta: "Espacio institucional de la Universitat de València dedicado a exposiciones de arte contemporáneo y actividades culturales.",
-            contacto: "cpenset@uv.es", telefono: "963 15 68 00"
-        },
-        { 
-            name: "Fundación Bancaja", artistas: "Centro cultural y exposiciones",
-            lat: 39.473940, lng: -0.370110, color: "blue", 
-            dir: "Pl. de Tetuán, 23, 46003 València",
-            horario: "Martes a domingo de 10:00 a 14:00 h. y de 16:30 a 20:30 h.", propuesta: "Espacio de referencia en Valencia que acoge grandes exposiciones temporales de arte, talleres culturales y conferencias.",
-            contacto: "fundacionbancaja@fundacionbancaja.es", telefono: "963 81 39 90"
-        },
-        { 
-            name: "Bombas Gens Centre d’Art", artistas: "Centro de artes digitales",
-            lat: 39.485842, lng: -0.384888, color: "blue", 
-            dir: "Av. de Burjassot, 54, 46009 València",
-            horario: "Miércoles a domingo de 10:00 a 19:00 h.", propuesta: "Antiguo complejo industrial rehabilitado que fusiona el patrimonio arquitectónico histórico con exposiciones vanguardistas de arte contemporáneo y digital.",
-            contacto: "info@bombasgens.com", telefono: "963 46 38 56"
-        },
-
-        // ESPACIOS DE ARTE Y GALERÍAS (Verde Esmeralda)
-        { 
-            name: "La Gallera Art", artistas: "Galería de arte contemporáneo",
-            lat: 39.473791, lng: -0.377786, color: "emerald", 
-            dir: "Carrer dels Aluders, 7, 46001 València",
-            horario: "Lunes a sábado de 11:00 a 14:00 h. y de 17:00 a 20:00 h.", propuesta: "Espacio expositivo dedicado a la promoción y exhibición de obras de arte contemporáneo y artistas plásticos actuales.",
-            contacto: "lagallerart.com", telefono: "630 57 68 12"
-        },
-        { 
-            name: "Aleksandra Istorik Gallery", artistas: "Galería de arte contemporáneo",
-            lat: 39.476449, lng: -0.372887, color: "emerald", 
-            dir: "C/ de l'Almirall, 1, 46003 València",
-            horario: "Lunes a sábado de 12:00 a 14:00 h. y de 17:00 a 20:30 h.", propuesta: "Galería de arte contemporáneo enfocada en proyectos de artistas emergentes y consolidados, exposiciones e intercambios culturales.",
-            contacto: "istorik.gallery@gmail.com", telefono: "+34 657 25 11 55"
-        }
-    ];
-
-    let markers = [];
-
-    talleres.forEach(taller => {
-        const pinHtml = `<div class="custom-pin pin-${taller.color}"></div>`;
-        const customIcon = L.divIcon({
-            html: pinHtml,
-            className: 'custom-div-icon',
-            iconSize: [20, 20],
-            iconAnchor: [10, 10]
-        });
-
-        const marker = L.marker([taller.lat, taller.lng], { icon: customIcon }).addTo(map);
-        marker.tallerData = taller;
-        marker.on('click', () => {
-            openSheet(taller);
-        });
-        markers.push(marker);
-    });
 
     function filterRoute(color) {
         goToScreen(3);
@@ -1217,7 +1052,9 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
             }
         });
         if (bounds.length > 0) {
-            map.fitBounds(bounds, { padding: [50, 50], maxZoom: 16 });
+            setTimeout(() => {
+                map.fitBounds(bounds, { padding: [50, 50], maxZoom: 16 });
+            }, 300);
         }
     }
 
@@ -1253,6 +1090,5 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
         document.getElementById('bottom-sheet').classList.remove('open');
     }
 </script>
-
 </body>
 </html>
