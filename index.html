@@ -20,6 +20,7 @@
             --color-yellow: #ffde00;
             --color-fuchsia: #d8008f;
             --color-red: #e50012;
+            --color-blue: #0066cc;
             --color-agenda-lime: #8bb335;
         }
 
@@ -28,6 +29,22 @@
             margin: 0;
             padding: 0;
             font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* Estilo para las barras de desplazamiento laterales en ordenadores y móviles */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.25);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0,0,0,0.4);
         }
 
         body, html {
@@ -185,55 +202,56 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        /* --- PANTALLA 2: PRESENTACIÓN EN MODO SCROLL CON CABECERA DE MAPA VERDE Y TEXTOS FLOTANTES --- */
+        /* --- PANTALLA 2: INFO (SCROLL CON MAPA VERDE ÍNTEGRO SIN CORTES) --- */
         #screen-2 {
             background-color: var(--bg-lime);
-            overflow-y: auto; /* Permite hacer scroll en toda la pantalla */
+            overflow-y: auto;
         }
         .screen-2-content {
             display: flex;
             flex-direction: column;
-            padding: 10px 14px 30px 14px;
+            padding: 10px 14px 90px 14px;
             gap: 14px;
         }
 
-        /* Contenedor del mapa verde como cabecero grande con posición relativa para los textos flotantes */
+        /* Contenedor del cartel/mapa verde completo sin recortes */
         .green-hero-container {
             width: 100%;
-            height: 340px;
+            height: 380px;
             position: relative;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             flex-shrink: 0;
-            background-color: #8bb335;
+            background-color: #93c238;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .green-hero-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
             display: block;
         }
 
-        /* Degradado oscuro sutil sobre la imagen para que las letras flotantes contrasten perfectamente */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.55) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.5) 100%);
             pointer-events: none;
         }
 
-        /* Letras flotantes sobre el mapa verde (estilo Open House) */
         .hero-floating-content {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
+            bottom: 16px;
+            left: 18px;
+            right: 18px;
             color: var(--white);
             z-index: 5;
         }
@@ -244,40 +262,33 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--color-yellow);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.4);
         }
 
         .hero-floating-content h2 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 800;
             line-height: 1.1;
             color: var(--color-yellow);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             text-shadow: 0 2px 6px rgba(0,0,0,0.5);
         }
 
         .hero-dates {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 700;
             opacity: 0.95;
             letter-spacing: 0.5px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.4);
         }
 
-        /* Tarjeta blanca informativa debajo del mapa verde */
         .card-white-presentacion {
             background: var(--white);
             border-radius: 24px;
             padding: 18px 20px;
             color: var(--text-main);
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        .card-white-presentacion h3 {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 6px;
-            color: #111;
         }
         .card-white-presentacion p.desc {
             font-size: 12px;
@@ -326,6 +337,7 @@
         .dot-yellow { background-color: var(--color-yellow); }
         .dot-fuchsia { background-color: var(--color-fuchsia); }
         .dot-red { background-color: var(--color-red); }
+        .dot-blue { background-color: var(--color-blue); }
 
         /* --- PANTALLA 3: MAPA INTERACTIVO --- */
         .map-screen-container {
@@ -350,8 +362,9 @@
         .pin-yellow { background-color: var(--color-yellow); }
         .pin-fuchsia { background-color: var(--color-fuchsia); }
         .pin-red { background-color: var(--color-red); }
+        .pin-blue { background-color: var(--color-blue); }
 
-        /* --- BARRA DE NAVEGACIÓN INFERIOR --- */
+        /* --- BARRA DE NAVEGACIÓN INFERIOR (3 ICONOS) --- */
         .bottom-nav {
             position: absolute;
             bottom: 16px;
@@ -359,9 +372,9 @@
             right: 14px;
             background: var(--white);
             border-radius: 24px;
-            padding: 8px 16px;
+            padding: 8px 20px;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.25);
             z-index: 1000;
@@ -371,30 +384,27 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
             background: none;
             border: none;
+            color: #555555;
         }
         .nav-item svg {
             width: 22px;
             height: 22px;
             margin-bottom: 2px;
+            fill: currentColor;
         }
 
-        .nav-item-map {
-            color: var(--color-red);
-        }
-        .nav-item-map svg {
-            fill: var(--color-red);
-        }
+        .nav-item-info { color: #111111; }
+        .nav-item-info svg { fill: #111111; }
 
-        .nav-item-agenda {
-            color: var(--color-agenda-lime);
-        }
-        .nav-item-agenda svg {
-            fill: var(--color-agenda-lime);
-        }
+        .nav-item-agenda { color: var(--color-agenda-lime); }
+        .nav-item-agenda svg { fill: var(--color-agenda-lime); }
+
+        .nav-item-map { color: var(--color-red); }
+        .nav-item-map svg { fill: var(--color-red); }
 
         /* --- DESPLEGABLE INFORMATIVO EN MAPA --- */
         .bottom-sheet {
@@ -481,7 +491,19 @@
             color: var(--text-muted);
         }
 
-        /* --- PANTALLA 4: AGENDA --- */
+        /* --- PANTALLA 4: AGENDA (CON SCROLL FLUIDO Y BARRA LATERAL) --- */
+        #screen-4 {
+            background-color: var(--biennal-turquoise);
+            display: flex;
+            flex-direction: column;
+        }
+        .agenda-scroll-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 16px 20px 16px;
+            overflow-y: auto; /* Scroll táctil y de ordenador con barra lateral */
+        }
         .date-selectors {
             display: flex;
             gap: 10px;
@@ -518,10 +540,8 @@
             color: var(--text-main);
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             flex: 1;
-            margin-bottom: 80px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 75px;
+            overflow-y: visible;
         }
         .event-card-item {
             background: #fdfdfd;
@@ -563,7 +583,7 @@
         </div>
     </div>
 
-    <!-- PANTALLA 2: PRESENTACIÓN EN MODO SCROLL CON CABECERA DE MAPA Y TEXTOS FLOTANTES -->
+    <!-- PANTALLA 2: INFO (SCROLL CON MAPA VERDE ÍNTEGRO SIN CORTES) -->
     <div id="screen-2" class="screen">
         <div class="header-top">
             <div class="header-left">
@@ -581,7 +601,6 @@
         </div>
 
         <div class="screen-2-content">
-            <!-- Cabecera Hero con el mapa verde e información flotante -->
             <div class="green-hero-container">
                 <img src="mapa-verde.png" alt="Circuito del Arte - Mapa">
                 <div class="hero-overlay"></div>
@@ -592,7 +611,6 @@
                 </div>
             </div>
 
-            <!-- Tarjeta de información debajo -->
             <div class="card-white-presentacion">
                 <p class="desc" id="t-desc">Explora el circuito de talleres y estudios de artista por Ciutat Vella, Russafa y cercanías. ¡Ven al encuentro con el arte!</p>
                 
@@ -602,6 +620,7 @@
                     <div class="dot dot-yellow" onclick="filterRoute('yellow')" title="Ruta Amarilla"></div>
                     <div class="dot dot-fuchsia" onclick="filterRoute('fuchsia')" title="Ruta Fucsia"></div>
                     <div class="dot dot-red" onclick="filterRoute('red')" title="Ruta Roja"></div>
+                    <div class="dot dot-blue" onclick="filterRoute('blue')" title="Museos y Centros"></div>
                 </div>
 
                 <button class="btn-turquesa-mapa" id="t-btn-map" onclick="goToScreen(3)">Mapa del Circuito</button>
@@ -655,25 +674,25 @@
             </div>
         </div>
 
+        <!-- BARRA INFERIOR DE 3 ICONOS (MAPA) -->
         <div class="bottom-nav">
-            <button class="nav-item nav-item-map" onclick="goToScreen(3)">
-                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                <span id="t-nav-map">Mapa</span>
+            <button class="nav-item nav-item-info" onclick="goToScreen(2)">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><rect x="11" y="10" width="2" height="6" fill="currentColor"/><circle cx="12" cy="7" r="1" fill="currentColor"/></svg>
+                <span id="t-nav-info">Info</span>
             </button>
-            <div class="color-dots" style="margin-bottom: 0;">
-                <div class="dot dot-yellow" style="width: 14px; height: 14px;" onclick="filterRoute('yellow')" title="Ruta Amarilla"></div>
-                <div class="dot dot-fuchsia" style="width: 14px; height: 14px;" onclick="filterRoute('fuchsia')" title="Ruta Fucsia"></div>
-                <div class="dot dot-red" style="width: 14px; height: 14px;" onclick="filterRoute('red')" title="Ruta Roja"></div>
-            </div>
             <button class="nav-item nav-item-agenda" onclick="goToScreen(4)">
                 <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
                 <span id="t-nav-agenda">Agenda</span>
             </button>
+            <button class="nav-item nav-item-map" onclick="goToScreen(3)">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span id="t-nav-map">Mapa</span>
+            </button>
         </div>
     </div>
 
-    <!-- PANTALLA 4: AGENDA -->
-    <div id="screen-4" class="screen" style="justify-content: flex-start; display: flex; flex-direction: column;">
+    <!-- PANTALLA 4: AGENDA (CON SCROLL FLUIDO Y BARRA LATERAL) -->
+    <div id="screen-4" class="screen">
         <div class="header-top">
             <div class="header-left">
                 <button class="back-btn" onclick="goToScreen(3)">←</button>
@@ -689,7 +708,7 @@
             </div>
         </div>
 
-        <div style="padding: 0 16px; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+        <div class="agenda-scroll-wrapper">
             <div style="margin-top: 6px; color: white; flex-shrink: 0;">
                 <h2 id="t-agenda-title" style="font-size: 22px; font-weight: 800;">Agenda</h2>
                 <p id="t-agenda-dates" style="font-size: 12px; opacity: 0.9;">20, 21 y 22 de noviembre 2026</p>
@@ -717,19 +736,19 @@
             </div>
         </div>
 
+        <!-- BARRA INFERIOR DE 3 ICONOS (AGENDA) -->
         <div class="bottom-nav">
-            <button class="nav-item nav-item-map" onclick="goToScreen(3)">
-                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                <span id="t-nav-map2">Mapa</span>
+            <button class="nav-item nav-item-info" onclick="goToScreen(2)">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><rect x="11" y="10" width="2" height="6" fill="currentColor"/><circle cx="12" cy="7" r="1" fill="currentColor"/></svg>
+                <span id="t-nav-info2">Info</span>
             </button>
-            <div class="color-dots" style="margin-bottom: 0;">
-                <div class="dot dot-yellow" style="width: 14px; height: 14px;" onclick="filterRoute('yellow')" title="Ruta Amarilla"></div>
-                <div class="dot dot-fuchsia" style="width: 14px; height: 14px;" onclick="filterRoute('fuchsia')" title="Ruta Fucsia"></div>
-                <div class="dot dot-red" style="width: 14px; height: 14px;" onclick="filterRoute('red')" title="Ruta Roja"></div>
-            </div>
             <button class="nav-item nav-item-agenda" onclick="goToScreen(4)">
                 <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
                 <span id="t-nav-agenda2">Agenda</span>
+            </button>
+            <button class="nav-item nav-item-map" onclick="goToScreen(3)">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span id="t-nav-map2">Mapa</span>
             </button>
         </div>
     </div>
@@ -750,6 +769,7 @@
             dates: "20, 21 y 22 de noviembre 2026",
             free: "Acceso libre y gratuito",
             btnMap: "Mapa del Circuito",
+            navInfo: "Info",
             navMap: "Mapa",
             navAgenda: "Agenda",
             agendaTitle: "Agenda",
@@ -779,6 +799,7 @@
             dates: "20, 21 i 22 de novembre 2026",
             free: "Accés lliure i gratuït",
             btnMap: "Mapa del Circuit",
+            navInfo: "Info",
             navMap: "Mapa",
             navAgenda: "Agenda",
             agendaTitle: "Agenda",
@@ -808,6 +829,7 @@
             dates: "November 20, 21 and 22, 2026",
             free: "Free admission",
             btnMap: "Circuit Map",
+            navInfo: "Info",
             navMap: "Map",
             navAgenda: "Schedule",
             agendaTitle: "Schedule",
@@ -849,6 +871,8 @@
         document.getElementById('t-dates').innerText = t.dates;
         document.getElementById('t-free').innerText = t.free;
         document.getElementById('t-btn-map').innerText = t.btnMap;
+        document.getElementById('t-nav-info').innerText = t.navInfo;
+        document.getElementById('t-nav-info2').innerText = t.navInfo;
         document.getElementById('t-nav-map').innerText = t.navMap;
         document.getElementById('t-nav-map2').innerText = t.navMap;
         document.getElementById('t-nav-agenda').innerText = t.navAgenda;
@@ -1024,6 +1048,20 @@
             dir: "C/ de Sevilla, 5, L'Eixample, 46004 València",
             horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición colectiva e intervenciones en el estudio.",
             contacto: "maitebackman@gmail.com", telefono: "-"
+        },
+        { 
+            name: "Centre del Carme Cultura Contemporània (CCCC)", artistas: "Varios artistas",
+            lat: 39.479200, lng: -0.376500, color: "blue", 
+            dir: "C/ del Museu, 2, 46003 València",
+            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Centro de cultura contemporánea y exposiciones.",
+            contacto: "cccc@gva.es", telefono: "961 92 26 40"
+        },
+        { 
+            name: "IVAM (Institut Valencià d'Art Modern)", artistas: "Varios artistas",
+            lat: 39.479500, lng: -0.385000, color: "blue", 
+            dir: "C/ de Guillem de Castro, 118, 46001 València",
+            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Museo de arte moderno y exposiciones internacionales.",
+            contacto: "ivam@ivam.es", telefono: "963 86 30 00"
         }
     ];
 
@@ -1078,4 +1116,5 @@
 
 </body>
 </html>
+
 
