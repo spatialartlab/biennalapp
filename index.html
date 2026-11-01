@@ -21,7 +21,7 @@
             --color-fuchsia: #d8008f;
             --color-red: #e50012;
             --color-blue: #0066cc;
-            --color-emerald: #00c853; /* Verde esmeralda brillante */
+            --color-emerald: #00c853;
             --color-agenda-lime: #8bb335;
         }
 
@@ -32,7 +32,6 @@
             font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
-        /* Estilo para las barras de desplazamiento laterales */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -58,7 +57,6 @@
             align-items: center;
         }
 
-        /* Contenedor principal responsive adaptado a altura dinámica real (dvh) */
         .phone-container {
             width: 100%;
             max-width: 414px;
@@ -81,7 +79,6 @@
             }
         }
 
-        /* Sistema de Pantallas */
         .screen {
             position: absolute;
             top: 0;
@@ -100,7 +97,7 @@
             z-index: 10;
         }
 
-        /* --- PANTALLA 1: SPLASH (TÁCTIL EN CUALQUIER PARTE) --- */
+        /* --- PANTALLA 1: SPLASH --- */
         #screen-1 {
             justify-content: center;
             align-items: center;
@@ -204,7 +201,6 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        /* --- CONTENEDOR DE SCROLL CENTRAL --- */
         .scrollable-content-area {
             flex: 1;
             overflow-y: auto;
@@ -327,10 +323,11 @@
 
         .color-dots {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
             align-items: center;
             margin-bottom: 10px;
+            flex-wrap: wrap;
         }
         .dot {
             width: 17px;
@@ -346,7 +343,7 @@
         .dot-blue { background-color: var(--color-blue); }
         .dot-emerald { background-color: var(--color-emerald); }
 
-        /* --- PANTALLA 3: MAPA INTERACTIVO --- */
+        /* --- PANTALLA 3: MAPA --- */
         .map-screen-container {
             position: relative;
             width: 100%;
@@ -372,7 +369,7 @@
         .pin-blue { background-color: var(--color-blue); }
         .pin-emerald { background-color: var(--color-emerald); }
 
-        /* --- BARRA DE NAVEGACIÓN INFERIOR FIJA --- */
+        /* --- BARRA DE NAVEGACIÓN INFERIOR --- */
         .bottom-nav {
             background: var(--white);
             margin: 0 14px 14px 14px;
@@ -412,7 +409,7 @@
         .nav-item-map { color: var(--color-red); }
         .nav-item-map svg { fill: var(--color-red); }
 
-        /* --- DESPLEGABLE INFORMATIVO EN MAPA --- */
+        /* --- BOTTOM SHEET --- */
         .bottom-sheet {
             position: absolute;
             bottom: -100%;
@@ -743,7 +740,7 @@
 
             <div class="agenda-card-container">
                 <div id="agenda-events-content">
-                    <!-- Contenido dinámico según el día seleccionado -->
+                    <!-- Contenido dinámico -->
                 </div>
             </div>
         </div>
@@ -927,12 +924,10 @@
     let map;
     let markers = [];
 
-    // Inicialización al cargar la página
     window.addEventListener('DOMContentLoaded', () => {
         initMap();
         renderAgendaEvents();
         
-        // Redirección automática desde Splash
         setTimeout(() => {
             const splash = document.getElementById('screen-1');
             if (splash && splash.classList.contains('active')) {
@@ -944,10 +939,10 @@
     function initMap() {
         map = L.map('map', { zoomControl: false }).setView([39.4765, -0.3750], 15);
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap contributors & CARTO',
-            maxZoom: 19,
-            subdomains: 'abcd'
+        // Mapa base estándar y limpio de OpenStreetMap (sin restricciones de API key)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 19
         }).addTo(map);
 
         talleres.forEach(taller => {
@@ -1092,3 +1087,5 @@
 </script>
 </body>
 </html>
+
+
