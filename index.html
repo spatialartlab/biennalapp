@@ -561,7 +561,7 @@
 
 <div class="phone-container">
 
-    <!-- PANTALLA 1: SPLASH (SISTEMA SEGURO AUTOMÁTICO Y TÁCTIL) -->
+    <!-- PANTALLA 1: SPLASH -->
     <div id="screen-1" class="screen active" onclick="goToScreen(2)">
         <div class="splash-content">
             <img src="logo-cvo.png" alt="CVO Logo" class="splash-logo-img">
@@ -575,14 +575,14 @@
         </div>
     </div>
 
-    <!-- PANTALLA 2: INFO (ENCABEZADO Y PIE FIJOS, SCROLL CENTRAL) -->
+    <!-- PANTALLA 2: INFO -->
     <div id="screen-2" class="screen">
         <div class="header-top">
             <div class="header-left">
                 <button class="back-btn" onclick="goToScreen(1)">←</button>
                 <div class="brand-title">
-                    <h2>BIENNAL de<br>VALENCIA</h2>
-                    <p>CIUTAT VELLA OBERTA</p>
+                    <h2 id="t-header-title">BIENNAL de<br>VALENCIA</h2>
+                    <p id="t-header-sub">CIUTAT VELLA OBERTA</p>
                 </div>
             </div>
             <div class="lang-pills">
@@ -641,8 +641,8 @@
             <div class="header-left">
                 <button class="back-btn" onclick="goToScreen(2)">←</button>
                 <div class="brand-title">
-                    <h2>BIENNAL de<br>VALENCIA</h2>
-                    <p>CIUTAT VELLA OBERTA</p>
+                    <h2 id="t-header-title-3">BIENNAL de<br>VALENCIA</h2>
+                    <p id="t-header-sub-3">CIUTAT VELLA OBERTA</p>
                 </div>
             </div>
             <div class="lang-pills">
@@ -697,14 +697,14 @@
         </div>
     </div>
 
-    <!-- PANTALLA 4: AGENDA (ENCABEZADO Y PIE FIJOS, SCROLL CENTRAL) -->
+    <!-- PANTALLA 4: AGENDA -->
     <div id="screen-4" class="screen">
         <div class="header-top">
             <div class="header-left">
                 <button class="back-btn" onclick="goToScreen(3)">←</button>
                 <div class="brand-title">
-                    <h2>BIENNAL de<br>VALENCIA</h2>
-                    <p>CIUTAT VELLA OBERTA</p>
+                    <h2 id="t-header-title-4">BIENNAL de<br>VALENCIA</h2>
+                    <p id="t-header-sub-4">CIUTAT VELLA OBERTA</p>
                 </div>
             </div>
             <div class="lang-pills">
@@ -768,6 +768,8 @@
 
     const translations = {
         esp: {
+            headerTitle: "BIENNAL de<br>VALENCIA",
+            headerSub: "CIUTAT VELLA OBERTA",
             edition: "CIRCUIT DE TALLERS 2026",
             title: "Circuito del Arte",
             desc: "Explora el circuito de talleres y estudios de artista por Ciutat Vella, Russafa y cercanías. ¡Ven al encuentro con el arte!",
@@ -784,6 +786,8 @@
             sun: "DOM",
             propLabel: "Propuesta Artística",
             horLabel: "Horario de Visita",
+            propCultural: "Propuesta Cultural",
+            horAnual: "Horario Anual de Apertura",
             events: {
                 20: [
                     { tag: "18:30 · Arte · Luz", title: "Inauguración Arte a la Llum", loc: "📍 Jardines del Palau · Ciutat Vella", desc: "Inauguración del circuito lumínico con instalaciones de artistas locales y performance inaugural." },
@@ -799,6 +803,8 @@
             }
         },
         val: {
+            headerTitle: "BIENNAL de<br>VALÈNCIA",
+            headerSub: "CIUTAT VELLA OBERTA",
             edition: "CIRCUIT DE TALLERS 2026",
             title: "Circuit de l'Art",
             desc: "Explora el circuit de tallers i estudis d'artista per Ciutat Vella, Russafa i rodalia. Vine a la trobada amb l'art!",
@@ -815,6 +821,8 @@
             sun: "DG",
             propLabel: "Proposta Artística",
             horLabel: "Horari de Visita",
+            propCultural: "Proposta Cultural",
+            horAnual: "Horari Anual d'Obertura",
             events: {
                 20: [
                     { tag: "18:30 · Art · Llum", title: "Inauguració Art a la Llum", loc: "📍 Jardins del Palau · Ciutat Vella", desc: "Inauguració del circuit lumínic amb instal·lacions d'artistes locals i performance inaugural." },
@@ -830,6 +838,8 @@
             }
         },
         eng: {
+            headerTitle: "BIENNAL of<br>VALENCIA",
+            headerSub: "CIUTAT VELLA OBERTA",
             edition: "ART WORKSHOPS CIRCUIT 2026",
             title: "Art Circuit",
             desc: "Explore the circuit of artist studios and workshops around Ciutat Vella, Russafa and surroundings. Come meet the art!",
@@ -846,6 +856,8 @@
             sun: "SUN",
             propLabel: "Artistic Proposal",
             horLabel: "Visiting Hours",
+            propCultural: "Cultural Proposal",
+            horAnual: "Annual Opening Hours",
             events: {
                 20: [
                     { tag: "18:30 · Art · Light", title: "Art a la Llum Opening", loc: "📍 Jardines del Palau · Ciutat Vella", desc: "Opening of the lighting circuit featuring local artist installations and inaugural performance." },
@@ -873,28 +885,36 @@
         });
 
         const t = translations[lang];
+        
+        // Traducir cabeceras de todas las pantallas
+        ['t-header-title', 't-header-title-3', 't-header-title-4'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = t.headerTitle;
+        });
+        ['t-header-sub', 't-header-sub-3', 't-header-sub-4'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerText = t.headerSub;
+        });
+
+        // Traducir pantalla Info
         document.getElementById('t-edition').innerText = t.edition;
         document.getElementById('t-title').innerText = t.title;
         document.getElementById('t-desc').innerText = t.desc;
         document.getElementById('t-dates').innerText = t.dates;
         document.getElementById('t-free').innerText = t.free;
         document.getElementById('t-btn-map').innerText = t.btnMap;
-        document.getElementById('t-nav-info').innerText = t.navInfo;
-        document.getElementById('t-nav-info2').innerText = t.navInfo;
-        document.getElementById('t-nav-info3').innerText = t.navInfo;
-        document.getElementById('t-nav-map').innerText = t.navMap;
-        document.getElementById('t-nav-map2').innerText = t.navMap;
-        document.getElementById('t-nav-map3').innerText = t.navMap;
-        document.getElementById('t-nav-agenda').innerText = t.navAgenda;
-        document.getElementById('t-nav-agenda2').innerText = t.navAgenda;
-        document.getElementById('t-nav-agenda3').innerText = t.navAgenda;
+
+        // Traducir barra de navegación inferior en todas las pantallas
+        ['t-nav-info', 't-nav-info2', 't-nav-info3'].forEach(id => { document.getElementById(id).innerText = t.navInfo; });
+        ['t-nav-map', 't-nav-map2', 't-nav-map3'].forEach(id => { document.getElementById(id).innerText = t.navMap; });
+        ['t-nav-agenda', 't-nav-agenda2', 't-nav-agenda3'].forEach(id => { document.getElementById(id).innerText = t.navAgenda; });
+
+        // Traducir Agenda
         document.getElementById('t-agenda-title').innerText = t.agendaTitle;
         document.getElementById('t-agenda-dates').innerText = t.agendaDates;
         document.getElementById('t-day-fri').innerText = t.fri;
         document.getElementById('t-day-sat').innerText = t.sat;
         document.getElementById('t-day-sun').innerText = t.sun;
-        document.getElementById('t-prop-label').innerText = t.propLabel;
-        document.getElementById('t-hor-label').innerText = t.horLabel;
 
         renderAgendaEvents();
     }
@@ -1066,31 +1086,31 @@
         },
         /* Museos y Centros Expositivos (Azules) */
         { 
-            name: "Centre del Carme Cultura Contemporània (CCCC)", artistas: "Varios artistas",
+            name: "Centre del Carme Cultura Contemporània (CCCC)", artistas: "Centro de cultura contemporánea",
             lat: 39.479200, lng: -0.376500, color: "blue", 
             dir: "C/ del Museu, 2, 46003 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Centro de cultura contemporánea y exposiciones.",
+            horario: "Martes a domingo de 11:00 a 21:00 h.", propuesta: "Centro vivo de cultura contemporánea y exposiciones de arte actual.",
             contacto: "cccc@gva.es", telefono: "961 92 26 40"
         },
         { 
-            name: "IVAM (Institut Valencià d'Art Modern)", artistas: "Varios artistas",
+            name: "IVAM (Institut Valencià d'Art Modern)", artistas: "Museo de arte moderno",
             lat: 39.479500, lng: -0.385000, color: "blue", 
             dir: "C/ de Guillem de Castro, 118, 46001 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Museo de arte moderno y exposiciones internacionales.",
+            horario: "Martes a domingo de 10:00 a 19:00 h. Viernes hasta las 21:00 h.", propuesta: "Referente internacional de arte moderno y exposiciones temporales de vanguardia.",
             contacto: "ivam@ivam.es", telefono: "963 86 30 00"
         },
         { 
-            name: "Museo de Bellas Artes de València", artistas: "Colección permanente y exposiciones",
+            name: "Museo de Bellas Artes de València", artistas: "Pinacoteca histórica",
             lat: 39.479800, lng: -0.369200, color: "blue", 
             dir: "C/ de Pius XII, 9, 46010 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Pinacoteca histórica y exposiciones temporales de arte.",
+            horario: "Martes a domingo de 10:00 a 20:00 h.", propuesta: "Una de las pinacotecas más importantes de España con obras maestras de Goya, Sorolla y los primitivos valencianos.",
             contacto: "museobellasartesvlc@gva.es", telefono: "963 87 03 00"
         },
         { 
-            name: "Museo de la Ciudad", artistas: "Exposiciones históricas y artísticas",
-            lat: 39.475100, lng: -0.375500, color: "blue", 
-            dir: "Plaza del Arzobispo, 3, 46003 València",
-            horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Espacio museístico municipal dedicado a la historia y arte de València.",
+            name: "Museo de la Ciudad", artistas: "Espacio museístico municipal",
+            lat: 39.475250, lng: -0.375200, color: "blue", 
+            dir: "Plaça del Arquebisbe, 3, 46003 València",
+            horario: "Martes a domingo de 10:00 a 19:00 h.", propuesta: "Espacio dedicado a la historia, arqueología y evolución artística de la ciudad de València.",
             contacto: "museociutat@valencia.es", telefono: "962 08 44 41"
         }
     ];
@@ -1129,10 +1149,22 @@
 
     function openSheet(taller) {
         document.getElementById('sheet-title').innerText = taller.name;
-        document.getElementById('sheet-artists').innerText = taller.artistas ? `Artistas / Info: ${taller.artistas}` : "";
+        const t = translations[currentLang];
+        
+        if (taller.color === 'blue') {
+            document.getElementById('sheet-artists').innerText = taller.artistas || "";
+            document.getElementById('t-prop-label').innerText = t.propCultural;
+            document.getElementById('t-hor-label').innerText = t.horAnual;
+        } else {
+            document.getElementById('sheet-artists').innerText = taller.artistas ? `Artistas / Info: ${taller.artistas}` : "";
+            document.getElementById('t-prop-label').innerText = t.propLabel;
+            document.getElementById('t-hor-label').innerText = t.horLabel;
+        }
+
         document.getElementById('sheet-address').innerText = `📍 ${taller.dir}`;
-        document.getElementById('sheet-propuesta').innerText = taller.propuesta || "Taller abierto y exposición.";
+        document.getElementById('sheet-propuesta').innerText = taller.propuesta || "Exposición y actividades.";
         document.getElementById('sheet-horario').innerText = taller.horario || "20, 21 y 22 de Noviembre de 2026";
+        
         document.getElementById('sheet-contacto').innerText = `✉️ ${taller.contacto || '-'}`;
         document.getElementById('sheet-telefono').innerText = `📞 ${taller.telefono || '-'}`;
         
@@ -1146,4 +1178,3 @@
 
 </body>
 </html>
-
