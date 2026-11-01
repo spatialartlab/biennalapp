@@ -21,6 +21,7 @@
             --color-fuchsia: #d8008f;
             --color-red: #e50012;
             --color-blue: #0066cc;
+            --color-emerald: #00c853; /* Verde esmeralda brillante */
             --color-agenda-lime: #8bb335;
         }
 
@@ -203,7 +204,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        /* --- CONTENEDOR DE SCROLL CENTRAL (EXCLUSIVO PARA INFO Y AGENDA) --- */
+        /* --- CONTENEDOR DE SCROLL CENTRAL --- */
         .scrollable-content-area {
             flex: 1;
             overflow-y: auto;
@@ -343,6 +344,7 @@
         .dot-fuchsia { background-color: var(--color-fuchsia); }
         .dot-red { background-color: var(--color-red); }
         .dot-blue { background-color: var(--color-blue); }
+        .dot-emerald { background-color: var(--color-emerald); }
 
         /* --- PANTALLA 3: MAPA INTERACTIVO --- */
         .map-screen-container {
@@ -368,6 +370,7 @@
         .pin-fuchsia { background-color: var(--color-fuchsia); }
         .pin-red { background-color: var(--color-red); }
         .pin-blue { background-color: var(--color-blue); }
+        .pin-emerald { background-color: var(--color-emerald); }
 
         /* --- BARRA DE NAVEGACIÓN INFERIOR FIJA --- */
         .bottom-nav {
@@ -572,6 +575,8 @@
             <div class="dot dot-yellow"></div>
             <div class="dot dot-fuchsia"></div>
             <div class="dot dot-red"></div>
+            <div class="dot dot-blue"></div>
+            <div class="dot dot-emerald"></div>
         </div>
     </div>
 
@@ -613,6 +618,7 @@
                     <div class="dot dot-fuchsia" onclick="filterRoute('fuchsia')" title="Ruta Fucsia"></div>
                     <div class="dot dot-red" onclick="filterRoute('red')" title="Ruta Roja"></div>
                     <div class="dot dot-blue" onclick="filterRoute('blue')" title="Museos y Centros"></div>
+                    <div class="dot dot-emerald" onclick="filterRoute('emerald')" title="Galerías y Espacios de Arte"></div>
                 </div>
 
                 <button class="btn-turquesa-mapa" id="t-btn-map" onclick="goToScreen(3)">Mapa del Circuito</button>
@@ -788,6 +794,8 @@
             horLabel: "Horario de Visita",
             propCultural: "Propuesta Cultural",
             horAnual: "Horario Anual de Apertura",
+            propGallery: "Propuesta Expositiva",
+            horGallery: "Horario de Galería",
             events: {
                 20: [
                     { tag: "18:30 · Arte · Luz", title: "Inauguración Arte a la Llum", loc: "📍 Jardines del Palau · Ciutat Vella", desc: "Inauguración del circuito lumínico con instalaciones de artistas locales y performance inaugural." },
@@ -823,6 +831,8 @@
             horLabel: "Horari de Visita",
             propCultural: "Proposta Cultural",
             horAnual: "Horari Anual d'Obertura",
+            propGallery: "Proposta Expositiva",
+            horGallery: "Horari de Galeria",
             events: {
                 20: [
                     { tag: "18:30 · Art · Llum", title: "Inauguració Art a la Llum", loc: "📍 Jardins del Palau · Ciutat Vella", desc: "Inauguració del circuit lumínic amb instal·lacions d'artistes locals i performance inaugural." },
@@ -858,6 +868,8 @@
             horLabel: "Visiting Hours",
             propCultural: "Cultural Proposal",
             horAnual: "Annual Opening Hours",
+            propGallery: "Exhibition Proposal",
+            horGallery: "Gallery Hours",
             events: {
                 20: [
                     { tag: "18:30 · Art · Light", title: "Art a la Llum Opening", loc: "📍 Jardines del Palau · Ciutat Vella", desc: "Opening of the lighting circuit featuring local artist installations and inaugural performance." },
@@ -964,7 +976,7 @@
         }
     }, 1500);
 
-    const map = L.map('map', { zoomControl: false }).setView([39.4735, -0.3768], 15);
+    const map = L.map('map', { zoomControl: false }).setView([39.4765, -0.3750], 15);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors',
@@ -972,6 +984,7 @@
     }).addTo(map);
 
     const talleres = [
+        // RUTA AMARILLA
         { 
             name: "Taller de Pepe March", artistas: "Pepe March",
             lat: 39.478034, lng: -0.378164, color: "yellow", 
@@ -1000,6 +1013,8 @@
             horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.",
             contacto: "henardelpaso@hotmail.com", telefono: "609 393 490"
         },
+
+        // RUTA FUCSIA
         { 
             name: "Studio Vintage", artistas: "Artistas varios",
             lat: 39.475415, lng: -0.377636, color: "fuchsia", 
@@ -1056,6 +1071,8 @@
             horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Instalación e investigación visual.",
             contacto: "-", telefono: "-"
         },
+
+        // RUTA ROJA
         { 
             name: "Taller de Elena Martí Manzanares", artistas: "Elena Martí Manzanares",
             lat: 39.463707, lng: -0.374152, color: "red", 
@@ -1084,34 +1101,79 @@
             horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición colectiva e intervenciones en el estudio.",
             contacto: "maitebackman@gmail.com", telefono: "-"
         },
-        /* Museos y Centros Expositivos (Azules) */
+
+        // MUSEOS Y CENTROS CULTURALES (Azul)
+        { 
+            name: "Museo de la Ciudad (Palacio Marqués de Campo)", artistas: "Espacio museístico municipal",
+            lat: 39.476013, lng: -0.373859, color: "blue", 
+            dir: "Plaça de l'Arquebisbe, 3, 46003 València",
+            horario: "Martes a domingo de 10:00 a 19:00 h.", propuesta: "Espacio dedicado a la historia, arqueología y evolución artística de la ciudad de València ubicado en el histórico Palacio del Marqués de Campo.",
+            contacto: "museociutat@valencia.es", telefono: "962 08 44 41"
+        },
+        { 
+            name: "Octubre Centre de Cultura Contemporània (OCCC)", artistas: "Centro de cultura contemporánea",
+            lat: 39.473012, lng: -0.377026, color: "blue", 
+            dir: "C/ de Sant Ferran, 12, Ciutat Vella, 46001 València",
+            horario: "Lunes a viernes de 09:00 a 21:00 h. Sábados de 09:00 a 14:00 h.", propuesta: "Espacio pluridisciplinar de pensamiento, creación contemporánea, exposiciones, ciclos de debate y actividades culturales.",
+            contacto: "info@octubre.cat", telefono: "96 315 77 99"
+        },
         { 
             name: "Centre del Carme Cultura Contemporània (CCCC)", artistas: "Centro de cultura contemporánea",
             lat: 39.479200, lng: -0.376500, color: "blue", 
-            dir: "C/ del Museu, 2, 46003 València",
-            horario: "Martes a domingo de 11:00 a 21:00 h.", propuesta: "Centro vivo de cultura contemporánea y exposiciones de arte actual.",
+            dir: "C/ del Museu, 2, Ciutat Vella, 46003 València",
+            horario: "Martes a domingo de 11:00 a 21:00 h. (Lunes cerrado).", propuesta: "Espacio dinámico de cultura contemporánea que acoge un amplio abanico de prácticas artísticas actuales, artes compuestas, diseño y performance.",
             contacto: "cccc@gva.es", telefono: "961 92 26 40"
         },
         { 
             name: "IVAM (Institut Valencià d'Art Modern)", artistas: "Museo de arte moderno",
-            lat: 39.479500, lng: -0.385000, color: "blue", 
+            lat: 39.479779, lng: -0.382800, color: "blue", 
             dir: "C/ de Guillem de Castro, 118, 46001 València",
-            horario: "Martes a domingo de 10:00 a 19:00 h. Viernes hasta las 21:00 h.", propuesta: "Referente internacional de arte moderno y exposiciones temporales de vanguardia.",
+            horario: "Martes a domingo de 10:00 a 19:00 h. Viernes hasta las 21:00 h.", propuesta: "Referente internacional de arte moderno y contemporáneo con más de 11.000 obras de arte, biblioteca y centro de exposiciones.",
             contacto: "ivam@ivam.es", telefono: "963 86 30 00"
         },
         { 
-            name: "Museo de Bellas Artes de València", artistas: "Pinacoteca histórica",
-            lat: 39.479800, lng: -0.369200, color: "blue", 
+            name: "Museo de Bellas Artes de Valencia", artistas: "Pinacoteca histórica",
+            lat: 39.479128, lng: -0.371250, color: "blue", 
             dir: "C/ de Pius XII, 9, 46010 València",
-            horario: "Martes a domingo de 10:00 a 20:00 h.", propuesta: "Una de las pinacotecas más importantes de España con obras maestras de Goya, Sorolla y los primitivos valencianos.",
+            horario: "Martes a domingo de 10:00 a 20:00 h.", propuesta: "Una de las pinacotecas más importantes de España, albergando importantes colecciones de pintura valenciana y flamenca, con obras maestras de Goya y Sorolla.",
             contacto: "museobellasartesvlc@gva.es", telefono: "963 87 03 00"
         },
         { 
-            name: "Museo de la Ciudad", artistas: "Espacio museístico municipal",
-            lat: 39.475250, lng: -0.375200, color: "blue", 
-            dir: "Plaça del Arquebisbe, 3, 46003 València",
-            horario: "Martes a domingo de 10:00 a 19:00 h.", propuesta: "Espacio dedicado a la historia, arqueología y evolución artística de la ciudad de València.",
-            contacto: "museociutat@valencia.es", telefono: "962 08 44 41"
+            name: "Col·legi Major Rector Peset (UV)", artistas: "Centro cultural y expositivo",
+            lat: 39.475956, lng: -0.379371, color: "blue", 
+            dir: "Pl. del Forn de Sant Nicolau, 4, 46001 València",
+            horario: "Lunes a viernes de 09:00 a 20:00 h.", propuesta: "Espacio institucional de la Universitat de València dedicado a exposiciones de arte contemporáneo y actividades culturales.",
+            contacto: "cpenset@uv.es", telefono: "963 15 68 00"
+        },
+        { 
+            name: "Fundación Bancaja", artistas: "Centro cultural y exposiciones",
+            lat: 39.473940, lng: -0.370110, color: "blue", 
+            dir: "Pl. de Tetuán, 23, 46003 València",
+            horario: "Martes a domingo de 10:00 a 14:00 h. y de 16:30 a 20:30 h.", propuesta: "Espacio de referencia en Valencia que acoge grandes exposiciones temporales de arte, talleres culturales y conferencias.",
+            contacto: "fundacionbancaja@fundacionbancaja.es", telefono: "963 81 39 90"
+        },
+        { 
+            name: "Bombas Gens Centre d’Art", artistas: "Centro de artes digitales",
+            lat: 39.485842, lng: -0.384888, color: "blue", 
+            dir: "Av. de Burjassot, 54, 46009 València",
+            horario: "Miércoles a domingo de 10:00 a 19:00 h.", propuesta: "Antiguo complejo industrial rehabilitado que fusiona el patrimonio arquitectónico histórico con exposiciones vanguardistas de arte contemporáneo y digital.",
+            contacto: "info@bombasgens.com", telefono: "963 46 38 56"
+        },
+
+        // ESPACIOS DE ARTE Y GALERÍAS (Verde Esmeralda)
+        { 
+            name: "La Gallera Art", artistas: "Galería de arte contemporáneo",
+            lat: 39.473791, lng: -0.377786, color: "emerald", 
+            dir: "Carrer dels Aluders, 7, 46001 València",
+            horario: "Lunes a sábado de 11:00 a 14:00 h. y de 17:00 a 20:00 h.", propuesta: "Espacio expositivo dedicado a la promoción y exhibición de obras de arte contemporáneo y artistas plásticos actuales.",
+            contacto: "lagallerart.com", telefono: "630 57 68 12"
+        },
+        { 
+            name: "Aleksandra Istorik Gallery", artistas: "Galería de arte contemporáneo",
+            lat: 39.476449, lng: -0.372887, color: "emerald", 
+            dir: "C/ de l'Almirall, 1, 46003 València",
+            horario: "Lunes a sábado de 12:00 a 14:00 h. y de 17:00 a 20:30 h.", propuesta: "Galería de arte contemporáneo enfocada en proyectos de artistas emergentes y consolidados, exposiciones e intercambios culturales.",
+            contacto: "istorik.gallery@gmail.com", telefono: "+34 657 25 11 55"
         }
     ];
 
@@ -1155,6 +1217,10 @@
             document.getElementById('sheet-artists').innerText = taller.artistas || "";
             document.getElementById('t-prop-label').innerText = t.propCultural;
             document.getElementById('t-hor-label').innerText = t.horAnual;
+        } else if (taller.color === 'emerald') {
+            document.getElementById('sheet-artists').innerText = taller.artistas || "";
+            document.getElementById('t-prop-label').innerText = t.propGallery;
+            document.getElementById('t-hor-label').innerText = t.horGallery;
         } else {
             document.getElementById('sheet-artists').innerText = taller.artistas ? `Artistas / Info: ${taller.artistas}` : "";
             document.getElementById('t-prop-label').innerText = t.propLabel;
@@ -1178,3 +1244,4 @@
 
 </body>
 </html>
+
