@@ -518,7 +518,7 @@
             transition: all 0.2s;
         }
         .date-box.active-day {
-            border-color: var(--biennal-turquoise-dark);
+            border-color: #111111;
             transform: scale(1.03);
         }
         .date-box.yellow { background-color: var(--color-yellow); color: #111; }
@@ -536,35 +536,103 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             flex-shrink: 0;
         }
-        .event-card-item {
-            background: #fdfdfd;
-            border: 1px solid #eee;
+        .agenda-intro-box {
+            background: #f4f9fa;
             border-radius: 14px;
             padding: 12px;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
+            border: 1px solid #d9eef2;
+            text-align: center;
         }
-        .event-tag {
+        .agenda-intro-box h3 {
+            font-size: 14px;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 4px;
+        }
+        .agenda-intro-box p {
+            font-size: 11.5px;
+            color: #333333;
+            line-height: 1.4;
+        }
+        .event-card-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+        .event-card-highlight {
+            background: #fdfdfd;
+            border: 2px solid #111111;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        .visita-badge {
             display: inline-block;
-            background: #e0f4f8;
-            color: var(--biennal-turquoise-dark);
-            font-size: 10px;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 6px;
-            margin-bottom: 6px;
+            background: #ffde00;
+            color: #111111;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 5px 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #e5c700;
+            line-height: 1.3;
         }
-        .event-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-        .event-loc { font-size: 11.5px; color: var(--text-muted); margin-bottom: 6px; }
-        .event-desc { font-size: 12px; color: #444; line-height: 1.3; }
+        .event-title {
+            font-size: 16.5px;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 4px;
+        }
+        .event-loc {
+            font-size: 12px;
+            font-weight: 600;
+            color: #222222;
+            margin-bottom: 8px;
+        }
+        .event-desc {
+            font-size: 12.5px;
+            color: #111111;
+            line-height: 1.45;
+        }
+        .horario-box {
+            background: #f1f5f9;
+            border-left: 3px solid #111111;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #111111;
+            line-height: 1.45;
+        }
         .tyris-banner {
             background: #FFF8DC;
-            border-left: 4px solid #FFD700;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 12px;
+            border: 1.5px solid #FFD700;
+            border-left: 5px solid #FFA000;
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 800;
+            margin: 12px 0;
+            color: #111111;
+            line-height: 1.4;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.25);
+        }
+        .movement-banner {
+            background: #f0f9ff;
+            border-left: 4px solid #0096a6;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 12.5px;
             font-weight: 700;
-            margin: 10px 0;
-            color: #333;
+            margin: 12px 0;
+            color: #111111;
+            line-height: 1.4;
         }
     </style>
 </head>
@@ -750,6 +818,10 @@
             </div>
 
             <div class="agenda-card-container">
+                <div class="agenda-intro-box">
+                    <h3 id="t-agenda-subhead">ART A LA LLUM - CIRCUITO DEL ARTE</h3>
+                    <p id="t-agenda-intro"><strong>Visitas guiadas:</strong> Encuentro en los talleres de artista. Encuentro con los artistas. Aproximación a la creación de una obra de arte. Exposiciones y actividades artísticas.<br><strong>Acceso libre y gratuito.</strong></p>
+                </div>
                 <div id="agenda-events-content">
                     <!-- Contenido dinámico -->
                 </div>
@@ -795,6 +867,8 @@
             navAgenda: "Agenda",
             agendaTitle: "Agenda",
             agendaDates: "20, 21 y 22 de noviembre 2026",
+            agendaSubhead: "ART A LA LLUM - CIRCUITO DEL ARTE",
+            agendaIntro: "<strong>Visitas guiadas:</strong> Encuentro en los talleres de artista. Encuentro con los artistas. Aproximación a la creación de una obra de arte. Exposiciones y actividades artísticas.<br><strong>Acceso libre y gratuito.</strong>",
             fri: "VIE",
             sat: "SÁB",
             sun: "DOM",
@@ -806,31 +880,174 @@
             horGallery: "Horario de Galería",
             events: {
                 20: [
-                    { tag: "16:30 · Visita Biennal CVO", title: "Encuentro en el Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, València", desc: "Artista: Lola Tudela. Exposición: Pintura y grabado.<br>Horario taller: Vie y Sáb 11:00-13:00 / 17:00-19:00, Dom 11:00-13:00." },
-                    { tag: "🍺 Cerveza Tyris", title: "El arte se mira, se toca y se brinda", loc: "📍 Circuito Arte a la Llum", desc: "Momento Cerveza Tyris para compartir entre creadores y visitantes." },
-                    { tag: "18:00 · Visita Biennal CVO", title: "Estudio de Henar del Paso", loc: "📍 C/ Na Jordana, 22, bajo dcha, València", desc: "Artista: Henar del Paso. Exposición: Pintura y dibujo.<br>Horario taller: Viernes 20 tarde." },
-                    { tag: "✨ Arte en movimiento", title: "Cada taller, una historia que se abre", loc: "📍 Ciutat Vella", desc: "Recorrido abierto por los espacios creativos del centro histórico." },
-                    { tag: "19:00 · Visita Biennal CVO", title: "Taller de Elena Martí Manzanares", loc: "📍 C/ Sevilla, 14, València", desc: "Artista: Elena Martí Manzanares. Exposición: Pintura, dibujo y escultura.<br>Horario taller: Vie-Sáb 10:00-14:00 / 16:00-20:30, Dom 11:00-14:30." },
-                    { tag: "20:00 · Visita Biennal CVO", title: "Taller Be Zornoza", loc: "📍 C/ Clero, 7, bajo izq, Russafa", desc: "Artista: Be Zornoza. Exposición: Pintura.<br>Horario taller: Vie 17:00-21:00, Sáb-Dom 10:00-14:00 / 17:00-21:00." },
-                    { tag: "🍺 Cerveza Tyris", title: "Brindamos donde nace el arte", loc: "📍 Russafa", desc: "Brindis inaugural en el corazón de Russafa." }
+                    {
+                        type: "highlight",
+                        badge: "📍 Visita Biennal CVO · Viernes 20 tarde, 16:30 h",
+                        title: "Encuentro en el Taller de Lola Tudela",
+                        loc: "📍 C/ Calatrava, 19 - 1, 46001, València"
+                    },
+                    {
+                        type: "tyris",
+                        text: "🍺 Momentos Cerveza Tyris: El arte se mira, se toca y se brinda."
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Viernes 20 a las 16:30 h",
+                        title: "Taller de Lola Tudela",
+                        loc: "📍 C/ Calatrava, 19 - 1, 46001, València",
+                        details: "<strong>Artista:</strong> Lola Tudela<br><strong>Exposición:</strong> Pintura y grabado",
+                        horario: "<strong>Horario:</strong><br>• Viernes 20 y sábado 21: ☀️ 11:00 - 13:00 / 🌙 17:00 - 19:00<br>• Domingo 22: ☀️ 11:00 - 13:00"
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Viernes 20 a las 18:00 h",
+                        title: "Estudio de Henar del Paso",
+                        loc: "📍 C/ Na Jordana, 22, bajo, derecha, 46003, València",
+                        details: "<strong>Artista:</strong> Henar del Paso<br><strong>Exposición:</strong> Pintura y dibujo",
+                        horario: "<strong>Horario:</strong> Viernes 20, tarde"
+                    },
+                    {
+                        type: "movement",
+                        text: "✨ Arte en movimiento: cada taller, una historia que se abre."
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Viernes 20 a las 19:00 h",
+                        title: "Taller de Elena Martí Manzanares",
+                        loc: "📍 C/ Sevilla, 14, 46006, València",
+                        details: "<strong>Artista:</strong> Elena Martí Manzanares<br><strong>Exposición:</strong> Pintura, dibujo y escultura",
+                        horario: "<strong>Horario:</strong><br>• Viernes 20 y sábado 21: ☀️ 10:00 - 14:00 / 🌙 16:00 - 20:30<br>• Domingo 22: ☀️ 11:00 - 14:30"
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Viernes 20 a las 20:00 h",
+                        title: "Taller Be Zornoza",
+                        loc: "📍 C/ Clero, 7, bajo izquierda, Russafa, València",
+                        details: "<strong>Artista:</strong> Be Zornoza<br><strong>Exposición:</strong> Pintura",
+                        horario: "<strong>Horario:</strong><br>• Viernes 20: 🌙 17:00 - 21:00<br>• Sábado 21 y domingo 22: ☀️ 10:00 - 14:00 / 🌙 17:00 - 21:00"
+                    },
+                    {
+                        type: "tyris",
+                        text: "🍺 Momentos Cerveza Tyris: Brindamos donde nace el arte."
+                    }
                 ],
                 21: [
-                    { tag: "09:15 · Visita Biennal CVO", title: "Encuentro en el Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, València", desc: "Artista: Marcela Gómez.<br>Horario taller: Vie 17:00-20:00, Sáb-Dom 11:00-14:00 / 17:00-20:00." },
-                    { tag: "10:30 · Visita Biennal CVO", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8, València", desc: "Artista: Sento. Exposición: Isabel Guirao.<br>Horario taller: Lunes a sábado 10:30 - 14:30." },
-                    { tag: "11:15 · Visita Biennal CVO", title: "Fundación y Estudio Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, València", desc: "Horario: Consultar en taller." },
-                    { tag: "✨ Arte en movimiento", title: "València se recorre a pie", loc: "📍 Ciutat Vella - Russafa", desc: "València se recorre a pie, taller a taller." },
-                    { tag: "13:00 · Demostración", title: "Cianotipia con Karina Vagradova", loc: "📍 Lalambik, C/ Buenos Aires, 10", desc: "Demostración del proceso de insolado de imagen en Lalambik, estudio de arte." },
-                    { tag: "13:30 · Visita Biennal CVO", title: "Lalambik, estudio de arte", loc: "📍 C/ Buenos Aires, 10, Russafa", desc: "Artistas: Karina Vagradova y Carmen Ibarra. Artista invitada: Carmen García Gordillo ('Sueños').<br>Actividades: Taller Book Art (Vie 19:00), Cianotipia (Sáb 13:00), Acuarela en directo (Dom 11:00)." },
-                    { tag: "17:00 · Visita Biennal CVO", title: "Encuentro en el Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa", desc: "Artistas: Alejandro Martínez Corredor, José Trujillo, Lino Vicente Sayo, Luis Lluch, Cowboygiov y Leonie Crowley.<br>Horario taller: Vie-Sáb 12:00-14:00 / 17:00-20:00, Dom 12:00-16:00." },
-                    { tag: "18:00 · Visita Biennal CVO", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, bajo dcha, Russafa", desc: "Artista: Celia Kettle. Exposición individual: 'El ciclo de la vida' (acuarela y técnica mixta).<br>Horario taller: Vie-Dom 11:00-14:00 / 18:00-20:00." },
-                    { tag: "19:00 · Visita Biennal CVO", title: "Taller Color Elefante", loc: "📍 C/ Sevilla, 26, bajo izq, Russafa", desc: "Artistas residentes: Carles Albert Casanova, Ana Arjona, Ana Cantó y equipo.<br>Horario taller: Vie-Dom 10:30-14:30 / 17:30-21:30." },
-                    { tag: "🍺 Cerveza Tyris", title: "Brindamos por los talleres", loc: "📍 Russafa", desc: "Momentos Cerveza Tyris: Brindamos por los talleres que mantienen viva la ciudad." }
+                    {
+                        type: "highlight",
+                        badge: "📍 Visita Biennal CVO · Sábado 21 mañana, 09:15 h",
+                        title: "Encuentro en el Taller Veroneta",
+                        loc: "📍 C/ Pintor Domingo, 7, 46001, València"
+                    },
+                    {
+                        type: "highlight",
+                        badge: "📍 Visita Biennal CVO · Sábado 21 tarde, 17:00 h",
+                        title: "Encuentro en el Wood Studio 2.0",
+                        loc: "📍 C/ Pintor Gisbert, 3, Russafa, València"
+                    },
+                    {
+                        type: "movement",
+                        text: "✨ Arte en movimiento: València se recorre a pie, taller a taller."
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Sábado 21 a las 09:15 h",
+                        title: "Taller Veroneta",
+                        loc: "📍 C/ Pintor Domingo, 7, 46001, València",
+                        details: "<strong>Artista:</strong> Marcela Gómez",
+                        horario: "<strong>Horario:</strong><br>• Viernes 20: 🌙 Solo tarde, 17:00 - 20:00<br>• Sábado 21 y domingo 22: ☀️ 11:00 - 14:00 / 🌙 17:00 - 20:00"
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Sábado 21 a las 10:30 - 11:00 h",
+                        title: "Studio Vintage",
+                        loc: "📍 Carrer de la Puríssima, 8, 46001, València",
+                        details: "<strong>Coordinador:</strong> Sento<br><strong>Exposición:</strong> Isabel Guirao",
+                        horario: "<strong>Horario:</strong> Lunes a sábado: ☀️ 10:30 - 14:30"
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Sábado 21 a las 11:15 - 13:00 h",
+                        title: "Fundación y Estudio Victoria Cano",
+                        loc: "📍 C/ Portal de Valldigna, 7, 46003, València",
+                        details: "",
+                        horario: "<strong>Horario:</strong> Consultar en taller"
+                    },
+                    {
+                        type: "tyris",
+                        text: "🍺 Momentos Cerveza Tyris: El arte sabe mejor cuando se comparte."
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Sábado 21 a las 13:30 h (Taller de Cianotipia)",
+                        title: "Lalambik, estudio de arte",
+                        loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València",
+                        details: "<strong>Coordinadora:</strong> Carmen Ibarra<br><strong>Exposición:</strong> Obra de las artistas del estudio: Karina Vagradova y Carmen Ibarra. Pintura, dibujo, cianotipia y obra gráfica.<br><strong>Artista invitada:</strong> Carmen García Gordillo con la serie \"Sueños\" (dibujos y pinturas)<br><strong>Actividades complementarias:</strong><br>• Viernes 20, 19:00 h: Taller Iniciación al Book Art. Carmen García Gordillo<br>• Sábado 21, 13:00 h: Cianotipia con Karina Vagradova. Demostración del proceso de insolado de imagen<br>• Domingo 22, 11:00 h: Acuarela. Carmen Ibarra pintará una acuarela en directo",
+                        horario: "<strong>Horario:</strong><br>• Viernes 20: 🌙 18:00 - 21:00<br>• Sábado 21 y domingo 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 21:00"
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Sábado 21 a las 17:00 h",
+                        title: "Wood Studio 2.0",
+                        loc: "📍 C/ Pintor Gisbert, 3, Russafa, València",
+                        details: "<strong>Coordinador:</strong> Alejandro Martínez Corredor (@alejandro.s.martinez)<br><strong>Artistas participantes:</strong> José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), Alejandro Martínez Corredor (@alejandro.s.martinez), @cowboygiov y Leonie Crowley (@jlcrowleyart)",
+                        horario: "<strong>Horario:</strong><br>• Viernes 20 y sábado 21: ☀️ 12:00 - 14:00 / 🌙 17:00 - 20:00<br>• Domingo 22: ☀️ 12:00 - 16:00"
+                    },
+                    {
+                        type: "movement",
+                        text: "✨ Arte en movimiento: de un estudio a otro, la ciudad crea."
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Sábado 21 a las 18:00 h",
+                        title: "Landscape Studio",
+                        loc: "📍 C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006, València",
+                        details: "<strong>Artista:</strong> Celia Kettle<br><strong>Exposición individual:</strong> \"El ciclo de la vida\". Pintura en acuarela con técnica mixta.",
+                        horario: "<strong>Horario:</strong><br>• Viernes 20, sábado 21 y domingo 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 20:00"
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Sábado 21 a las 19:00 - 19:30 h",
+                        title: "Taller Color Elefante",
+                        loc: "📍 C/ Sevilla, 26, bajo izquierda, Russafa, València",
+                        details: "<strong>Artistas residentes:</strong> Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar y Ximo Micó<br>Los artistas residentes invitan a conocer sus obras en el lugar donde las crean.",
+                        horario: "<strong>Horario:</strong><br>• Viernes 20, sábado 21 y domingo 22: ☀️ 10:30 - 14:30 / 🌙 17:30 - 21:30"
+                    },
+                    {
+                        type: "tyris",
+                        text: "🍺 Momentos Cerveza Tyris: Brindamos por los talleres que mantienen viva la ciudad."
+                    }
                 ],
                 22: [
-                    { tag: "09:30 · Visita Biennal CVO", title: "Encuentro en el Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, bajo, Russafa", desc: "Coordinadora: Maite Backman. Artistas: Maite Backman, Mª José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró y Fernando Rincón.<br>Horario: Domingo 22 de 10:00 a 14:00 h." },
-                    { tag: "11:00 · Visita Biennal CVO", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, València", desc: "Artista: Francesca Ricci. Exposición: 'Obras recientes' de Francesca Ricci y Josie McCoy.<br>Horario taller: Domingo 22 de 11:00 a 14:00 h." },
-                    { tag: "✨ Arte en movimiento", title: "Cerramos el circuito donde nació", loc: "📍 Russafa - València", desc: "Cerramos el circuito donde nació." },
-                    { tag: "🍺 Cerveza Tyris", title: "Gracias por recorrer el arte", loc: "📍 València", desc: "Momentos Cerveza Tyris: gracias por recorrer el arte con nosotras." }
+                    {
+                        type: "highlight",
+                        badge: "📍 Visita Biennal CVO · Domingo 22 mañana, 09:30 h",
+                        title: "Encuentro en el Sporting Club Russafa",
+                        loc: "📍 C/ Sevilla, 5, bajo, 46006, València"
+                    },
+                    {
+                        type: "movement",
+                        text: "✨ Arte en movimiento: cerramos el circuito donde nació."
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Domingo 22 a las 09:30 h",
+                        title: "Sporting Club Russafa",
+                        loc: "📍 C/ Sevilla, 5, bajo, 46006, València",
+                        details: "<strong>Coordinadora:</strong> Maite Backman<br><strong>Artistas:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró y Fernando Rincón",
+                        horario: "<strong>Horario:</strong> Domingo 22: ☀️ 10:00 - 14:00"
+                    },
+                    {
+                        type: "workshop",
+                        badge: "Visita Biennal: Domingo 22 a las 11:00 h",
+                        title: "Taller de Francesca Ricci",
+                        loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València",
+                        details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposición:</strong> \"Obras recientes\". Exposición de Francesca Ricci y Josie McCoy",
+                        horario: "<strong>Horario:</strong> Domingo 22: ☀️ 11:00 - 14:00"
+                    },
+                    {
+                        type: "tyris",
+                        text: "🍺 Momentos Cerveza Tyris: gracias por recorrer el arte con nosotras."
+                    }
                 ]
             }
         },
@@ -848,6 +1065,8 @@
             navAgenda: "Agenda",
             agendaTitle: "Agenda",
             agendaDates: "20, 21 i 22 de novembre 2026",
+            agendaSubhead: "ART A LA LLUM - CIRCUIT DE L'ART",
+            agendaIntro: "<strong>Visites guiades:</strong> Trobada als tallers d'artista. Trobada amb els artistes. Aproximació a la creació d'una obra d'art. Exposicions i activitats artístiques.<br><strong>Accés lliure i gratuït.</strong>",
             fri: "DV",
             sat: "DS",
             sun: "DG",
@@ -859,24 +1078,36 @@
             horGallery: "Horari de Galeria",
             events: {
                 20: [
-                    { tag: "16:30 · Visita Biennal CVO", title: "Trobada al Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, València", desc: "Artista: Lola Tudela. Exposició: Pintura i gravat." },
-                    { tag: "🍺 Cervesa Tyris", title: "L'art es mira, es toca i es brinde", loc: "📍 Circuit Art a la Llum", desc: "Moment Cervesa Tyris." },
-                    { tag: "18:00 · Visita Biennal CVO", title: "Estudi de Henar del Paso", loc: "📍 C/ Na Jordana, 22, València", desc: "Pintura i dibuix." },
-                    { tag: "19:00 · Visita Biennal CVO", title: "Taller d'Elena Martí Manzanares", loc: "📍 C/ Sevilla, 14, València", desc: "Pintura, dibuix i escultura." },
-                    { tag: "20:00 · Visita Biennal CVO", title: "Taller Be Zornoza", loc: "📍 C/ Clero, 7, Russafa", desc: "Pintura." }
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Divendres 20 vesprada, 16:30 h", title: "Trobada al Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, 46001, València" },
+                    { type: "tyris", text: "🍺 Moments Cervesa Tyris: L'art es mira, es toca i es brinde." },
+                    { type: "workshop", badge: "Visita Biennal: Divendres 20 a les 16:30 h", title: "Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, 46001, València", details: "<strong>Artista:</strong> Lola Tudela<br><strong>Exposició:</strong> Pintura i gravat", horario: "<strong>Horari:</strong><br>• Divendres 20 i dissabte 21: ☀️ 11:00 - 13:00 / 🌙 17:00 - 19:00<br>• Diumenge 22: ☀️ 11:00 - 13:00" },
+                    { type: "workshop", badge: "Visita Biennal: Divendres 20 a les 18:00 h", title: "Estudi de Henar del Paso", loc: "📍 C/ Na Jordana, 22, baix, dreta, 46003, València", details: "<strong>Artista:</strong> Henar del Paso<br><strong>Exposició:</strong> Pintura i dibuix", horario: "<strong>Horari:</strong> Divendres 20, vesprada" },
+                    { type: "movement", text: "✨ Art en moviment: cada taller, una història que s'obri." },
+                    { type: "workshop", badge: "Visita Biennal: Divendres 20 a les 19:00 h", title: "Taller d'Elena Martí Manzanares", loc: "📍 C/ Sevilla, 14, 46006, València", details: "<strong>Artista:</strong> Elena Martí Manzanares<br><strong>Exposició:</strong> Pintura, dibuix i escultura", horario: "<strong>Horari:</strong><br>• Divendres 20 i dissabte 21: ☀️ 10:00 - 14:00 / 🌙 16:00 - 20:30<br>• Diumenge 22: ☀️ 11:00 - 14:30" },
+                    { type: "workshop", badge: "Visita Biennal: Divendres 20 a les 20:00 h", title: "Taller Be Zornoza", loc: "📍 C/ Clero, 7, baix esquerra, Russafa, València", details: "<strong>Artista:</strong> Be Zornoza<br><strong>Exposició:</strong> Pintura", horario: "<strong>Horari:</strong><br>• Divendres 20: 🌙 17:00 - 21:00<br>• Dissabte 21 i diumenge 22: ☀️ 10:00 - 14:00 / 🌙 17:00 - 21:00" },
+                    { type: "tyris", text: "🍺 Moments Cervesa Tyris: Brindem on naix l'art." }
                 ],
                 21: [
-                    { tag: "09:15 · Visita Biennal CVO", title: "Trobada al Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7", desc: "Marcela Gómez." },
-                    { tag: "10:30 · Visita Biennal CVO", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8", desc: "Sento i Isabel Guirao." },
-                    { tag: "11:15 · Visita Biennal CVO", title: "Fundació i Estudi Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7", desc: "Victoria Cano." },
-                    { tag: "13:30 · Visita Biennal CVO", title: "Lalambik, estudi d'art", loc: "📍 C/ Buenos Aires, 10, Russafa", desc: "Karina Vagradova i Carmen Ibarra." },
-                    { tag: "17:00 · Visita Biennal CVO", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa", desc: "Artistes residents." },
-                    { tag: "18:00 · Visita Biennal CVO", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, Russafa", desc: "Celia Kettle." },
-                    { tag: "19:00 · Visita Biennal CVO", title: "Taller Color Elefante", loc: "📍 C/ Sevilla, 26, Russafa", desc: "Artistes residents." }
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Dissabte 21 matí, 09:15 h", title: "Trobada al Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València" },
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Dissabte 21 vesprada, 17:00 h", title: "Trobada al Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València" },
+                    { type: "movement", text: "✨ Art en moviment: València es recorre a peu, taller a taller." },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artista:</strong> Marcela Gómez", horario: "<strong>Horari:</strong><br>• Divendres 20: 🌙 Només vesprada, 17:00 - 20:00<br>• Dissabte 21 i diumenge 22: ☀️ 11:00 - 14:00 / 🌙 17:00 - 20:00" },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 10:30 - 11:00 h", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8, 46001, València", details: "<strong>Coordinador:</strong> Sento<br><strong>Exposició:</strong> Isabel Guirao", horario: "<strong>Horari:</strong> Dilluns a dissabte: ☀️ 10:30 - 14:30" },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 11:15 - 13:00 h", title: "Fundació i Estudi Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, 46003, València", details: "", horario: "<strong>Horari:</strong> Consultar al taller" },
+                    { type: "tyris", text: "🍺 Moments Cervesa Tyris: L'art sap millor quan es comparteix." },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 13:30 h (Taller de Cianotípia)", title: "Lalambik, estudi d'art", loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València", details: "<strong>Coordinadora:</strong> Carmen Ibarra<br><strong>Exposició:</strong> Obra de les artistes de l'estudi: Karina Vagradova i Carmen Ibarra.<br><strong>Artista convidada:</strong> Carmen García Gordillo amb la sèrie \"Sueños\"", horario: "<strong>Horari:</strong><br>• Divendres 20: 🌙 18:00 - 21:00<br>• Dissabte 21 i diumenge 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 21:00" },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València", details: "<strong>Coordinador:</strong> Alejandro Martínez Corredor (@alejandro.s.martinez)<br><strong>Artistes:</strong> José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), @cowboygiov i Leonie Crowley (@jlcrowleyart)", horario: "<strong>Horari:</strong><br>• Divendres 20 i dissabte 21: ☀️ 12:00 - 14:00 / 🌙 17:00 - 20:00<br>• Diumenge 22: ☀️ 12:00 - 16:00" },
+                    { type: "movement", text: "✨ Art en moviment: d'un estudi a un altre, la ciutat crea." },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, baix dreta, Russafa, 46006, València", details: "<strong>Artista:</strong> Celia Kettle<br><strong>Exposició individual:</strong> \"El ciclo de la vida\"", horario: "<strong>Horari:</strong><br>• Divendres 20, dissabte 21 i diumenge 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 20:00" },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 19:00 - 19:30 h", title: "Taller Color Elefante", loc: "📍 C/ Sevilla, 26, baix esquerra, Russafa, València", details: "<strong>Artistes residents:</strong> Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar i Ximo Micó", horario: "<strong>Horari:</strong><br>• Divendres 20, dissabte 21 i diumenge 22: ☀️ 10:30 - 14:30 / 🌙 17:30 - 21:30" },
+                    { type: "tyris", text: "🍺 Moments Cervesa Tyris: Brindem pels tallers que mantenen viva la ciutat." }
                 ],
                 22: [
-                    { tag: "09:30 · Visita Biennal CVO", title: "Trobada a Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, Russafa", desc: "Coordinadora: Maite Backman." },
-                    { tag: "11:00 · Visita Biennal CVO", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26", desc: "Francesca Ricci i Josie McCoy." }
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Diumenge 22 matí, 09:30 h", title: "Trobada al Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, baix, 46006, València" },
+                    { type: "movement", text: "✨ Art en moviment: tanquem el circuit on va nàixer." },
+                    { type: "workshop", badge: "Visita Biennal: Diumenge 22 a les 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, baix, 46006, València", details: "<strong>Coordinadora:</strong> Maite Backman<br><strong>Artistes:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró i Fernando Rincón", horario: "<strong>Horari:</strong> Diumenge 22: ☀️ 10:00 - 14:00" },
+                    { type: "workshop", badge: "Visita Biennal: Diumenge 22 a les 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposició:</strong> \"Obras recientes\" de Francesca Ricci i Josie McCoy", horario: "<strong>Horari:</strong> Diumenge 22: ☀️ 11:00 - 14:00" },
+                    { type: "tyris", text: "🍺 Moments Cervesa Tyris: gràcies per recórrer l'art amb nosaltres." }
                 ]
             }
         },
@@ -894,6 +1125,8 @@
             navAgenda: "Schedule",
             agendaTitle: "Schedule",
             agendaDates: "November 20, 21 and 22, 2026",
+            agendaSubhead: "ART A LA LLUM - ART CIRCUIT",
+            agendaIntro: "<strong>Guided tours:</strong> Meetings at artists' studios. Meeting the artists. Creative insights, exhibitions, and artistic activities.<br><strong>Free admission.</strong>",
             fri: "FRI",
             sat: "SAT",
             sun: "SUN",
@@ -905,23 +1138,36 @@
             horGallery: "Gallery Hours",
             events: {
                 20: [
-                    { tag: "16:30 · Biennial Tour", title: "Meeting at Lola Tudela Workshop", loc: "📍 C/ Calatrava, 19", desc: "Artist: Lola Tudela. Painting & Printmaking." },
-                    { tag: "18:00 · Biennial Tour", title: "Henar del Paso Studio", loc: "📍 C/ Na Jordana, 22", desc: "Painting & Drawing." },
-                    { tag: "19:00 · Biennial Tour", title: "Elena Martí Manzanares Workshop", loc: "📍 C/ Sevilla, 14", desc: "Painting, Drawing & Sculpture." },
-                    { tag: "20:00 · Biennial Tour", title: "Be Zornoza Studio", loc: "📍 C/ Clero, 7, Russafa", desc: "Painting." }
+                    { type: "highlight", badge: "📍 Biennial CVO Tour · Friday 20 afternoon, 16:30 h", title: "Meeting at Lola Tudela Workshop", loc: "📍 C/ Calatrava, 19 - 1, 46001, València" },
+                    { type: "tyris", text: "🍺 Cerveza Tyris Moments: Art is looked at, touched, and toasted." },
+                    { type: "workshop", badge: "Biennial Tour: Friday 20 at 16:30 h", title: "Lola Tudela Workshop", loc: "📍 C/ Calatrava, 19 - 1, 46001, València", details: "<strong>Artist:</strong> Lola Tudela<br><strong>Exhibition:</strong> Painting & Printmaking", horario: "<strong>Hours:</strong><br>• Fri 20 & Sat 21: ☀️ 11:00 - 13:00 / 🌙 17:00 - 19:00<br>• Sun 22: ☀️ 11:00 - 13:00" },
+                    { type: "workshop", badge: "Biennial Tour: Friday 20 at 18:00 h", title: "Henar del Paso Studio", loc: "📍 C/ Na Jordana, 22, 46003, València", details: "<strong>Artist:</strong> Henar del Paso<br><strong>Exhibition:</strong> Painting & Drawing", horario: "<strong>Hours:</strong> Friday 20, afternoon" },
+                    { type: "movement", text: "✨ Art in motion: every studio, a story unfolding." },
+                    { type: "workshop", badge: "Biennial Tour: Friday 20 at 19:00 h", title: "Elena Martí Manzanares Workshop", loc: "📍 C/ Sevilla, 14, 46006, València", details: "<strong>Artist:</strong> Elena Martí Manzanares<br><strong>Exhibition:</strong> Painting, Drawing & Sculpture", horario: "<strong>Hours:</strong><br>• Fri 20 & Sat 21: ☀️ 10:00 - 14:00 / 🌙 16:00 - 20:30<br>• Sun 22: ☀️ 11:00 - 14:30" },
+                    { type: "workshop", badge: "Biennial Tour: Friday 20 at 20:00 h", title: "Be Zornoza Studio", loc: "📍 C/ Clero, 7, Russafa, València", details: "<strong>Artist:</strong> Be Zornoza<br><strong>Exhibition:</strong> Painting", horario: "<strong>Hours:</strong><br>• Fri 20: 🌙 17:00 - 21:00<br>• Sat 21 & Sun 22: ☀️ 10:00 - 14:00 / 🌙 17:00 - 21:00" },
+                    { type: "tyris", text: "🍺 Cerveza Tyris Moments: We toast where art is born." }
                 ],
                 21: [
-                    { tag: "09:15 · Biennial Tour", title: "Veroneta Workshop", loc: "📍 C/ Pintor Domingo, 7", desc: "Marcela Gómez." },
-                    { tag: "10:30 · Biennial Tour", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8", desc: "Sento & Isabel Guirao." },
-                    { tag: "11:15 · Biennial Tour", title: "Victoria Cano Foundation", loc: "📍 C/ Portal de Valldigna, 7", desc: "Victoria Cano." },
-                    { tag: "13:30 · Biennial Tour", title: "Lalambik Art Studio", loc: "📍 C/ Buenos Aires, 10, Russafa", desc: "Karina Vagradova & Carmen Ibarra." },
-                    { tag: "17:00 · Biennial Tour", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa", desc: "Resident Artists." },
-                    { tag: "18:00 · Biennial Tour", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, Russafa", desc: "Celia Kettle." },
-                    { tag: "19:00 · Biennial Tour", title: "Color Elefante Workshop", loc: "📍 C/ Sevilla, 26, Russafa", desc: "Resident Artists." }
+                    { type: "highlight", badge: "📍 Biennial CVO Tour · Saturday 21 morning, 09:15 h", title: "Meeting at Veroneta Workshop", loc: "📍 C/ Pintor Domingo, 7, 46001, València" },
+                    { type: "highlight", badge: "📍 Biennial CVO Tour · Saturday 21 afternoon, 17:00 h", title: "Meeting at Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València" },
+                    { type: "movement", text: "✨ Art in motion: València explored on foot, studio by studio." },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 09:15 h", title: "Veroneta Workshop", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artist:</strong> Marcela Gómez", horario: "<strong>Hours:</strong><br>• Fri 20: 🌙 17:00 - 20:00<br>• Sat 21 & Sun 22: ☀️ 11:00 - 14:00 / 🌙 17:00 - 20:00" },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 10:30 - 11:00 h", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8, 46001, València", details: "<strong>Coordinator:</strong> Sento<br><strong>Exhibition:</strong> Isabel Guirao", horario: "<strong>Hours:</strong> Monday to Saturday: ☀️ 10:30 - 14:30" },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 11:15 - 13:00 h", title: "Victoria Cano Foundation & Studio", loc: "📍 C/ Portal de Valldigna, 7, 46003, València", details: "", horario: "<strong>Hours:</strong> Check at studio" },
+                    { type: "tyris", text: "🍺 Cerveza Tyris Moments: Art tastes better when shared." },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 13:30 h (Cyanotype Workshop)", title: "Lalambik Art Studio", loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València", details: "<strong>Coordinator:</strong> Carmen Ibarra<br><strong>Exhibition:</strong> Karina Vagradova & Carmen Ibarra. Guest artist: Carmen García Gordillo", horario: "<strong>Hours:</strong><br>• Fri 20: 🌙 18:00 - 21:00<br>• Sat 21 & Sun 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 21:00" },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València", details: "<strong>Coordinator:</strong> Alejandro Martínez Corredor (@alejandro.s.martinez)<br><strong>Participating artists:</strong> José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), @cowboygiov & Leonie Crowley (@jlcrowleyart)", horario: "<strong>Hours:</strong><br>• Fri 20 & Sat 21: ☀️ 12:00 - 14:00 / 🌙 17:00 - 20:00<br>• Sun 22: ☀️ 12:00 - 16:00" },
+                    { type: "movement", text: "✨ Art in motion: from studio to studio, the city creates." },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, Russafa, 46006, València", details: "<strong>Artist:</strong> Celia Kettle<br><strong>Solo Exhibition:</strong> \"El ciclo de la vida\"", horario: "<strong>Hours:</strong><br>• Fri 20, Sat 21 & Sun 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 20:00" },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 19:00 - 19:30 h", title: "Taller Color Elefante", loc: "📍 C/ Sevilla, 26, Russafa, València", details: "<strong>Resident artists:</strong> Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar & Ximo Micó", horario: "<strong>Hours:</strong><br>• Fri 20, Sat 21 & Sun 22: ☀️ 10:30 - 14:30 / 🌙 17:30 - 21:30" },
+                    { type: "tyris", text: "🍺 Cerveza Tyris Moments: We toast to the workshops that keep the city alive." }
                 ],
                 22: [
-                    { tag: "09:30 · Biennial Tour", title: "Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, Russafa", desc: "Coordinator: Maite Backman." },
-                    { tag: "11:00 · Biennial Tour", title: "Francesca Ricci Workshop", loc: "📍 Av. del Oeste, 26", desc: "Francesca Ricci & Josie McCoy." }
+                    { type: "highlight", badge: "📍 Biennial CVO Tour · Sunday 22 morning, 09:30 h", title: "Meeting at Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, 46006, València" },
+                    { type: "movement", text: "✨ Art in motion: closing the circuit where it was born." },
+                    { type: "workshop", badge: "Biennial Tour: Sunday 22 at 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, 46006, València", details: "<strong>Coordinator:</strong> Maite Backman<br><strong>Artists:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró & Fernando Rincón", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 10:00 - 14:00" },
+                    { type: "workshop", badge: "Biennial Tour: Sunday 22 at 11:00 h", title: "Francesca Ricci Workshop", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artist:</strong> Francesca Ricci<br><strong>Exhibition:</strong> \"Obras recientes\" by Francesca Ricci & Josie McCoy", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 11:00 - 14:00" },
+                    { type: "tyris", text: "🍺 Cerveza Tyris Moments: Thank you for touring art with us." }
                 ]
             }
         }
@@ -930,29 +1176,29 @@
     const talleres = [
         // RUTA AMARILLA
         { name: "Taller de Pepe March", artistas: "Pepe March", lat: 39.478034, lng: -0.378164, color: "yellow", dir: "C/ de la Mare Vella, 19, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.", contacto: "Pepemarc@gmail.com", telefono: "634 564 264" },
-        { name: "Fundación Victoria Cano y Estudio", artistas: "Victoria Cano", lat: 39.477461, lng: -0.378192, color: "yellow", dir: "C/ del Portal de Valldigna, 7, 46003 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición colectiva e intervenciones en el estudio.", contacto: "www.ofaaartits.com", telefono: "629 170 969" },
-        { name: "Estudio Henar del Paso", artistas: "Henar del Paso", lat: 39.479998, lng: -0.381126, color: "yellow", dir: "C. de na Jordana, 22, 46003 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.", contacto: "henardelpaso@hotmail.com", telefono: "609 393 490" },
+        { name: "Fundación Victoria Cano y Estudio", artistas: "Victoria Cano", lat: 39.477461, lng: -0.378192, color: "yellow", dir: "C/ del Portal de Valldigna, 7, 46003 València", horario: "Consultar en taller · Visita Biennal: Sábado 21 de 11:15 a 13:00 h", propuesta: "Exposición colectiva e intervenciones en el estudio.", contacto: "www.ofaaartits.com", telefono: "629 170 969" },
+        { name: "Estudio Henar del Paso", artistas: "Henar del Paso", lat: 39.479998, lng: -0.381126, color: "yellow", dir: "C. de na Jordana, 22, bajo, derecha, 46003 València", horario: "Viernes 20, tarde · Visita Biennal: Viernes 20 a las 18:00 h", propuesta: "Pintura y dibujo.", contacto: "henardelpaso@hotmail.com", telefono: "609 393 490" },
 
         // RUTA FUCSIA
-        { name: "Studio Vintage", artistas: "Artistas varios", lat: 39.475415, lng: -0.377636, color: "fuchsia", dir: "Carrer de la Puríssima, 8, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.", contacto: "studiovintage@hotmail.com", telefono: "617 952 635" },
+        { name: "Studio Vintage", artistas: "Coordinador: Sento · Exposición: Isabel Guirao", lat: 39.475415, lng: -0.377636, color: "fuchsia", dir: "Carrer de la Puríssima, 8, 46001 València", horario: "Lunes a sábado: 10:30 - 14:30 · Visita Biennal: Sábado 21 de 10:30 a 11:00 h", propuesta: "Exposición de Isabel Guirao.", contacto: "studiovintage@hotmail.com", telefono: "617 952 635" },
         { name: "Taller de Estudios y Proyectos Arturo Catalá", artistas: "Arturo Catalá", lat: 39.475085, lng: -0.382249, color: "fuchsia", dir: "Carrer dels Teixidors, 11, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de proyectos.", contacto: "-", telefono: "-" },
         { name: "Taller de Ángela Bassano", artistas: "Ángela Bassano", lat: 39.475860, lng: -0.373659, color: "fuchsia", dir: "C/ d'Edeta, 7, 46003 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de obra gráfica.", contacto: "-", telefono: "-" },
         { name: "Taller de Lisa Gingles", artistas: "Lisa Gingles", lat: 39.475451, lng: -0.378858, color: "fuchsia", dir: "C/ de Betlem, 9, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición e intervención plástica.", contacto: "-", telefono: "-" },
-        { name: "Taller Veroneta", artistas: "Marcela", lat: 39.474544, lng: -0.382461, color: "fuchsia", dir: "C/ del Pintor Domingo, 7, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.", contacto: "@veronetaymas", telefono: "661 247 302" },
+        { name: "Taller Veroneta", artistas: "Marcela Gómez", lat: 39.474544, lng: -0.382461, color: "fuchsia", dir: "C/ del Pintor Domingo, 7, 46001 València", horario: "Vie 20: 17:00 - 20:00 · Sáb 21 y Dom 22: 11:00 - 14:00 / 17:00 - 20:00 · Visita Biennal: Sábado 21 a las 09:15 h", propuesta: "Taller abierto y exposición de artista.", contacto: "@veronetaymas", telefono: "661 247 302" },
         { name: "Taller de María Ángeles Aguilera", artistas: "María Ángeles Aguilera", lat: 39.475367, lng: -0.380768, color: "fuchsia", dir: "Carrer del Moro Zeid, 2, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Presentación de procesos creativos.", contacto: "-", telefono: "-" },
         { name: "Hygiene", artistas: "Colectivo Hygiene", lat: 39.474747, lng: -0.382266, color: "fuchsia", dir: "C/ de Villena, 14, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Instalación e investigación visual.", contacto: "-", telefono: "-" },
-        { name: "Taller de Francesca Ricci", artistas: "Francesca Ricci", lat: 39.472300, lng: -0.380000, color: "fuchsia", dir: "Avenida del Oeste, 26, pta 32, 46001 València", horario: "Domingo 22 de noviembre de 11:00 a 14:00 h.", propuesta: "Exposición 'Obras recientes' (Francesca Ricci y Josie McCoy).", contacto: "info@francesca-ricci.com", telefono: "-" },
-        { name: "Taller de Lola Tudela (Taller Lola Intaglio)", artistas: "Lola Tudela", lat: 39.476340, lng: -0.377420, color: "fuchsia", dir: "C/ de Calatrava, 19, Ciutat Vella, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Grabado y Pintura. Taller abierto.", contacto: "domartud@yahoo.es", telefono: "657 557 167" },
+        { name: "Taller de Francesca Ricci", artistas: "Francesca Ricci", lat: 39.472300, lng: -0.380000, color: "fuchsia", dir: "Avenida del Oeste, 26, pta 32, 46001 València", horario: "Domingo 22 de noviembre de 11:00 a 14:00 h · Visita Biennal: Domingo 22 a las 11:00 h", propuesta: "Exposición 'Obras recientes' (Francesca Ricci y Josie McCoy).", contacto: "info@francesca-ricci.com", telefono: "-" },
+        { name: "Taller de Lola Tudela (Taller Lola Intaglio)", artistas: "Lola Tudela", lat: 39.476340, lng: -0.377420, color: "fuchsia", dir: "C/ de Calatrava, 19 - 1, Ciutat Vella, 46001 València", horario: "Vie 20 y Sáb 21: 11:00-13:00 / 17:00-19:00 · Dom 22: 11:00-13:00 · Visita Biennal: Viernes 20 a las 16:30 h", propuesta: "Pintura y grabado.", contacto: "domartud@yahoo.es", telefono: "657 557 167" },
 
         // RUTA ROJA
-        { name: "Taller de Elena Martí Manzanares", artistas: "Elena Martí Manzanares", lat: 39.463707, lng: -0.374152, color: "red", dir: "C/ de Sevilla, 14, L'Eixample, 46004 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de artista.", contacto: "ele.marti.man@gmail.com", telefono: "629 727 534" },
+        { name: "Taller de Elena Martí Manzanares", artistas: "Elena Martí Manzanares", lat: 39.463707, lng: -0.374152, color: "red", dir: "C/ de Sevilla, 14, 46006 València", horario: "Vie 20 y Sáb 21: 10:00-14:00 / 16:00-20:30 · Dom 22: 11:00-14:30 · Visita Biennal: Viernes 20 a las 19:00 h", propuesta: "Pintura, dibujo y escultura.", contacto: "ele.marti.man@gmail.com", telefono: "629 727 534" },
         { name: "Francesca Ceramic Studio", artistas: "Francesca", lat: 39.464303, lng: -0.371733, color: "red", dir: "Carrer de Sant Valero, 1, L'Eixample, 46005 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición de piezas cerámicas y demostración en vivo.", contacto: "-", telefono: "-" },
-        { name: "Sporting Club Russafa", artistas: "Maite Backman, Mª José Ballester, Rafa de Corral y otros", lat: 39.464279, lng: -0.374111, color: "red", dir: "C/ de Sevilla, 5, L'Eixample, 46004 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición colectiva e intervenciones en el estudio.", contacto: "maitebackman@gmail.com", telefono: "-" },
-        { name: "Be Zornoza Studio", artistas: "Begoña Zornoza", lat: 39.463360, lng: -0.372890, color: "red", dir: "Calle Clero, 7, 46006 València", horario: "Vie 20: 17:00-21:00 h · Sáb 21 y Dom 22: 10:00-14:00 y 17:00-21:00 h.", propuesta: "Pintura y Bestiario. Taller abierto.", contacto: "@be.zornoza", telefono: "-" },
-        { name: "Taller Color Elefante", artistas: "Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar y Ximo Micó", lat: 39.463130, lng: -0.373780, color: "red", dir: "Calle Sevilla, 26, bajo izquierda, Russafa, València", horario: "20, 21 y 22 de Noviembre: 10:30-14:30 h y 17:30-21:30 h.", propuesta: "Exposición colectiva de los diez artistas residentes en su espacio de trabajo.", contacto: "-", telefono: "-" },
-        { name: "Landscape Studio", artistas: "Celia Kettle", lat: 39.460450, lng: -0.376480, color: "red", dir: "Calle Pintor Gisbert, 6, bajo derecha, Russafa, 46006 València", horario: "20, 21 y 22 de Noviembre: 11:00-14:00 h y 18:00-20:00 h.", propuesta: "Exposición individual 'El ciclo de la vida' (pintura en acuarela con técnica mixta).", contacto: "celia-k@hotmail.com", telefono: "671 374 889" },
-        { name: "Lalambik, Estudio de Arte", artistas: "Karina Vagradova y Carmen Ibarra", lat: 39.461920, lng: -0.376460, color: "red", dir: "Calle Buenos Aires, 10, Russafa, 46006 València", horario: "Vie 20: 18:00-21:00 h · Sáb 21 y Dom 22: 11:00-14:00 y 18:00-21:00 h.", propuesta: "Pintura, dibujo, cianotipia, obra gráfica y talleres en directo. Artista invitada: Carmen García Gordillo.", contacto: "info@lalambik.art", telefono: "660 827 028" },
-        { name: "Wood Studio 2.0", artistas: "Alejandro Martínez, José Trujillo, Lino Vicente Sayo, Luis Lluch, Vaquero Giov y Leonie Crowley", lat: 39.460200, lng: -0.376140, color: "red", dir: "Calle Pintor Gisbert, 3, Russafa, 46006 València", horario: "Vie 20 y Sáb 21: 12:00-14:00 y 17:00-20:00 h · Dom 22: 12:00-16:00 h.", propuesta: "Taller abierto y muestra colectiva de artistas residentes.", contacto: "alejandromartinez@hotmail.com", telefono: "-" },
+        { name: "Sporting Club Russafa", artistas: "Coordinadora: Maite Backman · Artistas: Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró y Fernando Rincón", lat: 39.464279, lng: -0.374111, color: "red", dir: "C/ de Sevilla, 5, bajo, 46006 València", horario: "Domingo 22: 10:00 - 14:00 · Visita Biennal: Domingo 22 a las 09:30 h", propuesta: "Exposición colectiva e intervenciones en el estudio.", contacto: "maitebackman@gmail.com", telefono: "-" },
+        { name: "Taller Be Zornoza", artistas: "Be Zornoza", lat: 39.463360, lng: -0.372890, color: "red", dir: "C/ Clero, 7, bajo izquierda, Russafa, València", horario: "Vie 20: 17:00-21:00 · Sáb 21 y Dom 22: 10:00-14:00 / 17:00-21:00 · Visita Biennal: Viernes 20 a las 20:00 h", propuesta: "Pintura.", contacto: "@be.zornoza", telefono: "-" },
+        { name: "Taller Color Elefante", artistas: "Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar y Ximo Micó", lat: 39.463130, lng: -0.373780, color: "red", dir: "C/ Sevilla, 26, bajo izquierda, Russafa, València", horario: "Vie 20, Sáb 21 y Dom 22: 10:30-14:30 / 17:30-21:30 · Visita Biennal: Sábado 21 de 19:00 a 19:30 h", propuesta: "Los artistas residentes invitan a conocer sus obras en el lugar donde las crean.", contacto: "-", telefono: "-" },
+        { name: "Landscape Studio", artistas: "Celia Kettle", lat: 39.460450, lng: -0.376480, color: "red", dir: "C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006 València", horario: "Vie 20, Sáb 21 y Dom 22: 11:00-14:00 / 18:00-20:00 · Visita Biennal: Sábado 21 a las 18:00 h", propuesta: "Exposición individual: 'El ciclo de la vida'. Pintura en acuarela con técnica mixta.", contacto: "celia-k@hotmail.com", telefono: "671 374 889" },
+        { name: "Lalambik, estudio de arte", artistas: "Coordinadora: Carmen Ibarra · Artistas: Karina Vagradova y Carmen Ibarra · Artista invitada: Carmen García Gordillo", lat: 39.461920, lng: -0.376460, color: "red", dir: "C/ Buenos Aires, 10, Russafa, 46006 València", horario: "Vie 20: 18:00-21:00 · Sáb 21 y Dom 22: 11:00-14:00 / 18:00-21:00 · Visita Biennal: Sábado 21 a las 13:30 h", propuesta: "Pintura, dibujo, cianotipia y obra gráfica. Serie 'Sueños'. Actividades complementarias todo el fin de semana.", contacto: "info@lalambik.art", telefono: "660 827 028" },
+        { name: "Wood Studio 2.0", artistas: "Coordinador: Alejandro Martínez Corredor (@alejandro.s.martinez) · José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), @cowboygiov y Leonie Crowley (@jlcrowleyart)", lat: 39.460200, lng: -0.376140, color: "red", dir: "C/ Pintor Gisbert, 3, Russafa, València", horario: "Vie 20 y Sáb 21: 12:00-14:00 / 17:00-20:00 · Dom 22: 12:00-16:00 · Visita Biennal: Sábado 21 a las 17:00 h", propuesta: "Taller abierto y muestra colectiva de artistas residentes.", contacto: "@alejandro.s.martinez", telefono: "-" },
 
         // MUSEOS Y CENTROS CULTURALES (Azul)
         { name: "Museo de la Ciudad (Palacio Marqués de Campo)", artistas: "Espacio museístico municipal", lat: 39.476013, lng: -0.373859, color: "blue", dir: "Plaça de l'Arquebisbe, 3, 46003 València", horario: "Martes a domingo de 10:00 a 19:00 h.", propuesta: "Espacio dedicado a la historia, arqueología y evolución artística de la ciudad de València ubicado en el histórico Palacio del Marqués de Campo.", contacto: "museociutat@valencia.es", telefono: "962 08 44 41" },
@@ -1043,6 +1289,8 @@
 
         document.getElementById('t-agenda-title').innerText = t.agendaTitle;
         document.getElementById('t-agenda-dates').innerText = t.agendaDates;
+        document.getElementById('t-agenda-subhead').innerText = t.agendaSubhead;
+        document.getElementById('t-agenda-intro').innerHTML = t.agendaIntro;
         document.getElementById('t-day-fri').innerText = t.fri;
         document.getElementById('t-day-sat').innerText = t.sat;
         document.getElementById('t-day-sun').innerText = t.sun;
@@ -1062,19 +1310,28 @@
         const events = t.events[currentDay] || [];
         let html = '';
         events.forEach(ev => {
-            let isTyris = ev.tag.includes('Tyris');
-            let isMovement = ev.tag.includes('movimiento');
-            if (isTyris) {
-                html += `<div class="tyris-banner">🍺 ${ev.title}</div>`;
-            } else if (isMovement) {
-                html += `<div style="background:#FFF8DC; padding:8px 12px; border-radius:8px; font-size:12px; font-weight:700; margin:8px 0; color:#444;">✨ ${ev.title}</div>`;
-            } else {
+            if (ev.type === 'tyris') {
+                html += `<div class="tyris-banner">${ev.text}</div>`;
+            } else if (ev.type === 'movement') {
+                html += `<div class="movement-banner">${ev.text}</div>`;
+            } else if (ev.type === 'highlight') {
                 html += `
-                    <div class="event-card-item">
-                        <span class="event-tag">${ev.tag}</span>
+                    <div class="event-card-highlight">
+                        <div class="visita-badge">${ev.badge}</div>
                         <div class="event-title">${ev.title}</div>
                         <div class="event-loc">${ev.loc}</div>
-                        <div class="event-desc">${ev.desc}</div>
+                    </div>
+                `;
+            } else if (ev.type === 'workshop') {
+                html += `
+                    <div class="event-card-item">
+                        <div class="event-title">${ev.title}</div>
+                        <div class="event-loc">${ev.loc}</div>
+                        ${ev.details ? `<div class="event-desc">${ev.details}</div>` : ''}
+                        <div class="horario-box">${ev.horario}</div>
+                        <div style="margin-top:8px;">
+                            <span class="visita-badge" style="margin-bottom:0;">${ev.badge}</span>
+                        </div>
                     </div>
                 `;
             }
@@ -1122,7 +1379,7 @@
             document.getElementById('t-prop-label').innerText = t.propGallery;
             document.getElementById('t-hor-label').innerText = t.horGallery;
         } else {
-            document.getElementById('sheet-artists').innerText = taller.artistas ? `Artistas / Info: ${taller.artistas}` : "";
+            document.getElementById('sheet-artists').innerText = taller.artistas || "";
             document.getElementById('t-prop-label').innerText = t.propLabel;
             document.getElementById('t-hor-label').innerText = t.horLabel;
         }
@@ -1142,5 +1399,4 @@
     }
 </script>
 </body>
-</html>.
-
+</html>
