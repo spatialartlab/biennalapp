@@ -11,7 +11,7 @@
     <meta property="og:image" content="https://spatialartlab.github.io/biennalapp/preview.jpg">
     <meta property="og:url" content="https://spatialartlab.github.io/biennalapp/">
     <meta property="og:type" content="website">
-
+  
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Leaflet CSS (Mapa) -->
@@ -32,14 +32,14 @@
             --color-emerald: #00c853;
             --color-agenda-lime: #8bb335;
         }
-
+  
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-
+  
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -54,7 +54,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(0,0,0,0.4);
         }
-
+  
         body, html {
             width: 100%;
             height: 100%;
@@ -64,7 +64,7 @@
             justify-content: center;
             align-items: center;
         }
-
+  
         .phone-container {
             width: 100%;
             max-width: 414px;
@@ -77,7 +77,7 @@
             flex-direction: column;
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
-
+  
         @media (min-width: 415px) {
             .phone-container {
                 height: 90vh;
@@ -86,7 +86,7 @@
                 border: 8px solid #2c3e50;
             }
         }
-
+  
         .screen {
             position: absolute;
             top: 0;
@@ -99,12 +99,12 @@
             z-index: 1;
             overflow: hidden;
         }
-
+  
         .screen.active {
             display: flex;
             z-index: 10;
         }
-
+  
         /* --- PANTALLA 1: SPLASH --- */
         #screen-1 {
             justify-content: center;
@@ -122,7 +122,7 @@
             object-fit: contain;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
         }
-
+  
         .splash-content h1 {
             color: var(--white);
             font-size: 25px;
@@ -144,7 +144,7 @@
             margin-top: 25px;
             justify-content: center;
         }
-
+  
         /* --- CABECERA SUPERIOR FIJA --- */
         .header-top {
             background-color: var(--biennal-turquoise);
@@ -208,7 +208,7 @@
             color: var(--biennal-turquoise-dark);
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
-
+  
         .scrollable-content-area {
             flex: 1;
             overflow-y: auto;
@@ -218,12 +218,12 @@
             padding: 10px 14px 20px 14px;
             gap: 14px;
         }
-
+  
         /* --- PANTALLA 2: INFO --- */
         #screen-2 {
             background-color: var(--bg-lime);
         }
-
+  
         .green-hero-container {
             width: 100%;
             height: 220px;
@@ -237,7 +237,7 @@
             justify-content: center;
             align-items: center;
         }
-
+  
         .green-hero-container img {
             width: 100%;
             height: 100%;
@@ -245,7 +245,7 @@
             object-position: center;
             display: block;
         }
-
+  
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -255,7 +255,7 @@
             background: linear-gradient(180deg, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.5) 100%);
             pointer-events: none;
         }
-
+  
         .hero-floating-content {
             position: absolute;
             bottom: 16px;
@@ -264,7 +264,7 @@
             color: var(--white);
             z-index: 5;
         }
-
+  
         .hero-edition {
             font-size: 11px;
             font-weight: 800;
@@ -274,7 +274,7 @@
             margin-bottom: 2px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.4);
         }
-
+  
         .hero-floating-content h2 {
             font-size: 22px;
             font-weight: 800;
@@ -283,7 +283,7 @@
             margin-bottom: 4px;
             text-shadow: 0 2px 6px rgba(0,0,0,0.5);
         }
-
+  
         .hero-dates {
             font-size: 12px;
             font-weight: 700;
@@ -291,7 +291,7 @@
             letter-spacing: 0.5px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.4);
         }
-
+  
         .card-white-presentacion {
             background: var(--white);
             border-radius: 24px;
@@ -301,6 +301,21 @@
             flex-shrink: 0;
         }
 
+        /* Tipografía mejorada y más legible en móvil para info */
+        .card-white-presentacion h3 {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--biennal-turquoise);
+            margin-bottom: 12px;
+        }
+
+        .card-white-presentacion div#t-home-body {
+            font-size: 14.5px;
+            line-height: 1.55;
+            color: #1a1a1a;
+            margin-bottom: 14px;
+        }
+  
         .btn-turquesa-mapa {
             display: block;
             width: 100%;
@@ -320,7 +335,7 @@
         .btn-turquesa-mapa:hover {
             opacity: 0.9;
         }
-
+  
         .color-dots {
             display: flex;
             gap: 10px;
@@ -342,7 +357,7 @@
         .dot-red { background-color: var(--color-red); }
         .dot-blue { background-color: var(--color-blue); }
         .dot-emerald { background-color: var(--color-emerald); }
-
+  
         /* --- PANTALLA 3: MAPA --- */
         .map-screen-container {
             position: relative;
@@ -355,7 +370,7 @@
             height: 100%;
             background-color: #e5e3df;
         }
-
+  
         .custom-pin {
             width: 20px;
             height: 20px;
@@ -368,7 +383,7 @@
         .pin-red { background-color: var(--color-red); }
         .pin-blue { background-color: var(--color-blue); }
         .pin-emerald { background-color: var(--color-emerald); }
-
+  
         /* --- BARRA DE NAVEGACIÓN INFERIOR --- */
         .bottom-nav {
             background: var(--white);
@@ -399,16 +414,16 @@
             margin-bottom: 2px;
             fill: currentColor;
         }
-
+  
         .nav-item-info { color: #111111; }
         .nav-item-info svg { fill: #111111; }
-
+  
         .nav-item-agenda { color: var(--color-agenda-lime); }
         .nav-item-agenda svg { fill: var(--color-agenda-lime); }
-
+  
         .nav-item-map { color: var(--color-red); }
         .nav-item-map svg { fill: var(--color-red); }
-
+  
         /* --- BOTTOM SHEET --- */
         .bottom-sheet {
             position: absolute;
@@ -494,7 +509,7 @@
             cursor: pointer;
             color: var(--text-muted);
         }
-
+  
         /* --- PANTALLA 4: AGENDA --- */
         #screen-4 {
             background-color: var(--biennal-turquoise);
@@ -526,7 +541,7 @@
         .date-box.red { background-color: var(--color-red); color: var(--white); }
         .date-box .day-num { font-size: 20px; font-weight: 800; display: block; }
         .date-box .day-name { font-size: 10.5px; font-weight: 700; text-transform: uppercase; }
-
+  
         .agenda-card-container {
             background: var(--white);
             border-radius: 22px;
@@ -656,12 +671,24 @@
             color: #111111;
             line-height: 1.4;
         }
+        .soul-drawing-banner {
+            background: #ffffff;
+            border: 2px solid #0096a6;
+            padding: 12px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 700;
+            margin: 12px 0;
+            color: #111111;
+            line-height: 1.45;
+            box-shadow: 0 3px 10px rgba(0, 150, 166, 0.15);
+        }
     </style>
 </head>
 <body>
-
+  
 <div class="phone-container">
-
+  
     <!-- PANTALLA 1: SPLASH -->
     <div id="screen-1" class="screen active" onclick="goToScreen(2)">
         <div class="splash-content">
@@ -677,7 +704,7 @@
             <div class="dot dot-emerald"></div>
         </div>
     </div>
-
+  
     <!-- PANTALLA 2: INFO -->
     <div id="screen-2" class="screen">
         <div class="header-top">
@@ -694,7 +721,7 @@
                 <button class="lang-pill lang-pill-btn" onclick="setLanguage('eng')">ENG</button>
             </div>
         </div>
-
+  
         <div class="scrollable-content-area">
             <div class="green-hero-container">
                 <img src="mapa-verde.png" alt="Circuito del Arte - Mapa">
@@ -705,22 +732,22 @@
                     <div class="hero-dates" id="t-dates">20, 21 y 22 de noviembre 2026</div>
                 </div>
             </div>
-
+  
             <div class="card-white-presentacion">
-                <h3 id="t-home-heading" style="font-size: 18px; font-weight: 800; color: #0096a6; margin-bottom: 10px;">Ven al encuentro con el Arte!</h3>
-                <div id="t-home-body" style="font-size: 13.5px; line-height: 1.5; color: #111; margin-bottom: 14px;">
+                <h3 id="t-home-heading">Ven al encuentro con el Arte!</h3>
+                <div id="t-home-body">
                     <p><strong>Circuito del Arte de la Biennal de València</strong></p><br>
                     <p><strong>Art a la Llum:</strong> Circuito de Talleres y Estudios de artista en Ciutat Vella, Russafa y cercanías.</p><br>
                     <p><strong>Arte Contemporáneo:</strong> Exposiciones, encuentro con los artistas y ver de cerca cómo se crea una obra de arte, ¿te atreves?</p><br>
                     <p>📍 <strong>VISITA BIENNAL CVO:</strong> Visita guiada en grupo. Elige el día, ve al punto de encuentro y recorremos juntos los talleres.</p>
-                    <p>🟡 <strong>Viernes 20</strong> (Tarde) · Ciutat Vella + Russafa</p>
-                    <p>🩷 <strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
-                    <p>🔴 <strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
+                    <p>🟨 <strong>Viernes 20</strong> (Tarde) · Ciutat Vella + Russafa</p>
+                    <p>ピンク <strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
+                    <p>🟥 <strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
                     <p>🍺 <em>Momentos Cerveza Tyris: El arte se mira, se toca y se brinda.</em></p>
                 </div>
                
-                <p class="free-access" id="t-free" style="text-align: center; font-size: 13px; font-weight: 800; margin-bottom: 12px;">Acceso libre y gratuito · 20, 21 y 22 de noviembre 2026</p>
-
+                <p class="free-access" id="t-free" style="text-align: center; font-size: 13.5px; font-weight: 800; margin-bottom: 12px;">Acceso libre y gratuito · 20, 21 y 22 de noviembre 2026</p>
+  
                 <div class="color-dots">
                     <div class="dot dot-yellow" onclick="filterRoute('yellow')" title="Ruta Amarilla"></div>
                     <div class="dot dot-fuchsia" onclick="filterRoute('fuchsia')" title="Ruta Fucsia"></div>
@@ -728,12 +755,12 @@
                     <div class="dot dot-blue" onclick="filterRoute('blue')" title="Museos y Centros"></div>
                     <div class="dot dot-emerald" onclick="filterRoute('emerald')" title="Galerías y Espacios de Arte"></div>
                 </div>
-
+  
                 <button class="btn-turquesa-mapa" id="t-btn-map" onclick="goToScreen(3)">🗺️ Mapa del Circuito</button>
                 <button class="btn-turquesa-mapa" id="t-btn-agenda" onclick="goToScreen(4)" style="background-color: #8bb335;">📅 Ver Agenda por días</button>
             </div>
         </div>
-
+  
         <div class="bottom-nav">
             <button class="nav-item nav-item-info" onclick="goToScreen(2)">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><rect x="11" y="10" width="2" height="6" fill="currentColor"/><circle cx="12" cy="7" r="1" fill="currentColor"/></svg>
@@ -749,7 +776,7 @@
             </button>
         </div>
     </div>
-
+  
     <!-- PANTALLA 3: MAPA INTERACTIVO -->
     <div id="screen-3" class="screen" style="padding: 0; display: flex; flex-direction: column;">
         <div class="header-top">
@@ -766,11 +793,11 @@
                 <button class="lang-pill lang-pill-btn" onclick="setLanguage('eng')">ENG</button>
             </div>
         </div>
-
+  
         <div class="map-screen-container">
             <div id="map"></div>
         </div>
-
+  
         <div id="bottom-sheet" class="bottom-sheet">
             <div class="sheet-handle"></div>
             <button class="sheet-close-btn" onclick="closeSheet()">&times;</button>
@@ -783,19 +810,19 @@
                     <div class="sheet-info-label" id="t-prop-label">Propuesta Artística</div>
                     <div id="sheet-propuesta" class="sheet-info-value">-</div>
                 </div>
-
+  
                 <div class="sheet-info-block">
                     <div class="sheet-info-label" id="t-hor-label">Horario de Visita</div>
                     <div id="sheet-horario" class="sheet-info-value">-</div>
                 </div>
-
+  
                 <div class="sheet-contact-group">
                     <span id="sheet-contacto">✉️ -</span>
                     <span id="sheet-telefono">📞 -</span>
                 </div>
             </div>
         </div>
-
+  
         <div class="bottom-nav">
             <button class="nav-item nav-item-info" onclick="goToScreen(2)">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><rect x="11" y="10" width="2" height="6" fill="currentColor"/><circle cx="12" cy="7" r="1" fill="currentColor"/></svg>
@@ -811,7 +838,7 @@
             </button>
         </div>
     </div>
-
+  
     <!-- PANTALLA 4: AGENDA -->
     <div id="screen-4" class="screen">
         <div class="header-top">
@@ -828,13 +855,13 @@
                 <button class="lang-pill lang-pill-btn" onclick="setLanguage('eng')">ENG</button>
             </div>
         </div>
-
+  
         <div class="scrollable-content-area">
             <div style="color: white; flex-shrink: 0;">
                 <h2 id="t-agenda-title" style="font-size: 22px; font-weight: 800;">Agenda</h2>
                 <p id="t-agenda-dates" style="font-size: 12px; opacity: 0.9;">20, 21 y 22 de noviembre 2026</p>
             </div>
-
+  
             <div class="date-selectors">
                 <div class="date-box yellow active-day" id="day-box-20" onclick="selectDay(20)">
                     <span class="day-num">20</span>
@@ -849,7 +876,7 @@
                     <span class="day-name" id="t-day-sun">DOM</span>
                 </div>
             </div>
-
+  
             <div class="agenda-card-container">
                 <div class="agenda-intro-box">
                     <h3 id="t-agenda-subhead">ART A LA LLUM - CIRCUITO DEL ARTE</h3>
@@ -860,7 +887,7 @@
                 </div>
             </div>
         </div>
-
+  
         <div class="bottom-nav">
             <button class="nav-item nav-item-info" onclick="goToScreen(2)">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><rect x="11" y="10" width="2" height="6" fill="currentColor"/><circle cx="12" cy="7" r="1" fill="currentColor"/></svg>
@@ -876,15 +903,15 @@
             </button>
         </div>
     </div>
-
+  
 </div>
-
+  
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
     let currentLang = 'esp';
     let currentDay = 20;
-
+  
     const translations = {
         esp: {
             headerTitle: "BIENNAL de<br>VALENCIA",
@@ -896,9 +923,9 @@
                        <p><strong>Art a la Llum:</strong> Circuito de Talleres y Estudios de artista en Ciutat Vella, Russafa y cercanías.</p><br>
                        <p><strong>Arte Contemporáneo:</strong> Exposiciones, encuentro con los artistas y ver de cerca cómo se crea una obra de arte, ¿te atreves?</p><br>
                        <p>📍 <strong>VISITA BIENNAL CVO:</strong> Visita guiada en grupo. Elige el día, ve al punto de encuentro y recorremos juntos los talleres.</p>
-                       <p>🟡 <strong>Viernes 20</strong> (Tarde) · Ciutat Vella + Russafa</p>
-                       <p>🩷 <strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
-                       <p>🔴 <strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
+                       <p>🟨 <strong>Viernes 20</strong> (Tarde) · Ciutat Vella + Russafa</p>
+                       <p>🟪 <strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
+                       <p>🟥 <strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Momentos Cerveza Tyris: El arte se mira, se toca y se brinda.</em></p>`,
             dates: "20, 21 y 22 de noviembre 2026",
             free: "Acceso libre y gratuito · 20, 21 y 22 de noviembre 2026",
@@ -923,6 +950,7 @@
             events: {
                 20: [
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Viernes 20 tarde, 16:30 h", title: "Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, 46001, València" },
+                    { type: "soul", text: "🎨 <strong>SOUL DRAWING - Dibujo en vivo - Xavi Carrillo</strong>. Dibujo en la calle, en directo, para quien pasa. Una invitación al caminante para participar en el taller abierto." },
                     { type: "tyris", text: "🍺 Momentos Cerveza Tyris: El arte se mira, se toca y se brinda." },
                     { type: "workshop", badge: "Visita Biennal: Viernes 20 a las 16:30 h", title: "Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, 46001, València", details: "<strong>Artista:</strong> Lola Tudela<br><strong>Exposición:</strong> Pintura y grabado", horario: "<strong>Horario:</strong><br>• Viernes 20 y Sábado 21: ☀️ 11:00 - 13:30 / 🌙 17:00 - 19:00<br>• Domingo 22: ☀️ 11:00 - 13:00" },
                     { type: "workshop", badge: "Visita Biennal: Viernes 20 a las 18:00 h", title: "Estudio de Henar del Paso", loc: "📍 C/ Na Jordana, 22, bajo, derecha, 46003, València", details: "<strong>Artista:</strong> Henar del Paso<br><strong>Exposición:</strong> Pintura y dibujo", horario: "<strong>Horario:</strong><br>• Viernes 20: 18:00 - 19:30 h<br>• Sábado 21: 12:00 - 14:00 h<br>• Domingo 22: 12:00 - 14:00 h" },
@@ -935,6 +963,7 @@
                 21: [
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Sábado 21 mañana, 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València" },
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Sábado 21 tarde, 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València" },
+                    { type: "soul", text: "🎨 <strong>SOUL DRAWING - Dibujo en vivo - Xavi Carrillo</strong>. Dibujo en la calle, en directo, para quien pasa. Una invitación al caminante para participar en el taller abierto." },
                     { type: "movement", text: "✨ Paso a paso a través del arte creamos comunidad." },
                     { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artista:</strong> Marcela Gómez", horario: "<strong>Horario:</strong><br>• Viernes 20: 🌙 Solo tarde, 17:00 - 20:00<br>• Sábado 21 y domingo 22: ☀️ 11:00 - 14:00 / 🌙 17:00 - 20:00" },
                     { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 10:30 - 11:00 h", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8, 46001, València", details: "<strong>Coordinador:</strong> Sento<br><strong>Exposición:</strong> Isabel Guirao", horario: "<strong>Horario:</strong> Lunes a sábado: ☀️ 10:30 - 14:30" },
@@ -948,9 +977,10 @@
                     { type: "tyris", text: "🍺 Momentos Cerveza Tyris: Brindamos por los talleres que mantienen viva la ciudad." }
                 ],
                 22: [
-                    { type: "highlight", badge: "📍 Visita Biennal CVO · Domingo 22 mañana, 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, bajo, 46006, València" },
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Domingo 22 mañana, 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, bajo, 46006, València" },
+                    { type: "soul", text: "🎨 <strong>SOUL DRAWING - Dibujo en vivo - Xavi Carrillo</strong>. Dibujo en la calle, en directo, para quien pasa. Una invitación al caminante para participar en el taller abierto." },
                     { type: "movement", text: "✨ Paso a paso a través del arte creamos comunidad." },
-                    { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, bajo, 46006, València", details: "<strong>Coordinadora:</strong> Maite Backman<br><strong>Artistas:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró y Fernando Rincón", horario: "<strong>Horario:</strong> Domingo 22: ☀️ 10:00 - 14:00" },
+                    { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, bajo, 46006, València", details: "<strong>Coordinadora:</strong> Maite Backman<br><strong>Artistas:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró y Fernando Rincón", horario: "<strong>Horario:</strong> Domingo 22: ☀️ 10:00 - 14:00" },
                     { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposición:</strong> \"Obras recientes\". Exposición de Francesca Ricci y Josie McCoy", horario: "<strong>Horario:</strong> Domingo 22: ☀️ 11:00 - 14:00" },
                     { type: "workshop", badge: "Visita Biennal / Jornada de Clausura", title: "FUNDACIÓN TALLER VICTORIA CANO", loc: "📍 C/ Portal de Valldigna, 7, 46003 València", details: "<strong>Estudio abierto:</strong> Pintura, gráfica, escultura, música, poesía y filosofía.<br><br><strong>ACTOS DESTACADOS:</strong><br>• Dom 22, 11:30h: Recital Concilyarte + bailarina Isabel Gimeno<br>• Dom 22, 12:45h: Premios TFG / TFM Filosofía UV<br>• Dom 22, 13:15h: El Sonido de la Huella, Emilio Calandín + Luis Fernández Castelló, clarinete", horario: "<strong>Horario Exposición:</strong> Dom 22: 11:00 - 14:00 h" },
                     { type: "tyris", text: "🍺 Cerveza Tyris Moments: gracias por recorrer el arte con nosotras." }
@@ -967,9 +997,9 @@
                        <p><strong>Art a la Llum:</strong> Circuit de Tallers i Estudis d'artista a Ciutat Vella, Russafa i rodalia.</p><br>
                        <p><strong>Art Contemporani:</strong> Exposicions, trobada amb els artistes i veure de prop com es crea una obra d'art, t'atreveixes?</p><br>
                        <p>📍 <strong>VISITA BIENNAL CVO:</strong> Visita guiada en grup. Trieu el dia, aneu al punt de trobada i recorrem junts els tallers.</p>
-                       <p>🟡 <strong>Divendres 20</strong> (Vesprada) · Ciutat Vella + Russafa</p>
-                       <p>🩷 <strong>Dissabte 21</strong> (Matí i vesprada) · Ciutat Vella + Russafa</p>
-                       <p>🔴 <strong>Diumenge 22</strong> (Matí) · Russafa + Ciutat Vella</p><br>
+                       <p>🟨 <strong>Divendres 20</strong> (Vesprada) · Ciutat Vella + Russafa</p>
+                       <p>🟪 <strong>Dissabte 21</strong> (Matí i vesprada) · Ciutat Vella + Russafa</p>
+                       <p>🟥 <strong>Diumenge 22</strong> (Matí) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Moments Cervesa Tyris: L'art es mira, es toca i es brinde.</em></p>`,
             dates: "20, 21 i 22 de novembre 2026",
             free: "Accés lliure i gratuït · 20, 21 i 22 de novembre 2026",
@@ -994,6 +1024,7 @@
             events: {
                 20: [
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Divendres 20 vesprada, 16:30 h", title: "Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, 46001, València" },
+                    { type: "soul", text: "🎨 <strong>SOUL DRAWING - Dibuix en viu - Xavi Carrillo</strong>. Dibuix al carrer, en directe, per a qui passa. Una invitació al caminant per a participar en el taller obert." },
                     { type: "tyris", text: "🍺 Moments Cervesa Tyris: L'art es mira, es toca i es brinde." },
                     { type: "workshop", badge: "Visita Biennal: Divendres 20 a les 16:30 h", title: "Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, 46001, València", details: "<strong>Artista:</strong> Lola Tudela<br><strong>Exposició:</strong> Pintura i gravat", horario: "<strong>Horari:</strong><br>• Divendres 20 i Dissabte 21: ☀️ 11:00 - 13:30 / 🌙 17:00 - 19:00<br>• Diumenge 22: ☀️ 11:00 - 13:00" },
                     { type: "workshop", badge: "Visita Biennal: Divendres 20 a les 18:00 h", title: "Estudi de Henar del Paso", loc: "📍 C/ Na Jordana, 22, baix, dreta, 46003, València", details: "<strong>Artista:</strong> Henar del Paso<br><strong>Exposició:</strong> Pintura i dibuix", horario: "<strong>Horari:</strong><br>• Divendres 20: 18:00 - 19:30 h<br>• Dissabte 21: 12:00 - 14:00 h<br>• Diumenge 22: 12:00 - 14:00 h" },
@@ -1006,6 +1037,7 @@
                 21: [
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Dissabte 21 matí, 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València" },
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Dissabte 21 vesprada, 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València" },
+                    { type: "soul", text: "🎨 <strong>SOUL DRAWING - Dibuix en viu - Xavi Carrillo</strong>. Dibuix al carrer, en directe, per a qui passa. Una invitació al caminant per a participar en el taller obert." },
                     { type: "movement", text: "✨ Pas a pas a través de l'art creem comunitat." },
                     { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artista:</strong> Marcela Gómez", horario: "<strong>Horari:</strong><br>• Divendres 20: 🌙 Només vesprada, 17:00 - 20:00<br>• Dissabte 21 i diumenge 22: ☀️ 11:00 - 14:00 / 🌙 17:00 - 20:00" },
                     { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 10:30 - 11:00 h", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8, 46001, València", details: "<strong>Coordinador:</strong> Sento<br><strong>Exposició:</strong> Isabel Guirao", horario: "<strong>Horari:</strong> Dilluns a dissabte: ☀️ 10:30 - 14:30" },
@@ -1019,9 +1051,10 @@
                     { type: "tyris", text: "🍺 Moments Cervesa Tyris: Brindem pels tallers que mantenen viva la ciutat." }
                 ],
                 22: [
-                    { type: "highlight", badge: "📍 Visita Biennal CVO · Diumenge 22 matí, 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, baix, 46006, València" },
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Diumenge 22 matí, 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, baix, 46006, València" },
+                    { type: "soul", text: "🎨 <strong>SOUL DRAWING - Dibuix en viu - Xavi Carrillo</strong>. Dibuix al carrer, en directe, per a qui passa. Una invitació al caminant per a participar en el taller obert." },
                     { type: "movement", text: "✨ Pas a pas a través de l'art creem comunitat." },
-                    { type: "workshop", badge: "Visita Biennal: Diumenge 22 a les 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, baix, 46006, València", details: "<strong>Coordinadora:</strong> Maite Backman<br><strong>Artistes:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró i Fernando Rincón", horario: "<strong>Horari:</strong> Diumenge 22: ☀️ 10:00 - 14:00" },
+                    { type: "workshop", badge: "Visita Biennal: Diumenge 22 a les 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, baix, 46006, València", details: "<strong>Coordinadora:</strong> Maite Backman<br><strong>Artistes:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró i Fernando Rincón", horario: "<strong>Horari:</strong> Diumenge 22: ☀️ 10:00 - 14:00" },
                     { type: "workshop", badge: "Visita Biennal: Diumenge 22 a les 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposició:</strong> \"Obras recientes\" de Francesca Ricci i Josie McCoy", horario: "<strong>Horari:</strong> Diumenge 22: ☀️ 11:00 - 14:00" },
                     { type: "workshop", badge: "Visita Biennal", title: "FUNDACIÓ TALLER VICTORIA CANO", loc: "📍 C/ Portal de Valldigna, 7, 46003 València", details: "<strong>Estudi obert:</strong> Pintura, gràfica, escultura, música, poesia i filosofia.", horario: "<strong>Horari Exposició:</strong> Diumenge 22: 11:00 - 14:00 h" },
                     { type: "tyris", text: "🍺 Moments Cervesa Tyris: gràcies per recórrer l'art amb nosaltres." }
@@ -1038,9 +1071,9 @@
                        <p><strong>Art a la Llum:</strong> Open artists' studios and workshops in Ciutat Vella, Russafa and surroundings.</p><br>
                        <p><strong>Contemporary Art:</strong> Exhibitions, meeting the artists and discovering firsthand how a work of art is created, dare you?</p><br>
                        <p>📍 <strong>BIENNIAL CVO TOUR:</strong> Guided group tour. Choose your day, head to the meeting point and explore the studios together.</p>
-                       <p>🟡 <strong>Friday 20</strong> (Afternoon) · Ciutat Vella + Russafa</p>
-                       <p>🩷 <strong>Saturday 21</strong> (Morning & Afternoon) · Ciutat Vella + Russafa</p>
-                       <p>🔴 <strong>Sunday 22</strong> (Morning) · Russafa + Ciutat Vella</p><br>
+                       <p>🟨 <strong>Friday 20</strong> (Afternoon) · Ciutat Vella + Russafa</p>
+                       <p>🟪 <strong>Saturday 21</strong> (Morning & Afternoon) · Ciutat Vella + Russafa</p>
+                       <p>🟥 <strong>Sunday 22</strong> (Morning) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Cerveza Tyris Moments: Art is looked at, touched, and toasted.</em></p>`,
             dates: "November 20, 21 and 22, 2026",
             free: "Free admission · November 20, 21 and 22, 2026",
@@ -1065,6 +1098,7 @@
             events: {
                 20: [
                     { type: "highlight", badge: "📍 Biennial CVO Tour · Friday 20 afternoon, 16:30 h", title: "Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, 46001, València" },
+                    { type: "soul", text: "🎨 <strong>SOUL DRAWING - Live Drawing - Xavi Carrillo</strong>. Street drawing in direct for passersby. An invitation for walkers to join the open workshop." },
                     { type: "tyris", text: "🍺 Cerveza Tyris Moments: Art is looked at, touched, and toasted." },
                     { type: "workshop", badge: "Biennial Tour: Friday 20 at 16:30 h", title: "Taller de Lola Tudela", loc: "📍 C/ Calatrava, 19 - 1, 46001, València", details: "<strong>Artist:</strong> Lola Tudela<br><strong>Exhibition:</strong> Painting & Printmaking", horario: "<strong>Hours:</strong><br>• Fri 20 & Sat 21: ☀️ 11:00 - 13:30 / 🌙 17:00 - 19:00<br>• Sun 22: ☀️ 11:00 - 13:00" },
                     { type: "workshop", badge: "Biennial Tour: Friday 20 at 18:00 h", title: "Estudio de Henar del Paso", loc: "📍 C/ Na Jordana, 22, 46003, València", details: "<strong>Artist:</strong> Henar del Paso<br><strong>Exhibition:</strong> Painting & Drawing", horario: "<strong>Hours:</strong><br>• Fri 20: 18:00 - 19:30 h<br>• Sat 21: 12:00 - 14:00 h<br>• Sun 22: 12:00 - 14:00 h" },
@@ -1077,6 +1111,7 @@
                 21: [
                     { type: "highlight", badge: "📍 Biennial CVO Tour · Saturday 21 morning, 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València" },
                     { type: "highlight", badge: "📍 Biennial CVO Tour · Saturday 21 afternoon, 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València" },
+                    { type: "soul", text: "🎨 <strong>SOUL DRAWING - Live Drawing - Xavi Carrillo</strong>. Street drawing in direct for passersby. An invitation for walkers to join the open workshop." },
                     { type: "movement", text: "✨ Step by step through art we build community." },
                     { type: "workshop", badge: "Biennial Tour: Saturday 21 at 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artist:</strong> Marcela Gómez", horario: "<strong>Hours:</strong><br>• Fri 20: 🌙 17:00 - 20:00<br>• Sat 21 & Sun 22: ☀️ 11:00 - 14:00 / 🌙 17:00 - 20:00" },
                     { type: "workshop", badge: "Biennial Tour: Saturday 21 at 10:30 - 11:00 h", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8, 46001, València", details: "<strong>Coordinator:</strong> Sento<br><strong>Exhibition:</strong> Isabel Guirao", horario: "<strong>Hours:</strong> Monday to Saturday: ☀️ 10:30 - 14:30" },
@@ -1090,9 +1125,10 @@
                     { type: "tyris", text: "🍺 Cerveza Tyris Moments: We toast to the workshops that keep the city alive." }
                 ],
                 22: [
-                    { type: "highlight", badge: "📍 Biennial CVO Tour · Sunday 22 morning, 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, 46006, València" },
+                    { type: "highlight", badge: "📍 Biennial CVO Tour · Sunday 22 morning, 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, 46006, València" },
+                    { type: "soul", text: "🎨 <strong>SOUL DRAWING - Live Drawing - Xavi Carrillo</strong>. Street drawing in direct for passersby. An invitation for walkers to join the open workshop." },
                     { type: "movement", text: "✨ Step by step through art we build community." },
-                    { type: "workshop", badge: "Biennial Tour: Sunday 22 at 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ Sevilla, 5, 46006, València", details: "<strong>Coordinator:</strong> Maite Backman<br><strong>Artists:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró & Fernando Rincón", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 10:00 - 14:00" },
+                    { type: "workshop", badge: "Biennial Tour: Sunday 22 at 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, 46006, València", details: "<strong>Coordinator:</strong> Maite Backman<br><strong>Artists:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró & Fernando Rincón", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 10:00 - 14:00" },
                     { type: "workshop", badge: "Biennial Tour: Sunday 22 at 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artist:</strong> Francesca Ricci<br><strong>Exhibition:</strong> \"Obras recientes\" by Francesca Ricci & Josie McCoy", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 11:00 - 14:00" },
                     { type: "workshop", badge: "Biennial Tour", title: "FUNDACIÓN TALLER VICTORIA CANO", loc: "📍 C/ Portal de Valldigna, 7, 46003 València", details: "<strong>Open Studio:</strong> Painting, graphic arts, sculpture, music, poetry, and philosophy.", horario: "<strong>Exhibition Hours:</strong> Sunday 22: 11:00 - 14:00 h" },
                     { type: "tyris", text: "🍺 Cerveza Tyris Moments: Thank you for touring art with us." }
@@ -1100,13 +1136,13 @@
             }
         }
     };
-
+  
     const talleres = [
         // RUTA AMARILLA
         { name: "Taller de Pepe March", artistas: "Pepe March", lat: 39.478034, lng: -0.378164, color: "yellow", dir: "C/ de la Mare Vella, 19, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.", contacto: "Pepemarc@gmail.com", telefono: "634 564 264" },
         { name: "FUNDACIÓN TALLER VICTORIA CANO", artistas: "Victoria Cano", lat: 39.477461, lng: -0.378192, color: "yellow", dir: "C/ del Portal de Valldigna, 7, bajo. 46003 València", horario: "Vie 20: 17h-20h | Sáb 21: 11h-14h y 17h-20h | Dom 22: 11h-14h", propuesta: "Estudio abierto. Pintura, gráfica, escultura, música, poesía y filosofía. Actos destacados y exposiciones.", contacto: "www.ofaaartits.com", telefono: "629 170 969" },
         { name: "Estudio de Henar del Paso", artistas: "Henar del Paso", lat: 39.479998, lng: -0.381126, color: "yellow", dir: "C. de na Jordana, 22, bajo, derecha, 46003 València", horario: "Vie 20: 18:00 - 19:30 h | Sáb 21: 12h - 14h | Dom 22: 12h - 14h", propuesta: "Pintura y dibujo.", contacto: "henardelpaso@hotmail.com", telefono: "609 393 490" },
-
+  
         // RUTA FUCSIA
         { name: "Studio Vintage", artistas: "Coordinador: Sento · Exposición: Isabel Guirao", lat: 39.475415, lng: -0.377636, color: "fuchsia", dir: "Carrer de la Puríssima, 8, 46001 València", horario: "Lunes a sábado: 10:30 - 14:30 · Visita Biennal: Sábado 21 de 10:30 a 11:00 h", propuesta: "Exposición de Isabel Guirao.", contacto: "studiovintage@hotmail.com", telefono: "617 952 635" },
         { name: "Taller de Estudios y Proyectos Arturo Catalá", artistas: "Arturo Catalá", lat: 39.475085, lng: -0.382249, color: "fuchsia", dir: "Carrer dels Teixidors, 11, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de proyectos.", contacto: "-", telefono: "-" },
@@ -1117,7 +1153,7 @@
         { name: "Hygiene", artistas: "Colectivo Hygiene", lat: 39.474747, lng: -0.382266, color: "fuchsia", dir: "C/ de Villena, 14, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Instalación e investigación visual.", contacto: "-", telefono: "-" },
         { name: "Taller de Francesca Ricci", artistas: "Francesca Ricci", lat: 39.472300, lng: -0.380000, color: "fuchsia", dir: "Avenida del Oeste, 26, pta 32, 46001 València", horario: "Domingo 22 de noviembre de 11:00 a 14:00 h · Visita Biennal: Domingo 22 a las 11:00 h", propuesta: "Exposición 'Obras recientes' (Francesca Ricci y Josie McCoy).", contacto: "info@francesca-ricci.com", telefono: "-" },
         { name: "Taller de Lola Tudela", artistas: "Lola Tudela", lat: 39.476340, lng: -0.377420, color: "fuchsia", dir: "C/ de Calatrava, 19 - 1, Ciutat Vella, 46001 València", horario: "Vie 20 y Sáb 21: 11:00-13:30 / 17:00-19:00 · Dom 22: 11:00-13:00", propuesta: "Pintura y grabado.", contacto: "domartud@yahoo.es", telefono: "657 557 167" },
-
+  
         // RUTA ROJA
         { name: "Taller de Elena Martí Manzanares", artistas: "Elena Martí Manzanares", lat: 39.463707, lng: -0.374152, color: "red", dir: "C/ de Sevilla, 14, 46006 València", horario: "Vie 20 y Sáb 21: 10:00-14:00 / 16:00-20:30 · Dom 22: 11:00-14:30 · Visita Biennal: Viernes 20 a las 19:00 h", propuesta: "Pintura, dibujo y escultura.", contacto: "ele.marti.man@gmail.com", telefono: "629 727 534" },
         { name: "Francesca Ceramic Studio", artistas: "Francesca", lat: 39.464303, lng: -0.371733, color: "red", dir: "Carrer de Sant Valero, 1, L'Eixample, 46005 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición de piezas cerámicas y demostración en vivo.", contacto: "-", telefono: "-" },
@@ -1127,7 +1163,7 @@
         { name: "Landscape Studio", artistas: "Celia Kettle", lat: 39.460450, lng: -0.376480, color: "red", dir: "C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006 València", horario: "Vie 20, Sáb 21 y Dom 22: 11:00-14:00 / 18:00-20:00 · Visita Biennal: Sábado 21 a las 18:00 h", propuesta: "Exposición individual: 'El ciclo de la vida'. Pintura en acuarela con técnica mixta.", contacto: "celia-k@hotmail.com", telefono: "671 374 889" },
         { name: "Lalambik, estudio de arte", artistas: "Coordinadora: Carmen Ibarra · Artistas: Karina Vagradova y Carmen Ibarra · Artista invitada: Carmen García Gordillo", lat: 39.461920, lng: -0.376460, color: "red", dir: "C/ Buenos Aires, 10, Russafa, 46006 València", horario: "Vie 20: 18:00-21:00 · Sáb 21 y Dom 22: 11:00-14:00 / 18:00-21:00 · Visita Biennal: Sábado 21 a las 13:30 h", propuesta: "Pintura, dibujo, cianotipia y obra gráfica. Serie 'Sueños'. Actividades complementarias todo el fin de semana.", contacto: "info@lalambik.art", telefono: "660 827 028" },
         { name: "Wood Studio 2.0", artistas: "Coordinador: Alejandro Martínez Corredor (@alejandro.s.martinez) · José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), @cowboygiov y Leonie Crowley (@jlcrowleyart)", lat: 39.460200, lng: -0.376140, color: "red", dir: "C/ Pintor Gisbert, 3, Russafa, València", horario: "Vie 20 y Sáb 21: 12:00-14:00 / 17:00-20:00 · Dom 22: 12:00-16:00 · Visita Biennal: Sábado 21 a las 17:00 h", propuesta: "Taller abierto y muestra colectiva de artistas residentes.", contacto: "@alejandro.s.martinez", telefono: "-" },
-
+  
         // MUSEOS Y CENTROS CULTURALES (Azul)
         { name: "Museo de la Ciudad (Palacio Marqués de Campo)", artistas: "Espacio museístico municipal", lat: 39.476013, lng: -0.373859, color: "blue", dir: "Plaça de l'Arquebisbe, 3, 46003 València", horario: "Martes a domingo de 10:00 a 19:00 h.", propuesta: "Espacio dedicado a la historia, arqueología y evolución artística de la ciudad de València ubicado en el histórico Palacio del Marqués de Campo.", contacto: "museociutat@valencia.es", telefono: "962 08 44 41" },
         { name: "Octubre Centre de Cultura Contemporània (OCCC)", artistas: "Centro de cultura contemporánea", lat: 39.473012, lng: -0.377026, color: "blue", dir: "C/ de Sant Ferran, 12, Ciutat Vella, 46001 València", horario: "Lunes a viernes de 09:00 a 21:00 h. Sábados de 09:00 a 14:00 h.", propuesta: "Espacio pluridisciplinar de pensamiento, creación contemporánea, exposiciones, ciclos de debate y actividades culturales.", contacto: "info@octubre.cat", telefono: "96 315 77 99" },
@@ -1137,16 +1173,16 @@
         { name: "Col·legi Major Rector Peset (UV)", artistas: "Centro cultural y expositivo", lat: 39.475956, lng: -0.379371, color: "blue", dir: "Pl. del Forn de Sant Nicolau, 4, 46001 València", horario: "Lunes a viernes de 09:00 a 20:00 h.", propuesta: "Espacio institucional de la Universitat de València dedicado a exposiciones de arte contemporáneo y actividades culturales.", contacto: "cpenset@uv.es", telefono: "963 15 68 00" },
         { name: "Fundación Bancaja", artistas: "Centro cultural y exposiciones", lat: 39.473940, lng: -0.370110, color: "blue", dir: "Pl. de Tetuán, 23, 46003 València", horario: "Martes a domingo de 10:00 a 14:00 h. y de 16:30 a 20:30 h.", propuesta: "Espacio de referencia en Valencia que acoge grandes exposiciones temporales de arte, talleres culturales y conferencias.", contacto: "fundacionbancaja@fundacionbancaja.es", telefono: "963 81 39 90" },
         { name: "Bombas Gens Centre d’Art", artistas: "Centro de artes digitales", lat: 39.485842, lng: -0.384888, color: "blue", dir: "Av. de Burjassot, 54, 46009 València", horario: "Miércoles a domingo de 10:00 a 19:00 h.", propuesta: "Antiguo complejo industrial rehabilitado que fusiona el patrimonio arquitectónico histórico con exposiciones vanguardistas de arte contemporáneo y digital.", contacto: "info@bombasgens.com", telefono: "963 46 38 56" },
-
+  
         // ESPACIOS DE ARTE Y GALERÍAS (Verde Esmeralda)
         { name: "La Gallera Art", artistas: "Galería de arte contemporáneo", lat: 39.472100, lng: -0.377565, color: "emerald", dir: "Carrer dels Aluders, 7, Planta Baja, Ciutat Vella, 46001 València", horario: "Lunes a sábado de 11:00 a 14:00 h. y de 17:00 a 20:00 h.", propuesta: "Espacio expositivo dedicado a la promoción y exhibición de obras de arte contemporáneo y artistas plásticos actuales.", contacto: "lagallerart.com", telefono: "630 57 68 12" },
         { name: "Aleksandra Istorik Gallery", artistas: "Galería de arte contemporáneo", lat: 39.476449, lng: -0.372887, color: "emerald", dir: "C/ de l'Almirall, 3, Ciutat Vella, 46003 València", horario: "Lunes a sábado de 12:00 a 14:00 h. y de 17:00 a 20:30 h.", propuesta: "Galería de arte contemporáneo enfocada en proyectos de artistas emergentes y consolidados, exposiciones colectivas e intercambios culturales en Ciutat Vella.", contacto: "istorik.gallery@gmail.com", telefono: "+34 657 25 11 55 / +34 722 47 04 19" },
         { name: "Galería Taller Xavier Carrillo", artistas: "Xavi Carrillo", lat: 39.486180, lng: -0.360010, color: "emerald", dir: "Calle Utiel, 1, Benimaclet, 46020 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposiciones y programación de actividades artísticas. Espacio colaborador.", contacto: "XavierCarrillo.com", telefono: "-" }
     ];
-
+  
     let map;
     let markers = [];
-
+  
     window.addEventListener('DOMContentLoaded', () => {
         initMap();
         renderAgendaEvents();
@@ -1158,15 +1194,15 @@
             }
         }, 1500);
     });
-
+  
     function initMap() {
         map = L.map('map', { zoomControl: false }).setView([39.4745, -0.3765], 16);
-
+  
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors',
             maxZoom: 19
         }).addTo(map);
-
+  
         talleres.forEach(taller => {
             const pinHtml = `<div class="custom-pin pin-${taller.color}"></div>`;
             const customIcon = L.divIcon({
@@ -1175,14 +1211,14 @@
                 iconSize: [20, 20],
                 iconAnchor: [10, 10]
             });
-
+  
             const marker = L.marker([taller.lat, taller.lng], { icon: customIcon }).addTo(map);
             marker.tallerData = taller;
             marker.on('click', () => openSheet(taller));
             markers.push(marker);
         });
     }
-
+  
     function setLanguage(lang) {
         currentLang = lang;
         document.querySelectorAll('.lang-pill-btn').forEach(btn => {
@@ -1192,7 +1228,7 @@
                 btn.classList.remove('active');
             }
         });
-
+  
         const t = translations[lang];
        
         ['t-header-title', 't-header-title-3', 't-header-title-4'].forEach(id => {
@@ -1203,7 +1239,7 @@
             const el = document.getElementById(id);
             if (el) el.innerText = t.headerSub;
         });
-
+  
         document.getElementById('t-edition').innerText = t.edition;
         document.getElementById('t-title').innerText = t.title;
         document.getElementById('t-home-heading').innerText = t.homeHeading;
@@ -1212,11 +1248,11 @@
         document.getElementById('t-free').innerText = t.free;
         document.getElementById('t-btn-map').innerText = t.btnMap;
         document.getElementById('t-btn-agenda').innerText = t.btnAgenda;
-
+  
         ['t-nav-info', 't-nav-info2', 't-nav-info3'].forEach(id => { document.getElementById(id).innerText = t.navInfo; });
         ['t-nav-map', 't-nav-map2', 't-nav-map3'].forEach(id => { document.getElementById(id).innerText = t.navMap; });
         ['t-nav-agenda', 't-nav-agenda2', 't-nav-agenda3'].forEach(id => { document.getElementById(id).innerText = t.navAgenda; });
-
+  
         document.getElementById('t-agenda-title').innerText = t.agendaTitle;
         document.getElementById('t-agenda-dates').innerText = t.agendaDates;
         document.getElementById('t-agenda-subhead').innerText = t.agendaSubhead;
@@ -1224,17 +1260,17 @@
         document.getElementById('t-day-fri').innerText = t.fri;
         document.getElementById('t-day-sat').innerText = t.sat;
         document.getElementById('t-day-sun').innerText = t.sun;
-
+  
         renderAgendaEvents();
     }
-
+  
     function selectDay(day) {
         currentDay = day;
         document.querySelectorAll('.date-box').forEach(box => box.classList.remove('active-day'));
         document.getElementById('day-box-' + day).classList.add('active-day');
         renderAgendaEvents();
     }
-
+  
     function renderAgendaEvents() {
         const t = translations[currentLang];
         const events = t.events[currentDay] || [];
@@ -1242,6 +1278,8 @@
         events.forEach(ev => {
             if (ev.type === 'tyris') {
                 html += `<div class="tyris-banner">${ev.text}</div>`;
+            } else if (ev.type === 'soul') {
+                html += `<div class="soul-drawing-banner">${ev.text}</div>`;
             } else if (ev.type === 'movement') {
                 html += `<div class="movement-banner">${ev.text}</div>`;
             } else if (ev.type === 'highlight') {
@@ -1275,11 +1313,11 @@
         const container = document.getElementById('agenda-events-content');
         if (container) container.innerHTML = html;
     }
-
+  
     function focusTallerByName(nombreEvento) {
         let tallerEncontrado = null;
         let marcadorEncontrado = null;
-
+  
         markers.forEach(marker => {
             let nTaller = marker.tallerData.name.toLowerCase();
             let nEv = nombreEvento.toLowerCase();
@@ -1291,7 +1329,7 @@
                 marcadorEncontrado = marker;
             }
         });
-
+  
         if (tallerEncontrado && marcadorEncontrado) {
             goToScreen(3);
             setTimeout(() => {
@@ -1302,7 +1340,7 @@
             goToScreen(3);
         }
     }
-
+  
     function goToScreen(screenNumber) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         const targetScreen = document.getElementById('screen-' + screenNumber);
@@ -1313,7 +1351,7 @@
             setTimeout(() => { map.invalidateSize(); }, 250);
         }
     }
-
+  
     function filterRoute(color) {
         goToScreen(3);
         let bounds = [];
@@ -1328,7 +1366,7 @@
             }, 300);
         }
     }
-
+  
     function openSheet(taller) {
         document.getElementById('sheet-title').innerText = taller.name;
         const t = translations[currentLang];
@@ -1346,19 +1384,20 @@
             document.getElementById('t-prop-label').innerText = t.propLabel;
             document.getElementById('t-hor-label').innerText = t.horLabel;
         }
-
+  
         document.getElementById('sheet-address').innerText = `📍 ${taller.dir}`;
         document.getElementById('sheet-propuesta').innerText = taller.propuesta || "Exposición y actividades.";
         document.getElementById('sheet-horario').innerText = taller.horario || "20, 21 y 22 de Noviembre de 2026";
-       
-        document.getElementById('sheet-contacto').innerText = `✉️ ${taller.contacto || '-'}`;
-        document.getElementById('sheet-telefono').innerText = `📞 ${taller.telefono || '-'}`;
-       
-        document.getElementById('bottom-sheet').classList.add('open');
+        document.getElementById('sheet-contacto').innerText = `✉️ ${taller.contacto || "-"}`;
+        document.getElementById('sheet-telefono').innerText = `📞 ${taller.telefono || "-"}`;
+  
+        const sheet = document.getElementById('bottom-sheet');
+        sheet.classList.add('open');
     }
-
+  
     function closeSheet() {
-        document.getElementById('bottom-sheet').classList.remove('open');
+        const sheet = document.getElementById('bottom-sheet');
+        sheet.classList.remove('open');
     }
 </script>
 </body>
