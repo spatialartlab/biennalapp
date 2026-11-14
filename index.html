@@ -470,6 +470,7 @@
             font-weight: 700;
             color: var(--biennal-turquoise-dark);
             margin-bottom: 6px;
+            line-height: 1.4;
         }
         .sheet-address {
             font-size: 0.8rem;
@@ -492,7 +493,7 @@
         .sheet-info-value {
             font-size: 0.84rem;
             color: var(--text-main);
-            line-height: 1.35;
+            line-height: 1.4;
         }
         .sheet-contact-group {
             display: flex;
@@ -514,12 +515,8 @@
             color: var(--text-muted);
         }
   
-        /* --- PANTALLA 4: AGENDA BIENNAL --- */
-        #screen-4 {
-            background-color: var(--biennal-turquoise);
-        }
-        /* --- PANTALLA 5: PROGRAMA TALLERS (MORADA) --- */
-        #screen-5 {
+        /* --- PANTALLAS DE AGENDA Y PROGRAMA --- */
+        #screen-4, #screen-5 {
             background-color: var(--biennal-turquoise);
         }
 
@@ -901,7 +898,7 @@
                     <p id="t-agenda-intro"><strong>Visitas guiadas:</strong> Encuentro en los talleres de artista. Recorrido conjunto y aproximación a la creación artística.<br><strong>Acceso libre y gratuito.</strong></p>
                 </div>
                 <div id="agenda-events-content">
-                    <!-- Contenido dinámico (Agenda Biennal sin Victoria Cano el día 20) -->
+                    <!-- Contenido dinámico -->
                 </div>
             </div>
         </div>
@@ -967,10 +964,10 @@
             <div class="agenda-card-container">
                 <div class="agenda-intro-box">
                     <h3>CIRCUITO DE ESTUDIOS Y TALLERES ABIERTOS</h3>
-                    <p>Listado completo de espacios y talleres abiertos al público con sus horarios y ubicaciones.</p>
+                    <p>Información detallada sin resumir. Solo se muestran los talleres y espacios abiertos en la jornada seleccionada.</p>
                 </div>
                 <div id="programa-workshops-content">
-                    <!-- Contenido dinámico de todos los talleres -->
+                    <!-- Contenido dinámico filtrado por día y sin resúmenes -->
                 </div>
             </div>
         </div>
@@ -1062,10 +1059,10 @@
                     { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 11:15 - 13:00 h", title: "FUNDACIÓN TALLER VICTORIA CANO", loc: "📍 C/ Portal de Valldigna, 7, 46003 València", details: "<strong>Estudio abierto:</strong> Pintura, gráfica, escultura, música, poesía y filosofía.<br><br><strong>ACTOS DESTACADOS:</strong><br>• Sáb 21, 12:00h: Visita guiada murales, con Victoria Cano", horario: "<strong>Horario Exposición:</strong> Sáb 21: 11:00 - 14:00 y 17:00 - 20:00 h" },
                     { type: "tyris", text: "🍺 Momentos Cerveza Tyris: El arte sabe mejor cuando se comparte." },
                     { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 13:30 h (Taller de Cianotipia)", title: "Lalambik, estudio de arte", loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València", details: "<strong>Coordinadora:</strong> Carmen Ibarra<br><strong>Exposición:</strong> Obra de las artistas del estudio: Karina Vagradova y Carmen Ibarra.<br><strong>Artista invitada:</strong> Carmen García Gordillo con la serie \"Sueños\"", horario: "<strong>Horario:</strong><br>• Viernes 20: 🌙 18:00 - 21:00<br>• Sábado 21 y domingo 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 21:00" },
-                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València", details: "<strong>Coordinador:</strong> Alejandro Martínez Corredor<br><strong>Artistas:</strong> José Trujillo, Lino Vicente Sayo, Luis Lluch, @cowboygiov y Leonie Crowley", horario: "<strong>Horario:</strong><br>• Viernes 20 y sábado 21: ☀️ 12:00 - 14:00 / 🌙 17:00 - 20:00<br>• Domingo 22: ☀️ 12:00 - 16:00" },
+                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València", details: "<strong>Coordinador:</strong> Alejandro Martínez Corredor (@alejandro.s.martinez)<br><strong>Artistas participantes:</strong> José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), Alejandro Martínez Corredor (@alejandro.s.martinez), @cowboygiov y Leonie Crowley (@jlcrowleyart)", horario: "<strong>Horario:</strong><br>• Viernes 20 y sábado 21: ☀️ 12:00 - 14:00 / 🌙 17:00 - 20:00<br>• Domingo 22: ☀️ 12:00 - 16:00" },
                     { type: "movement", text: "✨ Paso a paso a través del arte creamos comunidad." },
-                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006, València", details: "<strong>Artista:</strong> Celia Kettle<br><strong>Exposición individual:</strong> \"El ciclo de la vida\"", horario: "<strong>Horario:</strong><br>• Viernes 20, sábado 21 y domingo 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 20:00" },
-                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 19:00 - 19:30 h", title: "Taller Color Elefante", loc: "📍 C/ Sevilla, 26, bajo izquierda, Russafa, València", details: "<strong>Artistas residentes:</strong> Carles Albert Casanova, Ana Arjona, Ana Cantó y equipo", horario: "<strong>Horario:</strong><br>• Viernes 20, sábado 21 y domingo 22: ☀️ 10:30 - 14:30 / 🌙 17:30 - 21:30" },
+                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006, València", details: "<strong>Artista:</strong> Celia Kettle<br><strong>Exposición individual:</strong> \"El ciclo de la vida\". Pintura en acuarela con técnica mixta.", horario: "<strong>Horario:</strong><br>• Viernes 20, sábado 21 y domingo 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 20:00" },
+                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 19:00 - 19:30 h", title: "Taller Color Elefante", loc: "📍 C/ Sevilla, 26, bajo izquierda, Russafa, València", details: "<strong>Artistas residentes:</strong> Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar y Ximo Micó", horario: "<strong>Horario:</strong><br>• Viernes 20, sábado 21 y domingo 22: ☀️ 10:30 - 14:30 / 🌙 17:30 - 21:30" },
                     { type: "tyris", text: "🍺 Momentos Cerveza Tyris: Brindamos por los talleres que mantienen viva la ciudad." }
                 ],
                 22: [
@@ -1073,7 +1070,7 @@
                     { type: "soul", text: "🎨 <strong>SOUL DRAWING - Dibujo en vivo - Xavi Carrillo</strong>. Dibujo en la calle, en directo, para quien pasa. Una invitación al caminante para participar en el taller abierto." },
                     { type: "movement", text: "✨ Paso a paso a través del arte creamos comunidad." },
                     { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, bajo, 46006, València", details: "<strong>Coordinadora:</strong> Maite Backman<br><strong>Artistas:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró y Fernando Rincón", horario: "<strong>Horario:</strong> Domingo 22: ☀️ 10:00 - 14:00" },
-                    { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposición:</strong> \"Obras recientes\" (Francesca Ricci y Josie McCoy)", horario: "<strong>Horario:</strong> Domingo 22: ☀️ 11:00 - 14:00" },
+                    { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposición:</strong> \"Obras recientes\". Exposición de Francesca Ricci y Josie McCoy", horario: "<strong>Horario:</strong> Domingo 22: ☀️ 11:00 - 14:00" },
                     { type: "workshop", badge: "Visita Biennal / Jornada de Clausura", title: "FUNDACIÓN TALLER VICTORIA CANO", loc: "📍 C/ Portal de Valldigna, 7, 46003 València", details: "<strong>Estudio abierto:</strong> Pintura, gráfica, escultura, música, poesía y filosofía.<br><br><strong>ACTOS DESTACADOS:</strong><br>• Dom 22, 11:30h: Recital Concilyarte + bailarina Isabel Gimeno<br>• Dom 22, 12:45h: Premios TFG / TFM Filosofía UV<br>• Dom 22, 13:15h: El Sonido de la Huella, Emilio Calandín + Luis Fernández Castelló, clarinete", horario: "<strong>Horario Exposición:</strong> Dom 22: 11:00 - 14:00 h" },
                     { type: "tyris", text: "🍺 Cerveza Tyris Moments: gracias por recorrer el arte con nosotras." }
                 ]
@@ -1085,9 +1082,7 @@
             edition: "CIRCUIT DE TALLERS 2026",
             title: "Circuit de l'Art",
             homeHeading: "Vingues a l'trobada amb l'Art!",
-            homeBody: `<p><strong>Circuit de l'Art de la Biennal de València</strong></p><br>
-                       <p><strong>Art a la Llum:</strong> Circuit de Tallers i Estudis d'artista a Ciutat Vella, Russafa i rodalia.</p><br>
-                       <p><strong>Art Contemporani:</strong> Exposicions, trobada com els artistes i veure de prop com es crea una obra d'art, t'atreveixes?</p>`,
+            homeBody: `<p><strong>Circuit de l'Art de la Biennal de València</strong></p>`,
             dates: "20, 21 i 22 de novembre 2026",
             free: "Accés lliure i gratuït · 20, 21 i 22 de novembre 2026",
             btnMap: "🗺️ Mapa del Circuit",
@@ -1099,12 +1094,9 @@
             agendaTitle: "Agenda Biennal",
             agendaDates: "20, 21 i 22 de novembre 2026",
             agendaSubhead: "ART A LA LLUM - VISITES GUIADES",
-            agendaIntro: "<strong>Visites guiades:</strong> Trobada als tallers d'artista. Recorregut conjunt.<br><strong>Accés lliure i gratuït.</strong>",
-            fri: "DV",
-            sat: "DS",
-            sun: "DG",
-            propLabel: "Proposta Artística",
-            horLabel: "Horari de Visita",
+            agendaIntro: "<strong>Visites guiades:</strong> Trobada als tallers d'artista.<br><strong>Accés lliure i gratuït.</strong>",
+            fri: "DV", sat: "DS", sun: "DG",
+            propLabel: "Proposta Artística", horLabel: "Horari de Visita",
             events: { 20: [], 21: [], 22: [] }
         },
         eng: {
@@ -1113,8 +1105,7 @@
             edition: "ART WORKSHOPS CIRCUIT 2026",
             title: "Art Circuit",
             homeHeading: "Come meet Art!",
-            homeBody: `<p><strong>València Biennial Art Circuit</strong></p><br>
-                       <p><strong>Art a la Llum:</strong> Open artists' studios and workshops in Ciutat Vella, Russafa and surroundings.</p>`,
+            homeBody: `<p><strong>València Biennial Art Circuit</strong></p>`,
             dates: "November 20, 21 and 22, 2026",
             free: "Free admission · November 20, 21 and 22, 2026",
             btnMap: "🗺️ Circuit Map",
@@ -1126,42 +1117,219 @@
             agendaTitle: "Biennial Schedule",
             agendaDates: "November 20, 21 and 22, 2026",
             agendaSubhead: "ART A LA LLUM - GUIDED TOURS",
-            agendaIntro: "<strong>Guided tours:</strong> Studio visits and joint itinerary.<br><strong>Free admission.</strong>",
-            fri: "FRI",
-            sat: "SAT",
-            sun: "SUN",
-            propLabel: "Artistic Proposal",
-            horLabel: "Visiting Hours",
+            agendaIntro: "<strong>Guided tours:</strong> Studio visits.<br><strong>Free admission.</strong>",
+            fri: "FRI", sat: "SAT", sun: "SUN",
+            propLabel: "Artistic Proposal", horLabel: "Visiting Hours",
             events: { 20: [], 21: [], 22: [] }
         }
     };
   
     const talleres = [
         // RUTA AMARILLA
-        { name: "Taller de Pepe March", artistas: "Pepe March", lat: 39.478034, lng: -0.378164, color: "yellow", dir: "C/ de la Mare Vella, 19, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de obra.", contacto: "Pepemarc@gmail.com", telefono: "634 564 264" },
-        { name: "FUNDACIÓN TALLER VICTORIA CANO", artistas: "Victoria Cano", lat: 39.477461, lng: -0.378192, color: "yellow", dir: "C/ del Portal de Valldigna, 7, bajo. 46003 València", horario: "Vie 20: 17h-20h | Sáb 21: 11h-14h y 17h-20h | Dom 22: 11h-14h", propuesta: "Estudio abierto. Pintura, gráfica, escultura, música, poesía y filosofía. Actos destacados y exposiciones.", contacto: "www.ofaaartits.com", telefono: "629 170 969" },
-        { name: "Estudio de Henar del Paso", artistas: "Henar del Paso", lat: 39.479998, lng: -0.381126, color: "yellow", dir: "C. de na Jordana, 22, bajo, derecha, 46003 València", horario: "Viernes: 18:00 - 19:30 h | Sábado 21: 12h - 14h | Domingo 22: 12h - 14h", propuesta: "Pintura y dibujo.", contacto: "henardelpaso@hotmail.com", telefono: "609 393 490" },
+        { 
+            name: "Taller de Pepe March", 
+            artistas: "Pepe March", 
+            lat: 39.478034, lng: -0.378164, color: "yellow", 
+            dir: "C/ de la Mare Vella, 19, 46001 València", 
+            horario: "20, 21 y 22 de Noviembre de 2026", 
+            propuesta: "Taller abierto y presentación de obra.", 
+            contacto: "Pepemarc@gmail.com", telefono: "634 564 264",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "FUNDACIÓN TALLER VICTORIA CANO", 
+            artistas: "Victoria Cano | Pintura: Rafael Fernández, Luis Gordillo, Eusebio Sempere, Victoria Cano | Premios pintura UPV: Estefanía Serrano, Irene Remón, Carmen Martí, Alba San Jaime, Paula López, Lluna Masip | Gráfica: Bacon, Baselitz, Adams, Armengol, Heras, Mompó, Michavila, Napoleone, Naranjo, Pina, El Roto, Verdú, Cano | Escultura: Vicente Ortí, Olena Spiridonova, Libros-escultura Victoria Cano", 
+            lat: 39.477461, lng: -0.378192, color: "yellow", 
+            dir: "C/ del Portal de Valldigna, 7, bajo. 46003 València", 
+            horario: "Vie 20: 17h-20h | Sáb 21: 11h-14h y 17h-20h | Dom 22: 11h-14h", 
+            propuesta: "Estudio abierto. Pintura, gráfica, escultura, música, poesía y filosofía. Actos destacados: Vie 20, 18:30h: Dj Blay | Sáb 21, 12:00h: Visita guiada murales con Victoria Cano | Dom 22, 11:30h: Recital Concilyarte + bailarina Isabel Gimeno | Dom 22, 12:45h: Premios TFG / TFM Filosofía UV | Dom 22, 13:15h: El Sonido de la Huella (Emilio Calandín + Luis Fernández Castelló).", 
+            contacto: "www.ofaaartits.com", telefono: "629 170 969",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Estudio de Henar del Paso", 
+            artistas: "Henar del Paso", 
+            lat: 39.479998, lng: -0.381126, color: "yellow", 
+            dir: "C. de na Jordana, 22, bajo, derecha, 46003 València", 
+            horario: "Vie 20: 18:00 - 19:30 h | Sáb 21: 12h - 14h | Dom 22: 12h - 14h", 
+            propuesta: "Pintura y dibujo.", 
+            contacto: "henardelpaso@hotmail.com", telefono: "609 393 490",
+            diasAbierto: [20, 21, 22]
+        },
   
         // RUTA FUCSIA
-        { name: "Studio Vintage", artistas: "Coordinador: Sento · Exposición: Isabel Guirao", lat: 39.475415, lng: -0.377636, color: "fuchsia", dir: "Carrer de la Puríssima, 8, 46001 València", horario: "Lunes a sábado: 10:30 - 14:30 · Visita Biennal: Sábado 21 de 10:30 a 11:00 h", propuesta: "Exposición de Isabel Guirao.", contacto: "studiovintage@hotmail.com", telefono: "617 952 635" },
-        { name: "Taller de Estudios y Proyectos Arturo Catalá", artistas: "Arturo Catalá", lat: 39.475085, lng: -0.382249, color: "fuchsia", dir: "Carrer dels Teixidors, 11, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y presentación de proyectos.", contacto: "-", telefono: "-" },
-        { name: "Taller de Ángela Bassano", artistas: "Ángela Bassano", lat: 39.475860, lng: -0.373659, color: "fuchsia", dir: "C/ d'Edeta, 7, 46003 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Taller abierto y exposición de obra gráfica.", contacto: "-", telefono: "-" },
-        { name: "Taller de Lisa Gingles", artistas: "Lisa Gingles", lat: 39.475451, lng: -0.378858, color: "fuchsia", dir: "C/ de Betlem, 9, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición e intervención plástica.", contacto: "-", telefono: "-" },
-        { name: "Taller Veroneta", artistas: "Marcela Gómez", lat: 39.474544, lng: -0.382461, color: "fuchsia", dir: "C/ del Pintor Domingo, 7, 46001 València", horario: "Vie 20: 17:00 - 20:00 · Sáb 21 y Dom 22: 11:00 - 14:00 / 17:00 - 20:00", propuesta: "Taller abierto y exposición de artista.", contacto: "@veronetaymas", telefono: "661 247 302" },
-        { name: "Taller de María Ángeles Aguilera", artistas: "María Ángeles Aguilera", lat: 39.475367, lng: -0.380768, color: "fuchsia", dir: "Carrer del Moro Zeid, 2, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Presentación de procesos creativos.", contacto: "-", telefono: "-" },
-        { name: "Hygiene", artistas: "Colectivo Hygiene", lat: 39.474747, lng: -0.382266, color: "fuchsia", dir: "C/ de Villena, 14, 46001 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Instalación e investigación visual.", contacto: "-", telefono: "-" },
-        { name: "Taller de Francesca Ricci", artistas: "Francesca Ricci", lat: 39.472300, lng: -0.380000, color: "fuchsia", dir: "Avenida del Oeste, 26, pta 32, 46001 València", horario: "Domingo 22 de noviembre de 11:00 a 14:00 h", propuesta: "Exposición 'Obras recientes' (Francesca Ricci y Josie McCoy).", contacto: "info@francesca-ricci.com", telefono: "-" },
-        { name: "Taller de Lola Tudela", artistas: "Lola Tudela", lat: 39.476340, lng: -0.377420, color: "fuchsia", dir: "C/ de Calatrava, 19 - 1, Ciutat Vella, 46001 València", horario: "Vie 20 y Sáb 21: 11:00-13:30 / 17:00-19:00 | Domingo: 11:00-13:00", propuesta: "Pintura y grabado.", contacto: "domartud@yahoo.es", telefono: "657 557 167" },
+        { 
+            name: "Studio Vintage", 
+            artistas: "Coordinador: Sento · Exposición: Isabel Guirao", 
+            lat: 39.475415, lng: -0.377636, color: "fuchsia", 
+            dir: "Carrer de la Puríssima, 8, 46001 València", 
+            horario: "Lunes a sábado: 10:30 - 14:30 · Sábado 21 Visita Biennal de 10:30 a 11:00 h", 
+            propuesta: "Exposición de Isabel Guirao. Estudio abierto y muestra de arte vintage.", 
+            contacto: "studiovintage@hotmail.com", telefono: "617 952 635",
+            diasAbierto: [20, 21] // Abre Lunes a Sábado (20 y 21)
+        },
+        { 
+            name: "Taller de Estudios y Proyectos Arturo Catalá", 
+            artistas: "Arturo Catalá", 
+            lat: 39.475085, lng: -0.382249, color: "fuchsia", 
+            dir: "Carrer dels Teixidors, 11, 46001 València", 
+            horario: "20, 21 y 22 de Noviembre de 2026", 
+            propuesta: "Taller abierto y presentación de proyectos arquitectónicos y visuales.", 
+            contacto: "-", telefono: "-",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Taller de Ángela Bassano", 
+            artistas: "Ángela Bassano", 
+            lat: 39.475860, lng: -0.373659, color: "fuchsia", 
+            dir: "C/ d'Edeta, 7, 46003 València", 
+            horario: "20, 21 y 22 de Noviembre de 2026", 
+            propuesta: "Taller abierto y exposición de obra gráfica.", 
+            contacto: "-", telefono: "-",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Taller de Lisa Gingles", 
+            artistas: "Lisa Gingles", 
+            lat: 39.475451, lng: -0.378858, color: "fuchsia", 
+            dir: "C/ de Betlem, 9, 46001 València", 
+            horario: "20, 21 y 22 de Noviembre de 2026", 
+            propuesta: "Exposición e intervención plástica.", 
+            contacto: "-", telefono: "-",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Taller Veroneta", 
+            artistas: "Marcela Gómez", 
+            lat: 39.474544, lng: -0.382461, color: "fuchsia", 
+            dir: "C/ del Pintor Domingo, 7, 46001 València", 
+            horario: "Vie 20: 17:00 - 20:00 · Sáb 21 y Dom 22: 11:00 - 14:00 / 17:00 - 20:00", 
+            propuesta: "Taller abierto y exposición de artista. Visita Biennal Sábado 21 a las 09:15 h.", 
+            contacto: "@veronetaymas", telefono: "661 247 302",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Taller de María Ángeles Aguilera", 
+            artistas: "María Ángeles Aguilera", 
+            lat: 39.475367, lng: -0.380768, color: "fuchsia", 
+            dir: "Carrer del Moro Zeid, 2, 46001 València", 
+            horario: "20, 21 y 22 de Noviembre de 2026", 
+            propuesta: "Presentación de procesos creativos.", 
+            contacto: "-", telefono: "-",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Hygiene", 
+            artistas: "Colectivo Hygiene", 
+            lat: 39.474747, lng: -0.382266, color: "fuchsia", 
+            dir: "C/ de Villena, 14, 46001 València", 
+            horario: "20, 21 y 22 de Noviembre de 2026", 
+            propuesta: "Instalación e investigación visual.", 
+            contacto: "-", telefono: "-",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Taller de Francesca Ricci", 
+            artistas: "Francesca Ricci y Josie McCoy", 
+            lat: 39.472300, lng: -0.380000, color: "fuchsia", 
+            dir: "Avenida del Oeste, 26, pta 32, 46001 València", 
+            horario: "Domingo 22 de noviembre de 11:00 a 14:00 h", 
+            propuesta: "Exposición 'Obras recientes' de Francesca Ricci y Josie McCoy. Visita Biennal Domingo 22 a las 11:00 h.", 
+            contacto: "info@francesca-ricci.com", telefono: "-",
+            diasAbierto: [22] // Abre exclusivamente el Domingo 22
+        },
+        { 
+            name: "Taller de Lola Tudela", 
+            artistas: "Lola Tudela", 
+            lat: 39.476340, lng: -0.377420, color: "fuchsia", 
+            dir: "C/ de Calatrava, 19 - 1, Ciutat Vella, 46001 València", 
+            horario: "Vie 20 y Sáb 21: 11:00-13:30 / 17:00-19:00 | Dom 22: 11:00-13:00", 
+            propuesta: "Pintura y grabado.", 
+            contacto: "domartud@yahoo.es", telefono: "657 557 167",
+            diasAbierto: [20, 21, 22]
+        },
   
         // RUTA ROJA
-        { name: "Taller de Elena Martí Manzanares", artistas: "Elena Martí Manzanares", lat: 39.463707, lng: -0.374152, color: "red", dir: "C/ de Sevilla, 14, 46006 València", horario: "Vie 20 y Sáb 21: 10:00-14:00 / 16:00-20:30 · Dom 22: 11:00-14:30", propuesta: "Pintura, dibujo y escultura.", contacto: "ele.marti.man@gmail.com", telefono: "629 727 534" },
-        { name: "Francesca Ceramic Studio", artistas: "Francesca", lat: 39.464303, lng: -0.371733, color: "red", dir: "Carrer de Sant Valero, 1, L'Eixample, 46005 València", horario: "20, 21 y 22 de Noviembre de 2026", propuesta: "Exposición de piezas cerámicas y demostración en vivo.", contacto: "-", telefono: "-" },
-        { name: "Sporting Club Russafa", artistas: "Coordinadora: Maite Backman", lat: 39.464279, lng: -0.374111, color: "red", dir: "C/ de Sevilla, 5, bajo, 46006 València", horario: "Domingo 22: 10:00 - 14:00", propuesta: "Exposición colectiva e intervenciones en el estudio.", contacto: "maitebackman@gmail.com", telefono: "-" },
-        { name: "Taller Be Zornoza", artistas: "Be Zornoza", lat: 39.463360, lng: -0.372890, color: "red", dir: "C/ Clero, 7, bajo izquierda, Russafa, València", horario: "Vie 20: 17:00-21:00 · Sáb 21 y Dom 22: 10:00-14:00 / 17:00-21:00", propuesta: "Pintura.", contacto: "@be.zornoza", telefono: "-" },
-        { name: "Taller Color Elefante", artistas: "Carles Albert Casanova, Ana Arjona y equipo", lat: 39.463130, lng: -0.373780, color: "red", dir: "C/ Sevilla, 26, bajo izquierda, Russafa, València", horario: "Vie 20, Sáb 21 y Dom 22: 10:30-14:30 / 17:30-21:30", propuesta: "Los artistas residentes invitan a conocer sus obras en el lugar donde las crean.", contacto: "-", telefono: "-" },
-        { name: "Landscape Studio", artistas: "Celia Kettle", lat: 39.460450, lng: -0.376480, color: "red", dir: "C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006 València", horario: "Vie 20, Sáb 21 y Dom 22: 11:00-14:00 / 18:00-20:00", propuesta: "Exposición individual: 'El ciclo de la vida'.", contacto: "celia-k@hotmail.com", telefono: "671 374 889" },
-        { name: "Lalambik, estudio de arte", artistas: "Coordinadora: Carmen Ibarra", lat: 39.461920, lng: -0.376460, color: "red", dir: "C/ Buenos Aires, 10, Russafa, 46006 València", horario: "Vie 20: 18:00-21:00 · Sáb 21 y Dom 22: 11:00-14:00 / 18:00-21:00", propuesta: "Pintura, dibujo, cianotipia y obra gráfica.", contacto: "info@lalambik.art", telefono: "660 827 028" },
-        { name: "Wood Studio 2.0", artistas: "Alejandro Martínez Corredor y equipo", lat: 39.460200, lng: -0.376140, color: "red", dir: "C/ Pintor Gisbert, 3, Russafa, València", horario: "Vie 20 y Sáb 21: 12:00-14:00 / 17:00-20:00 · Dom 22: 12:00-16:00", propuesta: "Taller abierto y muestra colectiva de artistas residentes.", contacto: "@alejandro.s.martinez", telefono: "-" }
+        { 
+            name: "Taller de Elena Martí Manzanares", 
+            artistas: "Elena Martí Manzanares", 
+            lat: 39.463707, lng: -0.374152, color: "red", 
+            dir: "C/ de Sevilla, 14, 46006 València", 
+            horario: "Vie 20 y Sáb 21: 10:00-14:00 / 16:00-20:30 · Dom 22: 11:00-14:30", 
+            propuesta: "Pintura, dibujo y escultura.", 
+            contacto: "ele.marti.man@gmail.com", telefono: "629 727 534",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Francesca Ceramic Studio", 
+            artistas: "Francesca", 
+            lat: 39.464303, lng: -0.371733, color: "red", 
+            dir: "Carrer de Sant Valero, 1, L'Eixample, 46005 València", 
+            horario: "20, 21 y 22 de Noviembre de 2026", 
+            propuesta: "Exposición de piezas cerámicas y demostración en vivo.", 
+            contacto: "-", telefono: "-",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Sporting Club Russafa", 
+            artistas: "Coordinadora: Maite Backman · Artistas: Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró y Fernando Rincón", 
+            lat: 39.464279, lng: -0.374111, color: "red", 
+            dir: "C/ de Sevilla, 5, bajo, 46006 València", 
+            horario: "Domingo 22: 10:00 - 14:00 h", 
+            propuesta: "Exposición colectiva e intervenciones en el estudio. Visita Biennal Domingo 22 a las 09:30 h.", 
+            contacto: "maitebackman@gmail.com", telefono: "-",
+            diasAbierto: [22] // Abre exclusivamente el Domingo 22
+        },
+        { 
+            name: "Taller Be Zornoza", 
+            artistas: "Be Zornoza", 
+            lat: 39.463360, lng: -0.372890, color: "red", 
+            dir: "C/ Clero, 7, bajo izquierda, Russafa, València", 
+            horario: "Vie 20: 17:00-21:00 · Sáb 21 y Dom 22: 10:00-14:00 / 17:00-21:00", 
+            propuesta: "Pintura. Visita Biennal Viernes 20 a las 20:00 h.", 
+            contacto: "@be.zornoza", telefono: "-",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Taller Color Elefante", 
+            artistas: "Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar y Ximo Micó", 
+            lat: 39.463130, lng: -0.373780, color: "red", 
+            dir: "C/ Sevilla, 26, bajo izquierda, Russafa, València", 
+            horario: "Vie 20, Sáb 21 y Dom 22: 10:30-14:30 / 17:30-21:30", 
+            propuesta: "Los artistas residentes invitan a conocer sus obras en el lugar donde las crean.", 
+            contacto: "-", telefono: "-",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Landscape Studio", 
+            artistas: "Celia Kettle", 
+            lat: 39.460450, lng: -0.376480, color: "red", 
+            dir: "C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006 València", 
+            horario: "Vie 20, Sáb 21 y Dom 22: 11:00-14:00 / 18:00-20:00", 
+            propuesta: "Exposición individual: 'El ciclo de la vida'. Pintura en acuarela con técnica mixta.", 
+            contacto: "celia-k@hotmail.com", telefono: "671 374 889",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Lalambik, estudio de arte", 
+            artistas: "Coordinadora: Carmen Ibarra · Artistas: Karina Vagradova y Carmen Ibarra · Artista invitada: Carmen García Gordillo", 
+            lat: 39.461920, lng: -0.376460, color: "red", 
+            dir: "C/ Buenos Aires, 10, Russafa, 46006 València", 
+            horario: "Vie 20: 18:00-21:00 · Sáb 21 y Dom 22: 11:00-14:00 / 18:00-21:00", 
+            propuesta: "Pintura, dibujo, cianotipia y obra gráfica. Serie 'Sueños'. Actividades complementarias todo el fin de semana.", 
+            contacto: "info@lalambik.art", telefono: "660 827 028",
+            diasAbierto: [20, 21, 22]
+        },
+        { 
+            name: "Wood Studio 2.0", 
+            artistas: "Coordinador: Alejandro Martínez Corredor (@alejandro.s.martinez) · José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), @cowboygiov y Leonie Crowley (@jlcrowleyart)", 
+            lat: 39.460200, lng: -0.376140, color: "red", 
+            dir: "C/ Pintor Gisbert, 3, Russafa, València", 
+            horario: "Vie 20 y Sáb 21: 12:00-14:00 / 17:00-20:00 · Dom 22: 12:00-16:00", 
+            propuesta: "Taller abierto y muestra colectiva de artistas residentes.", 
+            contacto: "@alejandro.s.martinez", telefono: "-",
+            diasAbierto: [20, 21, 22]
+        }
     ];
   
     let map;
@@ -1311,8 +1479,10 @@
 
     function renderProgramaWorkshops() {
         let html = '';
-        // Mostramos todos los talleres organizados para el día seleccionado
-        talleres.forEach(taller => {
+        // Filtrar talleres que abren en el día seleccionado (currentProgDay)
+        const talleresFiltrados = talleres.filter(taller => taller.diasAbierto.includes(currentProgDay));
+
+        talleresFiltrados.forEach(taller => {
             html += `
                 <div class="event-card-item">
                     <div class="event-title">${taller.name}</div>
@@ -1321,7 +1491,7 @@
                         <button class="map-link-btn" onclick="focusTallerByName('${taller.name}')">🗺️ Ver en el mapa</button>
                     </div>
                     <div class="event-desc"><strong>Artistas:</strong> ${taller.artistas}</div>
-                    <div class="event-desc" style="margin-top:4px;"><strong>Propuesta:</strong> ${taller.propuesta}</div>
+                    <div class="event-desc" style="margin-top:6px;"><strong>Propuesta:</strong> ${taller.propuesta}</div>
                     <div class="horario-box"><strong>Horario:</strong> ${taller.horario}</div>
                 </div>
             `;
@@ -1385,22 +1555,7 @@
   
     function openSheet(taller) {
         document.getElementById('sheet-title').innerText = taller.name;
-        const t = translations[currentLang];
-       
-        if (taller.color === 'blue') {
-            document.getElementById('sheet-artists').innerText = taller.artistas || "";
-            document.getElementById('t-prop-label').innerText = t.propCultural;
-            document.getElementById('t-hor-label').innerText = t.horAnual;
-        } else if (taller.color === 'emerald') {
-            document.getElementById('sheet-artists').innerText = taller.artistas || "";
-            document.getElementById('t-prop-label').innerText = t.propGallery;
-            document.getElementById('t-hor-label').innerText = t.horGallery;
-        } else {
-            document.getElementById('sheet-artists').innerText = taller.artistas || "";
-            document.getElementById('t-prop-label').innerText = t.propLabel;
-            document.getElementById('t-hor-label').innerText = t.horLabel;
-        }
-  
+        document.getElementById('sheet-artists').innerText = taller.artistas || "";
         document.getElementById('sheet-address').innerText = `📍 ${taller.dir}`;
         document.getElementById('sheet-propuesta').innerText = taller.propuesta || "Exposición y actividades.";
         document.getElementById('sheet-horario').innerText = taller.horario || "20, 21 y 22 de Noviembre de 2026";
@@ -1418,3 +1573,5 @@
 </script>
 </body>
 </html>
+
+
