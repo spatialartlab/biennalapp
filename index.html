@@ -31,7 +31,7 @@
             --color-blue: #0066cc;
             --color-emerald: #00c853;
             --color-turquoise: #0096a6;
-            --color-turquoise-splash: #00f0ff; /* Turquesa más brillante, claro y equilibrado sin marco blanco */
+            --color-turquoise-splash: #00d2e6;
             --color-agenda-lime: #8bb335;
             --color-programa-purple: #8e44ad;
         }
@@ -362,13 +362,25 @@
         .dot-emerald { background-color: var(--color-emerald); }
         .dot-turquoise { background-color: var(--color-turquoise); }
         
-        /* Punto turquesa brillante y claro equilibrado exclusivo en el splash sin marco blanco */
+        /* Punto turquesa en el splash con mismo tamaño y vibración que los demás */
         .splash-dots .dot-turquoise {
             background-color: var(--color-turquoise-splash);
-            transform: scale(1.25);
-            border: none;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.9);
         }
+  
+        /* Cuadraditos de días en Info con los mismos colores que las pestañas de la agenda */
+        .day-square {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            vertical-align: middle;
+            margin-right: 6px;
+            position: relative;
+            top: -1px;
+        }
+        .day-square-yellow { background-color: var(--color-yellow); }
+        .day-square-fuchsia { background-color: var(--color-fuchsia); }
+        .day-square-red { background-color: var(--color-red); }
   
         /* --- PANTALLA 3: MAPA --- */
         .map-screen-container {
@@ -1057,9 +1069,9 @@
                        <p><strong>Art a la Llum:</strong> Circuito de Talleres y Estudios de artista en Ciutat Vella, Russafa y cercanías.</p><br>
                        <p><strong>Arte Contemporáneo:</strong> Exposiciones, encuentro con los artistas y ver de cerca cómo se crea una obra de arte, ¿te atreves?</p><br>
                        <p>📍 <strong>VISITA BIENNAL CVO:</strong> Visita guiada en grupo. Elige el día, ve al punto de encuentro y recorremos juntos los talleres.</p>
-                       <p>🟨 <strong>Viernes 20</strong> (Tarde) · Ciutat Vella + Russafa</p>
-                       <p>🟧 <strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
-                       <p>🟫 <strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
+                       <p><span class="day-square day-square-yellow"></span><strong>Viernes 20</strong> (Tarde) · Ciutat Vella + Russafa</p>
+                       <p><span class="day-square day-square-fuchsia"></span><strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
+                       <p><span class="day-square day-square-red"></span><strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Momentos Cerveza Tyris: El arte se mira, se toca y se brinda.</em></p>`,
             dates: "20, 21 y 22 de noviembre 2026",
             free: "Acceso libre y gratuito · 20, 21 y 22 de noviembre 2026",
@@ -1141,9 +1153,9 @@
                        <p><strong>Art a la Llum:</strong> Circuit de Tallers i Estudis d'artista a Ciutat Vella, Russafa i rodalia.</p><br>
                        <p><strong>Art Contemporani:</strong> Exposicions, trobada amb els artistes i veure de prop com es crea una obra d'art, t'atreveixes?</p><br>
                        <p>📍 <strong>VISITA BIENNAL CVO:</strong> Visita guiada en grup. Tria el dia, ves al punt de trobada i recorrem junts els tallers.</p>
-                       <p>🟨 <strong>Divendres 20</strong> (Vesprada) · Ciutat Vella + Russafa</p>
-                       <p>🟧 <strong>Dissabte 21</strong> (Matí i vesprada) · Ciutat Vella + Russafa</p>
-                       <p>🟫 <strong>Diumenge 22</strong> (Matí) · Russafa + Ciutat Vella</p><br>
+                       <p><span class="day-square day-square-yellow"></span><strong>Divendres 20</strong> (Vesprada) · Ciutat Vella + Russafa</p>
+                       <p><span class="day-square day-square-fuchsia"></span><strong>Dissabte 21</strong> (Matí i vesprada) · Ciutat Vella + Russafa</p>
+                       <p><span class="day-square day-square-red"></span><strong>Diumenge 22</strong> (Matí) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Moments Cervesa Tyris: L'art es mira, es toca i es brinda.</em></p>`,
             dates: "20, 21 i 22 de novembre 2026",
             free: "Accés lliure i gratuït · 20, 21 i 22 de novembre 2026",
@@ -1225,9 +1237,9 @@
                        <p><strong>Art a la Llum:</strong> Open artists' studios and workshops in Ciutat Vella, Russafa and surroundings.</p><br>
                        <p><strong>Contemporary Art:</strong> Exhibitions, meet the artists, and see firsthand how a work of art is created. Will you join us?</p><br>
                        <p>📍 <strong>BIENNIAL CVO TOUR:</strong> Guided group tour. Choose your day, head to the meeting point, and let's explore the studios together.</p>
-                       <p>🟨 <strong>Friday, Nov 20</strong> (Afternoon) · Ciutat Vella + Russafa</p>
-                       <p>🟧 <strong>Saturday, Nov 21</strong> (Morning & Afternoon) · Ciutat Vella + Russafa</p>
-                       <p>🟫 <strong>Sunday, Nov 22</strong> (Morning) · Russafa + Ciutat Vella</p><br>
+                       <p><span class="day-square day-square-yellow"></span><strong>Friday, Nov 20</strong> (Afternoon) · Ciutat Vella + Russafa</p>
+                       <p><span class="day-square day-square-fuchsia"></span><strong>Saturday, Nov 21</strong> (Morning & Afternoon) · Ciutat Vella + Russafa</p>
+                       <p><span class="day-square day-square-red"></span><strong>Sunday, Nov 22</strong> (Morning) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Tyris Beer Moments: Art is meant to be looked at, touched, and toasted.</em></p>`,
             dates: "November 20, 21 and 22, 2026",
             free: "Free admission · November 20, 21 and 22, 2026",
@@ -2163,7 +2175,7 @@
         const telEl = document.getElementById('sheet-telefono');
         if (telEl) {
             if (taller.telefono && taller.telefono !== '-') {
-                telEl.innerText = `📱 ${taller.telefono}`;
+                telEl.innerText = `📞 ${taller.telefono}`;
                 telEl.style.display = 'block';
             } else {
                 telEl.style.display = 'none';
