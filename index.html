@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="esp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -31,6 +31,7 @@
             --color-blue: #0066cc;
             --color-emerald: #00c853;
             --color-turquoise: #0096a6;
+            --color-turquoise-splash: #00f0ff; /* Turquesa más brillante, claro y equilibrado sin marco blanco */
             --color-agenda-lime: #8bb335;
             --color-programa-purple: #8e44ad;
         }
@@ -61,7 +62,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #084c59;
+            background-color: #000000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -77,7 +78,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
         }
   
         @media (min-width: 415px) {
@@ -85,7 +86,7 @@
                 height: 90vh;
                 max-height: 880px;
                 border-radius: 36px;
-                border: 8px solid #2c3e50;
+                border: 8px solid #1a1a1a;
             }
         }
   
@@ -360,10 +361,13 @@
         .dot-blue { background-color: var(--color-blue); }
         .dot-emerald { background-color: var(--color-emerald); }
         .dot-turquoise { background-color: var(--color-turquoise); }
-        /* Punto turquesa con borde blanco en splash para destacar sobre el fondo turquesa */
+        
+        /* Punto turquesa brillante y claro equilibrado exclusivo en el splash sin marco blanco */
         .splash-dots .dot-turquoise {
-            border: 2px solid var(--white);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            background-color: var(--color-turquoise-splash);
+            transform: scale(1.25);
+            border: none;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.9);
         }
   
         /* --- PANTALLA 3: MAPA --- */
@@ -1054,8 +1058,8 @@
                        <p><strong>Arte Contemporáneo:</strong> Exposiciones, encuentro con los artistas y ver de cerca cómo se crea una obra de arte, ¿te atreves?</p><br>
                        <p>📍 <strong>VISITA BIENNAL CVO:</strong> Visita guiada en grupo. Elige el día, ve al punto de encuentro y recorremos juntos los talleres.</p>
                        <p>🟨 <strong>Viernes 20</strong> (Tarde) · Ciutat Vella + Russafa</p>
-                       <p>🟪 <strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
-                       <p>🟥 <strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
+                       <p>🟧 <strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
+                       <p>🟫 <strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Momentos Cerveza Tyris: El arte se mira, se toca y se brinda.</em></p>`,
             dates: "20, 21 y 22 de noviembre 2026",
             free: "Acceso libre y gratuito · 20, 21 y 22 de noviembre 2026",
@@ -1138,8 +1142,8 @@
                        <p><strong>Art Contemporani:</strong> Exposicions, trobada amb els artistes i veure de prop com es crea una obra d'art, t'atreveixes?</p><br>
                        <p>📍 <strong>VISITA BIENNAL CVO:</strong> Visita guiada en grup. Tria el dia, ves al punt de trobada i recorrem junts els tallers.</p>
                        <p>🟨 <strong>Divendres 20</strong> (Vesprada) · Ciutat Vella + Russafa</p>
-                       <p>🟪 <strong>Dissabte 21</strong> (Matí i vesprada) · Ciutat Vella + Russafa</p>
-                       <p>🟥 <strong>Diumenge 22</strong> (Matí) · Russafa + Ciutat Vella</p><br>
+                       <p>🟧 <strong>Dissabte 21</strong> (Matí i vesprada) · Ciutat Vella + Russafa</p>
+                       <p>🟫 <strong>Diumenge 22</strong> (Matí) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Moments Cervesa Tyris: L'art es mira, es toca i es brinda.</em></p>`,
             dates: "20, 21 i 22 de novembre 2026",
             free: "Accés lliure i gratuït · 20, 21 i 22 de novembre 2026",
@@ -1222,8 +1226,8 @@
                        <p><strong>Contemporary Art:</strong> Exhibitions, meet the artists, and see firsthand how a work of art is created. Will you join us?</p><br>
                        <p>📍 <strong>BIENNIAL CVO TOUR:</strong> Guided group tour. Choose your day, head to the meeting point, and let's explore the studios together.</p>
                        <p>🟨 <strong>Friday, Nov 20</strong> (Afternoon) · Ciutat Vella + Russafa</p>
-                       <p>🟪 <strong>Saturday, Nov 21</strong> (Morning & Afternoon) · Ciutat Vella + Russafa</p>
-                       <p>🟥 <strong>Sunday, Nov 22</strong> (Morning) · Russafa + Ciutat Vella</p><br>
+                       <p>🟧 <strong>Saturday, Nov 21</strong> (Morning & Afternoon) · Ciutat Vella + Russafa</p>
+                       <p>🟫 <strong>Sunday, Nov 22</strong> (Morning) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Tyris Beer Moments: Art is meant to be looked at, touched, and toasted.</em></p>`,
             dates: "November 20, 21 and 22, 2026",
             free: "Free admission · November 20, 21 and 22, 2026",
@@ -1290,7 +1294,7 @@
                     { type: "movement", text: "✨ Step by step through art we build community." },
                     { type: "workshop", badge: "Biennial Tour: Sunday 22 at 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, bajo, 46006, València", details: "<strong>Coordinator:</strong> Maite Backman<br><strong>Artists:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró, and Fernando Rincón", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 10:00 - 14:00" },
                     { type: "workshop", badge: "Biennial Tour: Sunday 22 at 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artist:</strong> Francesca Ricci<br><strong>Exhibition:</strong> \"Recent Works\". Exhibition by Francesca Ricci and Josie McCoy", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 11:00 - 14:00" },
-                    { type: "workshop", badge: "Biennial Tour / Closing Event", title: "Victoria Cano and Alejandro Agustín Foundation. Victoria Cano Studio", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>Open Studio and Closing Events:</strong><br>• <strong>POETIC MUSICAL RECITAL WITH CONCILYARTE POETS:</strong> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva, and Ruth Sancho. Dancer: Isabel Gimeno (La Gaona). Music: Enrique Linares. Sunday, November 22 at 11:30h.<br>• <strong>PHILOSOPHY UNDERGRADUATE & MASTER'S THESIS AWARDS CEREMONY (with UV Dept. of Philosophy):</strong> TFG Award: Paula Higón Ruiz, and TFM Award: Isidro Mora López. Sunday, November 22 at 12:45h.<br>• <strong>EL SONIDO DE LA HUELLA (THE SOUND OF THE TRACE):</strong> Musical composition by Emilio Calandín, based on Victoria Cano's pictorial and audiovisual series \"El poder de la huella\". The work transforms recorded voice messages from Francisco Brines and Pilar Roig into musical notes performed on clarinet by Luis Fernández Castelló. November 22 at 13:15h.", horario: "<strong>Exhibition days:</strong> Friday 20, 17h to 20h; Saturday 21, 11h to 14h and 17h to 20h; and Sunday, November 22, 2026 from 11h to 14h." },
+                    { type: "workshop", badge: "Biennial Tour / Closing Event", title: "Victoria Cano and Alejandro Agustín Foundation. Victoria Cano Studio", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>Open Studio and Closing Events:</strong><br>• <strong>POETIC MUSICAL RECITAL WITH CONCILYARTE POETS:</strong> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva, and Ruth Sancho. Dancer: Isabel Gimeno (La Gaona). Music: Enrique Linares. Sunday, November 22 at 11:30h.<br>• <strong>PHILOSOPHY UNDERGRADUATE & MASTER'S THESIS AWARDS CEREMONY (with UV Dept. of Philosophy):</strong> TFG Award: Paula Higón Ruiz, and TFM Award: Isidro Mora López. Sunday, November 22 at 12:45h.<br>• <strong>EL SONIDO DE LA HUELLA (THE SOUND OF THE TRACE):</strong> Musical composition by Emilio Calandín, based on Victoria Cano's pictorial and audiovisual series ”El poder de la huella”. The work transforms recorded voice messages from Francisco Brines and Pilar Roig into musical notes performed on clarinet by Luis Fernández Castelló. November 22 at 13:15h.", horario: "<strong>Exhibition days:</strong> Friday 20, 17h to 20h; Saturday 21, 11h to 14h and 17h to 20h; and Sunday, November 22, 2026 from 11h to 14h." },
                     { type: "tyris", text: "🍺 Tyris Beer Moments: Thank you for exploring art with us." }
                 ]
             }
@@ -1337,9 +1341,9 @@
             lat: 39.475415, lng: -0.377636, color: "fuchsia", 
             dir: "Carrer de la Puríssima, 8, 46001 València", 
             horario: { 
-                esp: "Lunes a sábado: 10:30 - 14:30 · Sábado 21 Visita Biennal de 10:30 a 11:00 h", 
-                val: "Dilluns a dissabte: 10:30 - 14:30 · Dissabte 21 Visita Biennal de 10:30 a 11:00 h", 
-                eng: "Monday to Saturday: 10:30 - 14:30 · Saturday 21 Biennial Tour from 10:30 to 11:00 h" 
+                esp: "Lunes a sábado: 10:30 - 14:30", 
+                val: "Dilluns a dissabte: 10:30 - 14:30", 
+                eng: "Monday to Saturday: 10:30 - 14:30" 
             },
             propuesta: { 
                 esp: "Exposición de Isabel Guirao. Estudio abierto y muestra de arte vintage.", 
@@ -1366,28 +1370,6 @@
             enPrograma: false
         },
         { 
-            name: { esp: "Taller de Ángela Bassano", val: "Taller d'Ángela Bassano", eng: "Ángela Bassano Studio" },
-            artistas: { esp: "Ángela Bassano", val: "Ángela Bassano", eng: "Ángela Bassano" },
-            lat: 39.475860, lng: -0.373659, color: "fuchsia", 
-            dir: "C/ d'Edeta, 7, 46003 València", 
-            horario: { esp: "20, 21 y 22 de Noviembre de 2026", val: "20, 21 i 22 de Novembre de 2026", eng: "November 20, 21 and 22, 2026" },
-            propuesta: { esp: "Taller abierto y exposición de obra gráfica.", val: "Taller obert i exposició d'obra gràfica.", eng: "Open studio and printmaking exhibition." },
-            contacto: "-", telefono: "-",
-            diasAbierto: [20, 21, 22],
-            enPrograma: true
-        },
-        { 
-            name: { esp: "Taller de Lisa Gingles", val: "Taller de Lisa Gingles", eng: "Lisa Gingles Studio" },
-            artistas: { esp: "Lisa Gingles", val: "Lisa Gingles", eng: "Lisa Gingles" },
-            lat: 39.475451, lng: -0.378858, color: "fuchsia", 
-            dir: "C/ de Betlem, 9, 46001 València", 
-            horario: { esp: "20, 21 y 22 de Noviembre de 2026", val: "20, 21 i 22 de Novembre de 2026", eng: "November 20, 21 and 22, 2026" },
-            propuesta: { esp: "Exposición e intervención plástica.", val: "Exposició i intervenció plàstica.", eng: "Exhibition and visual art intervention." },
-            contacto: "-", telefono: "-",
-            diasAbierto: [20, 21, 22],
-            enPrograma: true
-        },
-        { 
             name: { esp: "Taller Veroneta", val: "Taller Veroneta", eng: "Taller Veroneta" },
             artistas: { esp: "Marcela y Juan", val: "Marcela i Juan", eng: "Marcela and Juan" },
             lat: 39.474544, lng: -0.382461, color: "fuchsia", 
@@ -1407,28 +1389,6 @@
             enPrograma: true
         },
         { 
-            name: { esp: "Taller de María Ángeles Aguilera", val: "Taller de María Ángeles Aguilera", eng: "María Ángeles Aguilera Studio" },
-            artistas: { esp: "María Ángeles Aguilera", val: "María Ángeles Aguilera", eng: "María Ángeles Aguilera" },
-            lat: 39.475367, lng: -0.380768, color: "fuchsia", 
-            dir: "Carrer del Moro Zeid, 2, 46001 València", 
-            horario: { esp: "20, 21 y 22 de Noviembre de 2026", val: "20, 21 i 22 de Novembre de 2026", eng: "November 20, 21 and 22, 2026" },
-            propuesta: { esp: "Presentación de procesos creativos.", val: "Presentació de processos creatius.", eng: "Presentation of creative processes." },
-            contacto: "-", telefono: "-",
-            diasAbierto: [20, 21, 22],
-            enPrograma: true
-        },
-        { 
-            name: { esp: "Hygiene", val: "Hygiene", eng: "Hygiene" },
-            artistas: { esp: "Colectivo Hygiene", val: "Col·lectiu Hygiene", eng: "Hygiene Collective" },
-            lat: 39.474747, lng: -0.382266, color: "fuchsia", 
-            dir: "C/ de Villena, 14, 46001 València", 
-            horario: { esp: "20, 21 y 22 de Noviembre de 2026", val: "20, 21 i 22 de Novembre de 2026", eng: "November 20, 21 and 22, 2026" },
-            propuesta: { esp: "Instalación e investigación visual.", val: "Instal·lació i investigació visual.", eng: "Installation and visual research." },
-            contacto: "-", telefono: "-",
-            diasAbierto: [20, 21, 22],
-            enPrograma: true
-        },
-        { 
             name: { esp: "Taller de Francesca Ricci", val: "Taller de Francesca Ricci", eng: "Francesca Ricci Studio" },
             artistas: { esp: "Francesca Ricci y Josie McCoy", val: "Francesca Ricci i Josie McCoy", eng: "Francesca Ricci and Josie McCoy" },
             lat: 39.472300, lng: -0.380000, color: "fuchsia", 
@@ -1439,9 +1399,9 @@
                 eng: "Sunday, November 22 from 11:00 to 14:00 h" 
             },
             propuesta: { 
-                esp: "Exposición 'Obras recientes' de Francesca Ricci y Josie McCoy. Visita Biennal Domingo 22 a las 11:00 h.", 
-                val: "Exposició 'Obres recents' de Francesca Ricci i Josie McCoy. Visita Biennal Diumenge 22 a les 11:00 h.", 
-                eng: "Exhibition 'Recent Works' by Francesca Ricci and Josie McCoy. Biennial Tour Sunday 22 at 11:00 h." 
+                esp: "Exposición 'Obras recientes' de Francesca Ricci y Josie McCoy.", 
+                val: "Exposició 'Obres recents' de Francesca Ricci i Josie McCoy.", 
+                eng: "Exhibition 'Recent Works' by Francesca Ricci and Josie McCoy." 
             },
             contacto: "info@francesca-ricci.com", telefono: "-",
             diasAbierto: [22],
@@ -1480,21 +1440,6 @@
             enPrograma: true
         },
         { 
-            name: { esp: "Francesca Ceramic Studio", val: "Francesca Ceramic Studio", eng: "Francesca Ceramic Studio" },
-            artistas: { esp: "Francesca", val: "Francesca", eng: "Francesca" },
-            lat: 39.464303, lng: -0.371733, color: "red", 
-            dir: "Carrer de Sant Valero, 1, L'Eixample, 46005 València", 
-            horario: { esp: "20, 21 y 22 de Noviembre de 2026", val: "20, 21 i 22 de Novembre de 2026", eng: "November 20, 21 and 22, 2026" },
-            propuesta: { 
-                esp: "Exposición de piezas cerámicas y demostración en vivo.", 
-                val: "Exposició de peces ceràmiques i demostració en viu.", 
-                eng: "Exhibition of ceramic pieces and live demonstration." 
-            },
-            contacto: "-", telefono: "-",
-            diasAbierto: [20, 21, 22],
-            enPrograma: true
-        },
-        { 
             name: { esp: "Sporting Club Russafa", val: "Sporting Club Russafa", eng: "Sporting Club Russafa" },
             artistas: { 
                 esp: "Coordinadora: Maite Backman · Artistas: Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró y Fernando Rincón", 
@@ -1505,9 +1450,9 @@
             dir: "C/ de Sevilla, 5, bajo, 46006 València", 
             horario: { esp: "Domingo 22: 10:00 - 14:00 h", val: "Diumenge 22: 10:00 - 14:00 h", eng: "Sunday 22: 10:00 - 14:00 h" },
             propuesta: { 
-                esp: "Exposición colectiva e intervenciones en el estudio. Visita Biennal Domingo 22 a las 09:30 h.", 
-                val: "Exposició col·lectiva i intervencions a l'estudi. Visita Biennal Diumenge 22 a les 09:30 h.", 
-                eng: "Group exhibition and studio interventions. Biennial Tour Sunday 22 at 09:30 h." 
+                esp: "Exposición colectiva e intervenciones en el estudio.", 
+                val: "Exposició col·lectiva i intervencions a l'estudi.", 
+                eng: "Group exhibition and studio interventions." 
             },
             contacto: "maitebackman@gmail.com", telefono: "-",
             diasAbierto: [22],
@@ -1524,9 +1469,9 @@
                 eng: "Fri 20: 17:00-21:00 · Sat 21 & Sun 22: 10:00-14:00 / 17:00-21:00" 
             },
             propuesta: { 
-                esp: "Pintura. Visita Biennal Viernes 20 a las 20:00 h.", 
-                val: "Pintura. Visita Biennal Divendres 20 a les 20:00 h.", 
-                eng: "Painting. Biennial Tour Friday 20 at 20:00 h." 
+                esp: "Pintura.", 
+                val: "Pintura.", 
+                eng: "Painting." 
             },
             contacto: "@be.zornoza", telefono: "-",
             diasAbierto: [20, 21, 22],
@@ -1905,7 +1850,7 @@
             enPrograma: false
         }
     ];
-
+  
     function getLocalizedField(field, lang) {
         if (!field) return "";
         if (typeof field === 'object') {
@@ -1956,7 +1901,7 @@
     function setLanguage(lang) {
         currentLang = lang;
         document.documentElement.lang = lang === 'val' ? 'ca' : (lang === 'eng' ? 'en' : 'es');
-
+  
         document.querySelectorAll('.lang-pill-btn').forEach(btn => {
             if (btn.textContent.trim().toLowerCase() === lang) {
                 btn.classList.add('active');
@@ -2007,7 +1952,7 @@
         document.getElementById('t-prog-day-fri').innerText = t.fri;
         document.getElementById('t-prog-day-sat').innerText = t.sat;
         document.getElementById('t-prog-day-sun').innerText = t.sun;
-
+  
         if (activeSheetTaller) {
             openSheet(activeSheetTaller);
         }
@@ -2085,7 +2030,7 @@
             const tPropuesta = getLocalizedField(taller.propuesta, currentLang);
             const tHorario = getLocalizedField(taller.horario, currentLang);
             const safeName = tName.replace(/'/g, "\\'");
-
+  
             html += `
                 <div class="event-card-item">
                     <div class="event-title">${tName}</div>
@@ -2163,7 +2108,7 @@
             }, 300);
         }
     }
-
+  
     let activeSheetTaller = null;
   
     function openSheet(taller) {
@@ -2173,7 +2118,7 @@
         const tArtistas = getLocalizedField(taller.artistas, currentLang);
         const tPropuesta = getLocalizedField(taller.propuesta, currentLang);
         const tHorario = getLocalizedField(taller.horario, currentLang);
-
+  
         document.getElementById('sheet-title').innerText = tName;
        
         if (taller.color === 'blue') {
@@ -2218,7 +2163,7 @@
         const telEl = document.getElementById('sheet-telefono');
         if (telEl) {
             if (taller.telefono && taller.telefono !== '-') {
-                telEl.innerText = `📞 ${taller.telefono}`;
+                telEl.innerText = `📱 ${taller.telefono}`;
                 telEl.style.display = 'block';
             } else {
                 telEl.style.display = 'none';
@@ -2235,3 +2180,5 @@
 </script>
 </body>
 </html>
+
+
