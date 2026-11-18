@@ -31,7 +31,7 @@
             --color-blue: #0066cc;
             --color-emerald: #00c853;
             --color-turquoise: #0096a6;
-            --color-turquoise-splash: #00d2e6;
+            --color-turquoise-splash: #38f2ff;
             --color-agenda-lime: #8bb335;
             --color-programa-purple: #8e44ad;
         }
@@ -362,25 +362,11 @@
         .dot-emerald { background-color: var(--color-emerald); }
         .dot-turquoise { background-color: var(--color-turquoise); }
         
-        /* Punto turquesa en el splash con mismo tamaño y vibración que los demás */
         .splash-dots .dot-turquoise {
             background-color: var(--color-turquoise-splash);
+            border: none;
+            box-shadow: 0 0 8px rgba(56, 242, 255, 0.45);
         }
-  
-        /* Cuadraditos de días en Info con los mismos colores que las pestañas de la agenda */
-        .day-square {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            border-radius: 3px;
-            vertical-align: middle;
-            margin-right: 6px;
-            position: relative;
-            top: -1px;
-        }
-        .day-square-yellow { background-color: var(--color-yellow); }
-        .day-square-fuchsia { background-color: var(--color-fuchsia); }
-        .day-square-red { background-color: var(--color-red); }
   
         /* --- PANTALLA 3: MAPA --- */
         .map-screen-container {
@@ -886,7 +872,7 @@
                 <div class="sheet-contact-group">
                     <span id="sheet-web">🌐 -</span>
                     <span id="sheet-contacto">✉️ -</span>
-                    <span id="sheet-telefono">📞 -</span>
+                    <span id="sheet-telefono">📱 -</span>
                 </div>
             </div>
         </div>
@@ -1069,9 +1055,9 @@
                        <p><strong>Art a la Llum:</strong> Circuito de Talleres y Estudios de artista en Ciutat Vella, Russafa y cercanías.</p><br>
                        <p><strong>Arte Contemporáneo:</strong> Exposiciones, encuentro con los artistas y ver de cerca cómo se crea una obra de arte, ¿te atreves?</p><br>
                        <p>📍 <strong>VISITA BIENNAL CVO:</strong> Visita guiada en grupo. Elige el día, ve al punto de encuentro y recorremos juntos los talleres.</p>
-                       <p><span class="day-square day-square-yellow"></span><strong>Viernes 20</strong> (Tarde) · Ciutat Vella + Russafa</p>
-                       <p><span class="day-square day-square-fuchsia"></span><strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
-                       <p><span class="day-square day-square-red"></span><strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
+                       <p><span style="display:inline-block; width:16px; height:16px; background-color: #ffde00; border-radius: 4px; vertical-align: middle; margin-right: 6px;"></span><strong>Viernes 20</strong> (Tarde) · Ciutat Vella + Russafa</p>
+                       <p><span style="display:inline-block; width:16px; height:16px; background-color: #d8008f; border-radius: 4px; vertical-align: middle; margin-right: 6px;"></span><strong>Sábado 21</strong> (Mañana y tarde) · Ciutat Vella + Russafa</p>
+                       <p><span style="display:inline-block; width:16px; height:16px; background-color: #e50012; border-radius: 4px; vertical-align: middle; margin-right: 6px;"></span><strong>Domingo 22</strong> (Mañana) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Momentos Cerveza Tyris: El arte se mira, se toca y se brinda.</em></p>`,
             dates: "20, 21 y 22 de noviembre 2026",
             free: "Acceso libre y gratuito · 20, 21 y 22 de noviembre 2026",
@@ -1119,26 +1105,30 @@
                 ],
                 21: [
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Sábado 21 mañana, 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València" },
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Sábado 21 mañana, 12:00 h", title: "Fundación Victoria Cano y Alejandro Agustín. Estudio Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València" },
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Sábado 21 tarde, 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València" },
                     { type: "soul", text: "🎨 <strong>Souldrawing - Performance - Xavi Carrillo</strong> . Dibujo en vivo. Una invitación al caminante para participar en el taller abierto." },
                     { type: "movement", text: "✨ Paso a paso a través del arte creamos comunidad." },
-                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artistas:</strong> Marcela y Juan<br><strong>Actividad:</strong> La letra como materia y relato. Construye tu propio personaje con cartones recortados y letras, y da forma a ese ser que nace de tu interior.", horario: "<strong>Horario:</strong><br>• Viernes 20: de 17:00 a 20:00 h<br>• Sábado 21: de 9:15 h a 14:00 y de 17:00 a 20:00 h<br>• Domingo 22: de 11:00 a 14:00 y de 17:00 a 20:00 h" },
+                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artistas:</strong> Marcela Gómez y Juan Carranco<br><strong>Actividad:</strong> La letra como materia y relato. La actividad consiste en componer un personaje en formato 'cara', sin necesidad de que sea figurativo, con cartones reciclados, recortados y letras. Construye tu propio personaje y da forma a ese ser que nace de tu interior.", horario: "<strong>Horario:</strong><br>• Viernes 20: de 17:00 a 20:00 h<br>• Sábado 21: de 9:15 h a 14:00 y de 17:00 a 20:00 h<br>• Domingo 22: de 11:00 a 14:00 y de 17:00 a 20:00 h" },
                     { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 10:30 - 11:00 h", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8, 46001, València", details: "<strong>Coordinador:</strong> Sento<br><strong>Exposición:</strong> Isabel Guirao", horario: "<strong>Horario:</strong> Lunes a sábado: ☀️ 10:30 - 14:30" },
-                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 11:15 - 13:00 h", title: "Fundación Victoria Cano y Alejandro Agustín. Estudio Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>ACTIVIDADES ARTÍSTICAS EN C/PORTAL DE VALLDIGNA 7, BAJO. 46003 València:</strong><br>• <strong>PINTURAS:</strong> Rafael Fernández, Luis Gordillo, Eusebio Sempere y Victoria Cano.<br>• <strong>PREMIOS de pintura de la Fundación Victoria Cano y Alejandro Agustín con la Facultat de Belles Arts.UPV.:</strong> Estefanía Serrano, Irene Remón, Carmen Martí, Alba San Jaime, Paula López y Lluna Masip.<br>• <strong>OBRA GRÁFICA:</strong> Alice Adams, Armengol, Francis Bacon, Georg Baselitz, Victoria Cano, Artur Heras, Manuel Hernández Mompó, Joaquín Michavila, Guiulia Napoleone, Eduardo Naranjo, Adrià Pina, El Roto y Joan Verdú.<br>• <strong>ESCULTURAS:</strong> Vicente Ortí, Olena Spiridonova, Libros-escultura Victoria Cano.<br><br><strong>ACTOS DESTACADOS:</strong><br>• <strong>MÚSICA con Dj Blay:</strong> Viernes, 20 de noviembre 2026 a las 18,30h.<br>• <strong>VISITA GUIADA:</strong> Victoria Cano comentará el proceso y técnicas de sus murales de la calle Portal de Valldigna 7, y Marevella, 46003 València. Sábado, 21 de noviembre 2026 a las 12h.", horario: "<strong>Días de exposición:</strong> viernes 20, de 17h a 20h; sábado 21, de 11h. a 14h., y de 17h. a 20h., y domingo 22 de noviembre de 2026 de 11h. a 14h." },
+                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 12:00 h (Visita Guiada)", title: "Fundación Victoria Cano y Alejandro Agustín. Estudio Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>Visita Guiada:</strong> Victoria Cano comentará el proceso y técnicas de sus murales de la calle Portal de Valldigna 7, y Marevella, 46003 València. Sábado, 21 de noviembre 2026 a las 12h.", horario: "<strong>Horario de exposición:</strong> viernes 20, de 17h a 20h; sábado 21, de 11h. a 14h., y de 17h. a 20h., y domingo 22 de noviembre de 2026 de 11h. a 14h." },
                     { type: "tyris", text: "🍺 Momentos Cerveza Tyris: El arte sabe mejor cuando se comparte." },
-                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 13:30 h (Taller de Cianotipia)", title: "Lalambik, estudio de arte", loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València", details: "<strong>Coordinadora:</strong> Carmen Ibarra<br><strong>Exposición:</strong> Obra de las artistas del estudio: Karina Vagradova y Carmen Ibarra.<br><strong>Artista invitada:</strong> Carmen García Gordillo con la serie \"Sueños\"", horario: "<strong>Horario:</strong><br>• Viernes 20: 🌙 18:00 - 21:00<br>• Sábado 21 y domingo 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 21:00" },
+                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 13:30 h (Taller de Cianotipia)", title: "Lalambik, estudio de arte", loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València", details: "<strong>Artistas:</strong> Karina Vagradova y Carmen Ibarra · Artista invitada: Carmen García Gordillo<br><strong>Descripción:</strong> Pintura, dibujo, cianotipia y obra gráfica. Serie 'Sueños'. Actividades complementarias todo el fin de semana.", horario: "<strong>Horario:</strong> Vie 20: 18:00 - 21:00 · Sáb 21 y Dom 22: 11:00 - 14:00 / 18:00 - 21:00 h.<br><strong>Actividades Complementarias:</strong><br>📅 Viernes 20: 19:00 h Taller Iniciación al Book Art.<br>📅 Sábado 21: 13:00 h Cianotipia con Karina Vagradova.<br>📅 Domingo 22: 11:00 h Acuarela con Carmen Ibarra." },
                     { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València", details: "<strong>Coordinador:</strong> Alejandro Martínez Corredor (@alejandro.s.martinez)<br><strong>Artistas participantes:</strong> José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), @cowboygiov y Leonie Crowley (@jlcrowleyart)", horario: "<strong>Horario:</strong><br>• Viernes 20 y sábado 21: ☀️ 12:00 - 14:00 / 🌙 17:00 - 20:00<br>• Domingo 22: ☀️ 12:00 - 16:00" },
                     { type: "movement", text: "✨ Paso a paso a través del arte creamos comunidad." },
-                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006, València", details: "<strong>Artista:</strong> Celia Kettle<br><strong>Exposición individual:</strong> \"El ciclo de la vida\". Pintura en acuarela con técnica mixta.", horario: "<strong>Horario:</strong><br>• Viernes 20, sábado 21 y domingo 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 20:00" },
+                    { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006, València", details: "<strong>Responsable:</strong> Celia Kettle<br><strong>Artistas:</strong> Majo Giner, Magda Pintos, Senda Pérez Cruz, Marina Noguera, Agus Llus, Marinie Ruiz de Cabañas y Celia Kettle.<br><strong>Exposición individual:</strong> 'El ciclo de la vida'. Pintura en acuarela con técnica mixta, Celia Kettle", horario: "<strong>Horario:</strong> Vie 20, Sáb 21 y Dom 22: 11:00 - 14:00 / 18:00 - 20:00 h." },
                     { type: "workshop", badge: "Visita Biennal: Sábado 21 a las 19:00 - 19:30 h", title: "Taller Color Elefante", loc: "📍 C/ Sevilla, 26, bajo izquierda, Russafa, València", details: "<strong>Artistas residentes:</strong> Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar y Ximo Micó", horario: "<strong>Horario:</strong><br>• Viernes 20, sábado 21 y domingo 22: ☀️ 10:30 - 14:30 / 🌙 17:30 - 21:30" },
                     { type: "tyris", text: "🍺 Momentos Cerveza Tyris: Brindamos por los talleres que mantienen viva la ciudad." }
                 ],
                 22: [
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Domingo 22 mañana, 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, bajo, 46006, València" },
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Domingo 22 mediodía, 12:00 h", title: "Taller de Natividad Navalón y Abaroa", loc: "📍 C/ Sanchis Bergón, 3, bajo, 46008, València" },
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Domingo 22 clausura, 13:00 h", title: "Fundación Victoria Cano y Alejandro Agustín. Estudio Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València" },
                     { type: "movement", text: "✨ Paso a paso a través del arte creamos comunidad." },
                     { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, bajo, 46006, València", details: "<strong>Coordinadora:</strong> Maite Backman<br><strong>Artistas:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró y Fernando Rincón", horario: "<strong>Horario:</strong> Domingo 22: ☀️ 10:00 - 14:00" },
-                    { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposición:</strong> \"Obras recientes\". Exposición de Francesca Ricci y Josie McCoy", horario: "<strong>Horario:</strong> Domingo 22: ☀️ 11:00 - 14:00" },
-                    { type: "workshop", badge: "Visita Biennal / Jornada de Clausura", title: "Fundación Victoria Cano y Alejandro Agustín. Estudio Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>Estudio abierto y actos de clausura:</strong><br>• <strong>RECITAL POÉTICO MUSICAL CON LAS POETAS DE CONCILYARTE:</strong> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva y Ruth Sancho. Bailarina: Isabel Gimeno (La Gaona). Música: Enrique Linares. Domingo, 22 de noviembre a las 11,30h.<br>• <strong>ENTREGA DE LOS PREMIOS TRABAJO FIN DE GRADO y TRABAJO FIN DE MASTER DE FILOSOFÍA de la Fundación Victoria Cano y Alejandro Agustín con el Departament de Filosofia de la Universitat de València:</strong> PREMIO TFG: Paula Higón Ruiz, y PREMIO TFM: Isidro Mora López. Domingo, 22 de noviembre a las 12,45h.<br>• <strong>EL SONIDO DE LA HUELLA:</strong> Composición musical de Emilio Calandín, basada en la serie pictórica y audiovisual ”El poder de la huella” de Victoria Cano. La obra transforma los mensajes de voz grabados de Francisco Brines y Pilar Roig en notas musicales que interpreta al clarinete Luis Fernández Castelló. Día 22 de noviembre a las 13,15h.", horario: "<strong>Días de exposición:</strong> viernes 20, de 17h a 20h; sábado 21, de 11h. a 14h., y de 17h. a 20h., y domingo 22 de noviembre de 2026 de 11h. a 14h." },
+                    { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposición:</strong> 'Obras recientes'. Exposición de Francesca Ricci y Josie McCoy", horario: "<strong>Horario:</strong> Domingo 22: ☀️ 11:00 - 14:00" },
+                    { type: "workshop", badge: "Visita Biennal: Domingo 22 a las 12:00 h", title: "Taller de Natividad Navalón y Abaroa", loc: "📍 C/ Sanchis Bergón, 3, bajo, 46008, València", details: "<strong>Artistas:</strong> Natividad Navalón y Abaroa<br><strong>Descripción:</strong> Chambres d’Amis es un proyecto de taller expositivo concebido para la Biennal València Ciutat Vella Oberta 2026 junto a Espai Nivi y María Tinoco. Espacio simbólico. El umbral como punto de encuentro. Refugio de la memoria y los afectos.<br><strong>Exposición:</strong> Ramón de Soto . Natividad Navalón . Teresa Cháfer . Vicente Barón . Alejandro Mañas García . Jaume Chornet . Daniel Tejero . M. José Zanón . Javi Moreno . J.F. Albacete . Abaroa . Mariano Poyatos . Luis Furió . Manuel Setién . Inma Gastaldo . Rafael Blasco . Reme Tomás.", horario: "<strong>Horario:</strong> Viernes 22, de 19:00 a 21:00; Sábado 21, de 18:00 a 20:00 y Domingo 23, de 12:00 a 14:00 h." },
+                    { type: "workshop", badge: "Visita Biennal / Jornada de Clausura: Domingo 22 a las 13:00 h", title: "Fundación Victoria Cano y Alejandro Agustín. Estudio Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>Estudio abierto y actos de clausura:</strong><br>• <strong>RECITAL POÉTICO MUSICAL CON LAS POETAS DE CONCILYARTE:</strong> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva y Ruth Sancho. Bailarina: Isabel Gimeno (La Gaona). Música: Enrique Linares. Domingo, 22 de noviembre a las 11,30h.<br>• <strong>ENTREGA DE LOS PREMIOS TRABAJO FIN DE GRADO y TRABAJO FIN DE MASTER DE FILOSOFÍA de la Fundación Victoria Cano y Alejandro Agustín con el Departament de Filosofia de la Universitat de València:</strong> PREMIO TFG: Paula Higón Ruiz, y PREMIO TFM: Isidro Mora López. Domingo, 22 de noviembre a las 12,45h.<br>• <strong>EL SONIDO DE LA HUELLA:</strong> Composición musical de Emilio Calandín, basada en la serie pictórica y audiovisual 'El poder de la huella' de Victoria Cano. La obra transforma los mensajes de voz grabados de Francisco Brines y Pilar Roig en notas musicales que interpreta al clarinete Luis Fernández Castelló. Día 22 de noviembre a las 13,15h.", horario: "<strong>Días de exposición:</strong> viernes 20, de 17h a 20h; sábado 21, de 11h. a 14h., y de 17h. a 20h., y domingo 22 de noviembre de 2026 de 11h. a 14h." },
                     { type: "tyris", text: "🍺 Cerveza Tyris Moments: gracias por recorrer el arte con nosotras." }
                 ]
             }
@@ -1153,9 +1143,9 @@
                        <p><strong>Art a la Llum:</strong> Circuit de Tallers i Estudis d'artista a Ciutat Vella, Russafa i rodalia.</p><br>
                        <p><strong>Art Contemporani:</strong> Exposicions, trobada amb els artistes i veure de prop com es crea una obra d'art, t'atreveixes?</p><br>
                        <p>📍 <strong>VISITA BIENNAL CVO:</strong> Visita guiada en grup. Tria el dia, ves al punt de trobada i recorrem junts els tallers.</p>
-                       <p><span class="day-square day-square-yellow"></span><strong>Divendres 20</strong> (Vesprada) · Ciutat Vella + Russafa</p>
-                       <p><span class="day-square day-square-fuchsia"></span><strong>Dissabte 21</strong> (Matí i vesprada) · Ciutat Vella + Russafa</p>
-                       <p><span class="day-square day-square-red"></span><strong>Diumenge 22</strong> (Matí) · Russafa + Ciutat Vella</p><br>
+                       <p><span style="display:inline-block; width:16px; height:16px; background-color: #ffde00; border-radius: 4px; vertical-align: middle; margin-right: 6px;"></span><strong>Divendres 20</strong> (Vesprada) · Ciutat Vella + Russafa</p>
+                       <p><span style="display:inline-block; width:16px; height:16px; background-color: #d8008f; border-radius: 4px; vertical-align: middle; margin-right: 6px;"></span><strong>Dissabte 21</strong> (Matí i vesprada) · Ciutat Vella + Russafa</p>
+                       <p><span style="display:inline-block; width:16px; height:16px; background-color: #e50012; border-radius: 4px; vertical-align: middle; margin-right: 6px;"></span><strong>Diumenge 22</strong> (Matí) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Moments Cervesa Tyris: L'art es mira, es toca i es brinda.</em></p>`,
             dates: "20, 21 i 22 de novembre 2026",
             free: "Accés lliure i gratuït · 20, 21 i 22 de novembre 2026",
@@ -1203,26 +1193,30 @@
                 ],
                 21: [
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Dissabte 21 matí, 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València" },
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Dissabte 21 matí, 12:00 h", title: "Fundació Victoria Cano i Alejandro Agustín. Estudi Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, baix. 46003 València" },
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Dissabte 21 vesprada, 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València" },
                     { type: "soul", text: "🎨 <strong>Souldrawing - Performance - Xavi Carrillo</strong> . Dibuix en viu. Una invitació al caminant per a participar en el taller obert." },
                     { type: "movement", text: "✨ Pas a pas a través de l'art creem comunitat." },
-                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artistes:</strong> Marcela i Juan<br><strong>Activitat:</strong> La lletra com a matèria i relat. Construeix el teu propi personatge amb cartrons retallats i lletres, i dona forma a eixe ésser que naix del teu interior.", horario: "<strong>Horari:</strong><br>• Divendres 20: de 17:00 a 20:00 h<br>• Dissabte 21: de 9:15 h a 14:00 i de 17:00 a 20:00 h<br>• Diumenge 22: de 11:00 a 14:00 i de 17:00 a 20:00 h" },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artistes:</strong> Marcela Gómez i Juan Carranco<br><strong>Activitat:</strong> La lletra com a matèria i relat. L'activitat consistix a composar un personatge en format 'cara', sense necessitat que siga figuratiu, amb cartrons reciclats, retallats i lletres. Construeix el teu propi personatge i dona forma a eixe ésser que naix del teu interior.", horario: "<strong>Horari:</strong><br>• Divendres 20: de 17:00 a 20:00 h<br>• Dissabte 21: de 9:15 h a 14:00 i de 17:00 a 20:00 h<br>• Diumenge 22: de 11:00 a 14:00 i de 17:00 a 20:00 h" },
                     { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 10:30 - 11:00 h", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8, 46001, València", details: "<strong>Coordinador:</strong> Sento<br><strong>Exposició:</strong> Isabel Guirao", horario: "<strong>Horari:</strong> Dilluns a dissabte: ☀️ 10:30 - 14:30" },
-                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 11:15 - 13:00 h", title: "Fundació Victoria Cano i Alejandro Agustín. Estudi Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, baix. 46003 València", details: "<strong>ACTIVITATS ARTÍSTIQUES A C/ PORTAL DE VALLDIGNA 7, BAIX. 46003 València:</strong><br>• <strong>PINTURES:</strong> Rafael Fernández, Luis Gordillo, Eusebio Sempere i Victoria Cano.<br>• <strong>PREMIS de pintura de la Fundació Victoria Cano i Alejandro Agustín amb la Facultat de Belles Arts UPV:</strong> Estefanía Serrano, Irene Remón, Carmen Martí, Alba San Jaime, Paula López i Lluna Masip.<br>• <strong>OBRA GRÀFICA:</strong> Alice Adams, Armengol, Francis Bacon, Georg Baselitz, Victoria Cano, Artur Heras, Manuel Hernández Mompó, Joaquín Michavila, Guiulia Napoleone, Eduardo Naranjo, Adrià Pina, El Roto i Joan Verdú.<br>• <strong>ESCULTURES:</strong> Vicente Ortí, Olena Spiridonova, Llibres-escultura Victoria Cano.<br><br><strong>ACTES DESTACATS:</strong><br>• <strong>MÚSICA amb Dj Blay:</strong> Divendres, 20 de novembre 2026 a les 18,30h.<br>• <strong>VISITA GUIADA:</strong> Victoria Cano comentarà el procés i tècniques dels seus murals del carrer Portal de Valldigna 7, i Marevella, 46003 València. Dissabte, 21 de novembre 2026 a les 12h.", horario: "<strong>Dies d'exposició:</strong> divendres 20, de 17h a 20h; dissabte 21, de 11h. a 14h., i de 17h. a 20h., i diumenge 22 de novembre de 2026 de 11h. a 14h." },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 12:00 h (Visita Guiada)", title: "Fundació Victoria Cano i Alejandro Agustín. Estudi Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, baix. 46003 València", details: "<strong>Visita Guiada:</strong> Victoria Cano comentarà el procés i tècniques dels seus murals del carrer Portal de Valldigna 7, i Marevella, 46003 València. Dissabte, 21 de novembre 2026 a les 12h.", horario: "<strong>Horari d'exposició:</strong> divendres 20, de 17h a 20h; dissabte 21, de 11h. a 14h., i de 17h. a 20h., i diumenge 22 de novembre de 2026 de 11h. a 14h." },
                     { type: "tyris", text: "🍺 Moments Cervesa Tyris: L'art sap millor quan es compartix." },
-                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 13:30 h (Taller de Cianotípia)", title: "Lalambik, estudi d'art", loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València", details: "<strong>Coordinadora:</strong> Carmen Ibarra<br><strong>Exposició:</strong> Obra de les artistes de l'estudi: Karina Vagradova i Carmen Ibarra.<br><strong>Artista convidada:</strong> Carmen García Gordillo amb la sèrie \"Somnis\"", horario: "<strong>Horari:</strong><br>• Divendres 20: 🌙 18:00 - 21:00<br>• Dissabte 21 i diumenge 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 21:00" },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 13:30 h (Taller de Cianotípia)", title: "Lalambik, estudi d'art", loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València", details: "<strong>Artistes:</strong> Karina Vagradova i Carmen Ibarra · Artista convidada: Carmen García Gordillo<br><strong>Descripció:</strong> Pintura, dibuix, cianotípia i obra gràfica. Sèrie 'Somnis'. Activitats complementàries tot el cap de setmana.", horario: "<strong>Horari:</strong> Dv 20: 18:00 - 21:00 · Ds 21 i Dg 22: 11:00 - 14:00 / 18:00 - 21:00 h.<br><strong>Activitats Complementàries:</strong><br>📅 Divendres 20: 19:00 h Taller Iniciació al Book Art.<br>📅 Dissabte 21: 13:00 h Cianotípia amb Karina Vagradova.<br>📅 Diumenge 22: 11:00 h Aquarel·la amb Carmen Ibarra." },
                     { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València", details: "<strong>Coordinador:</strong> Alejandro Martínez Corredor (@alejandro.s.martinez)<br><strong>Artistes participants:</strong> José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), @cowboygiov i Leonie Crowley (@jlcrowleyart)", horario: "<strong>Horari:</strong><br>• Divendres 20 i dissabte 21: ☀️ 12:00 - 14:00 / 🌙 17:00 - 20:00<br>• Diumenge 22: ☀️ 12:00 - 16:00" },
                     { type: "movement", text: "✨ Pas a pas a través de l'art creem comunitat." },
-                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, baix dreta, Russafa, 46006, València", details: "<strong>Artista:</strong> Celia Kettle<br><strong>Exposició individual:</strong> \"El cicle de la vida\". Pintura en aquarel·la amb tècnica mixta.", horario: "<strong>Horari:</strong><br>• Divendres 20, dissabte 21 i diumenge 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 20:00" },
+                    { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, baix dreta, Russafa, 46006, València", details: "<strong>Responsable:</strong> Celia Kettle<br><strong>Artistes:</strong> Majo Giner, Magda Pintos, Senda Pérez Cruz, Marina Noguera, Agus Llus, Marinie Ruiz de Cabañas i Celia Kettle.<br><strong>Exposició individual:</strong> 'El cicle de la vida'. Pintura en aquarel·la amb tècnica mixta, Celia Kettle", horario: "<strong>Horari:</strong> Dv 20, Ds 21 i Dg 22: 11:00 - 14:00 / 18:00 - 20:00 h." },
                     { type: "workshop", badge: "Visita Biennal: Dissabte 21 a les 19:00 - 19:30 h", title: "Taller Color Elefante", loc: "📍 C/ Sevilla, 26, baix esquerra, Russafa, València", details: "<strong>Artistes residents:</strong> Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar i Ximo Micó", horario: "<strong>Horari:</strong><br>• Divendres 20, dissabte 21 i diumenge 22: ☀️ 10:30 - 14:30 / 🌙 17:30 - 21:30" },
                     { type: "tyris", text: "🍺 Moments Cervesa Tyris: Brindem pels tallers que mantenen viva la ciutat." }
                 ],
                 22: [
                     { type: "highlight", badge: "📍 Visita Biennal CVO · Diumenge 22 matí, 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, baix, 46006, València" },
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Diumenge 22 migdia, 12:00 h", title: "Taller de Natividad Navalón y Abaroa", loc: "📍 C/ Sanchis Bergón, 3, bajo, 46008, València" },
+                    { type: "highlight", badge: "📍 Visita Biennal CVO · Diumenge 22 cloenda, 13:00 h", title: "Fundació Victoria Cano i Alejandro Agustín. Estudi Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, baix. 46003 València" },
                     { type: "movement", text: "✨ Pas a pas a través de l'art creem comunitat." },
                     { type: "workshop", badge: "Visita Biennal: Diumenge 22 a les 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, baix, 46006, València", details: "<strong>Coordinadora:</strong> Maite Backman<br><strong>Artistes:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró i Fernando Rincón", horario: "<strong>Horari:</strong> Diumenge 22: ☀️ 10:00 - 14:00" },
-                    { type: "workshop", badge: "Visita Biennal: Diumenge 22 a les 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposició:</strong> \"Obres recents\". Exposició de Francesca Ricci i Josie McCoy", horario: "<strong>Horari:</strong> Diumenge 22: ☀️ 11:00 - 14:00" },
-                    { type: "workshop", badge: "Visita Biennal / Jornada de Cloenda", title: "Fundació Victoria Cano i Alejandro Agustín. Estudi Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, baix. 46003 València", details: "<strong>Estudi obert i actes de cloenda:</strong><br>• <strong>RECITAL POÈTIC MUSICAL AMB LES POETES DE CONCILYARTE:</strong> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva i Ruth Sancho. Ballarina: Isabel Gimeno (La Gaona). Música: Enrique Linares. Diumenge, 22 de novembre a les 11,30h.<br>• <strong>LLIURAMENT DELS PREMIS TREBALL FI DE GRAU i TREBALL FI DE MÀSTER DE FILOSOFIA de la Fundació Victoria Cano i Alejandro Agustín amb el Departament de Filosofia de la Universitat de València:</strong> PREMI TFG: Paula Higón Ruiz, i PREMI TFM: Isidro Mora López. Diumenge, 22 de novembre a les 12,45h.<br>• <strong>EL SO DE LA PETJADA:</strong> Composició musical d'Emilio Calandín, basada en la sèrie pictòrica i audiovisual ”El poder de la huella” de Victoria Cano. L'obra transforma els missatges de veu gravats de Francisco Brines i Pilar Roig en notes musicals que interpreta al clarinet Luis Fernández Castelló. Dia 22 de novembre a les 13,15h.", horario: "<strong>Dies d'exposició:</strong> divendres 20, de 17h a 20h; dissabte 21, de 11h. a 14h., i de 17h. a 20h., i diumenge 22 de novembre de 2026 de 11h. a 14h." },
+                    { type: "workshop", badge: "Visita Biennal: Diumenge 22 a les 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artista:</strong> Francesca Ricci<br><strong>Exposició:</strong> 'Obres recents'. Exposició de Francesca Ricci i Josie McCoy", horario: "<strong>Horari:</strong> Diumenge 22: ☀️ 11:00 - 14:00" },
+                    { type: "workshop", badge: "Visita Biennal: Diumenge 22 a les 12:00 h", title: "Taller de Natividad Navalón y Abaroa", loc: "📍 C/ Sanchis Bergón, 3, bajo, 46008, València", details: "<strong>Artistes:</strong> Natividad Navalón y Abaroa<br><strong>Descripció:</strong> Chambres d’Amis és un projecte de taller expositiu concebut per a la Biennal València Ciutat Vella Oberta 2026 juntament amb Espai Nivi i María Tinoco. Espai simbòlic. El llindar com a punt de trobada. Refugi de la memòria i els afectes.<br><strong>Exposició:</strong> Ramón de Soto . Natividad Navalón . Teresa Cháfer . Vicente Barón . Alejandro Mañas García . Jaume Chornet . Daniel Tejero . M. José Zanón . Javi Moreno . J.F. Albacete . Abaroa . Mariano Poyatos . Luis Furió . Manuel Setién . Inma Gastaldo . Rafael Blasco . Reme Tomás.", horario: "<strong>Horari:</strong> Divendres 22, de 19:00 a 21:00; Dissabte 21, de 18:00 a 20:00 i Diumenge 23, de 12:00 a 14:00 h." },
+                    { type: "workshop", badge: "Visita Biennal / Jornada de Cloenda: Diumenge 22 a les 13:00 h", title: "Fundació Victoria Cano i Alejandro Agustín. Estudi Victoria Cano", loc: "📍 C/ Portal de Valldigna, 7, baix. 46003 València", details: "<strong>Estudi obert i actes de cloenda:</strong><br>• <strong>RECITAL POÈTIC MUSICAL AMB LES POETES DE CONCILYARTE:</strong> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva i Ruth Sancho. Ballarina: Isabel Gimeno (La Gaona). Música: Enrique Linares. Diumenge, 22 de novembre a les 11,30h.<br>• <strong>LLIURAMENT DELS PREMIS TREBALL FI DE GRAU i TREBALL FI DE MÀSTER DE FILOSOFIA de la Fundació Victoria Cano i Alejandro Agustín amb el Departament de Filosofia de la Universitat de València:</strong> PREMI TFG: Paula Higón Ruiz, i PREMI TFM: Isidro Mora López. Diumenge, 22 de novembre a les 12,45h.<br>• <strong>EL SO DE LA PETJADA:</strong> Composició musical d'Emilio Calandín, basada en la sèrie pictòrica i audiovisual 'El poder de la huella' de Victoria Cano. L'obra transforma els missatges de veu gravats de Francisco Brines i Pilar Roig en notes musicals que interpreta al clarinet Luis Fernández Castelló. Dia 22 de novembre a les 13,15h.", horario: "<strong>Dies d'exposició:</strong> divendres 20, de 17h a 20h; dissabte 21, de 11h. a 14h., i de 17h. a 20h., i diumenge 22 de novembre de 2026 de 11h. a 14h." },
                     { type: "tyris", text: "🍺 Cervesa Tyris Moments: gràcies per recórrer l'art amb nosaltres." }
                 ]
             }
@@ -1237,9 +1231,9 @@
                        <p><strong>Art a la Llum:</strong> Open artists' studios and workshops in Ciutat Vella, Russafa and surroundings.</p><br>
                        <p><strong>Contemporary Art:</strong> Exhibitions, meet the artists, and see firsthand how a work of art is created. Will you join us?</p><br>
                        <p>📍 <strong>BIENNIAL CVO TOUR:</strong> Guided group tour. Choose your day, head to the meeting point, and let's explore the studios together.</p>
-                       <p><span class="day-square day-square-yellow"></span><strong>Friday, Nov 20</strong> (Afternoon) · Ciutat Vella + Russafa</p>
-                       <p><span class="day-square day-square-fuchsia"></span><strong>Saturday, Nov 21</strong> (Morning & Afternoon) · Ciutat Vella + Russafa</p>
-                       <p><span class="day-square day-square-red"></span><strong>Sunday, Nov 22</strong> (Morning) · Russafa + Ciutat Vella</p><br>
+                       <p><span style="display:inline-block; width:16px; height:16px; background-color: #ffde00; border-radius: 4px; vertical-align: middle; margin-right: 6px;"></span><strong>Friday, Nov 20</strong> (Afternoon) · Ciutat Vella + Russafa</p>
+                       <p><span style="display:inline-block; width:16px; height:16px; background-color: #d8008f; border-radius: 4px; vertical-align: middle; margin-right: 6px;"></span><strong>Saturday, Nov 21</strong> (Morning & Afternoon) · Ciutat Vella + Russafa</p>
+                       <p><span style="display:inline-block; width:16px; height:16px; background-color: #e50012; border-radius: 4px; vertical-align: middle; margin-right: 6px;"></span><strong>Sunday, Nov 22</strong> (Morning) · Russafa + Ciutat Vella</p><br>
                        <p>🍺 <em>Tyris Beer Moments: Art is meant to be looked at, touched, and toasted.</em></p>`,
             dates: "November 20, 21 and 22, 2026",
             free: "Free admission · November 20, 21 and 22, 2026",
@@ -1287,26 +1281,30 @@
                 ],
                 21: [
                     { type: "highlight", badge: "📍 Biennial CVO Tour · Saturday 21 morning, 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València" },
+                    { type: "highlight", badge: "📍 Biennial CVO Tour · Saturday 21 morning, 12:00 h", title: "Victoria Cano and Alejandro Agustín Foundation. Victoria Cano Studio", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València" },
                     { type: "highlight", badge: "📍 Biennial CVO Tour · Saturday 21 afternoon, 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València" },
                     { type: "soul", text: "🎨 <strong>Souldrawing - Performance - Xavi Carrillo</strong> . Live drawing. An invitation for passersby to participate in the open workshop." },
                     { type: "movement", text: "✨ Step by step through art we build community." },
-                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artists:</strong> Marcela and Juan<br><strong>Activity:</strong> The letter as matter and narrative. Build your own character with cut-out cardboard and letters, and give shape to that being born from within you.", horario: "<strong>Hours:</strong><br>• Friday 20: 17:00 to 20:00 h<br>• Saturday 21: 9:15 h to 14:00 and 17:00 to 20:00 h<br>• Sunday 22: 11:00 to 14:00 and 17:00 to 20:00 h" },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 09:15 h", title: "Taller Veroneta", loc: "📍 C/ Pintor Domingo, 7, 46001, València", details: "<strong>Artists:</strong> Marcela Gómez and Juan Carranco<br><strong>Activity:</strong> The letter as matter and narrative. The activity consists of composing a character in a 'face' format, without needing to be figurative, with recycled, cut-out cardboard and letters. Build your own character and give shape to that being born from within you.", horario: "<strong>Hours:</strong><br>• Friday 20: 17:00 to 20:00 h<br>• Saturday 21: 9:15 h to 14:00 and 17:00 to 20:00 h<br>• Sunday 22: 11:00 to 14:00 and 17:00 to 20:00 h" },
                     { type: "workshop", badge: "Biennial Tour: Saturday 21 at 10:30 - 11:00 h", title: "Studio Vintage", loc: "📍 Carrer de la Puríssima, 8, 46001, València", details: "<strong>Coordinator:</strong> Sento<br><strong>Exhibition:</strong> Isabel Guirao", horario: "<strong>Hours:</strong> Monday to Saturday: ☀️ 10:30 - 14:30" },
-                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 11:15 - 13:00 h", title: "Victoria Cano and Alejandro Agustín Foundation. Victoria Cano Studio", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>ARTISTIC ACTIVITIES AT C/PORTAL DE VALLDIGNA 7, BAJO. 46003 València:</strong><br>• <strong>PAINTINGS:</strong> Rafael Fernández, Luis Gordillo, Eusebio Sempere, and Victoria Cano.<br>• <strong>PAINTING AWARDS (with Facultat de Belles Arts UPV):</strong> Estefanía Serrano, Irene Remón, Carmen Martí, Alba San Jaime, Paula López, and Lluna Masip.<br>• <strong>GRAPHIC WORKS:</strong> Alice Adams, Armengol, Francis Bacon, Georg Baselitz, Victoria Cano, Artur Heras, Manuel Hernández Mompó, Joaquín Michavila, Guiulia Napoleone, Eduardo Naranjo, Adrià Pina, El Roto, and Joan Verdú.<br>• <strong>SCULPTURES:</strong> Vicente Ortí, Olena Spiridonova, Victoria Cano Book-Sculptures.<br><br><strong>HIGHLIGHTED EVENTS:</strong><br>• <strong>MUSIC with Dj Blay:</strong> Friday, November 20, 2026 at 18:30h.<br>• <strong>GUIDED TOUR:</strong> Victoria Cano will discuss the process and techniques of her murals on Portal de Valldigna 7 and Marevella streets, 46003 València. Saturday, November 21, 2026 at 12:00h.", horario: "<strong>Exhibition days:</strong> Friday 20, 17h to 20h; Saturday 21, 11h to 14h and 17h to 20h; and Sunday, November 22, 2026 from 11h to 14h." },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 12:00 h (Guided Tour)", title: "Victoria Cano and Alejandro Agustín Foundation. Victoria Cano Studio", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>Guided Tour:</strong> Victoria Cano will discuss the process and techniques of her murals on Portal de Valldigna 7 and Marevella streets, 46003 València. Saturday, November 21, 2026 at 12:00h.", horario: "<strong>Exhibition hours:</strong> Friday 20, 17h to 20h; Saturday 21, 11h to 14h and 17h to 20h; and Sunday, November 22, 2026 from 11h to 14h." },
                     { type: "tyris", text: "🍺 Tyris Beer Moments: Art is better when shared." },
-                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 13:30 h (Cyanotype Workshop)", title: "Lalambik, estudio de arte", loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València", details: "<strong>Coordinator:</strong> Carmen Ibarra<br><strong>Exhibition:</strong> Works by studio artists: Karina Vagradova and Carmen Ibarra.<br><strong>Guest Artist:</strong> Carmen García Gordillo with the series \"Dreams\"", horario: "<strong>Hours:</strong><br>• Friday 20: 🌙 18:00 - 21:00<br>• Saturday 21 and Sunday 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 21:00" },
-                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València", details: "<strong>Coordinator:</strong> Alejandro Martínez Corredor (@alejandro.s.martinez)<br><strong>Participating Artists:</strong> José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), @cowboygiov and Leonie Crowley (@jlcrowleyart)", horario: "<strong>Hours:</strong><br>• Friday 20 and Saturday 21: ☀️ 12:00 - 14:00 / 🌙 17:00 - 20:00<br>• Sunday 22: ☀️ 12:00 - 16:00" },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 13:30 h (Cyanotype Workshop)", title: "Lalambik, estudio de arte", loc: "📍 C/ Buenos Aires, 10, Russafa, 46006, València", details: "<strong>Artists:</strong> Karina Vagradova and Carmen Ibarra · Guest Artist: Carmen García Gordillo<br><strong>Description:</strong> Painting, drawing, cyanotype, and printmaking. 'Dreams' series. Complementary activities all weekend.", horario: "<strong>Hours:</strong> Fri 20: 18:00 - 21:00 · Sat 21 & Sun 22: 11:00 - 14:00 / 18:00 - 21:00 h.<br><strong>Complementary Activities:</strong><br>📅 Friday 20: 19:00 h Book Art Initiation Workshop.<br>📅 Saturday 21: 13:00 h Cyanotype with Karina Vagradova.<br>📅 Sunday 22: 11:00 h Watercolor live painting by Carmen Ibarra." },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 17:00 h", title: "Wood Studio 2.0", loc: "📍 C/ Pintor Gisbert, 3, Russafa, València", details: "<strong>Coordinator:</strong> Alejandro Martínez Corredor (@alejandro.s.martinez)<br><strong>Participating Artists:</strong> José Trujillo (@josetrujilloart), Lino Vicente Sayo (@linovicenteart), Luis Lluch (@lluchnapoles), @cowboygiov, and Leonie Crowley (@jlcrowleyart)", horario: "<strong>Hours:</strong><br>• Friday 20 & Saturday 21: ☀️ 12:00 - 14:00 / 🌙 17:00 - 20:00<br>• Sunday 22: ☀️ 12:00 - 16:00" },
                     { type: "movement", text: "✨ Step by step through art we build community." },
-                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006, València", details: "<strong>Artist:</strong> Celia Kettle<br><strong>Solo Exhibition:</strong> \"The Cycle of Life\". Mixed media watercolor painting.", horario: "<strong>Hours:</strong><br>• Friday 20, Saturday 21 and Sunday 22: ☀️ 11:00 - 14:00 / 🌙 18:00 - 20:00" },
+                    { type: "workshop", badge: "Biennial Tour: Saturday 21 at 18:00 h", title: "Landscape Studio", loc: "📍 C/ Pintor Gisbert, 6, bajo derecha, Russafa, 46006, València", details: "<strong>Responsible:</strong> Celia Kettle<br><strong>Artists:</strong> Majo Giner, Magda Pintos, Senda Pérez Cruz, Marina Noguera, Agus Llus, Marinie Ruiz de Cabañas, and Celia Kettle.<br><strong>Solo Exhibition:</strong> 'The Cycle of Life'. Mixed media watercolor painting by Celia Kettle.", horario: "<strong>Hours:</strong> Fri 20, Sat 21 and Sun 22: 11:00 - 14:00 / 18:00 - 20:00 h." },
                     { type: "workshop", badge: "Biennial Tour: Saturday 21 at 19:00 - 19:30 h", title: "Taller Color Elefante", loc: "📍 C/ Sevilla, 26, bajo izquierda, Russafa, València", details: "<strong>Resident Artists:</strong> Carles Albert Casanova, Ana Arjona, Ana Cantó, Emanuela Tringali, Jesús Poveda, Fortea Gallart, Julia Isach, Miss WOW, Raquel Aguilar, and Ximo Micó", horario: "<strong>Hours:</strong><br>• Friday 20, Saturday 21 and Sunday 22: ☀️ 10:30 - 14:30 / 🌙 17:30 - 21:30" },
                     { type: "tyris", text: "🍺 Tyris Beer Moments: Toasting to the studios that keep the city alive." }
                 ],
                 22: [
                     { type: "highlight", badge: "📍 Biennial CVO Tour · Sunday 22 morning, 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, bajo, 46006, València" },
+                    { type: "highlight", badge: "📍 Biennial CVO Tour · Sunday 22 midday, 12:00 h", title: "Taller de Natividad Navalón y Abaroa", loc: "📍 C/ Sanchis Bergón, 3, bajo, 46008, València" },
+                    { type: "highlight", badge: "📍 Biennial CVO Tour · Sunday 22 closing, 13:00 h", title: "Victoria Cano and Alejandro Agustín Foundation. Victoria Cano Studio", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València" },
                     { type: "movement", text: "✨ Step by step through art we build community." },
                     { type: "workshop", badge: "Biennial Tour: Sunday 22 at 09:30 h", title: "Sporting Club Russafa", loc: "📍 C/ de Sevilla, 5, bajo, 46006, València", details: "<strong>Coordinator:</strong> Maite Backman<br><strong>Artists:</strong> Maite Backman, Maria José Ballester, Rafa de Corral, Tina McCallan, Josie McCoy, Ximo Micó, Lucía Peiró, and Fernando Rincón", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 10:00 - 14:00" },
-                    { type: "workshop", badge: "Biennial Tour: Sunday 22 at 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artist:</strong> Francesca Ricci<br><strong>Exhibition:</strong> \"Recent Works\". Exhibition by Francesca Ricci and Josie McCoy", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 11:00 - 14:00" },
-                    { type: "workshop", badge: "Biennial Tour / Closing Event", title: "Victoria Cano and Alejandro Agustín Foundation. Victoria Cano Studio", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>Open Studio and Closing Events:</strong><br>• <strong>POETIC MUSICAL RECITAL WITH CONCILYARTE POETS:</strong> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva, and Ruth Sancho. Dancer: Isabel Gimeno (La Gaona). Music: Enrique Linares. Sunday, November 22 at 11:30h.<br>• <strong>PHILOSOPHY UNDERGRADUATE & MASTER'S THESIS AWARDS CEREMONY (with UV Dept. of Philosophy):</strong> TFG Award: Paula Higón Ruiz, and TFM Award: Isidro Mora López. Sunday, November 22 at 12:45h.<br>• <strong>EL SONIDO DE LA HUELLA (THE SOUND OF THE TRACE):</strong> Musical composition by Emilio Calandín, based on Victoria Cano's pictorial and audiovisual series ”El poder de la huella”. The work transforms recorded voice messages from Francisco Brines and Pilar Roig into musical notes performed on clarinet by Luis Fernández Castelló. November 22 at 13:15h.", horario: "<strong>Exhibition days:</strong> Friday 20, 17h to 20h; Saturday 21, 11h to 14h and 17h to 20h; and Sunday, November 22, 2026 from 11h to 14h." },
+                    { type: "workshop", badge: "Biennial Tour: Sunday 22 at 11:00 h", title: "Taller de Francesca Ricci", loc: "📍 Av. del Oeste, 26, Pta 32, 46001, València", details: "<strong>Artist:</strong> Francesca Ricci<br><strong>Exhibition:</strong> 'Recent Works'. Exhibition by Francesca Ricci and Josie McCoy", horario: "<strong>Hours:</strong> Sunday 22: ☀️ 11:00 - 14:00" },
+                    { type: "workshop", badge: "Biennial Tour: Sunday 22 at 12:00 h", title: "Taller de Natividad Navalón y Abaroa", loc: "📍 C/ Sanchis Bergón, 3, bajo, 46008, València", details: "<strong>Artists:</strong> Natividad Navalón y Abaroa<br><strong>Description:</strong> Chambres d’Amis is an exhibition studio project conceived for the Biennal València Ciutat Vella Oberta 2026 together with Espai Nivi and María Tinoco. Symbolic space. The threshold as a meeting point. Refuge of memory and affections.<br><strong>Exhibition:</strong> Ramón de Soto . Natividad Navalón . Teresa Cháfer . Vicente Barón . Alejandro Mañas García . Jaume Chornet . Daniel Tejero . M. José Zanón . Javi Moreno . J.F. Albacete . Abaroa . Mariano Poyatos . Luis Furió . Manuel Setién . Inma Gastaldo . Rafael Blasco . Reme Tomás.", horario: "<strong>Hours:</strong> Friday 22, from 19:00 to 21:00; Saturday 21, from 18:00 to 20:00; and Sunday 23, from 12:00 to 14:00 h." },
+                    { type: "workshop", badge: "Biennial Tour / Closing Event: Sunday 22 at 13:00 h", title: "Victoria Cano and Alejandro Agustín Foundation. Victoria Cano Studio", loc: "📍 C/ Portal de Valldigna, 7, bajo. 46003 València", details: "<strong>Open Studio and Closing Events:</strong><br>• <strong>POETIC MUSICAL RECITAL WITH CONCILYARTE POETS:</strong> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva, and Ruth Sancho. <strong>Dancer:</strong> Isabel Gimeno (La Gaona). <strong>Music:</strong> Enrique Linares. Sunday, November 22 at 11:30h.<br>• <strong>PHILOSOPHY UNDERGRADUATE & MASTER'S THESIS AWARDS CEREMONY</strong> by the Victoria Cano and Alejandro Agustín Foundation with the Department of Philosophy of the University of València: <strong>TFG AWARD:</strong> Paula Higón Ruiz, and <strong>TFM AWARD:</strong> Isidro Mora López. Sunday, November 22 at 12:45h.<br>• <strong>EL SONIDO DE LA HUELLA (THE SOUND OF THE TRACE):</strong> Musical composition by Emilio Calandín, based on Victoria Cano's pictorial and audiovisual series 'El poder de la huella'. The work transforms recorded voice messages from Francisco Brines and Pilar Roig into musical notes performed on clarinet by Luis Fernández Castelló. November 22 at 13:15h.", horario: "<strong>Exhibition days:</strong> Friday 20, 17h to 20h; Saturday 21, 11h to 14h and 17h to 20h; and Sunday, November 22, 2026 from 11h to 14h." },
                     { type: "tyris", text: "🍺 Tyris Beer Moments: Thank you for exploring art with us." }
                 ]
             }
@@ -1318,10 +1316,14 @@
         { 
             name: { esp: "Taller de Pepe March", val: "Taller de Pepe March", eng: "Pepe March Studio" },
             artistas: { esp: "Pepe March", val: "Pepe March", eng: "Pepe March" },
-            lat: 39.478034, lng: -0.378164, color: "yellow", 
+            lat: 39.47781, lng: -0.37791, color: "yellow", 
             dir: "C/ de la Mare Vella, 19, 46001 València", 
             horario: { esp: "20, 21 y 22 de Noviembre de 2026", val: "20, 21 i 22 de Novembre de 2026", eng: "November 20, 21 and 22, 2026" },
-            propuesta: { esp: "Taller abierto y presentación de obra.", val: "Taller obert i presentació d'obra.", eng: "Open studio and artwork presentation." },
+            propuesta: { 
+                esp: "El taller March ha sido de siempre un lugar de trabajo artístico, dedicado a la seda, escultura o imaginería, orfebrería y esmaltes sobre metal y cerámica. En su Taller hay abundancia de útiles y herramientas de trabajo, que nos recuerdan el proceso de elaboración de las obras, y, lo que es más importante, nos traen a la mente el concepto de taller como se entendió en el pasado, asociado al proceso de aprendizaje.", 
+                val: "El taller March ha sigut de sempre un lloc de treball artístic, dedicat a la seda, escultura o imagineria, orfebreria i esmalts sobre metall i ceràmica. En el seu Taller hi ha abundància d'útils i eines de treball, que ens recorden el procés d'elaboració de les obres, i, el que és més important, ens porten a la ment el concepte de taller com es va entendre en el passat, associat al procés d'aprenentatge.", 
+                eng: "The March workshop has always been a place of artistic work, dedicated to silk, sculpture or imagery, goldsmithing, and enamels on metal and ceramics. In his workshop, there is an abundance of tools and work implements that remind us of the artwork production process and, most importantly, bring to mind the concept of the workshop as understood in the past, associated with the learning process." 
+            },
             contacto: "Pepemarc@gmail.com", telefono: "634 564 264",
             diasAbierto: [20, 21, 22],
             enPrograma: false
@@ -1329,7 +1331,7 @@
         { 
             name: { esp: "Estudio de Henar del Paso", val: "Estudi de Henar del Paso", eng: "Henar del Paso Studio" },
             artistas: { esp: "Henar del Paso", val: "Henar del Paso", eng: "Henar del Paso" },
-            lat: 39.479998, lng: -0.381126, color: "yellow", 
+            lat: 39.479858, lng: -0.381187, color: "yellow", 
             dir: "C. de na Jordana, 22, bajo, derecha, 46003 València", 
             horario: { 
                 esp: "Vie 20: 18:00 - 19:30 h | Sáb 21: 12h - 14h | Dom 22: 12h - 14h", 
@@ -1369,7 +1371,7 @@
         { 
             name: { esp: "Taller de Estudios y Proyectos Arturo Catalá", val: "Taller d'Estudis i Projectes Arturo Catalá", eng: "Arturo Catalá Studies & Projects Studio" },
             artistas: { esp: "Arturo Catalá", val: "Arturo Catalá", eng: "Arturo Catalá" },
-            lat: 39.475085, lng: -0.382249, color: "fuchsia", 
+            lat: 39.475023, lng: -0.382051, color: "fuchsia", 
             dir: "Carrer dels Teixidors, 11, 46001 València", 
             horario: { esp: "20, 21 y 22 de Noviembre de 2026", val: "20, 21 i 22 de Novembre de 2026", eng: "November 20, 21 and 22, 2026" },
             propuesta: { 
@@ -1383,7 +1385,7 @@
         },
         { 
             name: { esp: "Taller Veroneta", val: "Taller Veroneta", eng: "Taller Veroneta" },
-            artistas: { esp: "Marcela y Juan", val: "Marcela i Juan", eng: "Marcela and Juan" },
+            artistas: { esp: "Marcela Gómez y Juan Carranco", val: "Marcela Gómez i Juan Carranco", eng: "Marcela Gómez and Juan Carranco" },
             lat: 39.474544, lng: -0.382461, color: "fuchsia", 
             dir: "C/ del Pintor Domingo, 7, 46001 València", 
             horario: { 
@@ -1392,9 +1394,9 @@
                 eng: "Friday 20: 17:00 to 20:00 h | Saturday 21: 9:15 h to 14:00 and 17:00 to 20:00 h | Sunday 22: 11:00 to 14:00 and 17:00 to 20:00 h" 
             },
             propuesta: { 
-                esp: "<strong>Actividad:</strong> La letra como materia y relato. Construye tu propio personaje con cartones recortados y letras, y da forma a ese ser que nace de tu interior.", 
-                val: "<strong>Activitat:</strong> La lletra com a matèria i relat. Construeix el teu propi personatge amb cartrons retallats i lletres, i dona forma a eixe ésser que naix del teu interior.", 
-                eng: "<strong>Activity:</strong> The letter as matter and narrative. Build your own character with cut-out cardboard and letters, and give shape to that being born from within you." 
+                esp: "<strong>Actividad:</strong> La letra como materia y relato. La actividad consiste en componer un personaje en formato 'cara', sin necesidad de que sea figurativo, con cartones reciclados, recortados y letras. Construye tu propio personaje y da forma a ese ser que nace de tu interior.", 
+                val: "<strong>Activitat:</strong> La lletra com a matèria i relat. L'activitat consistix a composar un personatge en format 'cara', sense necessitat que siga figuratiu, amb cartrons reciclats, retallats i lletres. Construeix el teu propi personatge i dona forma a eixe ésser que naix del teu interior.", 
+                eng: "<strong>Activity:</strong> The letter as matter and narrative. The activity consists of composing a character in a 'face' format, without needing to be figurative, with recycled, cut-out cardboard and letters. Build your own character and give shape to that being born from within you." 
             },
             contacto: "@veronetaymas", telefono: "661 247 302",
             diasAbierto: [20, 21, 22],
@@ -1523,9 +1525,9 @@
                 eng: "Fri 20, Sat 21 & Sun 22: 11:00-14:00 / 18:00-20:00" 
             },
             propuesta: { 
-                esp: "Exposición individual: 'El ciclo de la vida'. Pintura en acuarela con técnica mixta.", 
-                val: "Exposició individual: 'El cicle de la vida'. Pintura en aquarel·la amb tècnica mixta.", 
-                eng: "Solo exhibition: 'The Cycle of Life'. Mixed media watercolor painting." 
+                esp: "Responsable: Celia Kettle.<br>Artistas: Majo Giner, Magda Pintos, Senda Pérez Cruz, Marina Noguera, Agus Llus, Marinie Ruiz de Cabañas y Celia Kettle.<br>Exposición de trabajos en el taller.<br>Exposición individual: 'El ciclo de la vida'. Pintura en acuarela con técnica mixta, Celia Kettle", 
+                val: "Responsable: Celia Kettle.<br>Artistes: Majo Giner, Magda Pintos, Senda Pérez Cruz, Marina Noguera, Agus Llus, Marinie Ruiz de Cabañas i Celia Kettle.<br>Exposició de treballs a l'estudi.<br>Exposició individual: 'El cicle de la vida'. Pintura en aquarel·la amb tècnica mixta, Celia Kettle", 
+                eng: "Responsible: Celia Kettle.<br>Artists: Majo Giner, Magda Pintos, Senda Pérez Cruz, Marina Noguera, Agus Llus, Marinie Ruiz de Cabañas, and Celia Kettle.<br>Exhibition of works in the studio.<br>Solo exhibition: 'The Cycle of Life'. Mixed media watercolor painting by Celia Kettle." 
             },
             contacto: "celia-k@hotmail.com", telefono: "671 374 889",
             diasAbierto: [20, 21, 22],
@@ -1534,21 +1536,21 @@
         { 
             name: { esp: "Lalambik, estudio de arte", val: "Lalambik, estudi d'art", eng: "Lalambik Art Studio" },
             artistas: { 
-                esp: "Coordinadora: Carmen Ibarra · Artistas: Karina Vagradova y Carmen Ibarra · Artista invitada: Carmen García Gordillo", 
-                val: "Coordinadora: Carmen Ibarra · Artistes: Karina Vagradova i Carmen Ibarra · Artista convidada: Carmen García Gordillo", 
-                eng: "Coordinator: Carmen Ibarra · Artists: Karina Vagradova and Carmen Ibarra · Guest Artist: Carmen García Gordillo" 
+                esp: "Karina Vagradova y Carmen Ibarra · Artista invitada: Carmen García Gordillo", 
+                val: "Karina Vagradova i Carmen Ibarra · Artista convidada: Carmen García Gordillo", 
+                eng: "Karina Vagradova and Carmen Ibarra · Guest Artist: Carmen García Gordillo" 
             },
             lat: 39.461920, lng: -0.376460, color: "red", 
             dir: "C/ Buenos Aires, 10, Russafa, 46006 València", 
             horario: { 
-                esp: "Vie 20: 18:00-21:00 · Sáb 21 y Dom 22: 11:00-14:00 / 18:00-21:00", 
-                val: "Dv 20: 18:00-21:00 · Ds 21 i Dg 22: 11:00-14:00 / 18:00-21:00", 
-                eng: "Fri 20: 18:00-21:00 · Sat 21 & Sun 22: 11:00-14:00 / 18:00-21:00" 
+                esp: "Vie 20: 18:00 - 21:00 · Sáb 21 y Dom 22: 11:00 - 14:00 / 18:00 - 21:00 h.", 
+                val: "Dv 20: 18:00 - 21:00 · Ds 21 i Dg 22: 11:00 - 14:00 / 18:00 - 21:00 h.", 
+                eng: "Fri 20: 18:00 - 21:00 · Sat 21 & Sun 22: 11:00 - 14:00 / 18:00 - 21:00 h." 
             },
             propuesta: { 
-                esp: "Pintura, dibujo, cianotipia y obra gráfica. Serie 'Sueños'. Actividades complementarias todo el fin de semana.", 
-                val: "Pintura, dibuix, cianotípia i obra gràfica. Sèrie 'Somnis'. Activitats complementàries tot el cap de setmana.", 
-                eng: "Painting, drawing, cyanotype, and printmaking. 'Dreams' series. Complementary activities all weekend." 
+                esp: "Pintura, dibujo, cianotipia y obra gráfica. Serie 'Sueños'. Actividades complementarias todo el fin de semana.<br><br><strong>Actividades Complementarias:</strong><br>• Viernes 20, 19:00 h: Taller Iniciación al Book Art. Reciclado de libros, realización de esculturas y objetos con libros plegados. Carmen García Gordillo.<br>• Sábado 21, 13:00 h: Cianotipia con Karina Vagradova. Demostración del proceso de insolado de imagen.<br>• Domingo 22, 11:00 h: Acuarela. Carmen Ibarra pintará una acuarela en directo.", 
+                val: "Pintura, dibuix, cianotípia i obra gràfica. Sèrie 'Somnis'. Activitats complementàries tot el cap de setmana.<br><br><strong>Activitats Complementàries:</strong><br>• Divendres 20, 19:00 h: Taller Iniciació al Book Art. Reciclatge de llibres, realització d'escultures i objectes com llibres plegats. Carmen García Gordillo.<br>• Dissabte 21, 13:00 h: Cianotípia amb Karina Vagradova. Demostració del procés d'insolació d'imatge.<br>• Diumenge 22, 11:00 h: Aquarel·la. Carmen Ibarra pintarà una aquarel·la en directe.", 
+                eng: "Painting, drawing, cyanotype, and printmaking. 'Dreams' series. Complementary activities all weekend.<br><br><strong>Complementary Activities:</strong><br>• Friday 20, 19:00 h: Book Art Initiation Workshop. Book recycling, creation of sculptures and objects with folded books. Carmen García Gordillo.<br>• Saturday 21, 13:00 h: Cyanotype with Karina Vagradova. Image exposure process demonstration.<br>• Sunday 22, 11:00 h: Watercolor live painting by Carmen Ibarra." 
             },
             contacto: "info@lalambik.art", telefono: "660 827 028",
             diasAbierto: [20, 21, 22],
@@ -1575,6 +1577,66 @@
             },
             contacto: "@alejandro.s.martinez", telefono: "-",
             diasAbierto: [20, 21, 22],
+            enPrograma: true
+        },
+  
+        // OTROS TALLERES INCORPORADOS
+        {
+            name: { esp: "Crealabp4", val: "Crealabp4", eng: "Crealabp4" },
+            artistas: { esp: "Beatriz Agulló", val: "Beatriz Agulló", eng: "Beatriz Agulló" },
+            lat: 39.475437, lng: -0.382083, color: "yellow",
+            dir: "C/ Palomar 4, bajo, Russafa, 46001 València",
+            horario: { esp: "Sáb 21, de 18:00 a 21:00 h", val: "Ds 21, de 18:00 a 21:00 h", eng: "Sat 21, from 18:00 to 21:00 h" },
+            propuesta: {
+                esp: "Exposición de obras de Beatriz Argulló. Procesos de trabajo en el taller: Fotografía analógica, procesos antiguos y procesos sin cámara. Cianotipia, chemigramas, fotogramas y transferencias fotográficas.",
+                val: "Exposició d'obres de Beatriz Argulló. Processos de treball al taller: Fotografia analògica, processos antics i processos sense càmera. Cianotípia, chemigrames, fotogrames i transferències fotogràfiques.",
+                eng: "Exhibition of works by Beatriz Argulló. Studio work processes: Analog photography, antique processes, and camera-less processes. Cyanotype, chemigrams, photograms, and photographic transfers."
+            },
+            contacto: "-", telefono: "-",
+            diasAbierto: [21],
+            enPrograma: true
+        },
+        {
+            name: { esp: "Taller de Natividad Navalón y Abaroa", val: "Taller de Natividad Navalón y Abaroa", eng: "Natividad Navalón y Abaroa Studio" },
+            artistas: { esp: "Natividad Navalón y Abaroa", val: "Natividad Navalón y Abaroa", eng: "Natividad Navalón y Abaroa" },
+            lat: 39.47825, lng: -0.384152, color: "yellow",
+            dir: "C/ Sanchis Bergón, 3, bajo, 46008, València",
+            horario: {
+                esp: "Viernes 22, de 19:00 a 21:00; Sábado 21, de 18:00 a 20:00 y Domingo 23, de 12:00 a 14:00 h.",
+                val: "Divendres 22, de 19:00 a 21:00; Dissabte 21, de 18:00 a 20:00 i Diumenge 23, de 12:00 a 14:00 h.",
+                eng: "Friday 22, from 19:00 to 21:00; Saturday 21, from 18:00 to 20:00; and Sunday 23, from 12:00 to 14:00 h."
+            },
+            propuesta: {
+                esp: "Chambres d’Amis es un proyecto de taller expositivo concebido para la Biennal València Ciutat Vella Oberta 2026 junto a Espai Nivi y María Tinoco. Espacio simbólico. El umbral como punto de encuentro. Refugio de la memoria y los afectos.<br><strong>Exposición:</strong> Ramón de Soto . Natividad Navalón . Teresa Cháfer . Vicente Barón . Alejandro Mañas García . Jaume Chornet . Daniel Tejero . M. José Zanón . Javi Moreno . J.F. Albacete . Abaroa . Mariano Poyatos . Luis Furió . Manuel Setién . Inma Gastaldo . Rafael Blasco . Reme Tomás.",
+                val: "Chambres d’Amis és un projecte de taller expositiu concebut per a la Biennal València Ciutat Vella Oberta 2026 juntament amb Espai Nivi i María Tinoco. Espai simbòlic. El llindar com a punt de trobada. Refugi de la memòria i els afectes.<br><strong>Exposició:</strong> Ramón de Soto . Natividad Navalón . Teresa Cháfer . Vicente Barón . Alejandro Mañas García . Jaume Chornet . Daniel Tejero . M. José Zanón . Javi Moreno . J.F. Albacete . Abaroa . Mariano Poyatos . Luis Furió . Manuel Setién . Inma Gastaldo . Rafael Blasco . Reme Tomás.",
+                eng: "Chambres d’Amis is an exhibition studio project conceived for the Biennal València Ciutat Vella Oberta 2026 together with Espai Nivi and María Tinoco. Symbolic space. The threshold as a meeting point. Refuge of memory and affections.<br><strong>Exhibition:</strong> Ramón de Soto . Natividad Navalón . Teresa Cháfer . Vicente Barón . Alejandro Mañas García . Jaume Chornet . Daniel Tejero . M. José Zanón . Javi Moreno . J.F. Albacete . Abaroa . Mariano Poyatos . Luis Furió . Manuel Setién . Inma Gastaldo . Rafael Blasco . Reme Tomás."
+            },
+            contacto: "-", telefono: "-",
+            diasAbierto: [20, 21, 22],
+            enPrograma: true
+        },
+        // TALLERES MEDUSA (UBICACIÓN CORREGIDA EXACTA: CARRER DEL MINISTRE LUIS MAYANS, 21)
+        {
+            name: { esp: "Talleres Medusa", val: "Tallers Medusa", eng: "Talleres Medusa" },
+            artistas: {
+                esp: "Coordinadora: Dana Gynther · Dana Gynther (cerámica), Marta Wason, Arlette Olaerts y Alicia Keyla (pintura), Carolina Kuratomi (kokedamas y terrarios)",
+                val: "Coordinadora: Dana Gynther · Dana Gynther (ceràmica), Marta Wason, Arlette Olaerts i Alicia Keyla (pintura), Carolina Kuratomi (kokedames i terraris)",
+                eng: "Coordinator: Dana Gynther · Dana Gynther (ceramics), Marta Wason, Arlette Olaerts, and Alicia Keyla (painting), Carolina Kuratomi (kokedamas and terrariums)"
+            },
+            lat: 39.485969, lng: -0.372077, color: "green",
+            dir: "C/ del Ministre Luis Mayans, 21, 46009 València",
+            horario: {
+                esp: "Viernes 20, de 17:00 a 20:00 h; Sábado 21, de 11:00 a 19:00 h.",
+                val: "Divendres 20, de 17:00 a 20:00 h; Dissabte 21, d'11:00 a 19:00 h.",
+                eng: "Friday 20, from 17:00 to 20:00 h; Saturday 21, from 11:00 to 19:00 h."
+            },
+            propuesta: {
+                esp: "Estudio abierto y exposición colectiva de los artistas residentes con demostraciones de cerámica, pintura y arte botánico.",
+                val: "Estudi obert i exposició col·lectiva dels artistes residents amb demostracions de ceràmica, pintura i art botànic.",
+                eng: "Open studio and group exhibition of resident artists featuring demonstrations of ceramics, painting, and botanical art."
+            },
+            contacto: "-", telefono: "-",
+            diasAbierto: [20, 21],
             enPrograma: true
         },
   
@@ -1726,19 +1788,19 @@
                       <div class="prog-activity-item">• <span class="prog-activity-title">VISITA GUIADA:</span> Victoria Cano comentará el proceso y técnicas de sus murales de la calle Portal de Valldigna 7, y Marevella, 46003 València.<br><span class="prog-time-tag">📅 Sábado, 21 de noviembre 2026 a las 12h.</span></div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">RECITAL POÉTICO MUSICAL CON LAS POETAS DE CONCILYARTE:</span> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva y Ruth Sancho. <strong>Bailarina:</strong> Isabel Gimeno (La Gaona). <strong>Música:</strong> Enrique Linares.<br><span class="prog-time-tag">📅 Domingo, 22 de noviembre a las 11,30h.</span></div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">ENTREGA DE LOS PREMIOS TRABAJO FIN DE GRADO y TRABAJO FIN DE MASTER DE FILOSOFÍA</span> de la Fundación Victoria Cano y Alejandro Agustín con el Departament de Filosofia de la Universitat de València: <strong>PREMIO TFG:</strong> Paula Higón Ruiz, y <strong>PREMIO TFM:</strong> Isidro Mora López.<br><span class="prog-time-tag">📅 Domingo, 22 de noviembre a las 12,45h.</span></div>
-                      <div class="prog-activity-item">• <span class="prog-activity-title">EL SONIDO DE LA HUELLA:</span> Composición musical de Emilio Calandín, basada en la serie pictórica y audiovisual ”El poder de la huella” de Victoria Cano. La obra transforma los mensajes de voz grabados de Francisco Brines y Pilar Roig en notas musicales que interpreta al clarinete Luis Fernández Castelló.<br><span class="prog-time-tag">📅 Día 22 de noviembre a las 13,15h.</span></div>`,
+                      <div class="prog-activity-item">• <span class="prog-activity-title">EL SONIDO DE LA HUELLA:</span> Composición musical de Emilio Calandín, basada en la serie pictórica y audiovisual "El poder de la huella" de Victoria Cano. La obra transforma los mensajes de voz grabados de Francisco Brines y Pilar Roig en notas musicales que interpreta al clarinete Luis Fernández Castelló.<br><span class="prog-time-tag">📅 Día 22 de noviembre a las 13,15h.</span></div>`,
                 val: `<div class="prog-section-header">ACTIVITATS ARTÍSTIQUES A C/PORTAL DE VALLDIGNA 7, BAIX. 46003 València</div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">MÚSICA amb Dj Blay:</span><br><span class="prog-time-tag">📅 Divendres, 20 de novembre 2026 a les 18,30h.</span></div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">VISITA GUIADA:</span> Victoria Cano comentarà el procés i tècniques dels seus murals del carrer Portal de Valldigna 7, i Marevella, 46003 València.<br><span class="prog-time-tag">📅 Dissabte, 21 de novembre 2026 a les 12h.</span></div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">RECITAL POÈTIC MUSICAL AMB LES POETES DE CONCILYARTE:</span> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva i Ruth Sancho. <strong>Ballarina:</strong> Isabel Gimeno (La Gaona). <strong>Música:</strong> Enrique Linares.<br><span class="prog-time-tag">📅 Diumenge, 22 de novembre a les 11,30h.</span></div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">LLIURAMENT DELS PREMIS TREBALL FI DE GRAU i TREBALL FI DE MÀSTER DE FILOSOFIA</span> de la Fundació Victoria Cano i Alejandro Agustín amb el Departament de Filosofia de la Universitat de València: <strong>PREMI TFG:</strong> Paula Higón Ruiz, i <strong>PREMI TFM:</strong> Isidro Mora López.<br><span class="prog-time-tag">📅 Diumenge, 22 de novembre a les 12,45h.</span></div>
-                      <div class="prog-activity-item">• <span class="prog-activity-title">EL SO DE LA PETJADA:</span> Composició musical d'Emilio Calandín, basada en la sèrie pictòrica i audiovisual ”El poder de la huella” de Victoria Cano. L'obra transforma els missatges de veu gravats de Francisco Brines i Pilar Roig en notes musicals que interpreta al clarinet Luis Fernández Castelló.<br><span class="prog-time-tag">📅 Dia 22 de novembre a les 13,15h.</span></div>`,
+                      <div class="prog-activity-item">• <span class="prog-activity-title">EL SO DE LA PETJADA:</span> Composició musical d'Emilio Calandín, basada en la sèrie pictòrica i audiovisual "El poder de la huella" de Victoria Cano. L'obra transforma els missatges de veu gravats de Francisco Brines i Pilar Roig en notes musicals que interpreta al clarinet Luis Fernández Castelló.<br><span class="prog-time-tag">📅 Dia 22 de novembre a les 13,15h.</span></div>`,
                 eng: `<div class="prog-section-header">ARTISTIC ACTIVITIES AT C/PORTAL DE VALLDIGNA 7, BAJO. 46003 València</div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">MUSIC with Dj Blay:</span><br><span class="prog-time-tag">📅 Friday, November 20, 2026 at 18:30h.</span></div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">GUIDED TOUR:</span> Victoria Cano will discuss the process and techniques of her murals on Portal de Valldigna 7 and Marevella streets, 46003 València.<br><span class="prog-time-tag">📅 Saturday, November 21, 2026 at 12:00h.</span></div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">POETIC MUSICAL RECITAL WITH CONCILYARTE POETS:</span> Esther Veintimilla, Lourdes Vicente Bertolín, Melba Santacoloma, Mila Villanueva, and Ruth Sancho. <strong>Dancer:</strong> Isabel Gimeno (La Gaona). <strong>Music:</strong> Enrique Linares.<br><span class="prog-time-tag">📅 Sunday, November 22 at 11:30h.</span></div>
                       <div class="prog-activity-item">• <span class="prog-activity-title">PHILOSOPHY UNDERGRADUATE & MASTER'S THESIS AWARDS CEREMONY</span> by the Victoria Cano and Alejandro Agustín Foundation with the Department of Philosophy of the University of València: <strong>TFG AWARD:</strong> Paula Higón Ruiz, and <strong>TFM AWARD:</strong> Isidro Mora López.<br><span class="prog-time-tag">📅 Sunday, November 22 at 12:45h.</span></div>
-                      <div class="prog-activity-item">• <span class="prog-activity-title">EL SONIDO DE LA HUELLA (THE SOUND OF THE TRACE):</span> Musical composition by Emilio Calandín, based on Victoria Cano's pictorial and audiovisual series ”El poder de la huella”. The work transforms recorded voice messages from Francisco Brines and Pilar Roig into musical notes performed on clarinet by Luis Fernández Castelló.<br><span class="prog-time-tag">📅 November 22 at 13:15h.</span></div>`
+                      <div class="prog-activity-item">• <span class="prog-activity-title">EL SONIDO DE LA HUELLA (THE SOUND OF THE TRACE):</span> Musical composition by Emilio Calandín, based on Victoria Cano's pictorial and audiovisual series "El poder de la huella". The work transforms recorded voice messages from Francisco Brines and Pilar Roig into musical notes performed on clarinet by Luis Fernández Castelló.<br><span class="prog-time-tag">📅 November 22 at 13:15h.</span></div>`
             },
             web: "https://www.ofaaartits.com/", contacto: "www.ofaaartits.com", telefono: "629 170 969",
             diasAbierto: [20, 21, 22],
@@ -1774,17 +1836,17 @@
                 val: "Fundació Literària · Mostres poètiques i activitats culturals", 
                 eng: "Literary Foundation · Poetic showcases and cultural activities" 
             },
-            lat: 39.468800, lng: -0.324500, color: "turquoise",
-            dir: "El Cabañal / Oliva (Sede de la Fundación), València",
+            lat: 38.89424, lng: -0.13338, color: "turquoise",
+            dir: "Casa Elca, Oliva, València",
             horario: { 
                 esp: "20, 21 y 22 de noviembre de 2026 (Consultar programación de actividades)", 
                 val: "20, 21 i 22 de novembre de 2026 (Consultar programació d'activitats)", 
                 eng: "November 20, 21 and 22, 2026 (Check activity schedule)" 
             },
             propuesta: { 
-                esp: "Institución cultural clave vinculada a los proyectos literarios y poéticos de la Biennal (ciclos A Viva Voz, Francisco Brines: encuentros), dedicada a custodiar y difundir la obra del insigne poeta.", 
-                val: "Institució cultural clau vinculada als projectes literaris i poètics de la Biennal (cicles A Viva Voz, Francisco Brines: encontres), dedicada a custodiar i difondre l'obra de l'insigne poeta.", 
-                eng: "Key cultural institution linked to the Biennial's literary and poetic projects (A Viva Voz, Francisco Brines: encuentros), dedicated to preserving and sharing the renowned poet's work." 
+                esp: "La Fundación Francisco Brines de la Comunitat Valenciana es una entidad cultural privada sin ánimo de lucro creada por el propio poeta (Premio Cervantes 2020) para preservar, estudiar y difundir su legado literario, artístico y paisajístico.", 
+                val: "La Fundació Francisco Brines de la Comunitat Valenciana és una entitat cultural privada sense ànim de lucre creada pel propi poeta (Premi Cervantes 2020) per a preservar, estudiar i difondre el seu llegat literari, artístic i paisatgístic.", 
+                eng: "The Francisco Brines Foundation of the Valencian Community is a private non-profit cultural entity created by the poet himself (Cervantes Prize 2020) to preserve, study, and disseminate his literary, artistic, and landscape legacy." 
             },
             web: "https://fundacionfranciscobrines.org/", contacto: "info@fundacionfranciscobrines.org", telefono: "-",
             diasAbierto: [20, 21, 22],
@@ -1799,7 +1861,7 @@
                 val: "Espai d'Art · Exposicions d'art contemporani", 
                 eng: "Art Space · Contemporary art exhibitions" 
             },
-            lat: 39.473791, lng: -0.377786, color: "green",
+            lat: 39.472234, lng: -0.377623, color: "green",
             dir: "Carrer dels Aluders, 7, Planta Baja, Ciutat Vella, 46001 València",
             horario: { 
                 esp: "Viernes 20, sábado 21 y domingo 22 de noviembre de 2026 (11:00 - 14:00 h y 17:00 - 20:00 h)", 
@@ -2074,8 +2136,11 @@
             const matches = namesToCheck.some(nTaller => 
                 nTaller.includes(nEv) || nEv.includes(nTaller) ||
                 (nEv.includes('victoria cano') && nTaller.includes('victoria cano')) ||
+                (nEv.includes('natividad navalón') && nTaller.includes('natividad navalón')) ||
                 (nEv.includes('lola tudela') && nTaller.includes('lola tudela')) ||
-                (nEv.includes('henar del paso') && nTaller.includes('henar del paso'))
+                (nEv.includes('henar del paso') && nTaller.includes('henar del paso')) ||
+                (nEv.includes('pepe march') && nTaller.includes('pepe march')) ||
+                (nEv.includes('talleres medusa') && nTaller.includes('talleres medusa'))
             );
             if (matches) {
                 tallerEncontrado = marker.tallerData;
@@ -2175,22 +2240,22 @@
         const telEl = document.getElementById('sheet-telefono');
         if (telEl) {
             if (taller.telefono && taller.telefono !== '-') {
-                telEl.innerText = `📞 ${taller.telefono}`;
+                telEl.innerText = `📱 ${taller.telefono}`;
                 telEl.style.display = 'block';
             } else {
                 telEl.style.display = 'none';
             }
         }
   
-        document.getElementById('bottom-sheet').classList.add('open');
+        const sheet = document.getElementById('bottom-sheet');
+        if (sheet) sheet.classList.add('open');
     }
   
     function closeSheet() {
         activeSheetTaller = null;
-        document.getElementById('bottom-sheet').classList.remove('open');
+        const sheet = document.getElementById('bottom-sheet');
+        if (sheet) sheet.classList.remove('open');
     }
 </script>
 </body>
 </html>
-
-
